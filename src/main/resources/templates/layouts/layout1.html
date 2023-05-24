@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1" />-->
+
+<!--  <title>Netflix world-</title>-->
+<!--  <meta-->
+<!--          name="description"-->
+<!--          content="Video streaming website Netflix clone. Frontend - HTML5, Pure CSS3 [flexbox], JS, OWL Carousel, JQuery |"-->
+<!--  />-->
+<!--  <meta name="robots" content="index, follow" />-->
+
+<!--  &lt;!&ndash; og properties &ndash;&gt;-->
+
+<!--  <meta property="og:site_name" content="Rajesh Royal" />-->
+
+
+<!--  <meta-->
+<!--          property="og:image"-->
+<!--          content="../images/site-image-description.PNG"-->
+<!--  />-->
+
+  <!-- -->
+
+  <link rel="stylesheet" th:href="@{/assets/lib/owl.carousel.css}" />
+  <script th:src="@{/assets/lib/jquery3.5.0.js}"></script>
+  <script th:src="@{/assets/lib/owl.carousels}"></script>
+
+  <!--main script file-->
+  <script th:src="@{/assets/js/main-script.js}"></script>
+
+  <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"
+          integrity="sha256-t2kyTgkh+fZJYRET5l9Sjrrl4UDain5jxdbqe8ejO8A="
+          crossorigin="anonymous"
+  />
+
+  <link rel="stylesheet" th:href="@{/assets/css/global.css}" />
+  <link rel="stylesheet" th:href="@{/assets/css/browse.css}" />
+  <th:block layout:fragment="script"></th:block>
+  <th:block layout:fragment="css"></th:block>
+</head>
+<body>
+  <div th:replace="fragments/header::header"></div>
+
+  <div layout:fragment="content" class="content"></div>
+
+  <div th:replace="fragments/footer::footer"></div>
+</body>
+
+</html>

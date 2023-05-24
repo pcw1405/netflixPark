@@ -1,36 +1,13 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js">
-<!--<![endif]-->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Netflix world</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<div layout:fragment="content">
 
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"
-        integrity="sha256-t2kyTgkh+fZJYRET5l9Sjrrl4UDain5jxdbqe8ejO8A=" crossorigin="anonymous" />
-
-  <!--for global styling-->
-  <link rel="stylesheet" href="../../assets/css/global.css">
-  <!-- for footer and header-->
-  <link rel="stylesheet" href="../../assets/css/browse.css">
-  <!--custom styling-->
-  <link rel="stylesheet" href="../../assets/css/userprofile.css">
-
-</head>
-
-<body>
-<!--[if lt IE 7]>
-<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->
-
+  <link rel="stylesheet" th:href="@{/assets/css/global.css}" />
+  <link rel="stylesheet" th:href="@{/assets/css/browse.css}" />
 
 <!-- dashboard/browse page block start | home page after login | -->
 
@@ -245,7 +222,7 @@
         <div class="">
           <div class="info-container d-flex flex-middle space-between">
             <div class="name d-flex">
-              <img src="../../images/icons/user2.png" alt="user" class="user-icon" />
+              <img th:src="@{/images/icons/user2.png}" alt="user" class="user-icon" />
               <div class="content">
                 <p class="username">박청원</p>
                 <p class="maturity">모든 관람등급</p>
@@ -326,7 +303,6 @@
 
 
   </footer>
-  </div>
 
 </main>
 
@@ -348,8 +324,6 @@
     Account
   </a>
 </div>
-
-
-</body>
+</div>
 
 </html>
