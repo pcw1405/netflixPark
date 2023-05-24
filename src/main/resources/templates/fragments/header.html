@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+
+
+<div th:fragment="header">
+<header class="d-flex space-between flex-center flex-middle">
+  <div class="nav-links d-flex flex-center flex-middle">
+    <a href="/">
+      <h2 class="logo logo-text red-color f-s-28 m-r-25">NETFLIX</h2>
+      <h2 class="second-logo-text red-color f-s-28">N</h2>
+    </a>
+    <a href="../browse.html" class="nav-item home">홈</a>
+    <a href="../movies.html" class="nav-item">영화</a>
+    <a href="../tvshow.html" class="nav-item">드라마</a>
+    <a href="../latest.html" class="nav-item latest">최근시청기록</a>
+    <a href="../mylist.html" class="nav-item">내가 찜한 콘텐츠</a>
+  </div>
+  <div class="righticons d-flex flex-end flex-middle">
+    <a href="search.html"
+    ><img src="../../images/icons/search.svg" alt="search icon"
+    /></a>
+    <div class="dropdown notification">
+      <img
+              src="../../images/icons/notification.svg"
+              alt="notificatio icon"
+      />
+      <div class="dropdown-content">
+        <a href="#" class="profile-item d-flex flex-middle">
+          <img
+                  src="../../images/announcement/announcement-image1.jpeg"
+                  alt="user profile icon"
+                  class="user-icon"
+                  style="display: block; width: 150px; height: 70px !important"
+          />
+          <span>
+                <span style="color: white; font-weight: bold">
+                  신규 컨텐츠
+                  <br
+                  /></span>
+                <br />
+                <br />
+                <br />
+                &nbsp;지구마블 세계여행
+                <span style="font-size: 10px; color: #888">
+                  <br />
+                  <br />
+                  <br />
+                  오늘</span
+                >
+              </span>
+        </a>
+        <a href="#" class="profile-item d-flex flex-middle">
+          <img
+                  src="../../images/announcement/announcement-image2.jpeg"
+                  alt="user profile icon"
+                  class="user-icon"
+                  style="display: block; width: 150px; height: 70px !important"
+          />
+          <span>
+                <span style="color: white; font-weight: bold">
+                  신규 컨텐츠
+                  <br
+                  /></span>
+                <br />
+                <br />
+                <br />
+                &nbsp; 3000년의 기다림
+                <span style="font-size: 10px; color: #888">
+                  <br />
+                  <br />
+                  <br />
+                  3일전</span
+                >
+              </span>
+        </a>
+        <a href="#" class="profile-item d-flex flex-middle">
+          <img
+                  src="../../images/announcement/announcement-image3.jpeg"
+                  alt="user profile icon"
+                  class="user-icon"
+                  style="display: block; width: 150px; height: 70px !important"
+          />
+          <span>
+                <span style="color: white; font-weight: bold">
+                  신규 컨텐츠
+                  <br
+                  /></span>
+                <br />
+                <br />
+                <br />
+                &nbsp; 내 이름은 마더
+                <span style="font-size: 10px; color: #888">
+                  <br />
+                  <br />
+                  <br />
+                  6일전</span
+                >
+              </span>
+        </a>
+        <a href="#" class="profile-item d-flex flex-middle">
+          <img
+                  src="../../images/announcement/announcement-image4.jpeg"
+                  alt="user profile icon"
+                  class="user-icon"
+                  style="display: block; width: 150px; height: 70px !important"
+          />
+          <span>
+                <span style="color: white; font-weight: bold">
+                  신규 컨텐츠</span
+                >
+                <br />
+                <br />
+                <br />
+                &nbsp;어쩌면 우린 헤어졌는지 모른다
+                <span style="font-size: 10px; color: #888">
+                  <br />
+                  <br />
+                  <br />
+                  1주전</span
+                >
+              </span>
+        </a>
+      </div>
+    </div>
+
+    <!-- 프로필 구간 -->
+    <div class="dropdown">
+      <img
+              src="../../images/icons/user-image-green.png"
+              alt="user profile icon"
+              class="user-icon"
+      />
+      <span class="profile-arrow"></span>
+
+      <div class="dropdown-content">
+        <div class="profile-links">
+          <a href="#" class="profile-item d-flex flex-middle">
+            <img
+                    src="../../images/icons/user1.png"
+                    alt="user profile icon"
+                    class="user-icon"
+            />
+            <span>윤영민</span>
+          </a>
+          <a href="#" class="profile-item d-flex flex-middle">
+            <img
+                    src="../../images/icons/user2.png"
+                    alt="user profile icon"
+                    class="user-icon"
+            />
+            <span>박청원</span>
+          </a>
+          <a
+                  href="#"
+                  class="profile-item d-flex flex-middle"
+                  style="margin-bottom: 13px"
+          >
+            <img
+                    src="../images/icons/user3.png"
+                    alt="user profile icon"
+                    class="user-icon"
+            />
+            <span>강동언</span>
+          </a>
+          <a href="#" class="profile-item last">프로필 관리</a>
+        </div>
+        <div class="line"></div>
+        <div class="links d-flex direction-column">
+          <a href="user-profile/home.html">계정</a>
+          <a href="#">고객센터</a>
+          <a href="/">로그아웃</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+</div>
+</html>
