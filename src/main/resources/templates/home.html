@@ -1,37 +1,46 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/layout1}">
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
 
-<!--<head>-->
-<!--  <meta charset="utf-8">-->
-<!--  <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
-<!--  <meta name="viewport" content="width=device-width, initial-scale=1">-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!--  <title>Netflix world-</title>-->
-
-
-
-
-
-<!--  <link rel="stylesheet" href="../static/assets/lib/owl.carousel.css" />-->
-<!--  <script src="../static/assets/lib/jquery 3.5.0.js"></script>-->
-<!--  <script src="../static/assets/lib/owl.carousel.js"></script>-->
+  <title>Netflix world-</title>
 
 
-<!--  &lt;!&ndash;main script file&ndash;&gt;-->
-<!--  <script src="../static/assets/js/main-script.js"></script>-->
-
-<!--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" integrity="sha256-t2kyTgkh+fZJYRET5l9Sjrrl4UDain5jxdbqe8ejO8A=" crossorigin="anonymous" />-->
-
-<!--  <link rel="stylesheet" href="../static/assets/css/global.css">-->
-<!--  <link rel="stylesheet" href="../static/assets/css/browse.css">-->
 
 
-<!--</head>-->
 
-<div layout:fragment="content">
-  <body>
+  <link rel="stylesheet" href="../assets/lib/owl.carousel.css" />
+  <script src="../assets/lib/jquery 3.5.0.js"></script>
+  <script src="../assets/lib/owl.carousel.js"></script>
+
+
+  <!--main script file-->
+  <script src="../assets/js/main-script.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" integrity="sha256-t2kyTgkh+fZJYRET5l9Sjrrl4UDain5jxdbqe8ejO8A=" crossorigin="anonymous" />
+
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/browse.css">
+
+
+</head>
+
+<body>
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+
+<!-- dashboard/browse page block start | home page after login | -->
+
 <main id="mainContainer" class="p-b-40">
   <div>
     <header class="d-flex space-between flex-center flex-middle">
@@ -47,48 +56,48 @@
         <a href="mylist.html" class="nav-item">My List</a>
       </div>
       <div class="righticons d-flex flex-end flex-middle">
-        <a href="search.html"><img src="../static/images/icons/search.svg" alt="search icon"></a>
+        <a href="search.html"><img src="../images/icons/search.svg" alt="search icon"></a>
         <div class="dropdown notification">
-          <img src="../static/images/icons/notification.svg" alt="notificatio icon">
+          <img src="../images/icons/notification.svg" alt="notificatio icon">
           <div class="dropdown-content">
             <a href="#" class="profile-item d-flex flex-middle">
-              <img src="../static/images/icons/user2.png" alt="user profile icon" class="user-icon">
+              <img src="../../images/icons/user2.png" alt="user profile icon" class="user-icon">
               <span>You have new notification from <span>User 123</span></span>
             </a>
             <a href="#" class="profile-item d-flex flex-middle">
-              <img src="../static/images/icons/user1.png" alt="user profile icon" class="user-icon">
+              <img src="../../images/icons/user1.png" alt="user profile icon" class="user-icon">
               <span>You have new notification from <span>User 123</span></span>
             </a>
             <a href="#" class="profile-item d-flex flex-middle">
-              <img src="../static/images/icons/user4.png" alt="user profile icon" class="user-icon">
+              <img src="../../images/icons/user4.png" alt="user profile icon" class="user-icon">
               <span>You have new notification from <span>User 123</span></span>
             </a>
             <a href="#" class="profile-item d-flex flex-middle">
-              <img src="../static/images/icons/user3.png" alt="user profile icon" class="user-icon">
+              <img src="../../images/icons/user3.png" alt="user profile icon" class="user-icon">
               <span>You have new notification from <span>User 123</span></span>
             </a>
           </div>
         </div>
 
         <div class="dropdown">
-          <img src="../static/images/icons/user-image-green.png" alt="user profile icon" class="user-icon"> <span class="profile-arrow"></span>
+          <img src="../images/icons/user-image-green.png" alt="user profile icon" class="user-icon"> <span class="profile-arrow"></span>
 
           <div class="dropdown-content">
             <div class="profile-links">
               <a href="#" class="profile-item d-flex flex-middle">
-                <img src="../static/images/icons/user1.png" alt="user profile icon" class="user-icon">
+                <img src="../images/icons/user1.png" alt="user profile icon" class="user-icon">
                 <span>Rajesh</span>
               </a>
               <a href="#" class="profile-item d-flex flex-middle">
-                <img src="../static/images/icons/user2.png" alt="user profile icon" class="user-icon">
+                <img src="../images/icons/user2.png" alt="user profile icon" class="user-icon">
                 <span>Karan</span>
               </a>
               <a href="#" class="profile-item d-flex flex-middle">
-                <img src="../static/images/icons/user3.png" alt="user profile icon" class="user-icon">
+                <img src="../images/icons/user3.png" alt="user profile icon" class="user-icon">
                 <span>Pappy</span>
               </a>
               <a href="#" class="profile-item d-flex flex-middle" style="margin-bottom: 13px;">
-                <img src="../static/images/icons/user4.png" alt="user profile icon" class="user-icon">
+                <img src="../images/icons/user4.png" alt="user profile icon" class="user-icon">
                 <span>Denny</span>
               </a>
               <a href="#" class="profile-item last" >Manage Profiles</a>
@@ -113,8 +122,8 @@
         <div>
           <!--trailer video-->
           <video class="hero-background-image" id="hero-video"
-                 poster="../static/images/tv-show/poster/never-have-ever-tv-show.webp">
-            <source src="../static/images/tv-show/videos/Never Have I Ever - Official Trailer - Netflix_2.mp4"
+                 poster="../images/tv-show/poster/never-have-ever-tv-show.webp">
+            <source src="../images/tv-show/videos/Never Have I Ever - Official Trailer - Netflix_2.mp4"
                     type="video/mp4">
             Your browser does not support the video tag.
           </video>
@@ -125,7 +134,7 @@
 
         <div class="container text-container" style="z-index: 5;">
           <div class="contentlogo">
-            <img src="../static/images/tv-show/poster/never-have-ever-logo.webp" alt="content logo"
+            <img src="../images/tv-show/poster/never-have-ever-logo.webp" alt="content logo"
                  class="show-logo" />
           </div>
           <!--top 10 ranking badge svg-->
@@ -188,7 +197,7 @@
         <div class="mylist-container d-flex flex-start flex-middle flex-no-wrap owl-carousel">
           <div class="video">
             <video class="mylist-img p-r-10 p-t-10 video-item"
-                   poster="../static/images/main_img/hot1.jpg">
+                   poster="../images/main_img/hot1.jpg">
               <source
                       src="../main_video/hot1_1.mp4"
                       type="video/mp4">
@@ -230,9 +239,9 @@
         <div class="continue-watching-container d-flex flex-start flex-middle flex-no-wrap owl-carousel">
           <div class="video">
             <video class="mylist-img p-r-10 p-t-10 video-item"
-                   poster="../static/images/main_img/hot6.jpg">
+                   poster="../images/main_img/hot6.jpg">
               <source
-                      src="../static/main_video/hot6_1.mp4"
+                      src="../main_video/hot6_1.mp4"
                       type="video/mp4">
               Your browser does not support the video tag.
             </video>
@@ -270,11 +279,11 @@
         <div class="container p-0 d-flex flex-start flex-middle flex-no-wrap owl-carousel align-items-center">
 
           <div class="video d-flex justify-content-start" id="hover_fix">
-            <img src="../static/images/top-10num/1.png" class="p-t-10" id="hover_fix_img">
+            <img src="../images/top-10num/1.png" class="p-t-10" id="hover_fix_img">
             <video class="p-t-10 video-item" id="hover_fix_video"
-                   poster="../static/images/main_img/top1.jpg">
+                   poster="../images/main_img/top1.jpg">
               <source
-                      src="../static/main_video/top1_1.mp4"
+                      src="../main_video/top1_1.mp4"
                       type="video/mp4">
             </video>
 
@@ -302,11 +311,11 @@
           </div>
 
           <div class="video d-flex justify-content-start align-items-center">
-            <img src="../static/images/top-10num/2.png" class="flex-itme p-t-10">
+            <img src="../images/top-10num/2.png" class="flex-itme p-t-10">
             <video class="p-t-10 video-item"
-                   poster="../static/images/main_img/top1.jpg">
+                   poster="../images/main_img/top1.jpg">
               <source
-                      src="../static/main_video/top1_1.mp4"
+                      src="../main_video/top1_1.mp4"
                       type="video/mp4">
             </video>
 
@@ -334,105 +343,9 @@
           </div>
 
           <div class="video d-flex justify-content-start align-items-center">
-            <img src="../static/images/top-10num/3.png" class="flex-itme p-t-10">
+            <img src="../images/top-10num/3.png" class="flex-itme p-t-10">
             <video class="p-t-10 video-item"
-                   poster="../static/images/main_img/top1.jpg">
-              <source
-                      src="../static/main_video/top1_1.mp4"
-                      type="video/mp4">
-            </video>
-
-            <div class="video-description d-flex flex-end direction-column">
-              <div class="play-button">
-                <svg viewBox="0 0 24 24">
-                  <path d="M6 4l15 8-15 8z" fill="black"></path>
-                </svg>
-              </div>
-              <div>
-                <h4 class="heading f-w-8 text-shadow">
-                  영상 제목 들어갈곳
-                </h4>
-              </div>
-              <div class="info d-flex flex-middle flex-no-wrap">
-                <p class="rated text-shadow"><strong>18+</strong></p>
-                <p class="season-count text-shadow">시즌 1</p>
-              </div>
-              <div class="genere d-flex flex-no-wrap text-shadow">
-                <p>#Nudeity</p>
-                <p>#Romance</p>
-                <p>#Love</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="video d-flex justify-content-start align-items-center">
-            <img src="../static/images/top-10num/4.png" class="flex-itme p-t-10">
-            <video class="p-t-10 video-item"
-                   poster="../static/images/main_img/top1.jpg">
-              <source
-                      src="../static/main_video/top1_1.mp4"
-                      type="video/mp4">
-            </video>
-
-            <div class="video-description d-flex flex-end direction-column">
-              <div class="play-button">
-                <svg viewBox="0 0 24 24">
-                  <path d="M6 4l15 8-15 8z" fill="black"></path>
-                </svg>
-              </div>
-              <div>
-                <h4 class="heading f-w-8 text-shadow">
-                  영상 제목 들어갈곳
-                </h4>
-              </div>
-              <div class="info d-flex flex-middle flex-no-wrap">
-                <p class="rated text-shadow"><strong>18+</strong></p>
-                <p class="season-count text-shadow">시즌 1</p>
-              </div>
-              <div class="genere d-flex flex-no-wrap text-shadow">
-                <p>#Nudeity</p>
-                <p>#Romance</p>
-                <p>#Love</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="video d-flex justify-content-start align-items-center">
-            <img src="../static/images/top-10num/5.png" class="flex-itme p-t-10">
-            <video class="p-t-10 video-item"
-                   poster="../static/images/main_img/top1.jpg">
-              <source
-                      src="../static/main_video/top1_1.mp4"
-                      type="video/mp4">
-            </video>
-
-            <div class="video-description d-flex flex-end direction-column">
-              <div class="play-button">
-                <svg viewBox="0 0 24 24">
-                  <path d="M6 4l15 8-15 8z" fill="black"></path>
-                </svg>
-              </div>
-              <div>
-                <h4 class="heading f-w-8 text-shadow">
-                  영상 제목 들어갈곳
-                </h4>
-              </div>
-              <div class="info d-flex flex-middle flex-no-wrap">
-                <p class="rated text-shadow"><strong>18+</strong></p>
-                <p class="season-count text-shadow">시즌 1</p>
-              </div>
-              <div class="genere d-flex flex-no-wrap text-shadow">
-                <p>#Nudeity</p>
-                <p>#Romance</p>
-                <p>#Love</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="video d-flex justify-content-start align-items-center">
-            <img src="../static/images/top-10num/6.png" class="flex-itme p-t-10">
-            <video class="p-t-10 video-item"
-                   poster="../static/images/main_img/top1.jpg">
+                   poster="../images/main_img/top1.jpg">
               <source
                       src="../main_video/top1_1.mp4"
                       type="video/mp4">
@@ -462,41 +375,9 @@
           </div>
 
           <div class="video d-flex justify-content-start align-items-center">
-            <img src="../static/images/top-10num/7.png" class="flex-itme p-t-10">
+            <img src="../images/top-10num/4.png" class="flex-itme p-t-10">
             <video class="p-t-10 video-item"
-                   poster="../static/images/main_img/top1.jpg">
-              <source
-                      src="../static/main_video/top1_1.mp4"
-                      type="video/mp4">
-            </video>
-
-            <div class="video-description d-flex flex-end direction-column">
-              <div class="play-button">
-                <svg viewBox="0 0 24 24">
-                  <path d="M6 4l15 8-15 8z" fill="black"></path>
-                </svg>
-              </div>
-              <div>
-                <h4 class="heading f-w-8 text-shadow">
-                  영상 제목 들어갈곳
-                </h4>
-              </div>
-              <div class="info d-flex flex-middle flex-no-wrap">
-                <p class="rated text-shadow"><strong>18+</strong></p>
-                <p class="season-count text-shadow">시즌 1</p>
-              </div>
-              <div class="genere d-flex flex-no-wrap text-shadow">
-                <p>#Nudeity</p>
-                <p>#Romance</p>
-                <p>#Love</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="video d-flex justify-content-start align-items-center">
-            <img src="../static/images/top-10num/8.png" class="flex-itme p-t-10">
-            <video class="p-t-10 video-item"
-                   poster="../static/images/main_img/top1.jpg">
+                   poster="../images/main_img/top1.jpg">
               <source
                       src="../main_video/top1_1.mp4"
                       type="video/mp4">
@@ -526,9 +407,9 @@
           </div>
 
           <div class="video d-flex justify-content-start align-items-center">
-            <img src="../static/images/top-10num/9.png" class="flex-itme p-t-10">
+            <img src="../images/top-10num/5.png" class="flex-itme p-t-10">
             <video class="p-t-10 video-item"
-                   poster="../static/images/main_img/top1.jpg">
+                   poster="../images/main_img/top1.jpg">
               <source
                       src="../main_video/top1_1.mp4"
                       type="video/mp4">
@@ -558,9 +439,137 @@
           </div>
 
           <div class="video d-flex justify-content-start align-items-center">
-            <img src="../static/images/top-10num/10.png" class="flex-itme p-t-10">
+            <img src="../images/top-10num/6.png" class="flex-itme p-t-10">
             <video class="p-t-10 video-item"
-                   poster="../static/images/main_img/top1.jpg">
+                   poster="../images/main_img/top1.jpg">
+              <source
+                      src="../main_video/top1_1.mp4"
+                      type="video/mp4">
+            </video>
+
+            <div class="video-description d-flex flex-end direction-column">
+              <div class="play-button">
+                <svg viewBox="0 0 24 24">
+                  <path d="M6 4l15 8-15 8z" fill="black"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="heading f-w-8 text-shadow">
+                  영상 제목 들어갈곳
+                </h4>
+              </div>
+              <div class="info d-flex flex-middle flex-no-wrap">
+                <p class="rated text-shadow"><strong>18+</strong></p>
+                <p class="season-count text-shadow">시즌 1</p>
+              </div>
+              <div class="genere d-flex flex-no-wrap text-shadow">
+                <p>#Nudeity</p>
+                <p>#Romance</p>
+                <p>#Love</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="video d-flex justify-content-start align-items-center">
+            <img src="../images/top-10num/7.png" class="flex-itme p-t-10">
+            <video class="p-t-10 video-item"
+                   poster="../images/main_img/top1.jpg">
+              <source
+                      src="../main_video/top1_1.mp4"
+                      type="video/mp4">
+            </video>
+
+            <div class="video-description d-flex flex-end direction-column">
+              <div class="play-button">
+                <svg viewBox="0 0 24 24">
+                  <path d="M6 4l15 8-15 8z" fill="black"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="heading f-w-8 text-shadow">
+                  영상 제목 들어갈곳
+                </h4>
+              </div>
+              <div class="info d-flex flex-middle flex-no-wrap">
+                <p class="rated text-shadow"><strong>18+</strong></p>
+                <p class="season-count text-shadow">시즌 1</p>
+              </div>
+              <div class="genere d-flex flex-no-wrap text-shadow">
+                <p>#Nudeity</p>
+                <p>#Romance</p>
+                <p>#Love</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="video d-flex justify-content-start align-items-center">
+            <img src="../images/top-10num/8.png" class="flex-itme p-t-10">
+            <video class="p-t-10 video-item"
+                   poster="../images/main_img/top1.jpg">
+              <source
+                      src="../main_video/top1_1.mp4"
+                      type="video/mp4">
+            </video>
+
+            <div class="video-description d-flex flex-end direction-column">
+              <div class="play-button">
+                <svg viewBox="0 0 24 24">
+                  <path d="M6 4l15 8-15 8z" fill="black"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="heading f-w-8 text-shadow">
+                  영상 제목 들어갈곳
+                </h4>
+              </div>
+              <div class="info d-flex flex-middle flex-no-wrap">
+                <p class="rated text-shadow"><strong>18+</strong></p>
+                <p class="season-count text-shadow">시즌 1</p>
+              </div>
+              <div class="genere d-flex flex-no-wrap text-shadow">
+                <p>#Nudeity</p>
+                <p>#Romance</p>
+                <p>#Love</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="video d-flex justify-content-start align-items-center">
+            <img src="../images/top-10num/9.png" class="flex-itme p-t-10">
+            <video class="p-t-10 video-item"
+                   poster="../images/main_img/top1.jpg">
+              <source
+                      src="../main_video/top1_1.mp4"
+                      type="video/mp4">
+            </video>
+
+            <div class="video-description d-flex flex-end direction-column">
+              <div class="play-button">
+                <svg viewBox="0 0 24 24">
+                  <path d="M6 4l15 8-15 8z" fill="black"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="heading f-w-8 text-shadow">
+                  영상 제목 들어갈곳
+                </h4>
+              </div>
+              <div class="info d-flex flex-middle flex-no-wrap">
+                <p class="rated text-shadow"><strong>18+</strong></p>
+                <p class="season-count text-shadow">시즌 1</p>
+              </div>
+              <div class="genere d-flex flex-no-wrap text-shadow">
+                <p>#Nudeity</p>
+                <p>#Romance</p>
+                <p>#Love</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="video d-flex justify-content-start align-items-center">
+            <img src="../images/top-10num/10.png" class="flex-itme p-t-10">
+            <video class="p-t-10 video-item"
+                   poster="../images/main_img/top1.jpg">
               <source
                       src="../main_video/top1_1.mp4"
                       type="video/mp4">
@@ -595,11 +604,11 @@
       <!--big poster screen left poster right content-->
       <!-- today's recommend -->
       <section class="big-section d-flex flex-center container">
-        <img src="../static/images/tv-show/poster/sex-education.webp" alt="">
+        <img src="../images/tv-show/poster/sex-education.webp" alt="">
 
         <div class="right-side">
           <div class="contentlogo">
-            <img src="../static/images/tv-show/poster/sex-education-logo.webp" alt="content logo"
+            <img src="../images/tv-show/poster/sex-education-logo.webp" alt="content logo"
                  class="show-logo" />
           </div>
 
@@ -663,7 +672,7 @@
 
         <div class="video">
           <video class="mylist-img p-r-10 p-t-10 video-item"
-                 poster="../static/images/main_img/hot10.jpg">
+                 poster="../images/main_img/hot10.jpg">
             <source
                     src="../main_video/hot10_1.mp4"
                     type="video/mp4">
@@ -695,7 +704,7 @@
 
         <div class="video">
           <video class="mylist-img p-r-10 p-t-10 video-item"
-                 poster="../static/images/main_img/hot10.jpg">
+                 poster="../images/main_img/hot10.jpg">
             <source
                     src="../main_video/hot10_1.mp4"
                     type="video/mp4">
@@ -727,7 +736,7 @@
 
         <div class="video">
           <video class="mylist-img p-r-10 p-t-10 video-item"
-                 poster="../static/images/main_img/hot10.jpg">
+                 poster="../images/main_img/hot10.jpg">
             <source
                     src="../main_video/hot10_1.mp4"
                     type="video/mp4">
@@ -826,7 +835,6 @@
 </div>
 
 
-
-</div>
 </body>
+
 </html>
