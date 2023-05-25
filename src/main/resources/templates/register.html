@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Netflix login – Watch TV Shows Online, Watch Movies Online</title>
+  <meta name="description" content="Watch Netflix movies & TV shows online or stream right to your smart TV, game console, PC, Mac, mobile, tablet and more.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/landing-pages.css">
+</head>
+
+<body>
+<style>
+        body::before{
+            background-image: url('./images/mainimage/loginmain1.jpg');
+
+        }
+    </style>
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+
+<!-- index page block start | main landing page home | -->
+
+<main style="padding: 0px 10px;">
+  <header class="d-flex space-between middle-align">
+    <a href="/">
+      <img src="images/logo.png" height="50px" width="170px" alt="site logo main"></img>
+    </a>
+    <button class="button"><a href="/login.html"> 로그인</a></button>
+  </header>
+  <section id="login-form-section">
+    <!--Login form start-->
+
+    <div class="loginContainer d-flex direction-column">
+      <h2 class="formtitle">
+        회원가입
+      </h2>
+      <form action="#" id="loginForm" class="d-flex direction-column" method="post" name="loginForm">
+
+        <input type="text" name="name" id="name" placeholder="&nbsp;이름" required/>
+        <p id="errorEmail">&nbsp;정확한 이름을 입력해주세요.</p>
+        <p>
+          <br/>
+        </p>
+
+        <input type="text" name="email" id="email" class="email" placeholder="&nbsp;이메일" onchange="validateEmail()" required/>
+        <p id="errorEmail">정확한 이메일 주소를 입력하세요.</p>
+
+        <input type="password" name="password" id="password" placeholder="&nbsp;비밀번호" required/>
+        <p id="errorPassword">&nbsp;비밀번호를 입력해주세요.</p>
+
+        <button type="submit" class="button submitButton" id="signInButton" disabled="disabled">
+          회원가입
+        </button>
+
+        <!--  <div class="rememberMe">
+              <input type="checkbox" name="rememberMe" id="rememberMe" class="rememberMe">
+              <label for="rememberMe"><span class="login-remember-me-label-text">Remember me</span></label>
+          </div>-->
+
+        <p class="signUpText para">
+          계정이 있으신가요?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="signUp"><a href="/login.html">로그인 하러가기</a></span>
+        </p>
+        <p class="bottomMessage para" style="font-size: 13px;">
+          이 페이지는 Google reCAPTCHA의 보호를 받아 사용자가 로봇이 아님을 확인합니다. <span style="color:royalblue; font-size: 15px;"> 자세히알아보기.</span>
+        </p>
+      </form>
+    </div>
+
+    <!--Login form End-->
+  </section>
+</main>
+
+<script>
+        //function to validate email address on input text change and enable submit button if it's true
+        document.getElementById('errorEmail').style.display = "none";
+        document.getElementById('errorPassword').style.display = "none";
+        function validateEmail() {
+            let email = document.getElementById('email').value;
+            let re = /\S+@\S+\.\S+/;
+            let result = re.test(email);
+            if (result) {
+                document.getElementById('errorEmail').style.display = "none";
+                document.getElementById('signInButton').disabled = false;
+               // document.getElementById("email-form").submit();
+            }
+            else {
+                document.getElementById('errorEmail').style.display = "block";
+                document.getElementById('signInButton').disabled = true;
+            }
+        }
+    </script>
+</body>
+
+</html>
