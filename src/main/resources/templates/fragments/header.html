@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 >
-<th:block layout:fragment="css">
-    <link rel="stylesheet" th:href="@{/assets/css/userprofile.css}">
-</th:block>
+
 <div th:fragment="header">
-<header class="d-flex space-between flex-center flex-middle">
+<header class="d-flex space-between flex-center flex-middle container">
   <div class="nav-links d-flex flex-center flex-middle">
     <a href="/">
-      <h2 class="logo logo-text red-color f-s-28 m-r-25">NETFLIX</h2>
-      <h2 class="second-logo-text red-color f-s-28">N</h2>
+        <img th:src="@{/images/Netflix_Logo.png}" class="main_logo_img" alt="메인로고이미지">
     </a>
     <a href="../browse.html" class="nav-item home">홈</a>
     <a href="../movies.html" class="nav-item">영화</a>
@@ -18,21 +15,21 @@
     <a href="../mylist.html" class="nav-item">내가 찜한 콘텐츠</a>
   </div>
   <div class="righticons d-flex flex-end flex-middle">
-    <a href="search.html"
-    ><img src="../../images/icons/search.svg" alt="search icon"
-    /></a>
+    <a href="search.html">
+        <img src="../../images/icons/search.svg" alt="search icon"/>
+    </a>
     <div class="dropdown notification">
       <img
-              src="../../images/icons/notification.svg"
-              alt="notificatio icon"
+          src="../../images/icons/notification.svg"
+          alt="notificatio icon"
       />
       <div class="dropdown-content">
         <a href="#" class="profile-item d-flex flex-middle">
           <img
-                  src="../../images/announcement/announcement-image1.jpeg"
-                  alt="user profile icon"
-                  class="user-icon"
-                  style="display: block; width: 150px; height: 70px !important"
+              src="../../images/announcement/announcement-image1.jpeg"
+              alt="user profile icon"
+              class="user-icon"
+              style="display: block; width: 150px; height: 70px !important"
           />
           <span>
                 <span style="color: white; font-weight: bold">

@@ -1,0 +1,12 @@
+header{
+    background-color : black;
+}
+a:hover{
+    text-decoration : none;
+}
+.main_logo_img{
+    max-width : 200px !important;
+    max-height: 50px !important;
+    min-height: 68px !important;
+    min-width: 120px !important;
+}
