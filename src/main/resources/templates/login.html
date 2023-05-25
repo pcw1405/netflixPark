@@ -2,9 +2,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/layout1}">
+>
 
-<th:block layout:fragments="css">
+<th:block layout:fragment="css">
+  <link rel="stylesheet" th:href="@{/assets/css/landing-pages.css}">
   <style>
       body::before{
           background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 60%, rgba(0, 0, 0, 0.9) 100%),url('./images/mainimage/loginmain1.jpg');
@@ -13,12 +14,11 @@
 </th:block>
 
 <div layout:fragment="content">
-  <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
 
   <main style="padding: 0px 10px;">
     <header class="d-flex space-between middle-align">
       <a href="/">
-        <img th:src="${/images/logo.png}" height="50px" width="170px" alt="site logo main" style="margin: auto;"></img>
+        <img th:src="@{/images/logo.png}" height="50px" width="170px" alt="site logo main" style="margin: auto;"></img>
       </a>
     </header>
     <section id="login-form-section">

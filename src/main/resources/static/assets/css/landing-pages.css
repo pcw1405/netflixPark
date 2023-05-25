@@ -166,7 +166,7 @@ button:focus {
 }
 
 .loginContainer{
-    max-width: 300px;
+    max-width: 330px;
     margin: auto;
     background-color: black;
     box-shadow: var(--box-shadow);
