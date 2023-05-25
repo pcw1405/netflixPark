@@ -114,11 +114,12 @@
             윤영민님의 시청기록
           </h4>
           <div class="continue-watching-container d-flex flex-start flex-middle flex-no-wrap owl-carousel">
+
             <div class="video">
               <video class="mylist-img p-r-10 p-t-10 video-item"
-                      th:poster="@{/images/main_img/hot6.jpg}">
+                     th:poster="@{/images/main_img/hot6.jpg}">
                 <source
-                        th:src="@{/static/main_video/hot6_1.mp4}"
+                        th:src="@{/main_video/hot6_1.mp4}"
                         type="video/mp4">
                 Your browser does not support the video tag.
               </video>
@@ -145,6 +146,7 @@
                 </div>
               </div>
             </div>
+
           </div>
         </section>
 
@@ -155,13 +157,13 @@
           </h4>
           <div class="container p-0 d-flex flex-start flex-middle flex-no-wrap owl-carousel align-items-center">
 
-            <div class="video">
-              <video class="mylist-img p-r-10 p-t-10 video-item"
-                     th:poster="@{/images/main_img/hot6.jpg}">
+            <div class="video d-flex justify-content-start" id="hover_fix">
+              <img th:src="@{/images/top-10num/1.png}" class="p-t-10" id="hover_fix_img">
+              <video class="p-t-10 video-item" id="hover_fix_video"
+                     th:poster="@{/images/main_img/top1.jpg}">
                 <source
-                        th:src="@{/static/main_video/hot6_1.mp4}"
+                        th:src="@{/main_video/top1_1.mp4}"
                         type="video/mp4">
-                Your browser does not support the video tag.
               </video>
 
               <div class="video-description d-flex flex-end direction-column">

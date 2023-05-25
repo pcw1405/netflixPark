@@ -21,4 +21,9 @@ public class MainController {
     public String logout(){
         return "logout";
     }
+
+    @GetMapping("/user")
+    public String user(){
+        return "user-profile/user";
+    }
 }
