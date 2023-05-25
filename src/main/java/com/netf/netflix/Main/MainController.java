@@ -16,4 +16,9 @@ public class MainController {
     public String loginform(){
         return "login";
     }
+
+    @GetMapping("/logout")
+    public String logout(){
+        return "logout";
+    }
 }
