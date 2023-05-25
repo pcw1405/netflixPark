@@ -47,48 +47,48 @@
           <a href="mylist.html" class="nav-item">My List</a>
         </div>
         <div class="righticons d-flex flex-end flex-middle">
-          <a href="search.html"><img src="../static/images/icons/search.svg" alt="search icon"></a>
+          <a href="search.html"><img th:src="@{/images/icons/search.svg}" alt="search icon"></a>
           <div class="dropdown notification">
-            <img src="../static/images/icons/notification.svg" alt="notificatio icon">
+            <img th:src="@{/images/icons/notification.svg}" alt="notificatio icon">
             <div class="dropdown-content">
               <a href="#" class="profile-item d-flex flex-middle">
-                <img src="../static/images/icons/user2.png" alt="user profile icon" class="user-icon">
+                <img th:src="@{/images/icons/user2.png}" alt="user profile icon" class="user-icon">
                 <span>You have new notification from <span>User 123</span></span>
               </a>
               <a href="#" class="profile-item d-flex flex-middle">
-                <img src="../static/images/icons/user1.png" alt="user profile icon" class="user-icon">
+                <img th:src="@{images/icons/user1.png}" alt="user profile icon" class="user-icon">
                 <span>You have new notification from <span>User 123</span></span>
               </a>
               <a href="#" class="profile-item d-flex flex-middle">
-                <img src="../static/images/icons/user4.png" alt="user profile icon" class="user-icon">
+                <img th:src="@{images/icons/user4.png}" alt="user profile icon" class="user-icon">
                 <span>You have new notification from <span>User 123</span></span>
               </a>
               <a href="#" class="profile-item d-flex flex-middle">
-                <img src="../static/images/icons/user3.png" alt="user profile icon" class="user-icon">
+                <img th:src="@{images/icons/user3.png}" alt="user profile icon" class="user-icon">
                 <span>You have new notification from <span>User 123</span></span>
               </a>
             </div>
           </div>
 
           <div class="dropdown">
-            <img src="../static/images/icons/user-image-green.png" alt="user profile icon" class="user-icon"> <span class="profile-arrow"></span>
+            <img th:src="@{/images/icons/user-image-green.png}" alt="user profile icon" class="user-icon"> <span class="profile-arrow"></span>
 
             <div class="dropdown-content">
               <div class="profile-links">
                 <a href="#" class="profile-item d-flex flex-middle">
-                  <img src="../static/images/icons/user1.png" alt="user profile icon" class="user-icon">
+                  <img th:src="@{/images/icons/user1.png}" alt="user profile icon" class="user-icon">
                   <span>Rajesh</span>
                 </a>
                 <a href="#" class="profile-item d-flex flex-middle">
-                  <img src="../static/images/icons/user2.png" alt="user profile icon" class="user-icon">
+                  <img th:src="@{/images/icons/user2.png}" alt="user profile icon" class="user-icon">
                   <span>Karan</span>
                 </a>
                 <a href="#" class="profile-item d-flex flex-middle">
-                  <img src="../static/images/icons/user3.png" alt="user profile icon" class="user-icon">
+                  <img th:src="@{/images/icons/user3.png}" alt="user profile icon" class="user-icon">
                   <span>Pappy</span>
                 </a>
                 <a href="#" class="profile-item d-flex flex-middle" style="margin-bottom: 13px;">
-                  <img src="../static/images/icons/user4.png" alt="user profile icon" class="user-icon">
+                  <img th:src="@{/images/icons/user4.png}" alt="user profile icon" class="user-icon">
                   <span>Denny</span>
                 </a>
                 <a href="#" class="profile-item last" >Manage Profiles</a>
@@ -113,8 +113,8 @@
           <div>
             <!--trailer video-->
             <video class="hero-background-image" id="hero-video"
-                   poster="../static/images/tv-show/poster/never-have-ever-tv-show.webp">
-              <source src="../static/images/tv-show/videos/Never Have I Ever - Official Trailer - Netflix_2.mp4"
+                   th:poster="@{/images/tv-show/poster/never-have-ever-tv-show.webp}">
+              <source th:src="@{/images/tv-show/videos/Never Have I Ever - Official Trailer - Netflix_2.mp4}"
                       type="video/mp4">
               Your browser does not support the video tag.
             </video>
@@ -125,7 +125,7 @@
 
           <div class="container text-container" style="z-index: 5;">
             <div class="contentlogo">
-              <img src="../static/images/tv-show/poster/never-have-ever-logo.webp" alt="content logo"
+              <img th:src="@{/images/tv-show/poster/never-have-ever-logo.webp}" alt="content logo"
                    class="show-logo" />
             </div>
             <!--top 10 ranking badge svg-->
@@ -190,7 +190,7 @@
               <video class="mylist-img p-r-10 p-t-10 video-item"
                      poster="../static/images/main_img/hot1.jpg">
                 <source
-                        src="../main_video/hot1_1.mp4"
+                        th:src="@{/main_video/hot1_1.mp4}"
                         type="video/mp4">
                 Your browser does not support the video tag.
               </video>
@@ -230,9 +230,9 @@
           <div class="continue-watching-container d-flex flex-start flex-middle flex-no-wrap owl-carousel">
             <div class="video">
               <video class="mylist-img p-r-10 p-t-10 video-item"
-                     poster="../static/images/main_img/hot6.jpg">
+                      th:poster="@{/images/main_img/hot6.jpg}">
                 <source
-                        src="../static/main_video/hot6_1.mp4"
+                        th:src="@{/static/main_video/hot6_1.mp4}"
                         type="video/mp4">
                 Your browser does not support the video tag.
               </video>
@@ -270,11 +270,11 @@
           <div class="container p-0 d-flex flex-start flex-middle flex-no-wrap owl-carousel align-items-center">
 
             <div class="video d-flex justify-content-start" id="hover_fix">
-              <img src="../static/images/top-10num/1.png" class="p-t-10" id="hover_fix_img">
+              <img th:src="@{/images/top-10num/1.png}" class="p-t-10" id="hover_fix_img">
               <video class="p-t-10 video-item" id="hover_fix_video"
-                     poster="../static/images/main_img/top1.jpg">
+                     th:poster="@{/images/main_img/top1.jpg}">
                 <source
-                        src="../static/main_video/top1_1.mp4"
+                        th:src="@{/main_video/top1_1.mp4}"
                         type="video/mp4">
               </video>
 
@@ -302,11 +302,11 @@
             </div>
 
             <div class="video d-flex justify-content-start align-items-center">
-              <img src="../static/images/top-10num/2.png" class="flex-itme p-t-10">
+              <img th:src="@{/images/top-10num/2.png}" class="flex-itme p-t-10">
               <video class="p-t-10 video-item"
-                     poster="../static/images/main_img/top1.jpg">
+                     th:poster="@{/images/main_img/top1.jpg}">
                 <source
-                        src="../static/main_video/top1_1.mp4"
+                        th:src="@{/main_video/top1_1.mp4}"
                         type="video/mp4">
               </video>
 
@@ -334,11 +334,11 @@
             </div>
 
             <div class="video d-flex justify-content-start align-items-center">
-              <img src="../static/images/top-10num/3.png" class="flex-itme p-t-10">
+              <img th:src="@{/images/top-10num/3.png}" class="flex-itme p-t-10">
               <video class="p-t-10 video-item"
-                     poster="../static/images/main_img/top1.jpg">
+                     th:poster="@{/images/main_img/top1.jpg}">
                 <source
-                        src="../static/main_video/top1_1.mp4"
+                        th:src="@{/main_video/top1_1.mp4}"
                         type="video/mp4">
               </video>
 
@@ -366,11 +366,11 @@
             </div>
 
             <div class="video d-flex justify-content-start align-items-center">
-              <img src="../static/images/top-10num/4.png" class="flex-itme p-t-10">
+              <img th:src="@{/images/top-10num/4.png}" class="flex-itme p-t-10">
               <video class="p-t-10 video-item"
-                     poster="../static/images/main_img/top1.jpg">
+                     th:poster="@{/images/main_img/top1.jpg}">
                 <source
-                        src="../static/main_video/top1_1.mp4"
+                        tH:src="@{/main_video/top1_1.mp4}"
                         type="video/mp4">
               </video>
 
@@ -398,11 +398,11 @@
             </div>
 
             <div class="video d-flex justify-content-start align-items-center">
-              <img src="../static/images/top-10num/5.png" class="flex-itme p-t-10">
+              <img th:src="@{/images/top-10num/5.png}" class="flex-itme p-t-10">
               <video class="p-t-10 video-item"
-                     poster="../static/images/main_img/top1.jpg">
+                     th:poster="@{/images/main_img/top1.jpg}">
                 <source
-                        src="../static/main_video/top1_1.mp4"
+                        th:src="@{/main_video/top1_1.mp4}"
                         type="video/mp4">
               </video>
 
@@ -430,11 +430,11 @@
             </div>
 
             <div class="video d-flex justify-content-start align-items-center">
-              <img src="../static/images/top-10num/6.png" class="flex-itme p-t-10">
+              <img th:src="@{/images/top-10num/6.png}" class="flex-itme p-t-10">
               <video class="p-t-10 video-item"
-                     poster="../static/images/main_img/top1.jpg">
+                     th:poster="@{/images/main_img/top1.jpg}">
                 <source
-                        src="../main_video/top1_1.mp4"
+                        th:src="@{/main_video/top1_1.mp4}"
                         type="video/mp4">
               </video>
 
@@ -462,11 +462,11 @@
             </div>
 
             <div class="video d-flex justify-content-start align-items-center">
-              <img src="../static/images/top-10num/7.png" class="flex-itme p-t-10">
+              <img th:src="@{/images/top-10num/7.png}" class="flex-itme p-t-10">
               <video class="p-t-10 video-item"
-                     poster="../static/images/main_img/top1.jpg">
+                     th:poster="@{/images/main_img/top1.jpg}">
                 <source
-                        src="../static/main_video/top1_1.mp4"
+                        th:src="@{/main_video/top1_1.mp4}"
                         type="video/mp4">
               </video>
 
@@ -494,11 +494,11 @@
             </div>
 
             <div class="video d-flex justify-content-start align-items-center">
-              <img src="../static/images/top-10num/8.png" class="flex-itme p-t-10">
+              <img th:src="@{/images/top-10num/8.png}" class="flex-itme p-t-10">
               <video class="p-t-10 video-item"
-                     poster="../static/images/main_img/top1.jpg">
+                     th:poster="@{/images/main_img/top1.jpg}">
                 <source
-                        src="../main_video/top1_1.mp4"
+                        th:src="@{/main_video/top1_1.mp4}"
                         type="video/mp4">
               </video>
 
@@ -526,11 +526,11 @@
             </div>
 
             <div class="video d-flex justify-content-start align-items-center">
-              <img src="../static/images/top-10num/9.png" class="flex-itme p-t-10">
+              <img th:src="@{/images/top-10num/9.png}" class="flex-itme p-t-10">
               <video class="p-t-10 video-item"
-                     poster="../static/images/main_img/top1.jpg">
+                     th:poster="@{/images/main_img/top1.jpg}">
                 <source
-                        src="../main_video/top1_1.mp4"
+                        th:src="@{/main_video/top1_1.mp4}"
                         type="video/mp4">
               </video>
 
@@ -558,11 +558,11 @@
             </div>
 
             <div class="video d-flex justify-content-start align-items-center">
-              <img src="../static/images/top-10num/10.png" class="flex-itme p-t-10">
+              <img th:src="@{/images/top-10num/10.png}" class="flex-itme p-t-10">
               <video class="p-t-10 video-item"
-                     poster="../static/images/main_img/top1.jpg">
+                     th:poster="@{/images/main_img/top1.jpg}">
                 <source
-                        src="../main_video/top1_1.mp4"
+                        th:src="@{/main_video/top1_1.mp4}"
                         type="video/mp4">
               </video>
 
@@ -595,11 +595,11 @@
         <!--big poster screen left poster right content-->
         <!-- today's recommend -->
         <section class="big-section d-flex flex-center container">
-          <img src="../static/images/tv-show/poster/sex-education.webp" alt="">
+          <img th:src="@{/images/tv-show/poster/sex-education.webp}" alt="">
 
           <div class="right-side">
             <div class="contentlogo">
-              <img src="../static/images/tv-show/poster/sex-education-logo.webp" alt="content logo"
+              <img th:src="@{/images/tv-show/poster/sex-education-logo.webp}" alt="content logo"
                    class="show-logo" />
             </div>
 
@@ -663,9 +663,9 @@
 
           <div class="video">
             <video class="mylist-img p-r-10 p-t-10 video-item"
-                   poster="../static/images/main_img/hot10.jpg">
+                   th:poster="@{/images/main_img/hot10.jpg}">
               <source
-                      src="../main_video/hot10_1.mp4"
+                      th:src="@{/main_video/hot10_1.mp4}"
                       type="video/mp4">
               Your browser does not support the video tag.
             </video>
@@ -695,9 +695,9 @@
 
           <div class="video">
             <video class="mylist-img p-r-10 p-t-10 video-item"
-                   poster="../static/images/main_img/hot10.jpg">
+                   th:poster="@{/images/main_img/hot10.jpg}">
               <source
-                      src="../main_video/hot10_1.mp4"
+                      th:src="@{/main_video/hot10_1.mp4}"
                       type="video/mp4">
               Your browser does not support the video tag.
             </video>
@@ -727,9 +727,9 @@
 
           <div class="video">
             <video class="mylist-img p-r-10 p-t-10 video-item"
-                   poster="../static/images/main_img/hot10.jpg">
+                   th:poster="@{/images/main_img/hot10.jpg}">
               <source
-                      src="../main_video/hot10_1.mp4"
+                      th:src="@{/main_video/hot10_1.mp4}"
                       type="video/mp4">
               Your browser does not support the video tag.
             </video>
