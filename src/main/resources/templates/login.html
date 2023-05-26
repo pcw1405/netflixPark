@@ -28,10 +28,13 @@
         <h2 class="formtitle">
           로그인
         </h2>
-        <form action="" id="loginForm" class="d-flex direction-column" method="post" name="loginForm">
+        <form action="@{/login}" id="loginForm" class="d-flex direction-column" method="post" name="loginForm">
+
+          <label for="email">email:</label>
           <input type="text" name="email" id="email" class="email" placeholder="이메일 주소 입력" onchange="validateEmail()" required/>
           <p id="errorEmail"> &nbsp;이메일 주소 입력해주세요.</p>
 
+          <label for="password">email:</label>
           <input type="password" name="password" id="password" placeholder="비밀번호" required/>
           <p id="errorPassword"> &nbsp;비밀번호 입력해주세요.</p>
 
@@ -48,7 +51,6 @@
           </div>
           <p class="signUpText para">
             Netflix 회원이 아닌가요?<span class="signUp"><a href="/register.html">&nbsp;&nbsp;&nbsp;지금 가입하세요.</a></span>
-
           </p>
           <p class="bottomMessage para" style="font-size: 13px;">
             이 페이지는 Google reCAPTCHA의 보호를 받아 사용자가 로봇이 아님을 확인합니다. <span style="color:royalblue; font-size: 15px;"> 자세히알아보기.</span>
