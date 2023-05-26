@@ -36,4 +36,9 @@ public class MainController {
     public String myList(){
         return "leftmain/myList";
     }
+
+    @GetMapping("/movies")
+    public String movies(){
+        return "leftmain/movies";
+    }
 }
