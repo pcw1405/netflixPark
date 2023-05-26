@@ -207,13 +207,13 @@
     object-fit:fill
   
   }
-
-  @media (max-width: 750px){
+/* 760px로 내려가게되면 영상의 크기가 기본크기로 돌아가 반응형이 안먹혔는데 주석처리함으로써 해결*/
+  /* @media (max-width: 750px){
       .hero-background-image{
         width: auto;
         height: 80vh;
       }
-  }
+  }*/
 
   .shadow-layer{
     background: -webkit-linear-gradient(13deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 85%);
@@ -363,7 +363,11 @@ section#top-10 img{
     width: 100px;
     height: 210px !important;
 }
-
+@media(max-width:1370px){
+    section#top-10 img{
+        display: none;
+    }
+}
 
 /* universal video hover styling */
 
