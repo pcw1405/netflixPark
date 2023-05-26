@@ -363,8 +363,9 @@ section#top-10 img{
     width: 100px;
     height: 210px !important;
 }
+
 @media(max-width:1370px){
-    section#top-10 img{
+    section#top-10{
         display: none;
     }
 }
