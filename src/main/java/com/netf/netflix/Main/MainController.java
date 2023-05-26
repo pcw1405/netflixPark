@@ -31,4 +31,9 @@ public class MainController {
     public String register(){
         return "/register";
     }
+
+    @GetMapping("/myList")
+    public String myList(){
+        return "leftmain/myList";
+    }
 }

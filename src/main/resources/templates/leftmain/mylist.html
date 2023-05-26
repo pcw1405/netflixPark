@@ -1,10 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
 
-</body>
+<th:block layout:fragment="script"></th:block>
+
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/assets/css/global.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/browse.css}">
+</th:block>
+
+<div layout:fragment="content" class="content">
+    <main id="mainContainer" class="p-b-40">
+
+        <section id="mylist" class="container p-t-40" style="padding-top: 180px;">
+            <h4 class="romantic-heading">
+                내가 찜한 콘텐츠
+            </h4>
+            <div class="my-list-page-container d-flex flex-start flex-middle">
+
+                <a th:href=@{'#'}>
+                    <img th:src="@{../images/movies/horrible-bosses-middle-poster.webp}" alt=""
+                         class="mylist-img p-r-10 p-t-10 image-size item">
+                </a>
+
+                <a th:href=@{'#'}>
+                    <img th:src="@{../images/movies/kabir-singh-poster.webp}" alt=""
+                         class="mylist-img p-r-10 p-t-10 image-size item">
+                </a>
+
+                <a th:href=@{'#'}>
+                    <img th:src="@{../images/movies/extraction-poster.jpg}" alt=""
+                         class="mylist-img p-r-10 p-t-10 image-size item">
+                </a>
+
+                <a th:href=@{'#'}>
+                    <img th:src="@{../images/tv-show/poster/never-have-ever-short%20poster.jpg}" alt=""
+                         class="mylist-img p-r-10 p-t-10 image-size item">
+                </a>
+
+                <a th:href=@{'#'}>
+                    <img th:src="@{../images/movies/we-are-the-milers-poster-little.webp}" alt=""
+                         class="mylist-img p-r-10 p-t-10 image-size item">
+                </a>
+
+                <a th:href=@{'#'}>
+                    <img th:src="@{../images/movies/kabir-singh-poster.webp}" alt=""
+                                 class="mylist-img p-r-10 p-t-10 image-size item">
+                </a>
+
+
+            </div>
+
+        </section>
+
+    </main>
+</div>
+
+
+
+
+
+
+
 </html>
