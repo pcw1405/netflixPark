@@ -4,9 +4,23 @@ header{
 a:hover{
     text-decoration : none;
 }
-.main_logo_img{
+.main_logo_img, .main_small_img{
     max-width : 200px !important;
     max-height: 50px !important;
     min-height: 68px !important;
     min-width: 120px !important;
+}
+.main_small_img{
+    display: none;
+}
+@media(max-width: 850px){
+    .righticons{
+        display: none !important;
+    }
+    .main_small_img{
+        display: inline-block;
+    }
+    .main_logo_img{
+        display: none;
+    }
 }
