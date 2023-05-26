@@ -21,14 +21,7 @@
 </style>
 
 <body>
-
-<!--[if lt IE 7]>
-<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->
-
-
 <!-- index page block start | main landing page home | -->
-
 <main style="padding: 0px 10px;">
   <header class="d-flex space-between middle-align">
     <a href="/">
@@ -47,7 +40,6 @@
 
         <input type="text" name="name" id="name" placeholder="&nbsp;이름" required/>
         <p id="errorName">&nbsp;정확한 이름을 입력해주세요.</p>
-        <!--        원래  <p id="errorEmail">로 되어있었는데 errorName으로 수정 -->
         <p>
           <br/>
         </p>
@@ -84,17 +76,20 @@
         //function to validate email address on input text change and enable submit button if it's true
         document.getElementById('errorEmail').style.display = "none";
         document.getElementById('errorPassword').style.display = "none";
+        document.getElementById('errorName').style.display = "none";
         function validateEmail() {
             let email = document.getElementById('email').value;
             let re = /\S+@\S+\.\S+/;
             let result = re.test(email);
             if (result) {
                 document.getElementById('errorEmail').style.display = "none";
+                document.getElementById('errorName').style.display = "none";
                 document.getElementById('signInButton').disabled = false;
                // document.getElementById("email-form").submit();
             }
             else {
                 document.getElementById('errorEmail').style.display = "block";
+                document.getElementById('errorName').style.display = "block";
                 document.getElementById('signInButton').disabled = true;
             }
         }
