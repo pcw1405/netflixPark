@@ -26,4 +26,9 @@ public class MainController {
     public String user(){
         return "user-profile/user";
     }
+
+    @GetMapping("/register")
+    public String register(){
+        return "/register";
+    }
 }

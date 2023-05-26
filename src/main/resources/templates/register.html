@@ -1,10 +1,7 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js">
-<!--<![endif]-->
+
+<html xmlns:th="http://www.thymeleaf.org">
+
 
 <head>
   <meta charset="utf-8">
@@ -12,17 +9,19 @@
   <title>Netflix login – Watch TV Shows Online, Watch Movies Online</title>
   <meta name="description" content="Watch Netflix movies & TV shows online or stream right to your smart TV, game console, PC, Mac, mobile, tablet and more.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="assets/css/global.css">
-  <link rel="stylesheet" href="assets/css/landing-pages.css">
+  <link rel="stylesheet" th:href="@{/assets/css/global.css}" />
+  <link rel="stylesheet" th:href="@{/assets/css/landing-pages.css}" />
 </head>
+<style>
+  <style>
+      body::before{
+          background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 60%, rgba(0, 0, 0, 0.9) 100%),url('./images/mainimage/loginmain1.jpg');
+      }
+  </style>
+</style>
 
 <body>
-<style>
-        body::before{
-            background-image: url('./images/mainimage/loginmain1.jpg');
 
-        }
-    </style>
 <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
@@ -33,7 +32,7 @@
 <main style="padding: 0px 10px;">
   <header class="d-flex space-between middle-align">
     <a href="/">
-      <img src="images/logo.png" height="50px" width="170px" alt="site logo main"></img>
+      <img th:src="@{/images/logo.png}"  th:height="50px" th:width="170px" alt="site logo main">
     </a>
     <button class="button"><a href="/login.html"> 로그인</a></button>
   </header>
@@ -47,7 +46,8 @@
       <form action="#" id="loginForm" class="d-flex direction-column" method="post" name="loginForm">
 
         <input type="text" name="name" id="name" placeholder="&nbsp;이름" required/>
-        <p id="errorEmail">&nbsp;정확한 이름을 입력해주세요.</p>
+        <p id="errorName">&nbsp;정확한 이름을 입력해주세요.</p>
+        <!--        원래  <p id="errorEmail">로 되어있었는데 errorName으로 수정 -->
         <p>
           <br/>
         </p>
