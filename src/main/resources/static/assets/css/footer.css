@@ -1,14 +1,11 @@
 .footer-navigation{
     display : none !important;
 }
-footer.main-footer{
-    display : block !important;
-}
 @media(max-width:870px){
     .footer-navigation{
         display: block !important;
     }
-    .main-footer{
+    footer.mainfooter{
         display: none !important;
     }
 }

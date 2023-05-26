@@ -214,3 +214,7 @@ button:focus {
         padding-right: 3px;
     }
 }
+
+  section:last-of-type {
+    margin-bottom: 40px;
+  }
