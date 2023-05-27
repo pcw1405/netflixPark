@@ -555,5 +555,8 @@ footer ul li{
         max-width : 60px !important;
         padding-right : 10px !important;
     }
-  
+    .like-button{
+        font-size : 20px;
+        margin-left : 5px;
+    }
   
