@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
 >
@@ -6,15 +7,14 @@
 <th:block layout:fragment="css">
   <link rel="stylesheet" th:href="@{/assets/css/landing-pages.css}">
   <style>
-      body::before{
-          background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 60%, rgba(0, 0, 0, 0.9) 100%),url('./images/mainimage/loginmain1.jpg');
-      }
+
   </style>
 </th:block>
 
 <div layout:fragment="content">
 
-  <main style="padding: 0px 10px;">
+
+  <main style="padding: 0px 10px;" >
     <header class="d-flex space-between middle-align">
       <a href="/">
         <img th:src="@{/images/logo.png}" height="50px" width="170px" alt="site logo main" style="margin: auto;"></img>
@@ -24,22 +24,25 @@
       <!--Login form start-->
 
       <div class="loginContainer d-flex direction-column">
+        session 값 확인: <p th:text="${session.loginConfirm}"></p>
         <h2 class="formtitle">
           로그인
         </h2>
-        <form action="@{/login}" id="loginForm" class="d-flex direction-column" method="post" name="loginForm">
+        <form action="/member/login" id="loginForm" class="d-flex direction-column" method="post" name="loginForm">
 
           <label for="email">email:</label>
           <input type="text" name="email" id="email" class="email" placeholder="이메일 주소 입력" onchange="validateEmail()" required/>
           <p id="errorEmail"> &nbsp;이메일 주소 입력해주세요.</p>
 
-          <label for="password">email:</label>
+          <label for="password">password:</label>
           <input type="password" name="password" id="password" placeholder="비밀번호" required/>
           <p id="errorPassword"> &nbsp;비밀번호 입력해주세요.</p>
 
-          <button type="submit" class="button submitButton" id="signInButton" disabled="disabled">
-            <a style="text-decoration: none; color: white;" href="/user_dashboard/browse.html">로그인</a>
-          </button>
+          <input type="submit" value="로그인">
+<!--          <button type="submit" class="button submitButton" id="signInButton" disabled="disabled">-->
+<!--&lt;!&ndash;            <a style="text-decoration: none; color: white;" href="/user_dashboard/browse.html">로그인</a>&ndash;&gt;-->
+<!--
+        </button>-->
 
           <div class="rememberMe">
             <input type="checkbox" name="rememberMe" id="rememberMe" class="rememberMe">

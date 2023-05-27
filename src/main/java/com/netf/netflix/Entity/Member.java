@@ -13,6 +13,7 @@ import javax.persistence.*;
 @Setter
 @ToString
 @AllArgsConstructor
+@NoArgsConstructor
 public class Member {
     @Id
     @Column(name="member_id")
@@ -20,7 +21,7 @@ public class Member {
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
 
-    public String name;
+    private String name;
 
     @Column(unique = true)
     private String email;

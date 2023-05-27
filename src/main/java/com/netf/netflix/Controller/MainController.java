@@ -12,10 +12,7 @@ public class MainController {
     public String main(Model model){
         return "home";
     }
-    @GetMapping("/login")
-    public String loginform(){
-        return "login";
-    }
+
 
     @GetMapping("/logout")
     public String logout(){
