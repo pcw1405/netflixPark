@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
+
+<th:block layout:fragment="css">
+  <link rel="stylesheet" th:href="@{/assets/css/profile.css}">
+</th:block>
+  <div layout:fragment="content">
+    <body>
+    <div>
+      <div>
+        <img th:src="@{/images/Netflix_Logo.png}" class="main_logo_img" alt="메인로고이미지">
+      </div>
+      <div class="profile-aria">
+        <!-- 텍스트 -->
+        <div>
+          <p class="tv">넷플릭스를 시청할 프로필을 선택하세요.</p>
+        </div>
+        <!-- 프로필 카드 리스트 -->
+        <div>
+          <ul>
+            <li>
+              <div class="profile">
+                <div class="profile-card">
+                  <img th:src="@{/images/icons/user1.png}" alt="user1img">
+                </div>
+                <p class="profile-card 1">윤영민</p>
+              </div>
+            </li>
+            <li>
+              <div class="profile">
+                <div class="profile-card">
+                  <img th:src="@{/images/icons/user2.png}" alt="user1img">
+                </div>
+                <p class="profile-card 2">박청원</p>
+              </div>
+            </li>
+            <li>
+              <div class="profile">
+                <div class="profile-card">
+                  <img th:src="@{/images/icons/user3.png}" alt="user1img">
+                </div>
+                <p class="profile-card 3">강동언</p>
+              </div>
+            </li>
+<!--            <li>-->
+<!--              <div class="profile">-->
+<!--                <div class="profile-card"></div>-->
+<!--                <p class="profile-card">선택 4</p>-->
+<!--              </div>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--              <div class="profile">-->
+<!--                <div class="profile-card"></div>-->
+<!--                <p class="profile-card">선택 5</p>-->
+<!--              </div>-->
+<!--            </li>-->
+          </ul>
+        </div>
+
+        <div class="button">
+          <a href="/" class="made-profile"><p> 프로필 관리</p></a>
+        </div>
+      </div>
+    </div>
+
+
+    </body>
+  </div>
+</html>

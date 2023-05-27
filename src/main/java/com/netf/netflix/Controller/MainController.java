@@ -46,4 +46,9 @@ public class MainController {
     public String drama(){
         return "leftmain/drama";
     }
+
+    @GetMapping("/profile")
+    public String profile(){
+        return "/profile";
+    }
 }
