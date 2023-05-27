@@ -1,9 +1,10 @@
 package com.netf.netflix.Entity;
 
+import com.netf.netflix.constant.Role;
 import lombok.*;
 
-import javax.management.relation.Role;
 import javax.persistence.*;
+
 
 @Entity
 @Table(name="member")
