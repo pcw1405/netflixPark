@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -24,12 +25,28 @@ public class MemberService  {
         this.memberRepository=memberRepository;
     }
 
-    public Member findByEmail(String email){
+//    public Member findByEmail(String email){
+//
+//        return memberRepository.findByEmail(email);
+//    }
 
-        return memberRepository.findByEmail(email);
+
+    public MemberDto login(MemberDto memberDto) {
+        Optional<Member> emailCheck= Optional.ofNullable(memberRepository.findByEmail(memberDto.getEmail()));
+//        Optional<Member> emailConfirm= memberRepository.findByEmail(memberDto.getEmail());
+        if(emailCheck.isPresent()){
+            Member member = emailCheck.get();
+            if(member.getPassword().equals(memberDto.getPassword())){
+//                비밀번호
+                MemberDto passwordConfirm= MemberDto.toMemberDto(member);
+                return passwordConfirm;
+            }else{
+                return null;
+
+            }
+        }else{
+            return null;
+        }
+
     }
-
-
-
-
 }

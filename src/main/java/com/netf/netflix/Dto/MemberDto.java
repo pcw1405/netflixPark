@@ -20,9 +20,13 @@ public class MemberDto {
     public String name;
     private String email;
     private String password;
-    private Role role;
-    public Member toEntity(){
-        return new Member(id,email, password,name,role);
+//    private Role role;
+    public static MemberDto toMemberDto(Member member){
+        MemberDto memberDto =new MemberDto();
+        memberDto.setId(member.getId());
+        memberDto.setEmail(member.getEmail());
+        memberDto.setName(member.getName());
+        return memberDto;
     }
 
 }
