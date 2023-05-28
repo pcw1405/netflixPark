@@ -31,8 +31,8 @@ public class MemberController {
             MemberDto loginConfirm = memberService.login(memberDto);
             if(loginConfirm!=null){
                 session.setAttribute("loginConfirm",loginConfirm.getEmail());
-                return "login";
-//                로그인 성공시 임시로 home으로 가게 설정
+                return "profile";
+//                로그인 성공시 프로파일로
             } else{
                 return "login";
 //                로그인 실패시 다시 로그인화면으로

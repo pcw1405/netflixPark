@@ -22,8 +22,8 @@ public class Member {
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
 
-    private String name;
-//    네임은 멤버가 유저에 있어야 할지도
+//    private String name;
+//    네임은 멤버가 유저에만 있으면 될듯
 
     @Column(unique = true)
     private String email;
