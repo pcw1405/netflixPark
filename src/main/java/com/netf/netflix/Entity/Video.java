@@ -25,8 +25,11 @@ public class Video {
 
     private String director;
 
+    @ElementCollection
     private List<String> mainActors;
+//    양방향 매핑이 아니라면 @ElementCollection 을 @mappedby 와 같이 써도 괜찮다는 말이 있어서 일단 @ElementCollection 적용
 
+    @ElementCollection
     private List<String> genres;
 
     private int views;

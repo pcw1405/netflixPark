@@ -22,7 +22,7 @@
             <li th:each="userName, status : ${userNames}">
               <div class="profile">
                 <div class="profile-card">
-                  <a href="/">
+                  <a href="#" th:attr="user_index=${status.count}" onclick="sendIndex(this)">
                     <img th:if="${status.count == 0}" th:src="@{/images/icons/user1.PNG}" alt="userimg">
                     <img th:if="${status.count == 1}" th:src="@{/images/icons/user2.PNG}" alt="userimg">
                     <img th:if="${status.count == 2}" th:src="@{/images/icons/user3.PNG}" alt="userimg">
@@ -33,38 +33,7 @@
                 <p class="profile-card 1" th:text="${userName}">윤영민</p>
               </div>
             </li>
-<!--            <li>-->
-<!--              <div class="profile">-->
-<!--                <div class="profile-card">-->
-<!--                  <img th:src="@{/images/icons/user2.png}" alt="user1img">-->
-<!--                </div>-->
-<!--                <p class="profile-card 2">박청원</p>-->
-<!--              </div>-->
-<!--            </li>-->
-<!--            <li>-->
-<!--              <div class="profile">-->
-<!--                <div class="profile-card">-->
-<!--                  <img th:src="@{/images/icons/user3.png}" alt="user1img">-->
-<!--                </div>-->
-<!--                <p class="profile-card 3">강동언</p>-->
-<!--              </div>-->
-<!--            </li>-->
-<!--             <li>-->
-<!--            <div class="profile">-->
-<!--              <div class="profile-card plus">-->
-<!--                <img th:src="@{/images/icons/plus.png}" alt="user1img">-->
-<!--              </div>-->
-<!--              <p class="profile-card 4">프로필 추가하기</p>-->
-<!--            </div>-->
-<!--          </li>-->
-<!--            <li>-->
-<!--              <div class="profile">-->
-<!--                <div class="profile-card plus">-->
-<!--                  <img th:src="@{/images/icons/plus.png}" alt="user1img">-->
-<!--                </div>-->
-<!--                <p class="profile-card 5">프로필 추가하기</p>-->
-<!--              </div>-->
-<!--            </li>-->
+
           </ul>
 
         </div>
@@ -75,6 +44,25 @@
       </div>
 
     </div>
+
+    <script>
+<script>
+  function sendIndex(element) {
+    var index = element.getAttribute("user_index");
+    var form = document.createElement("form");
+    form.method = "POST";
+    form.action = "/profile]";
+
+    var input = document.createElement("input");
+    input.type = "hidden";
+    input.name = "index";
+    input.value = index+1;
+
+    form.appendChild(input);
+    document.body.appendChild(form);
+    form.submit();
+  }
+</script>
 
 
     </body>
