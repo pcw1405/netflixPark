@@ -17,7 +17,7 @@ import javax.persistence.Id;
 public class MemberDto {
 
     private long id;
-    private String name;
+
     private String email;
     private String password;
 //    private Role role;
@@ -25,6 +25,7 @@ public class MemberDto {
         MemberDto memberDto =new MemberDto();
         memberDto.setId(member.getId());
         memberDto.setEmail(member.getEmail());
+        memberDto.setPassword(member.getPassword());
         return memberDto;
     }
 

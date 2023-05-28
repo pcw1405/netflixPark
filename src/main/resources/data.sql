@@ -2,9 +2,9 @@ INSERT INTO member(member_id,email,password) VALUES( 1,'asdf@naver.com', '1234')
 INSERT INTO member(member_id,email,password) VALUES( 2,'asdf1@naver.com', '1234');
 INSERT INTO member(member_id,email,password) VALUES( 3,'asdf2@naver.com', '1234');
 
-INSERT INTO user(user_id,email,name,member_id) VALUES( 1,'asdf2@naver.com','윤영민',1);
-INSERT INTO user(user_id,email,name,member_id) VALUES( 2,'asdf2@naver.com','박청원',1);
-INSERT INTO user(user_id,email,name,member_id) VALUES( 3,'asdf2@naver.com','강동언',1);
+INSERT INTO user(user_id,email,name,member_id) VALUES( 1,'asdf@naver.com','윤영민',1);
+INSERT INTO user(user_id,email,name,member_id) VALUES( 2,'asdf@naver.com','박청원',1);
+INSERT INTO user(user_id,email,name,member_id) VALUES( 3,'asdf@naver.com','강동언',1);
 --아직 테스트 데이터 들어감 application.properties 수정 피료할듯
 --server.port = 8081
 --

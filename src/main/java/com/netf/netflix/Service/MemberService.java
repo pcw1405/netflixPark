@@ -25,11 +25,10 @@ public class MemberService  {
         this.memberRepository=memberRepository;
     }
 
-//    public Member findByEmail(String email){
-//
-//        return memberRepository.findByEmail(email);
-//    }
+    public Member findByEmail(String email){
 
+        return memberRepository.findByEmail(email);
+    }
 
     public MemberDto login(MemberDto memberDto) {
         Optional<Member> emailCheck= Optional.ofNullable(memberRepository.findByEmail(memberDto.getEmail()));
@@ -49,4 +48,7 @@ public class MemberService  {
         }
 
     }
+
+
+
 }
