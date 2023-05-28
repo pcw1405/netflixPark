@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -22,6 +23,7 @@ public class Member {
     private long id;
 
     private String name;
+//    네임은 멤버가 유저에 있어야 할지도
 
     @Column(unique = true)
     private String email;
@@ -31,7 +33,8 @@ public class Member {
 //    @Enumerated(EnumType.STRING)
 //    private Role role;
 
-
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<User> users;
 
 
 }
