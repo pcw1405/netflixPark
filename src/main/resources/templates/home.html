@@ -3,7 +3,9 @@
       xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/layout1}">
 
-<th:block layout:fragment="script"></th:block>
+<th:block layout:fragment="script">
+  <script th:src="@{/assets/js/like.js}"></script>
+</th:block>
 <th:block layout:fragment="css">
   <link rel="stylesheet" th:href="@{/assets/css/browse.css}">
 </th:block>
@@ -86,8 +88,8 @@
                   <svg viewBox="0 0 24 24">
                     <path d="M6 4l15 8-15 8z" fill="black"></path>
                   </svg>
-                  <div class="like-button" onclick="videolike">
-                    <i class="fa-regular fa-heart"></i></button>
+                  <div class="like-button" onclick="likeVideo(1)">
+                    <i class="fa-regular fa-heart"></i>
                   </div>
                 </div>
                 <div>
