@@ -2,6 +2,7 @@ package com.netf.netflix.Controller;
 
 import com.netf.netflix.Dto.MemberDto;
 import com.netf.netflix.Entity.User;
+import com.netf.netflix.MemberRepository.UserRepository;
 import com.netf.netflix.Service.MemberService;
 import com.netf.netflix.Service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ import java.util.List;
 public class MemberController {
     private final MemberService memberService;
     private final UserService userService;
+    private final UserRepository userRepository;
 //    public MemberController(MemberService memberService) {
 //        this.memberService = memberService;
 //    }
@@ -68,11 +70,16 @@ public class MemberController {
     }
 
     @PostMapping("/profile")
-    public String saveUserConfirm(@RequestParam("index") int index, HttpSession session) {
+    public String saveUserConfirm(@RequestParam("index") long index, HttpSession session) {
 //        // index 값을 세션에 저장
-//        session.setAttribute("userConfirm", index);
-//        .
-        return "redirect:/home";
+//        session.setAttribute("nowUserIndex", index);
+//        System.out.println("Session nowUserIndex: " + session.getAttribute("nowUserIndex"));
+        System.out.println("index는 "+index);
+        User user=userRepository.findById(index);
+        session.setAttribute("nowUser", user);
+        System.out.println("now user: " + session.getAttribute("nowUser"));
+
+        return "redirect:";
     }
 
 

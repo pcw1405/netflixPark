@@ -27,4 +27,15 @@ public class User {
     @JoinColumn(name = "member_id") // "member_id"는 Member 엔티티에서 Member 엔티티의 ID와 매핑된 필드의 이름입니다.
     private Member member;
 
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                // 주요 정보 및 필드 추가
+                '}';
+    }
+
 }

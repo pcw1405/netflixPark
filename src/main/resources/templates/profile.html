@@ -22,7 +22,7 @@
             <li th:each="userName, status : ${userNames}">
               <div class="profile">
                 <div class="profile-card">
-                  <a href="#" th:attr="user_index=${status.count}" onclick="sendIndex(this)">
+                  <a th:attr="user_index=${status.count}" onclick="sendIndex(this)">
                     <img th:if="${status.count == 0}" th:src="@{/images/icons/user1.PNG}" alt="userimg">
                     <img th:if="${status.count == 1}" th:src="@{/images/icons/user2.PNG}" alt="userimg">
                     <img th:if="${status.count == 2}" th:src="@{/images/icons/user3.PNG}" alt="userimg">
@@ -46,17 +46,19 @@
     </div>
 
     <script>
-<script>
+
+
   function sendIndex(element) {
     var index = element.getAttribute("user_index");
+
     var form = document.createElement("form");
     form.method = "POST";
-    form.action = "/profile]";
+    form.action = "/profile";
 
     var input = document.createElement("input");
     input.type = "hidden";
     input.name = "index";
-    input.value = index+1;
+    input.value = (parseInt(index, 10)).toString();
 
     form.appendChild(input);
     document.body.appendChild(form);

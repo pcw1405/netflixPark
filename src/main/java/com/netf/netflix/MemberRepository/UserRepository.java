@@ -16,6 +16,6 @@ public interface UserRepository extends JpaRepository<User,Long> {
     @Query("SELECT u.name FROM User u WHERE u.email = :email")
     List<String> findMatchingNames(@Param("email") String email);
 
-
+    User findById(long id);
 
 }
