@@ -64,7 +64,7 @@ public class MemberController {
 
         model.addAttribute("userNames", userNames);
 
-        return "profile";
+        return "/profile";
     }
 
     @PostMapping("/profile")
