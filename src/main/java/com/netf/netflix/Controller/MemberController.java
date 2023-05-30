@@ -1,4 +1,4 @@
-package com.netf.netflix.Controller;
+package com.netf.netflix.controller;
 
 import com.netf.netflix.Dto.MemberDto;
 import com.netf.netflix.Entity.User;
@@ -40,7 +40,7 @@ public class MemberController {
             System.out.println("email =" +loginConfirm.getEmail());
 //            String thisEmail = loginConfirm.getEmail();
             if(loginConfirm!=null){
-                session.setAttribute("loginConfirm",loginConfirm);
+                session.setAttribute("nowMember",loginConfirm);
                 System.out.println("session result="+loginConfirm);
                 return "redirect:/profile";
 //                로그인 성공시 프로파일로
@@ -54,7 +54,7 @@ public class MemberController {
     @GetMapping("/profile")
     public String getUsers(HttpSession session, Model model){
         System.out.println("pro file start");
-        MemberDto temp = (MemberDto) session.getAttribute("loginConfirm");
+        MemberDto temp = (MemberDto) session.getAttribute("nowMember");
         System.out.println("session result="+temp);
         String email= temp.getEmail();
         System.out.println("email_result="+email);
@@ -69,6 +69,8 @@ public class MemberController {
         return "/profile";
     }
 
+
+
     @PostMapping("/profile")
     public String saveUserConfirm(@RequestParam("index") long index, HttpSession session) {
 //        // index 값을 세션에 저장
@@ -82,6 +84,21 @@ public class MemberController {
         return "redirect:";
     }
 
+//    @GetMapping("/")
+//    public String getProfile(Model model, HttpSession session) {
+//        // 세션에서 nowUser 객체를 가져옴
+//        User nowUser = (User) session.getAttribute("nowUser");
+//        MemberDto nowMember = (MemberDto) session.getAttribute("nowMember");
+//        // 모델에 nowUser 객체를 추가하여 뷰로 전달
+//        model.addAttribute("nowUser", nowUser);
+//        model.addAttribute("nowMember", nowMember);
+//
+//        String now_img=nowUser.getImg_url();
+//        System.out.println("현재 유저의 프로파일 경로"+now_img);
+//        System.out.println("현재 멤버목록= "+nowMember.getUsers());
+//        return "home";
+//
+//    }
 
 
 
