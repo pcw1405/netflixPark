@@ -58,9 +58,9 @@ public class MainController {
         return "leftmain/drama";
     }
 
-    @GetMapping("/profile-change")
+    @GetMapping("/profile-img")
     public String profile(){
-        return "/profile-change";
+        return "/profile-img";
     }
 //    @GetMapping("/profile-img")
 //    public String profile_img(){
