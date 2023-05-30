@@ -67,6 +67,38 @@
         </div>
         <p th:if="${#fields.hasErrors('videoNm')}" th:errors="*{videoNm}" class="fieldError">Incorrect data</p>
 
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">감독</span>
+            </div>
+            <input type="text" th:field="*{cast}" class="form-control" placeholder="감독명을 입력해주세요">
+        </div>
+        <p th:if="${#fields.hasErrors('cast')}" th:errors="*{cast}" class="fieldError">Incorrect data</p>
+
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">배우</span>
+            </div>
+            <input type="text" th:field="*{actors}" class="form-control" placeholder="배우명을 입력해주세요">
+        </div>
+        <p th:if="${#fields.hasErrors('actors')}" th:errors="*{actors}" class="fieldError">Incorrect data</p>
+
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">줄거리</span>
+            </div>
+            <input type="text" th:field="*{description}" class="form-control" placeholder="줄거리를 입력해주세요">
+        </div>
+        <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="fieldError">Incorrect data</p>
+
+        <div th:if="${#lists.isEmpty(videoFormDto.videoImgDtoList)}">
+            <div class="custom-file img-div">
+                <input type="file" class="custom-file-input" name="videoImgFile">
+                <label class="custom-file-label" th:text="상품이미지"></label>
+            </div>
+        </div>
+
+
 <!--        <div th:if="${#strings.isEmpty(itemFormDto.id)}" style="text-align: center">-->
 <!--            <button th:formaction="@{/admin/item/new}" type="submit" class="btn btn-primary">저장</button>-->
 <!--        </div>-->

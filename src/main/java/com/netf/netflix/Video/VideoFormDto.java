@@ -27,7 +27,7 @@ public class VideoFormDto {
 
     private VideoRole videoRole;
 
-    private List<VideoImgDto> VideoImgDtoList = new ArrayList<>();
+    private List<VideoImgDto> videoImgDtoList = new ArrayList<>();
 
     private List<Long> videoImgIds = new ArrayList<>();
 
