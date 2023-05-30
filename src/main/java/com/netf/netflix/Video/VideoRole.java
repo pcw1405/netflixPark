@@ -1,4 +1,4 @@
-package com.netf.netflix.constant;
+package com.netf.netflix.Video;
 
 public enum VideoRole {
     MOVIE, DRAMA
