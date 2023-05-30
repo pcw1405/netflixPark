@@ -38,10 +38,10 @@ public class MainController {
         return "user-profile/user";
     }
 
-    @GetMapping("/register")
-    public String register(){
-        return "/register";
-    }
+//    @GetMapping("/register")
+//    public String register(){
+//        return "/register";
+//    }
 
     @GetMapping("/myList")
     public String myList(){

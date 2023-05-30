@@ -35,16 +35,16 @@ public class User {
 //    @OneToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "img_id")
 //    private Long imgNum;
+//
 
-
-//    @Override
-//    public String toString() {
-//        return "User{" +
-//                "id=" + id +
-//                ", name='" + name + '\'' +
-//                ", email='" + email + '\'' +
-//                // 주요 정보 및 필드 추가
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                // 주요 정보 및 필드 추가
+                '}';
+    }
 
 }

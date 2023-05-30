@@ -36,28 +36,26 @@
       <h2 class="formtitle">
         회원가입
       </h2>
-      <form action="#" id="loginForm" class="d-flex direction-column" method="post" name="loginForm">
+      <form th:action="@{/signup}" id="loginForm" class="d-flex direction-column" method="post" name="loginForm" onsubmit="return signUp();">
 
-        <input type="text" name="name" id="name" placeholder="&nbsp;이름" required/>
-        <p id="errorName">&nbsp;정확한 이름을 입력해주세요.</p>
-        <p>
-          <br/>
-        </p>
-
-        <input type="text" name="email" id="email" class="email" placeholder="&nbsp;이메일" onchange="validateEmail()" required/>
-        <p id="errorEmail">정확한 이메일 주소를 입력하세요.</p>
-
-        <input type="password" name="password" id="password" placeholder="&nbsp;비밀번호" required/>
-        <p id="errorPassword">&nbsp;비밀번호를 입력해주세요.</p>
-
-        <button type="submit" class="button submitButton" id="signInButton" disabled="disabled">
+        <div class="form-group">
+          <label for="name">이름</label>
+          <input type="text" id="name" th:field="${name}" class="form-control" placeholder="이름을 입력해주세요">
+          <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="fieldError">잘못된 데이터입니다.</p>
+        </div>
+        <div class="form-group">
+          <label for="email">이메일주소</label>
+          <input type="email" id="email" th:field="${email}" class="form-control" placeholder="이메일을 입력해주세요">
+          <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="fieldError">잘못된 데이터입니다.</p>
+        </div>
+        <div class="form-group">
+          <label for="password">비밀번호</label>
+          <input type="password" id="password" th:field="${password}" class="form-control" placeholder="비밀번호를 입력해주세요">
+          <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="fieldError">잘못된 데이터입니다.</p>
+        </div>
+        <button type="submit" class="button submitButton" id="signInButton">
           회원가입
         </button>
-
-        <!--  <div class="rememberMe">
-              <input type="checkbox" name="rememberMe" id="rememberMe" class="rememberMe">
-              <label for="rememberMe"><span class="login-remember-me-label-text">Remember me</span></label>
-          </div>-->
 
         <p class="signUpText para">
           계정이 있으신가요?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="signUp"><a href="/login.html">로그인 하러가기</a></span>
@@ -93,6 +91,7 @@
                 document.getElementById('signInButton').disabled = true;
             }
         }
+
     </script>
 </body>
 

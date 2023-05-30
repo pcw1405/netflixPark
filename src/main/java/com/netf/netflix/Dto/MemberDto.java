@@ -5,10 +5,7 @@ import com.netf.netflix.Entity.User;
 import com.netf.netflix.constant.Role;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @AllArgsConstructor
@@ -19,7 +16,7 @@ import java.util.List;
 public class MemberDto {
 
     private long id;
-
+    private String name;
     private String email;
     private String password;
 //    private Role role;
@@ -34,6 +31,7 @@ public class MemberDto {
         memberDto.setUsers(member.getUsers());
         return memberDto;
     }
+
 
 
 }
