@@ -53,9 +53,15 @@
 		}
 		div.profile-card .pen{
 		position:absolute;
-		bottom:0;
+		background:black;
+		border-radius:50%;
+		color:white;
+		border:none;
+		font-size:15px;
+		bottom:-10px;
 		left:10px;
 		cursor:pointer;
+		text-align:center;
 		}
 		.profile-card {
 			color: #808080;

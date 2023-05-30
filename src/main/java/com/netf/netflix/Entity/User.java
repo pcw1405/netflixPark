@@ -22,13 +22,20 @@ public class User {
 
     private String email;
     private String name;
+
     // 다대일 관계 설정
     @ManyToOne
     @JoinColumn(name = "member_id") // "member_id"는 Member 엔티티에서 Member 엔티티의 ID와 매핑된 필드의 이름입니다.
     private Member member;
 
-    @OneToOne
-    private long profile_img;
+
+    private String img_url;
+//    img_id
+
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "img_id")
+//    private Long imgNum;
+//
 
     @Override
     public String toString() {

@@ -23,11 +23,11 @@
               <div class="profile">
                 <div class="profile-card">
                   <a th:attr="user_index=${status.count}" onclick="sendIndex(this)">
-                    <img th:if="${status.count == 0}" th:src="@{/images/icons/user1.PNG}" alt="userimg">
-                    <img th:if="${status.count == 1}" th:src="@{/images/icons/user2.PNG}" alt="userimg">
-                    <img th:if="${status.count == 2}" th:src="@{/images/icons/user3.PNG}" alt="userimg">
-                    <img th:if="${status.count == 3}" th:src="@{/images/icons/user4.PNG}" alt="userimg">
-                    <img th:if="${status.count == 4}" th:src="@{/images/icons/user5.PNG}" alt="userimg">
+                    <img th:if="${status.count == 1}" th:src="@{/images/icons/user1.PNG}" alt="userimg">
+                    <img th:if="${status.count == 2}" th:src="@{/images/icons/user2.PNG}" alt="userimg">
+                    <img th:if="${status.count == 3}" th:src="@{/images/icons/user3.PNG}" alt="userimg">
+                    <img th:if="${status.count == 4}" th:src="@{/images/icons/plus.PNG}" alt="userimg">
+                    <img th:if="${status.count == 5}" th:src="@{/images/icons/plus.PNG}" alt="userimg">
                   </a>
                 </div>
                 <p class="profile-card 1" th:text="${userName}">윤영민</p>

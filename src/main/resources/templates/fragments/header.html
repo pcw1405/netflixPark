@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
+
 >
 
 <div th:fragment="header">
@@ -125,43 +126,51 @@
 
     <!-- 프로필 구간 -->
     <div class="dropdown">
-      <img
-              src="../../images/icons/user-image-green.png"
-              alt="user profile icon"
-              class="user-icon"
-      />
+        <img th:src="@{${nowUser.img_url}}"
+             src="/images/icons/user-image-green.png"
+             alt="user profile icon"
+             class="user-icon"
+        />
+
+<!--        이부분에서 세션으로 받은 유저정보를 이용해서 이미지를 가져온다 -->
       <span class="profile-arrow"></span>
 
       <div class="dropdown-content">
         <div class="profile-links">
-          <a href="#" class="profile-item d-flex flex-middle">
-            <img
-                    src="../../images/icons/user1.png"
-                    alt="user profile icon"
-                    class="user-icon"
-            />
-            <span>윤영민</span>
-          </a>
-          <a href="#" class="profile-item d-flex flex-middle">
-            <img
-                    src="../../images/icons/user2.png"
-                    alt="user profile icon"
-                    class="user-icon"
-            />
-            <span>박청원</span>
-          </a>
-          <a
-                  href="#"
-                  class="profile-item d-flex flex-middle"
-                  style="margin-bottom: 13px"
-          >
-            <img
-                    src="../images/icons/user3.png"
-                    alt="user profile icon"
-                    class="user-icon"
-            />
-            <span>강동언</span>
-          </a>
+<!--          <a href="#" class="profile-item d-flex flex-middle" th:each>-->
+<!--            <img-->
+<!--                    src="../../images/icons/user1.png"-->
+<!--                    alt="user profile icon"-->
+<!--                    class="user-icon"-->
+<!--            />-->
+<!--            <span>윤영민</span>-->
+<!--          </a>-->
+            <a href="#" class="profile-item d-flex flex-middle" th:each="user : ${session.nowMember.users}"  th:unless="${user.id == session.nowUser.id}">
+                <img th:src="@{${user.img_url}}" alt="user profile icon" class="user-icon" />
+                <span th:text="${user.name}"></span>
+            </a>
+<!--          <a href="#" class="profile-item d-flex flex-middle">-->
+<!--            <img-->
+<!--                    src="../../images/icons/user2.png"-->
+<!--                    alt="user profile icon"-->
+<!--                    class="user-icon"-->
+<!--            />-->
+<!--            <span>박청원</span>-->
+<!--          </a>-->
+<!--          <a-->
+<!--                  href="#"-->
+<!--                  class="profile-item d-flex flex-middle"-->
+<!--                  style="margin-bottom: 13px"-->
+<!--          >-->
+<!--            <img-->
+<!--                    src="../images/icons/user3.png"-->
+<!--                    alt="user profile icon"-->
+<!--                    class="user-icon"-->
+<!--            />-->
+<!--            <span>강동언</span>-->
+<!--          </a>-->
+
+
           <a th:href="@{/profile}" class="profile-item last">프로필 관리</a>
         </div>
         <div class="line"></div>

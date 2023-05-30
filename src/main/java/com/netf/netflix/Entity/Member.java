@@ -1,8 +1,11 @@
 package com.netf.netflix.Entity;
 
+
+import com.netf.netflix.Dto.MemberDto;
 import com.netf.netflix.constant.Role;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import java.util.List;
@@ -22,7 +25,7 @@ public class Member {
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
 
-//    private String name;
+    private String name;
 //    네임은 멤버가 유저에만 있으면 될듯
 
     @Column(unique = true)
@@ -30,11 +33,22 @@ public class Member {
 
     private String password;
 
-//    @Enumerated(EnumType.STRING)
-//    private Role role;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<User> users;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    public static Member createMember(MemberDto memberDto, PasswordEncoder passwordEncoder){
+        Member member =new Member();
+        member.setName(memberDto.getName());
+        member.setEmail(memberDto.getEmail());
+        String password= passwordEncoder.encode(memberDto.getPassword());
+        member.setPassword(password);
+        member.setRole(Role.ADMIN);
+        return member;
+    }
 
 
 }

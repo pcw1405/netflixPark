@@ -4,8 +4,8 @@
 
 <th:block layout:fragment="css">
     <link rel="stylesheet" th:href="@{/assets/css/profile-change.css}">
-    <script src="https://kit.fontawesome.com/42c6a3cece.js" crossorigin="anonymous"></script>
 </th:block>
+<script src="https://kit.fontawesome.com/42c6a3cece.js" crossorigin="anonymous"></script>
 <div layout:fragment="content">
     <body>
     <div>
@@ -20,8 +20,9 @@
             </div>
             <div class="profile-card">
                 <img th:src="@{/images/icons/user1.PNG}" alt="selectuserimg">
-                <button class="pen" type="submit"><i class="fa-solid fa-pen"></i>
-                    <a href=""></a>
+                <button class="pen" type="button" onclick="location.href='/'";><i class="fa-solid fa-pen">
+
+                </i>
                 </button>
             </div>
             <div class="change-main">
