@@ -6,7 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Video_img")
+@Table(name = "video_img")
 @Getter @Setter
 public class VideoImg {
     @Id

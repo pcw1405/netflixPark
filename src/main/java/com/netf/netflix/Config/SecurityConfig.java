@@ -16,7 +16,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 //@AllArgsConstructor
-public class SecurityConfig extends WebSecurityConfigurerAdapter  {
+public class SecurityConfig{
 
 
     @Autowired
@@ -42,12 +42,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter  {
                 .mvcMatchers("/admin/**").hasRole("ADMIN")  //ADMIN Role일 경우 접근가능
                 .anyRequest().authenticated()
         ;
-
         http.exceptionHandling()
                 .authenticationEntryPoint(new CustomAuthenticationEntryPoint())
         ; //인증되지 않은 사용자가 리소스에 접근했을때 수행되는 핸들러 등록
-
-
 
         return http.build();
     }

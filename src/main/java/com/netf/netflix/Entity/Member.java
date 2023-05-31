@@ -27,7 +27,6 @@ public class Member {
     private long id;
 
     private String name;
-//    네임은 멤버가 유저에만 있으면 될듯
 
     @Column(unique = true)
     private String email;
