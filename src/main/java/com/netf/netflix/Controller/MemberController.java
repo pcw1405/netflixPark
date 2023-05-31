@@ -6,6 +6,8 @@ import com.netf.netflix.Repository.UserRepository;
 import com.netf.netflix.Service.MemberService;
 import com.netf.netflix.Service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +26,8 @@ public class MemberController {
     private final UserService userService;
     private final UserRepository userRepository;
 
-
+    @Autowired
+    private final PasswordEncoder passwordEncoder;
 
     @GetMapping("/login")
     public String loginform(Model model){
@@ -35,6 +38,8 @@ public class MemberController {
     @PostMapping("/login")
     public String loginFormMember(@ModelAttribute MemberDto memberDto, HttpSession session){
         MemberDto loginConfirm = memberService.login(memberDto);
+
+
 
         if(loginConfirm != null){
             session.setAttribute("nowMember", loginConfirm);

@@ -21,7 +21,7 @@ public class MainController {
         // 모델에 nowUser 객체를 추가하여 뷰로 전달
         model.addAttribute("nowUser", nowUser);
         model.addAttribute("nowMember", nowMember);
-
+        model.addAttribute("messages","로그인에 실패하였습니다.");
         String now_img=nowUser.getImg_url();
         System.out.println("현재 유저의 프로파일 경로"+now_img);
         System.out.println("현재 멤버목록= "+nowMember.getUsers());
