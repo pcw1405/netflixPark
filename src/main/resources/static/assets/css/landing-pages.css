@@ -190,9 +190,7 @@ button:focus {
     color: white;
     border-radius: 3px;
 }
-#loginForm #email{
-    margin: 0;
-}
+
 #loginForm .para{
     margin-top: 20px;
     color: gray;

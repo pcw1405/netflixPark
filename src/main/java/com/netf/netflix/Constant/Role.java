@@ -1,4 +1,4 @@
-package com.netf.netflix.constant;
+package com.netf.netflix.Constant;
 
 public enum Role {
     USER,ADMIN

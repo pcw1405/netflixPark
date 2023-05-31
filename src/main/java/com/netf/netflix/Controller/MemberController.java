@@ -1,14 +1,14 @@
-package com.netf.netflix.controller;
+package com.netf.netflix.Controller;
 
 import com.netf.netflix.Dto.MemberDto;
+import com.netf.netflix.Entity.Member;
 import com.netf.netflix.Entity.User;
-import com.netf.netflix.MemberRepository.UserRepository;
+import com.netf.netflix.Repository.UserRepository;
 import com.netf.netflix.Service.MemberService;
 import com.netf.netflix.Service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,9 +24,8 @@ public class MemberController {
     private final MemberService memberService;
     private final UserService userService;
     private final UserRepository userRepository;
-//    public MemberController(MemberService memberService) {
-//        this.memberService = memberService;
-//    }
+
+
 
     @GetMapping("member/login")
     public String loginform(){
@@ -85,12 +84,8 @@ public class MemberController {
         return "redirect:";
     }
 
-    @GetMapping("/register")
-    public String registerForm(Model model){
-        model.addAttribute("user", new User());
-        model.addAttribute("org.springframework.validation.BindingResult.user", model.getAttribute("user"));
-        return "/register";
-    }
+
+
 
 
 //    @GetMapping("/")

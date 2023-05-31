@@ -1,6 +1,5 @@
-package com.netf.netflix.MemberRepository;
+package com.netf.netflix.Repository;
 
-import com.netf.netflix.Entity.Member;
 import com.netf.netflix.Entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

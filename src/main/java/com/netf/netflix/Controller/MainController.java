@@ -1,4 +1,4 @@
-package com.netf.netflix.controller;
+package com.netf.netflix.Controller;
 
 import com.netf.netflix.Dto.MemberDto;
 import com.netf.netflix.Entity.User;
@@ -38,10 +38,6 @@ public class MainController {
         return "user-profile/user";
     }
 
-//    @GetMapping("/register")
-//    public String register(){
-//        return "/register";
-//    }
 
     @GetMapping("/myList")
     public String myList(){

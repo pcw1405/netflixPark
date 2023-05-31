@@ -2,7 +2,7 @@ package com.netf.netflix.Entity;
 
 
 import com.netf.netflix.Dto.MemberDto;
-import com.netf.netflix.constant.Role;
+import com.netf.netflix.Constant.Role;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,6 +19,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Member {
+
     @Id
     @Column(name="member_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -40,15 +41,7 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    public static Member createMember(MemberDto memberDto, PasswordEncoder passwordEncoder){
-        Member member =new Member();
-        member.setName(memberDto.getName());
-        member.setEmail(memberDto.getEmail());
-        String password= passwordEncoder.encode(memberDto.getPassword());
-        member.setPassword(password);
-        member.setRole(Role.ADMIN);
-        return member;
-    }
+
 
 
 }
