@@ -1,8 +1,7 @@
 package com.netf.netflix.Config;
 
+
 import com.netf.netflix.Service.MemberService;
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,14 +16,12 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 //@AllArgsConstructor
-public class SecurityConfig  {
+public class SecurityConfig extends WebSecurityConfigurerAdapter  {
+
 
     @Autowired
-    MemberService memberService;
-//    private final MemberService memberService;
-//    public SecurityConfig(MemberService memberService){
-//        this.memberService=memberService;
-//    }
+   MemberService memberService;
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.formLogin()
@@ -54,9 +51,9 @@ public class SecurityConfig  {
 
         return http.build();
     }
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//        //PasswordEncoder 인테페이스 구현체 BCryptPasswordEncoder();
-//    }
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+        //PasswordEncoder 인테페이스 구현체 BCryptPasswordEncoder();
+    }
 }

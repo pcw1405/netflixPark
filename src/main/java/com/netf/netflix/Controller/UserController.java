@@ -1,8 +1,7 @@
 package com.netf.netflix.Controller;
 
-import com.netf.netflix.Constant.Role;
 import com.netf.netflix.Dto.MemberDto;
-import com.netf.netflix.Entity.Member;
+
 import com.netf.netflix.Service.MemberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

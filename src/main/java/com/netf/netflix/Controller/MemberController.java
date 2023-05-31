@@ -1,7 +1,6 @@
 package com.netf.netflix.Controller;
 
 import com.netf.netflix.Dto.MemberDto;
-import com.netf.netflix.Entity.Member;
 import com.netf.netflix.Entity.User;
 import com.netf.netflix.Repository.UserRepository;
 import com.netf.netflix.Service.MemberService;
