@@ -35,7 +35,7 @@
             <h2 class="formtitle">
                 회원가입
             </h2>
-            <form id="loginForm" th:object="${memberDto}"  class="d-flex direction-column" method="post" name="loginForm" onsubmit="return signUp();">
+            <form id="loginForm" th:action="@{/register}" th:object="${memberDto}"  class="d-flex direction-column" method="post" name="loginForm" onsubmit="return signUp();">
 
 
                 <label th:for="name"></label>

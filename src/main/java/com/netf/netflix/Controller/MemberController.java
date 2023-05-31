@@ -6,78 +6,90 @@ import com.netf.netflix.Repository.UserRepository;
 import com.netf.netflix.Service.MemberService;
 import com.netf.netflix.Service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.List;
 
 
 @Controller
 @RequiredArgsConstructor
 public class MemberController {
-    private final MemberService memberService;
+
+    @Autowired
+    private MemberService memberService;
+
     private final UserService userService;
     private final UserRepository userRepository;
 
-    @Autowired
-    private final PasswordEncoder passwordEncoder;
+
 
     @GetMapping("/login")
     public String loginform(Model model){
         model.addAttribute("memberDto", new MemberDto());
+        System.out.println("login getmapping ");
         return "login";
     }
 
     @PostMapping("/login")
-    public String loginFormMember(@ModelAttribute MemberDto memberDto, HttpSession session){
-        MemberDto loginConfirm = memberService.login(memberDto);
-
-
-
-        if(loginConfirm != null){
-            session.setAttribute("nowMember", loginConfirm);
-
-            return "redirect:/register";
-        } else{
-            return "redirect:/login";
+    public String loginFormMember(@Valid @ModelAttribute MemberDto memberDto, BindingResult bindingResult) {
+        System.out.println("login start");
+        if (bindingResult.hasErrors()) {
+            System.out.println("binding result fail");
+            return "login";
         }
+        MemberDto authenticatedMember = memberService.authenticate(memberDto.getEmail(), memberDto.getPassword());
+
+        if (authenticatedMember == null) {
+            // 인증 실패 시
+            System.out.println("authenticated fail ");
+            bindingResult.reject("error.loginFailed", "Invalid email or password");
+            return "login";
+        }
+        // 인증 성공 시
+        System.out.println("로그인 성공: " + authenticatedMember.getEmail());
+        return "redirect:/profile";
     }
 
-
     @GetMapping("/profile")
-    public String getUsers(HttpSession session, Model model){
-        System.out.println("pro file start");
-        MemberDto temp = (MemberDto) session.getAttribute("nowMember");
-        System.out.println("session result="+temp);
-        String email= temp.getEmail();
-        System.out.println("email_result="+email);
-        List<String> userNames = userService.getMatchingNames(email);
-
-        for (String userName : userNames) {
-            System.out.println("userName: " + userName);
-        }
-
-        model.addAttribute("userNames", userNames);
+    public String getUsers( ){
+//        System.out.println("pro file start");
+//        MemberDto temp = (MemberDto) session.getAttribute("nowMember");
+//        System.out.println("session result="+temp);
+//        String email= temp.getEmail();
+//        System.out.println("email_result="+email);
+//        List<String> userNames = userService.getMatchingNames(email);
+//
+//        for (String userName : userNames) {
+//            System.out.println("userName: " + userName);
+//        }
+//
+//        model.addAttribute("userNames", userNames);
 
         return "/profile";
     }
 
 
 
-    @PostMapping("/profile")
-    public String saveProfile(@RequestParam("index") long index, HttpSession session) {
-        User user = userRepository.findById(index);
-        session.setAttribute("nowUser", user);
-
-        return "redirect:/"; // 리다이렉트할 경로를 적절하게 수정해야 합니다.
-    }
+//    @PostMapping("/profile")
+//    public String saveProfile(@RequestParam("index") long index) {
+//        User user = userRepository.findById(index);
+////        session.setAttribute("nowUser", user);
+//
+//        return "redirect:/"; // 리다이렉트할 경로를 적절하게 수정해야 합니다.
+//    }
 
 
 

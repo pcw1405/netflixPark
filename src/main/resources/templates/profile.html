@@ -1,72 +1,81 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org"-->
+<!--      xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">-->
+
+<!--<th:block layout:fragment="css">-->
+<!--  <link rel="stylesheet" th:href="@{/assets/css/profile.css}">-->
+<!--</th:block>-->
+<!--  <div layout:fragment="content">-->
+<!--    <body>-->
+<!--    <div>-->
+<!--      <div>-->
+<!--        <img th:src="@{/images/Netflix_Logo.png}" class="main_logo_img" alt="메인로고이미지">-->
+<!--      </div>-->
+<!--      <div class="profile-aria">-->
+<!--        &lt;!&ndash; 텍스트 &ndash;&gt;-->
+<!--        <div>-->
+<!--          <p class="tv">넷플릭스를 시청할 프로필을 선택하세요.</p>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; 프로필 카드 리스트 &ndash;&gt;-->
+<!--        <div>-->
+<!--          <ul>-->
+<!--            <li th:each="userName, status : ${userNames}">-->
+<!--              <div class="profile">-->
+<!--                <div class="profile-card">-->
+<!--                  <a th:attr="user_index=${status.count}" onclick="sendIndex(this)">-->
+<!--                    <img th:if="${status.count == 1}" th:src="@{/images/icons/user1.PNG}" alt="userimg">-->
+<!--                    <img th:if="${status.count == 2}" th:src="@{/images/icons/user2.PNG}" alt="userimg">-->
+<!--                    <img th:if="${status.count == 3}" th:src="@{/images/icons/user3.PNG}" alt="userimg">-->
+<!--                    <img th:if="${status.count == 4}" th:src="@{/images/icons/plus.PNG}" alt="userimg">-->
+<!--                    <img th:if="${status.count == 5}" th:src="@{/images/icons/plus.PNG}" alt="userimg">-->
+<!--                  </a>-->
+<!--                </div>-->
+<!--                <p class="profile-card 1" th:text="${userName}">윤영민</p>-->
+<!--              </div>-->
+<!--            </li>-->
+
+<!--          </ul>-->
+
+<!--        </div>-->
+
+<!--        <div class="button">-->
+<!--          <a href="/" class="made-profile"><p> 프로필 관리</p></a>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--    </div>-->
+
+<!--    <script>-->
+
+
+<!--  function sendIndex(element) {-->
+<!--    var index = element.getAttribute("user_index");-->
+
+<!--    var form = document.createElement("form");-->
+<!--    form.method = "POST";-->
+<!--    form.action = "/profile";-->
+
+<!--    var input = document.createElement("input");-->
+<!--    input.type = "hidden";-->
+<!--    input.name = "index";-->
+<!--    input.value = index;-->
+
+<!--    form.appendChild(input);-->
+<!--    document.body.appendChild(form);-->
+<!--    form.submit();-->
+<!--  }-->
+<!--</script>-->
+
+
+<!--    </body>-->
+<!--  </div>-->
+<!--</html>-->
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
-
-<th:block layout:fragment="css">
-  <link rel="stylesheet" th:href="@{/assets/css/profile.css}">
-</th:block>
-  <div layout:fragment="content">
-    <body>
-    <div>
-      <div>
-        <img th:src="@{/images/Netflix_Logo.png}" class="main_logo_img" alt="메인로고이미지">
-      </div>
-      <div class="profile-aria">
-        <!-- 텍스트 -->
-        <div>
-          <p class="tv">넷플릭스를 시청할 프로필을 선택하세요.</p>
-        </div>
-        <!-- 프로필 카드 리스트 -->
-        <div>
-          <ul>
-            <li th:each="userName, status : ${userNames}">
-              <div class="profile">
-                <div class="profile-card">
-                  <a th:attr="user_index=${status.count}" onclick="sendIndex(this)">
-                    <img th:if="${status.count == 1}" th:src="@{/images/icons/user1.PNG}" alt="userimg">
-                    <img th:if="${status.count == 2}" th:src="@{/images/icons/user2.PNG}" alt="userimg">
-                    <img th:if="${status.count == 3}" th:src="@{/images/icons/user3.PNG}" alt="userimg">
-                    <img th:if="${status.count == 4}" th:src="@{/images/icons/plus.PNG}" alt="userimg">
-                    <img th:if="${status.count == 5}" th:src="@{/images/icons/plus.PNG}" alt="userimg">
-                  </a>
-                </div>
-                <p class="profile-card 1" th:text="${userName}">윤영민</p>
-              </div>
-            </li>
-
-          </ul>
-
-        </div>
-
-        <div class="button">
-          <a href="/" class="made-profile"><p> 프로필 관리</p></a>
-        </div>
-      </div>
-
-    </div>
-
-    <script>
-
-
-  function sendIndex(element) {
-    var index = element.getAttribute("user_index");
-
-    var form = document.createElement("form");
-    form.method = "POST";
-    form.action = "/profile";
-
-    var input = document.createElement("input");
-    input.type = "hidden";
-    input.name = "index";
-    input.value = index;
-
-    form.appendChild(input);
-    document.body.appendChild(form);
-    form.submit();
-  }
-</script>
-
-
-    </body>
-  </div>
+<html>
+<head>
+    <title>Hello Page</title>
+</head>
+<body>
+<h1>Hello</h1>
+</body>
 </html>

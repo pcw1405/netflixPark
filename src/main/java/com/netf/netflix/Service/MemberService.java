@@ -4,6 +4,7 @@ package com.netf.netflix.Service;
 import com.netf.netflix.Constant.Role;
 import com.netf.netflix.Dto.MemberDto;
 import com.netf.netflix.Entity.Member;
+
 import com.netf.netflix.Repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.core.userdetails.User;
@@ -11,16 +12,39 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Optional;
 
 @Service
 @Transactional
 @Primary
-public class MemberService  {
+public class MemberService implements UserDetailsService {
+
+    // ...
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Member member = memberRepository.findByEmail(email);
+        if (member == null) {
+            throw new UsernameNotFoundException("Invalid email or password.");
+        }
+        return new User(member.getEmail(), member.getPassword(), getAuthorities(member.getRole()));
+    }
+
+    private Collection<? extends GrantedAuthority> getAuthorities(Role role) {
+        return Collections.singleton(new SimpleGrantedAuthority(role.toString()));
+    }
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
 
@@ -36,7 +60,7 @@ public class MemberService  {
         Optional<Member> emailCheck = Optional.ofNullable(memberRepository.findByEmail(memberDto.getEmail()));
         if (emailCheck.isPresent()) {
             Member member = emailCheck.get();
-            boolean passwordMatch= passwordEncoder.matches(memberDto.getPassword(),member.getPassword());
+            boolean passwordMatch = passwordEncoder.matches(memberDto.getPassword(), member.getPassword());
             if (member.getPassword().equals(memberDto.getPassword())) {
                 MemberDto passwordConfirm = MemberDto.toMemberDto(member);
                 return passwordConfirm;
@@ -64,4 +88,15 @@ public class MemberService  {
         member.setRole(Role.ADMIN);
         return member;
     }
+
+
+    public MemberDto authenticate(String email, String password) {
+        Member member = memberRepository.findByEmail(email);
+        if (member != null && passwordEncoder.matches(password, member.getPassword())) {
+            return MemberDto.toMemberDto(member);
+        }
+        return null;
+
+    }
+
 }
