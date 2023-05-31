@@ -29,7 +29,7 @@ public class SecurityConfig{
                 .loginPage("/login") //로그인 페이지 url 설정
                 .defaultSuccessUrl("/profile") // 성공시 이동할 url
                 .usernameParameter("email") //로그인시 사용할 파라미터 이름으로 email 지정
-                .failureUrl("/error/login") //.로그인 실패시 이동할 url
+                .failureUrl("/login") //.로그인 실패시 이동할 url
                 .and()
                 .logout() //로그아웃 url
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

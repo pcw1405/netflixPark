@@ -34,20 +34,15 @@ public class MemberController {
 
     @PostMapping("/login")
     public String loginFormMember(@ModelAttribute MemberDto memberDto, HttpSession session){
+        MemberDto loginConfirm = memberService.login(memberDto);
 
-            MemberDto loginConfirm = memberService.login(memberDto);
-            System.out.println("result = "+loginConfirm);
-            System.out.println("email =" +loginConfirm.getEmail());
-//            String thisEmail = loginConfirm.getEmail();
-            if(loginConfirm!=null){
-                session.setAttribute("nowMember",loginConfirm);
-                System.out.println("session result="+loginConfirm);
-                return "/profile";
-//                로그인 성공시 프로파일로
-            } else{
-                return "redirect:/login";
-//                로그인 실패시 다시 로그인화면으로
-            }
+        if(loginConfirm != null){
+            session.setAttribute("nowMember", loginConfirm);
+
+            return "redirect:/register";
+        } else{
+            return "redirect:/login";
+        }
     }
 
 
@@ -72,18 +67,12 @@ public class MemberController {
 
 
     @PostMapping("/profile")
-    public String saveUserConfirm(@RequestParam("index") long index, HttpSession session) {
-//        // index 값을 세션에 저장
-//        session.setAttribute("nowUserIndex", index);
-//        System.out.println("Session nowUserIndex: " + session.getAttribute("nowUserIndex"));
-        System.out.println("index는 "+index);
-        User user=userRepository.findById(index);
+    public String saveProfile(@RequestParam("index") long index, HttpSession session) {
+        User user = userRepository.findById(index);
         session.setAttribute("nowUser", user);
-        System.out.println("now user: " + session.getAttribute("nowUser"));
 
-        return "redirect:";
+        return "redirect:/"; // 리다이렉트할 경로를 적절하게 수정해야 합니다.
     }
-
 
 
 

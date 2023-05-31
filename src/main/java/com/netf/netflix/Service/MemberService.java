@@ -36,6 +36,7 @@ public class MemberService  {
         Optional<Member> emailCheck = Optional.ofNullable(memberRepository.findByEmail(memberDto.getEmail()));
         if (emailCheck.isPresent()) {
             Member member = emailCheck.get();
+            boolean passwordMatch= passwordEncoder.matches(memberDto.getPassword(),member.getPassword());
             if (member.getPassword().equals(memberDto.getPassword())) {
                 MemberDto passwordConfirm = MemberDto.toMemberDto(member);
                 return passwordConfirm;
