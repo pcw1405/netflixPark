@@ -1,4 +1,4 @@
-package com.netf.netflix.controller;
+package com.netf.netflix.Controller;
 
 import com.netf.netflix.Dto.MemberDto;
 import com.netf.netflix.Entity.User;

@@ -26,12 +26,13 @@ public class MemberController {
 
 
 
-    @GetMapping("member/login")
-    public String loginform(){
+    @GetMapping("/login")
+    public String loginform(Model model){
+        model.addAttribute("memberDto", new MemberDto());
         return "login";
     }
 
-    @PostMapping("member/login")
+    @PostMapping("/login")
     public String loginFormMember(@ModelAttribute MemberDto memberDto, HttpSession session){
 
             MemberDto loginConfirm = memberService.login(memberDto);
@@ -41,10 +42,10 @@ public class MemberController {
             if(loginConfirm!=null){
                 session.setAttribute("nowMember",loginConfirm);
                 System.out.println("session result="+loginConfirm);
-                return "redirect:/profile";
+                return "/profile";
 //                로그인 성공시 프로파일로
             } else{
-                return "login";
+                return "redirect:/login";
 //                로그인 실패시 다시 로그인화면으로
             }
     }

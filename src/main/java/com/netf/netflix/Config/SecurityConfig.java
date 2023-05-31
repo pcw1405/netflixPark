@@ -5,6 +5,8 @@ import com.netf.netflix.Service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -15,7 +17,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-//@AllArgsConstructor
 public class SecurityConfig{
 
 
@@ -25,13 +26,13 @@ public class SecurityConfig{
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.formLogin()
-                .loginPage("/member/login") //로그인 페이지 url 설정
-                .defaultSuccessUrl("/") // 성공시 이동할 url
+                .loginPage("/login") //로그인 페이지 url 설정
+                .defaultSuccessUrl("/profile") // 성공시 이동할 url
                 .usernameParameter("email") //로그인시 사용할 파라미터 이름으로 email 지정
-                .failureUrl("/members/login/error") //.로그인 실패시 이동할 url
+                .failureUrl("/error/login") //.로그인 실패시 이동할 url
                 .and()
                 .logout() //로그아웃 url
-                .logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 //패턴과 요청url을 비교하여 일치하는지 판단
                 //'members/logout' url 로 요청을 보내면 이를 로그아웃 처리로 인식 하여 로그아웃
                 .logoutSuccessUrl("/") //로그아웃 성공시 이동할 url
@@ -48,6 +49,7 @@ public class SecurityConfig{
 
         return http.build();
     }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

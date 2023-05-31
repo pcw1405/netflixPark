@@ -21,9 +21,7 @@ import java.util.List;
 @Setter
 public class MemberDto {
 
-    @Id
-    @Column(name="member_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
     private long id;
 
     @NotBlank(message = "이름은 필수입력값입니다.")

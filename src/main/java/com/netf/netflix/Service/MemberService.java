@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.core.userdetails.UserDetails;
 //import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.context.annotation.Primary;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,7 @@ import java.util.Optional;
 public class MemberService  {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
+
 
     @Autowired
     public MemberService(MemberRepository memberRepository, PasswordEncoder passwordEncoder) {
