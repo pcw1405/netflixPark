@@ -1,7 +1,8 @@
 package com.netf.netflix.Dto;
 
 import com.netf.netflix.Entity.Member;
-import com.netf.netflix.Entity.User;
+import com.netf.netflix.Entity.Profile;
+
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
@@ -34,14 +35,14 @@ public class MemberDto {
     private String password;
 //    private Role role;
 
-    private List<User> users;
+    private List<Profile> profiles;
 
     public static MemberDto toMemberDto(Member member){
         MemberDto memberDto = new MemberDto();
         memberDto.setId(member.getId());
         memberDto.setEmail(member.getEmail());
         memberDto.setPassword(member.getPassword());
-        memberDto.setUsers(member.getUsers());
+        memberDto.setProfiles(member.getProfiles());
         return memberDto;
     }
 

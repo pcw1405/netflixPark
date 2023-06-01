@@ -85,7 +85,7 @@ public class MemberService implements UserDetailsService {
         member.setEmail(memberDto.getEmail());
         String password = passwordEncoder.encode(memberDto.getPassword());
         member.setPassword(password);
-        member.setRole(Role.ADMIN);
+        member.setRole(Role.USER);
         return member;
     }
 

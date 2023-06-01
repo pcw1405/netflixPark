@@ -1,10 +1,7 @@
 package com.netf.netflix.Controller;
 
 import com.netf.netflix.Dto.MemberDto;
-import com.netf.netflix.Entity.User;
-import com.netf.netflix.Repository.UserRepository;
 import com.netf.netflix.Service.MemberService;
-import com.netf.netflix.Service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,11 +27,6 @@ public class MemberController {
 
     @Autowired
     private MemberService memberService;
-
-    private final UserService userService;
-    private final UserRepository userRepository;
-
-
 
     @GetMapping("/login")
     public String loginform(Model model){
@@ -63,8 +55,8 @@ public class MemberController {
         return "redirect:/profile";
     }
 
-    @GetMapping("/profile")
-    public String getUsers( ){
+//    @GetMapping("/profile")
+//    public String getUsers( ){
 //        System.out.println("pro file start");
 //        MemberDto temp = (MemberDto) session.getAttribute("nowMember");
 //        System.out.println("session result="+temp);
@@ -78,8 +70,8 @@ public class MemberController {
 //
 //        model.addAttribute("userNames", userNames);
 
-        return "/profile";
-    }
+//        return "/profile";
+//    }
 
 
 

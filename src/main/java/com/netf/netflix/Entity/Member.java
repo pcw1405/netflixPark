@@ -33,9 +33,8 @@ public class Member {
 
     private String password;
 
-
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<User> users;
+    private List<Profile> profiles;
 
     @Enumerated(EnumType.STRING)
     private Role role;
