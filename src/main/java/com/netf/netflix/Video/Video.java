@@ -15,7 +15,7 @@ public class Video{
 
     @Id
     @Column(name="video_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
@@ -32,7 +32,6 @@ public class Video{
 
     @Enumerated(EnumType.STRING)
     private VideoRole videoRole; //상품 판매 상태
-
 
     public void updateItem(VideoFormDto videoFormDto){
         this.videoNm = videoFormDto.getVideoNm();
