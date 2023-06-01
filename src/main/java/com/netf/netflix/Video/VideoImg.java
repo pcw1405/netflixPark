@@ -2,12 +2,15 @@ package com.netf.netflix.Video;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "video_img")
-@Getter @Setter
+@Getter
+@Setter
+@ToString
 public class VideoImg {
     @Id
     @Column(name="video_img_id")
@@ -20,7 +23,7 @@ public class VideoImg {
 
     private String imgUrl;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "video_id")
     private Video video;
 
@@ -29,4 +32,5 @@ public class VideoImg {
         this.imgName = imgName;
         this.imgUrl = imgUrl;
     }
+
 }

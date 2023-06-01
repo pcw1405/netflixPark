@@ -1,6 +1,8 @@
 package com.netf.netflix.Video;
 
+import groovy.util.logging.Slf4j;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +14,7 @@ import javax.persistence.EntityNotFoundException;
 @Service
 @RequiredArgsConstructor
 @Transactional
+@Log
 public class VideoImgService {
 
     @Value("${videoImgLocation}")
@@ -22,11 +25,9 @@ public class VideoImgService {
     private final FileService fileService;
 
     public void saveVideoImg(VideoImg videoImg, MultipartFile videoImgFile)throws Exception{
-        ;
         String oriImgName = videoImgFile.getOriginalFilename();
         String imgName = "";
         String imgUrl = "";
-
         if(!StringUtils.isEmpty(oriImgName)){
             imgName = fileService.uploadFile(videoImgLocation, oriImgName,
                     videoImgFile.getBytes());

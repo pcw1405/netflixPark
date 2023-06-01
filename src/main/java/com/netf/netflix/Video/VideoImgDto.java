@@ -14,8 +14,6 @@ public class VideoImgDto {
 
     private String imgUrl;
 
-    private String repImgYn;
-
     private static ModelMapper modelMapper = new ModelMapper();
 
     public static VideoImgDto of(VideoImg videoImg){

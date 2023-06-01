@@ -1,6 +1,8 @@
 package com.netf.netflix.Video;
 
+import groovy.util.logging.Slf4j;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,11 +13,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
+@Log
 public class VideoController {
 
     private final VideoService videoService;
@@ -29,16 +33,17 @@ public class VideoController {
     @PostMapping(value = "/video/upload")
     public String videoCreateFrom(@Valid VideoFormDto videoFormDto, BindingResult bindingResult, Model model,
                                    @RequestParam("videoImgFile") MultipartFile videoImgFile){
+        log.info(String.valueOf(videoFormDto));
         if(bindingResult.hasErrors()){
             return "videos/videoForm";
         }
         try {
             videoService.saveVideo(videoFormDto, videoImgFile);
         } catch (Exception e) {
-            model.addAttribute("errorMessage", "상품등록중 에러가 발생하였습니다.");
+            model.addAttribute("errorMessage", e.getMessage());
             return "videos/videoForm";
         }
-        return "videos/videoForm";
+        return "redirect:/";
     }
 
 }
