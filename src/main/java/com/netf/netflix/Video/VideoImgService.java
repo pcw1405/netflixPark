@@ -28,12 +28,11 @@ public class VideoImgService {
         String oriImgName = videoImgFile.getOriginalFilename();
         String imgName = "";
         String imgUrl = "";
-        if(!StringUtils.isEmpty(oriImgName)){
-            imgName = fileService.uploadFile(videoImgLocation, oriImgName,
-                    videoImgFile.getBytes());
-            imgUrl = "/upload/video_img/" + imgName;
-        }
-        videoImg.updatevideoImg(oriImgName, imgName, imgUrl);
+        imgName = fileService.uploadFile(videoImgLocation, oriImgName,
+                videoImgFile.getBytes());
+        imgUrl = "/upload/video_img/" + imgName;
+
+        videoImg.createdVideoImg(oriImgName, imgName, imgUrl);
         videoImgRepository.save(videoImg);
     }
 

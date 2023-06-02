@@ -27,7 +27,7 @@ public class VideoImg {
     @JoinColumn(name = "video_id")
     private Video video;
 
-    public void updatevideoImg(String oriImgName, String imgName, String imgUrl){
+    public void createdVideoImg(String oriImgName, String imgName, String imgUrl){
         this.oriImgName = oriImgName;
         this.imgName = imgName;
         this.imgUrl = imgUrl;

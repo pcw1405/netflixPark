@@ -30,10 +30,11 @@ public class VideoController {
         return "videos/videoForm";
     }
 
-    @PostMapping(value = "/video/upload")
+    @PostMapping(value = "/video/new")
     public String videoCreateFrom(@Valid VideoFormDto videoFormDto, BindingResult bindingResult, Model model,
                                    @RequestParam("videoImgFile") MultipartFile videoImgFile){
-
+        System.out.println(videoFormDto);
+        System.out.println(videoImgFile);
         if(bindingResult.hasErrors()){
             return "videos/videoForm";
         }

@@ -39,8 +39,8 @@
                 <li th:each="num : ${#numbers.sequence(temp_index, 5)}" th:if="${num le 5}">
                     <div class="profile">
                         <div class="profile-card">
-                            <a th:attr="profile_index=${num}" th:href="@{/profile-change(profileIndex=${num})}" onclick="sendIndex(this)">
-
+                            <a th:attr="profile_index=${num}" onclick="sendIndex(this)">
+<!--                                 th:href="@{/profile-change}"-->
                                 <img th:alt="userimg" th:src="@{/images/icons/plus.png}" />
                             </a>
                         </div>
@@ -61,22 +61,22 @@
     <script>
 
 
-<!--  function sendIndex(element) {-->
-<!--    var index = element.getAttribute("profile_index");-->
+  function sendIndex(element) {
+    var index = element.getAttribute("profile_index");
 
-<!--    var form = document.createElement("form");-->
-<!--    form.method = "POST";-->
-<!--    form.action = "/profile";-->
+    var form = document.createElement("form");
+    form.method = "POST";
+    form.action = "/profile";
 
-<!--    var input = document.createElement("input");-->
-<!--    input.type = "hidden";-->
-<!--    input.name = "index";-->
-<!--    input.value = parseInt(index);-->
+    var input = document.createElement("input");
+    input.type = "hidden";
+    input.name = "index";
+    input.value = parseInt(index);
 
-<!--    form.appendChild(input);-->
-<!--    document.body.appendChild(form);-->
-<!--    form.submit();-->
-<!--  }-->
+    form.appendChild(input);
+    document.body.appendChild(form);
+    form.submit();
+  }
 </script>
 
 
