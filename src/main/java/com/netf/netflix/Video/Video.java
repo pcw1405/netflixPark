@@ -5,6 +5,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="video")
@@ -33,9 +35,11 @@ public class Video{
     @Enumerated(EnumType.STRING)
     private VideoRole videoRole; //영화인지 드라마인지 ROLE
 
-    //장르추가
+    @Column(nullable = false)
+    private String genres;
 
-    //관람등급 (profile 엔티티 연동 )
+    @Enumerated(EnumType.STRING)
+    private VideoMaturityLevel videoMaturityLevel;
 
     public void updateItem(VideoFormDto videoFormDto){
         this.videoNm = videoFormDto.getVideoNm();

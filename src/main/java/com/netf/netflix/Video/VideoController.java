@@ -41,10 +41,8 @@ public class VideoController {
         try {
             videoService.saveVideo(videoFormDto, videoImgFile, videoFile);
         } catch (Exception e) {
-            model.addAttribute("errorMessage", "영상 업로드에 실패했습니다.");
             return "videos/videoForm";
         }
         return "videos/videoForm";
     }
-
 }
