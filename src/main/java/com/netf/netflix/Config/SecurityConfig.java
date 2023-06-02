@@ -1,6 +1,5 @@
 package com.netf.netflix.Config;
 
-
 import com.netf.netflix.Service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -23,16 +22,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private MemberService memberService;
 
-
-
-    @Autowired
-    private CustomAuthenticationEntryPoint authenticationEntryPoint;
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .mvcMatchers("/css/**", "/js/**", "/img/**").permitAll()
+                .mvcMatchers("assets/**", "assets/js/**", "/img/**").permitAll()
                 .mvcMatchers("/", "/members/**", "/item/**", "/images/**", "/**").permitAll()
                 .mvcMatchers("/login").permitAll()
                 .mvcMatchers("/register").permitAll()
@@ -44,29 +43,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .defaultSuccessUrl("/profile")
                 .usernameParameter("email")
-                .failureUrl("/login")
+                .failureUrl("/login/error") // 로그인 실패 시 이동할 URL
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/")
                 .and()
                 .exceptionHandling()
-                .authenticationEntryPoint(authenticationEntryPoint);
-
+                .accessDeniedPage("/access-denied"); // 접근 거부 시 이동할 URL
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(memberService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(memberService)
+                .passwordEncoder(passwordEncoder());
     }
 
+    @Override
     @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public CustomAuthenticationEntryPoint authenticationEntryPoint() {
-        return new CustomAuthenticationEntryPoint();
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 }

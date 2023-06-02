@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
 <script th:src="@{/assets/lib/jquery 3.7.0.js}"></script>
 <th:block layout:fragment="css">
     <link rel="stylesheet" th:href="@{/assets/css/profile-change.css}">
@@ -55,46 +56,30 @@
     </body>
 
     <script>
-    function getCsrfToken() {
-        var name = "_csrf";
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = cookies[i].trim();
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                return decodeURIComponent(cookie.substring(name.length + 1));
-            }
+        function saveProfile() {
+            var profileData = {
+                name: document.getElementById("name").value,
+                language: document.getElementById("langs").value,
+                nickname: document.getElementById("nickname").value,
+                maturityLevel: document.getElementById("maturityLevel").value,
+                profileImageUrl: ""
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "/profile/saveProfile",
+                data: JSON.stringify(profileData),
+                contentType: "application/json",
+                success: function(response) {
+                    console.log(response);
+                    // 저장 완료 메시지 또는 다른 동작 수행
+                },
+                error: function(error) {
+                    console.log(error);
+                    // 오류 메시지 또는 다른 동작 수행
+                }
+            });
         }
-        return null;
-    }
-
-    function saveProfile() {
-        var profileData = {
-            name: document.getElementById("name").value,
-            language: document.getElementById("langs").value,
-            nickname: document.getElementById("nickname").value,
-            maturityLevel: document.getElementById("maturityLevel").value,
-            profileImageUrl: ""
-        };
-
-        $.ajax({
-            type: "POST",
-            url: "/profile/saveProfile", // 수정된 URL 경로
-            data: JSON.stringify(profileData),
-            contentType: "application/json",
-            headers: {
-                "X-CSRF-TOKEN": getCsrfToken()
-            },
-            success: function(response) {
-                console.log(response);
-                // 저장 완료 메시지 또는 다른 동작 수행
-            },
-            error: function(error) {
-                console.log(error);
-                // 오류 메시지 또는 다른 동작 수행
-            }
-        });
-    }
-</script>
+    </script>
 </div>
 </html>
-</DOCTYPE>

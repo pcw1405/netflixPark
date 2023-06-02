@@ -126,7 +126,8 @@
 
     <!-- 프로필 구간 -->
     <div class="dropdown">
-        <img th:src="@{${nowUser.img_url}}"
+<!--        <img th:src="@{${nowUser.img_url}}"-->
+        <img
              src="/images/icons/user-image-green.png"
              alt="user profile icon"
              class="user-icon"
@@ -145,16 +146,16 @@
 <!--            />-->
 <!--            <span>윤영민</span>-->
 <!--          </a>-->
-            <a href="#" class="profile-item d-flex flex-middle" th:each="user : ${session.nowMember.users}"  th:unless="${user.id == session.nowUser.id}">
-                <img th:src="@{${user.img_url}}" alt="user profile icon" class="user-icon" />
-                <span th:text="${user.name}"></span>
-            </a>
-<!--          <a href="#" class="profile-item d-flex flex-middle">-->
-<!--            <img-->
-<!--                    src="../../images/icons/user2.png"-->
-<!--                    alt="user profile icon"-->
-<!--                    class="user-icon"-->
-<!--            />-->
+<!--            <a href="#" class="profile-item d-flex flex-middle" th:each="user : ${session.nowMember.users}"  th:unless="${user.id == session.nowUser.id}">-->
+<!--                <img th:src="@{${user.img_url}}" alt="user profile icon" class="user-icon" />-->
+<!--                <span th:text="${user.name}"></span>-->
+<!--            </a>-->
+          <a href="#" class="profile-item d-flex flex-middle">
+            <img
+                    src="../../images/icons/user2.png"
+                    alt="user profile icon"
+                    class="user-icon"
+            />
 <!--            <span>박청원</span>-->
 <!--          </a>-->
 <!--          <a-->

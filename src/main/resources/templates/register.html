@@ -35,7 +35,7 @@
             <h2 class="formtitle">
                 회원가입
             </h2>
-            <form id="loginForm" th:action="@{/register}" th:object="${memberDto}"  class="d-flex direction-column" method="post" name="loginForm" onsubmit="return signUp();">
+            <form id="loginForm" action="/members/new" th:object="${memberFormDto}"  class="d-flex direction-column" method="post" name="loginForm" >
 
 
                 <label th:for="name"></label>
@@ -52,11 +52,11 @@
                 <input type="password" id="password" th:field="*{password}" class="form-control password" placeholder="비밀번호를 입력해주세요">
                 <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="fieldError">잘못된 비밀번호입니다.</p>
 
-                <button th:formaction="@{/register}" type="submit" class="button submitButton">회원가입</button>
+                <button type="submit" class="button submitButton">회원가입</button>
 
-                <div th:if="${#strings.isEmpty(memberDto.id)}" >
-                    <button th:formaction="@{/register}" type="submit" class="button submitButton">회원가입</button>
-                </div>
+<!--                <div th:if="${#strings.isEmpty(memberDto.id)}" >-->
+<!--                    <button th:formaction="@{/register}" type="submit" class="button submitButton">회원가입</button>-->
+<!--                </div>-->
 
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 
