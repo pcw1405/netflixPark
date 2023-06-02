@@ -149,7 +149,7 @@
     padding-right:20px;
     float:left;
     }
-    .button input{
+    .button input,button.click{
     background:black;
     border:1px solid #777;
     padding:10px 20px;
@@ -164,11 +164,11 @@
     border:1px solid white;
     color:white;
     }
-    input.active{
+    button.active{
     background:white;
     color:black;
     }
-    input.active:hover{
+    button.active:hover{
     border:1px solid red;
     background:red;
     }
