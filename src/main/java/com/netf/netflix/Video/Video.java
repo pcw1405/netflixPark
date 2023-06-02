@@ -19,19 +19,23 @@ public class Video{
     private Long id;
 
     @Column(nullable = false)
-    private String videoNm; //상품명
+    private String videoNm; //영상이름
 
     @Column(nullable = false)
-    private String cast;
+    private String cast; //감독이름
 
     @Column(nullable = false)
-    private String actors;
+    private String actors; //배우이름
 
     @Column(nullable = false)
-    private String description; //상품 상세 설명
+    private String description; //줄거리
 
     @Enumerated(EnumType.STRING)
-    private VideoRole videoRole; //상품 판매 상태
+    private VideoRole videoRole; //영화인지 드라마인지 ROLE
+
+    //장르추가
+
+    //관람등급 (profile 엔티티 연동 )
 
     public void updateItem(VideoFormDto videoFormDto){
         this.videoNm = videoFormDto.getVideoNm();
