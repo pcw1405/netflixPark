@@ -5,14 +5,56 @@
 
 <th:block layout:fragment="script">
   <script th:src="@{/assets/js/like.js}"></script>
-</th:block>
-<th:block layout:fragment="css">
-  <link rel="stylesheet" th:href="@{/assets/css/browse.css}">
+  <script th:src="@{/assets/js/pop-up.js}"></script>
 </th:block>
 
+
+<th:block layout:fragment="css">
+  <link rel="stylesheet" th:href="@{/assets/css/browse.css}">
+  <link rel="stylesheet" th:href="@{/assets/css/popup.css}">
+
+
+  <!--  </style>-->
+</th:block>
+
+
+<div class="temp"></div>
 <div layout:fragment="content">
 
   <main id="mainContainer" class="p-b-40">
+    <div class="popup">
+
+      <div class="videoContainer">
+        <div class="popup-close" >x</div>
+
+        <div class="temp">
+          <button class="go-button" onclick="window.location.href='single.html'">
+            <span>
+              <svg viewBox="0 0 24 24">
+                <path d="M6 4l15 8-15 8z" fill="currentColor"></path>
+              </svg>
+            </span>
+          </button>
+
+
+          <i class="like2 fa-regular fa-heart" onclick="likeVideo(1)"></i>
+
+        </div>
+
+        <!--    비디오 컨테이너    -->
+      </div>
+
+      <!--  비디오 컨테이너 -->
+
+      <div class="textContainer">
+        <!--        여기가 텍스트를 주입하는 곳    -->
+
+
+      </div>
+
+
+    </div>
+    <!--    여기까지 팝업 -->
     <div>
       <!-- hero section -->
       <div class="">
