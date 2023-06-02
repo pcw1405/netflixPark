@@ -32,19 +32,21 @@ public class VideoController {
 
     @PostMapping(value = "/video/new")
     public String videoCreateFrom(@Valid VideoFormDto videoFormDto, BindingResult bindingResult, Model model,
-                                   @RequestParam("videoImgFile") MultipartFile videoImgFile){
-        System.out.println(videoFormDto);
-        System.out.println(videoImgFile);
+                                   @RequestParam("videoImgFile") MultipartFile videoImgFile,
+                                  @RequestParam("videoFile") MultipartFile videoFile){
+
         if(bindingResult.hasErrors()){
             return "videos/videoForm";
         }
+
         try {
-            videoService.saveVideo(videoFormDto, videoImgFile);
+            videoService.saveVideo(videoFormDto, videoImgFile, videoFile);
         } catch (Exception e) {
             model.addAttribute("errorMessage", e.getMessage());
             return "videos/videoForm";
         }
-        return "redirect:/";
+        model.addAttribute("message","영상이 업로드 되었습니다.");
+        return "videos/videoForm";
     }
 
 }

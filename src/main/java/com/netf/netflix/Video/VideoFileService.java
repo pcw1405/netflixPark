@@ -11,27 +11,26 @@ import org.springframework.web.multipart.MultipartFile;
 @RequiredArgsConstructor
 @Transactional
 @Log
-public class VideoImgService {
+public class VideoFileService {
 
-    @Value("${videoImgLocation}")
-    private String videoImgLocation;
+    @Value("${videoFileLocation}")
+    private String videoFileLocation;
 
-    private final VideoImgRepository videoImgRepository;
+    private final VideoFileRepository videoFileRepository;
 
     private final FileService fileService;
 
-    public void saveVideoImg(VideoImg videoImg, MultipartFile videoImgFile)throws Exception{
+    public void saveVideoFile(VideoFile videoFile, MultipartFile videoImgFile)throws Exception{
         String oriImgName = videoImgFile.getOriginalFilename();
         String imgName = "";
         String imgUrl = "";
-        imgName = fileService.uploadFile(videoImgLocation, oriImgName,
+        imgName = fileService.uploadFile(videoFileLocation, oriImgName,
                 videoImgFile.getBytes());
-        imgUrl = "/upload/video_img/" + imgName;
+        imgUrl = "/upload/video_file/" + imgName;
 
-        videoImg.createdVideoImg(oriImgName, imgName, imgUrl);
+        videoFile.createdVideoFile(oriImgName, imgName, imgUrl);
 
-        videoImgRepository.save(videoImg);
-
+        videoFileRepository.save(videoFile);
     }
 
 }

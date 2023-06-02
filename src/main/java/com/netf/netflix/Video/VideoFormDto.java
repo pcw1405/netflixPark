@@ -30,6 +30,8 @@ public class VideoFormDto {
 
     private VideoImgDto videoImgDto;
 
+    private VideoFileDto videoFileDto;
+
     private static ModelMapper modelMapper = new ModelMapper();
 
     public Video createVideo(){

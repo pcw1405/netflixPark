@@ -16,15 +16,22 @@ public class VideoService {
 
     private final VideoImgService videoImgService;
 
-    public Long saveVideo(VideoFormDto videoFormDto, MultipartFile videoImgFile) throws Exception{
+    private final VideoFileService videoFileService;
 
-        //상품 등록
+    public Long saveVideo(VideoFormDto videoFormDto, MultipartFile videoImgFile, MultipartFile videoFile) throws Exception{
+
+        //영상정보 등록
         Video video = videoFormDto.createVideo();
         videoRepository.save(video);
+        //영상이미지 등록
         VideoImg videoImg = new VideoImg();
         videoImg.setVideo(video);
-        videoImgService.saveVideoImg(videoImg, videoImgFile);
+        //영상 등록
+        VideoFile newVideoFile = new VideoFile();
+        newVideoFile.setVideo(video);
 
+        videoImgService.saveVideoImg(videoImg, videoImgFile);
+        videoFileService.saveVideoFile(newVideoFile, videoFile);
         return video.getId();
     }
 }

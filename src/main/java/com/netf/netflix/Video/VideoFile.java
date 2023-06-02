@@ -7,33 +7,33 @@ import lombok.ToString;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "video_img")
+@Table(name = "video_file")
 @Getter
 @Setter
 @ToString
-public class VideoImg {
+public class VideoFile {
     @Id
-    @Column(name="video_img_id")
+    @Column(name="video_file_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column
-    private String imgName;
+    private String fileName;
 
     @Column
-    private String oriImgName;
+    private String oriFileName;
 
     @Column
-    private String imgUrl;
+    private String fileUrl;
 
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "video_id")
     private Video video;
 
-    public void createdVideoImg(String oriImgName, String imgName, String imgUrl){
-        this.oriImgName = oriImgName;
-        this.imgName = imgName;
-        this.imgUrl = imgUrl;
+    public void createdVideoFile(String oriFileName, String fileName, String fileUrl){
+        this.fileName = fileName;
+        this.oriFileName = oriFileName;
+        this.fileUrl = fileUrl;
     }
 
 }
