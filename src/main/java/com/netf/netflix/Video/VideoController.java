@@ -3,7 +3,12 @@ package com.netf.netflix.Video;
 import groovy.util.logging.Slf4j;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,6 +28,9 @@ import java.util.List;
 public class VideoController {
 
     private final VideoService videoService;
+    private final VideoImgRepository videoImgRepository;
+
+
 
     @GetMapping(value = "/video/new")
     public String videoForm(Model model){
@@ -44,5 +52,39 @@ public class VideoController {
             return "videos/videoForm";
         }
         return "videos/videoForm";
+    }
+
+    @GetMapping("/search")
+    public String videoList(Model model,
+                            @PageableDefault(page = 0,size=10,sort = "id",direction = Sort.Direction.DESC) Pageable pageable,
+                            String searchKeyword){
+        Page<Video> list =null;
+
+        if (searchKeyword ==null){
+            list=videoService.videoList(pageable);
+        }else{
+            list=videoService.videoSearchList(searchKeyword, pageable);
+        }
+
+        for (Video video : list) {
+            VideoImg videoImg = videoImgRepository.findByVideo(video);
+            if (videoImg != null) {
+                String imgUrl = videoImg.getImgUrl();
+                model.addAttribute("imgUrl", imgUrl);
+                System.out.println(imgUrl);
+            }
+        }
+
+
+        int nowPage=list.getPageable().getPageNumber() +1;
+        int startPage=Math.max(nowPage-4,1);
+        int endPage=Math.min(nowPage+5,list.getTotalPages());
+
+        model.addAttribute("list",list);
+        model.addAttribute("nowPage",nowPage);
+        model.addAttribute("startPage",startPage);
+        model.addAttribute("endPage",endPage);
+
+        return "/rightmain/search";
     }
 }

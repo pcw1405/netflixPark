@@ -1,6 +1,8 @@
 package com.netf.netflix.Video;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,5 +35,15 @@ public class VideoService {
         videoImgService.saveVideoImg(videoImg, videoImgFile);
         videoFileService.saveVideoFile(newVideoFile, videoFile);
         return video.getId();
+    }
+
+    public Page<Video> videoList( Pageable pageable) {
+
+        return videoRepository.findAll(pageable);
+    }
+
+    public Page<Video> videoSearchList(String searchKeyword, Pageable pageable){
+
+        return videoRepository.findByVideoNmContaining(searchKeyword,pageable);
     }
 }
