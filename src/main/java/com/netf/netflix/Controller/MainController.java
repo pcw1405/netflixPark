@@ -17,8 +17,8 @@ public class MainController {
         return "profile-new";
     }
 
-    @GetMapping(value="/search")
-    public String search(){
-        return "rightmain/search";
-    }
+//    @GetMapping(value="/search")
+//    public String search(){
+//        return "rightmain/search";
+//    }
 }
