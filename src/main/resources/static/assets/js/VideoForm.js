@@ -65,5 +65,6 @@ function validateForm() {
             return false;
           }
         }
+        alert('영상업로드에 성공하였습니다.');
     return true;
 }

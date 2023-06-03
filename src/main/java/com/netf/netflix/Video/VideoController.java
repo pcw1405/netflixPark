@@ -41,6 +41,7 @@ public class VideoController {
         try {
             videoService.saveVideo(videoFormDto, videoImgFile, videoFile);
         } catch (Exception e) {
+            model.addAttribute("errorMessage","영상업로드중 문제가 발생하였습니다.");
             return "videos/videoForm";
         }
         return "videos/videoForm";
