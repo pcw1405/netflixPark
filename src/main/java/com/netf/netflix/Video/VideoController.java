@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -57,30 +58,39 @@ public class VideoController {
 
     @GetMapping("/search")
     public String videoList(Model model,
-                            @PageableDefault(page = 0,size=10,sort = "id",direction = Sort.Direction.DESC) Pageable pageable,
-                            String searchKeyword){
+                            @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
+                            @RequestParam(value = "searchKeyword", required = false) String searchKeyword,
+                            @RequestParam(value = "searchOption", defaultValue = "videoNm") String searchOption) {
+
+
         Page<Video> list =null;
 
-        if (searchKeyword ==null){
-            list=videoService.videoList(pageable);
-        }else{
-            list=videoService.videoSearchList(searchKeyword, pageable);
+        if (searchKeyword == null) {
+            list = videoService.videoList(pageable);
+        } else {
+            if (searchOption.equals("videoNm")) {
+                list = videoService.videoSearchList(searchKeyword, "videoNm", pageable);
+            } else if (searchOption.equals("genres")) {
+                list = videoService.videoSearchList(searchKeyword, "genres", pageable);
+            }
         }
 
+        List<Video> videoList = new ArrayList<>();
         for (Video video : list) {
-            VideoImg videoImg = videoImgRepository.findByVideo(video);
+            VideoImg videoImg = video.getVideoImg();
             if (videoImg != null) {
                 String imgUrl = videoImg.getImgUrl();
-                model.addAttribute("imgUrl", imgUrl);
+                videoImg.setImgUrl(imgUrl);
+                videoList.add(video);
                 System.out.println(imgUrl);
             }
         }
 
-
         int nowPage=list.getPageable().getPageNumber() +1;
         int startPage=Math.max(nowPage-4,1);
         int endPage=Math.min(nowPage+5,list.getTotalPages());
-
+//        String imgLocation="/temp";
+//        model.addAttribute("imgLocation", imgLocation);
         model.addAttribute("list",list);
         model.addAttribute("nowPage",nowPage);
         model.addAttribute("startPage",startPage);

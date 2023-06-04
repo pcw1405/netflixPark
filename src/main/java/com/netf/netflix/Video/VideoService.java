@@ -2,10 +2,14 @@ package com.netf.netflix.Video;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Transactional
@@ -42,8 +46,13 @@ public class VideoService {
         return videoRepository.findAll(pageable);
     }
 
-    public Page<Video> videoSearchList(String searchKeyword, Pageable pageable){
-
-        return videoRepository.findByVideoNmContaining(searchKeyword,pageable);
+    public Page<Video> videoSearchList(String searchKeyword, String searchOption, Pageable pageable) {
+        if (searchOption.equals("videoNm")) {
+            return videoRepository.findByVideoNmContaining(searchKeyword, pageable);
+        } else if (searchOption.equals("genres")) {
+            return videoRepository.findByGenresContaining(searchKeyword, pageable);
+        }
+        // 기본적으로 videoNm을 검색 조건으로 사용합니다.
+        return videoRepository.findByVideoNmContaining(searchKeyword, pageable);
     }
 }

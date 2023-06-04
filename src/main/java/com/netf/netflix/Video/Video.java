@@ -41,6 +41,8 @@ public class Video{
     @Enumerated(EnumType.STRING)
     private VideoMaturityLevel videoMaturityLevel;
 
+    @OneToOne(mappedBy = "video", cascade = CascadeType.ALL)
+    private VideoImg videoImg;
     public void updateItem(VideoFormDto videoFormDto){
         this.videoNm = videoFormDto.getVideoNm();
         this.cast = videoFormDto.getCast();

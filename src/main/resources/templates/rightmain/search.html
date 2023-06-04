@@ -40,8 +40,13 @@
         <div class="searchform d-flex flex-center flex-middle" style="padding-top: 150px;">
             <form th:action="@{/search}" method="get">
                 <input type="text" name="searchKeyword" placeholder="Search.." autocomplete="off">
+                <select name="searchOption">
+                    <option value="videoNm">Video Name</option>
+                    <option value="genres">장르</option>
+                </select>
                 <button type="submit">검색</button>
             </form>
+
         </div>
         <div class="searchresult">
             <table>
@@ -49,10 +54,8 @@
                 <tr th:each="video : ${list}">
                     <td th:text="${video.videoNm}">Video Name</td>
                     <td>
-
-                        <img th:if="${imgUrl} != null" th:src="@{${imgUrl}}" alt="Video Image">
-                        <p th:unless="${imgUrl} != null">사진을 준비 중입니다</p>
-
+                        <img th:if="${video.videoImg != null}" th:src="@{${video.videoImg.imgUrl}}" alt="Video Image" />
+                        <p th:text="@{${video.videoImg.imgUrl}}">Default Image Location</p>
                     </td>
                 </tr>
                 </tbody>
