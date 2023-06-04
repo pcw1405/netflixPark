@@ -75,16 +75,16 @@ public class VideoController {
             }
         }
 
-        List<Video> videoList = new ArrayList<>();
-        for (Video video : list) {
-            VideoImg videoImg = video.getVideoImg();
-            if (videoImg != null) {
-                String imgUrl = videoImg.getImgUrl();
-                videoImg.setImgUrl(imgUrl);
-                videoList.add(video);
-                System.out.println(imgUrl);
-            }
-        }
+//        List<Video> videoList = new ArrayList<>();
+//        for (Video video : list) {
+//            VideoImg videoImg = video.getVideoImg();
+//            if (videoImg != null) {
+//                String imgUrl = videoImg.getImgUrl();
+//                videoImg.setImgUrl(imgUrl);
+//                videoList.add(video);
+//                System.out.println(imgUrl);
+//            }
+//        }
 
         int nowPage=list.getPageable().getPageNumber() +1;
         int startPage=Math.max(nowPage-4,1);

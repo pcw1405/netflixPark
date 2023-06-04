@@ -8,6 +8,18 @@
 <th:block layout:fragment="css">
     <link rel="stylesheet" th:href="@{/assets/css/global.css}">
     <link rel="stylesheet" th:href="@{/assets/css/browse.css}">
+    <style>
+
+<!--        .video-name {-->
+<!--          position: absolute;-->
+<!--          top: 0;-->
+<!--          left: 0;-->
+<!--          background-color: rgba(0, 0, 0, 0.5);-->
+<!--          color: white;-->
+<!--          padding: 5px;-->
+<!--          z-index=1000;-->
+<!--        }-->
+    </style>
 </th:block>
 
     <style>
@@ -29,6 +41,9 @@
         input[type=text]:focus {
           width: 100%;
         }
+
+
+
         </style>
 
 <div layout:fragment="content" class="content">
@@ -52,14 +67,21 @@
             <table>
                 <tbody>
                 <tr th:each="video : ${list}">
-                    <td th:text="${video.videoNm}">Video Name</td>
                     <td>
-                        <img th:if="${video.videoImg != null}" th:src="@{${video.videoImg.imgUrl}}" alt="Video Image" />
-                        <p th:text="@{${video.videoImg.imgUrl}}">Default Image Location</p>
+                        <span th:text="${video.videoNm}" class="video-name"></span>
+                    </td>
+                    <td>
+                        <video th:if="${video.videoFile != null}" th:src="${video.videoFile.fileUrl}" alt="Video Image" width="341" height="192"
+                               onmouseover="this.play()" onmouseout="this.pause(); this.currentTime = 0;"/>
+                        <p th:text="${video.videoFile.fileUrl}">Default Image Location</p>
                     </td>
                 </tr>
                 </tbody>
             </table>
+            <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}" class="text-center">
+                <a th:if="${page != nowPage}" th:href="@{/search(page=${page-1})}" th:text="${page}"></a>
+                <strong th:if="${page == nowPage}"  th:text="${page}" style="color:red"></strong>
+            </th:block>
         </div>
     </div>
 
