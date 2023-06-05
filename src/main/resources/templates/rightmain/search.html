@@ -36,7 +36,26 @@
             <video id="videoPlayer" controls></video>
         </div>
     </div>
+    <script>
+        var images = document.querySelectorAll('.searchresult img');
+images.forEach(function(image) {
+  image.addEventListener('click', function() {
+    var videoUrl = this.getAttribute('data-video-url');
+    var videoPlayer = document.getElementById('videoPlayer');
+    videoPlayer.src = videoUrl;
 
+    var popup = document.getElementById('videoPopup');
+    popup.style.display = 'block';
+  });
+});
+
+var popup = document.getElementById('videoPopup');
+popup.addEventListener('click', function() {
+  this.style.display = 'none';
+  var videoPlayer = document.getElementById('videoPlayer');
+  videoPlayer.pause();
+});
+    </script>
 
 </div>
 
