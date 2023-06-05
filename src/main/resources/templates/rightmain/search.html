@@ -4,6 +4,7 @@
       layout:decorate="~{layouts/layout1}">
 
 <th:block layout:fragment="script">
+    <script th:src="@{/assets/js/search.js}"></script>
 </th:block>
 
 <th:block layout:fragment="css">
@@ -22,19 +23,19 @@
             </form>
             <div class="searchresult d-flex justify-content-center">
                     <div th:each="video : ${list}" style="width:320px; margin:15px;">
-                            <img th:if="${video.videoImg != null}" th:src="@{${video.videoImg.imgUrl}}" alt="Video Image" style=""/>
-                            <h2 th:if="${video.videoImg == null}">검색 결과 없음</h2>
+                        <img th:if="${video.videoImg != null}" th:src="@{${video.videoImg.imgUrl}}" alt="Video Image" style="" th:data-video-url="@{${video.videoFile.fileUrl}}">
+                        <h2 th:if="${video.videoImg == null}">검색 결과 없음</h2>
                     </div>
             </div>
         </div>
     </main>
 <!--메인 종료-->
 
-    <div class="popup">
-        
+    <div id="videoPopup" class="popup">
+        <div class="popup-content">
+            <video id="videoPlayer" controls></video>
+        </div>
     </div>
-
-
 
 
 </div>

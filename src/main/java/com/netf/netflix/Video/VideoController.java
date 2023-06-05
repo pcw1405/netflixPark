@@ -57,9 +57,7 @@ public class VideoController {
     }
 
     @GetMapping("/search")
-    public String videoList(Model model,
-
-                            String searchKeyword){
+    public String videoList(Model model, String searchKeyword){
 
         List<Video> list = null;
 
@@ -68,8 +66,6 @@ public class VideoController {
         }else{
             list=videoService.videoSearchList(searchKeyword);
         }
-
-
 //        List<Video> videoList = new ArrayList<>();
 //        for (Video video : list) {
 //            VideoImg videoImg = video.getVideoImg();
@@ -93,4 +89,6 @@ public class VideoController {
 
         return "/rightmain/search";
     }
+
+
 }
