@@ -9,33 +9,9 @@
     <link rel="stylesheet" th:href="@{/assets/css/global.css}">
     <link rel="stylesheet" th:href="@{/assets/css/browse.css}">
 </th:block>
-
-<style>
-        input[type=text] {
-          width: 130px;
-          box-sizing: border-box;
-          border: 1px solid white;
-          color: white;
-          border-radius: 4px;
-          font-size: 16px;
-          background-color: rgb(14, 14, 14);
-          background-position: 10px 10px;
-          background-repeat: no-repeat;
-          padding: 12px 20px 12px 40px;
-          -webkit-transition: width 0.4s ease-in-out;
-          transition: width 0.4s ease-in-out;
-        }
-
-        input[type=text]:focus {
-          width: 100%;
-        }
-        </style>
-
 <div layout:fragment="content" class="content">
     <main id="mainContainer" class="p-b-40">
         <div>
-
-
             <!--paretn div with black bg after main hero section-->
             <div class="searchform d-flex flex-center flex-middle" style="padding-top: 150px;">
                 <form th:action="@{/search}" method="get">
@@ -51,7 +27,7 @@
                         <td th:text="${video.videoNm}">Video Name</td>
                         <td>
                             <img th:if="${video.videoImg != null}" th:src="@{${video.videoImg.imgUrl}}" alt="Video Image" />
-                            <!--                            <p th:text="@{${video.videoImg.imgUrl}}">Default Image Location</p>-->
+                            <h2 th:if="${video.videoImg == null}">검색 결과 없음</h2>
                         </td>
                     </tr>
                     </tbody>
