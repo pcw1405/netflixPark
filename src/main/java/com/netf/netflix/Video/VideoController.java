@@ -58,17 +58,15 @@ public class VideoController {
 
     @GetMapping("/search")
     public String videoList(Model model,
-                            @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
-                            @RequestParam(value = "searchKeyword", required = false) String searchKeyword,
-                            @RequestParam(value = "searchOption", defaultValue = "videoNm") String searchOption,
-                            @RequestParam(value = "videoRole", defaultValue = "") String videoRole) {
 
-        Page<Video> list = null;
+                            String searchKeyword){
 
-        if (searchKeyword == null) {
-            list = videoService.videoList(pageable);
-        } else {
-            list = videoService.videoSearchList(searchKeyword, searchOption, videoRole, pageable);
+        List<Video> list =null;
+
+        if (searchKeyword ==null){
+            list=videoService.videoList();
+        }else{
+            list=videoService.videoSearchList(searchKeyword);
         }
 
 
@@ -83,15 +81,15 @@ public class VideoController {
 //            }
 //        }
 
-        int nowPage=list.getPageable().getPageNumber() +1;
-        int startPage=Math.max(nowPage-4,1);
-        int endPage=Math.min(nowPage+5,list.getTotalPages());
+//        int nowPage=list.getPageable().getPageNumber() +1;
+//        int startPage=Math.max(nowPage-4,1);
+//        int endPage=Math.min(nowPage+5,list.getTotalPages());
 //        String imgLocation="/temp";
 //        model.addAttribute("imgLocation", imgLocation);
         model.addAttribute("list",list);
-        model.addAttribute("nowPage",nowPage);
-        model.addAttribute("startPage",startPage);
-        model.addAttribute("endPage",endPage);
+//        model.addAttribute("nowPage",nowPage);
+//        model.addAttribute("startPage",startPage);
+//        model.addAttribute("endPage",endPage);
 
         return "/rightmain/search";
     }

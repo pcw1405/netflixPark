@@ -41,24 +41,15 @@ public class VideoService {
         return video.getId();
     }
 
-    public Page<Video> videoList( Pageable pageable) {
-
-        return videoRepository.findAll(pageable);
+    public List<Video> videoList() {
+        return videoRepository.findAll();
     }
 
-    public Page<Video> videoSearchList(String searchKeyword, String searchOption, String videoRole, Pageable pageable) {
-        String searchKeyword1 = searchOption.equals("videoNm") ? searchKeyword : "";
-        String searchKeyword2 = searchOption.equals("genres") ? searchKeyword : "";
-        String fixedVideoRole = "";  // 기본값은 빈 문자열로 설정
-
-        if (videoRole.equals("MOVIE")) {
-            fixedVideoRole = "MOVIE";
-        } else if (videoRole.equals("DRAMA")) {
-            fixedVideoRole = "DRAMA";
-        }
-
-        VideoRole role = VideoRole.valueOf(videoRole);
-
-        return videoRepository.findByVideoNmContainingOrGenresContainingAndVideoRole(searchKeyword1, searchKeyword2, role, pageable);
+    public List<Video> videoSearchList(String searchKeyword) {
+//        if (searchOption.equals("videoNm")) {
+//            return videoRepository.findByVideoNmContaining(searchKeyword, pageable);
+//        }
+        // 기본적으로 videoNm을 검색 조건으로 사용합니다.
+        return videoRepository.findByVideoNmContaining(searchKeyword);
     }
 }
