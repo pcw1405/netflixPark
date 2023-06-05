@@ -64,7 +64,7 @@ public class VideoController {
         List<Video> list =null;
 
         if (searchKeyword ==null){
-            list=videoService.videoList();
+            list=null;
         }else{
             list=videoService.videoSearchList(searchKeyword);
         }
