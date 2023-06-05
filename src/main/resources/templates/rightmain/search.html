@@ -54,10 +54,15 @@
         <!--paretn div with black bg after main hero section-->
         <div class="searchform d-flex flex-center flex-middle" style="padding-top: 150px;">
             <form th:action="@{/search}" method="get">
-                <input type="text" name="searchKeyword" placeholder="Search.." autocomplete="off">
+                <input type="text" name="searchKeyword" placeholder="검색.." autocomplete="off">
                 <select name="searchOption">
-                    <option value="videoNm">Video Name</option>
+                    <option value="videoNm">비디오명</option>
                     <option value="genres">장르</option>
+                </select>
+                <select name="videoRole">
+                    <option value="all">전체</option>
+                    <option value="MOVIE">영화</option>
+                    <option value="DRAMA">드라마</option>
                 </select>
                 <button type="submit">검색</button>
             </form>

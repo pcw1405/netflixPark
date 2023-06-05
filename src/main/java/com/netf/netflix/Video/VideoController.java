@@ -60,20 +60,17 @@ public class VideoController {
     public String videoList(Model model,
                             @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
                             @RequestParam(value = "searchKeyword", required = false) String searchKeyword,
-                            @RequestParam(value = "searchOption", defaultValue = "videoNm") String searchOption) {
+                            @RequestParam(value = "searchOption", defaultValue = "videoNm") String searchOption,
+                            @RequestParam(value = "videoRole", defaultValue = "") String videoRole) {
 
-
-        Page<Video> list =null;
+        Page<Video> list = null;
 
         if (searchKeyword == null) {
             list = videoService.videoList(pageable);
         } else {
-            if (searchOption.equals("videoNm")) {
-                list = videoService.videoSearchList(searchKeyword, "videoNm", pageable);
-            } else if (searchOption.equals("genres")) {
-                list = videoService.videoSearchList(searchKeyword, "genres", pageable);
-            }
+            list = videoService.videoSearchList(searchKeyword, searchOption, videoRole, pageable);
         }
+
 
 //        List<Video> videoList = new ArrayList<>();
 //        for (Video video : list) {
