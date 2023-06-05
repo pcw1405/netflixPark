@@ -3,39 +3,40 @@
       xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/layout1}">
 
-<th:block layout:fragment="script"></th:block>
+<th:block layout:fragment="script">
+</th:block>
 
 <th:block layout:fragment="css">
     <link rel="stylesheet" th:href="@{/assets/css/global.css}">
     <link rel="stylesheet" th:href="@{/assets/css/browse.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/search.css}">
 </th:block>
 <div layout:fragment="content" class="content">
     <main id="mainContainer" class="p-b-40">
         <div>
-            <!--paretn div with black bg after main hero section-->
-            <div class="searchform d-flex flex-center flex-middle" style="padding-top: 150px;">
-                <form th:action="@{/search}" method="get">
-                    <input type="text" name="searchKeyword" placeholder="Search.." autocomplete="off">
-                    <button type="submit">검색</button>
-                </form>
-
-            </div>
-            <div class="searchresult">
-                <table>
-                    <tbody>
-                    <tr th:each="video : ${list}">
-                        <td th:text="${video.videoNm}">Video Name</td>
-                        <td>
-                            <img th:if="${video.videoImg != null}" th:src="@{${video.videoImg.imgUrl}}" alt="Video Image" />
+            <form th:action="@{/search}" method="get" class="container justify-content-center">
+                <div class="searchform d-flex flex-center flex-middle input-group" style="padding-top: 150px;">
+                    <input class="form-control" type="text" name="searchKeyword" placeholder="검색.." autocomplete="off" aria-describedby="button-addon2">
+                    <button class="btn btn-outline-secondary" id="button-addon2" type="submit">검색</button>
+                </div>
+            </form>
+            <div class="searchresult d-flex justify-content-center">
+                    <div th:each="video : ${list}" style="width:320px; margin:15px;">
+                            <img th:if="${video.videoImg != null}" th:src="@{${video.videoImg.imgUrl}}" alt="Video Image" style=""/>
                             <h2 th:if="${video.videoImg == null}">검색 결과 없음</h2>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                    </div>
             </div>
         </div>
-
     </main>
+<!--메인 종료-->
+
+    <div class="popup">
+        
+    </div>
+
+
+
+
 </div>
 
 

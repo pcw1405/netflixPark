@@ -61,7 +61,7 @@ public class VideoController {
 
                             String searchKeyword){
 
-        List<Video> list =null;
+        List<Video> list = null;
 
         if (searchKeyword ==null){
             list=null;

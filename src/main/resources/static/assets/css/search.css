@@ -1,5 +1,7 @@
-form{
-    min-width : 200px;
-    max-width : 300px;
+form input{
+    max-width : 350px;
+}
+.searchform{
+    margin-bottom : 80px;
 }
 
