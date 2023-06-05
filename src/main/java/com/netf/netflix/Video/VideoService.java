@@ -50,6 +50,6 @@ public class VideoService {
 //            return videoRepository.findByVideoNmContaining(searchKeyword, pageable);
 //        }
         // 기본적으로 videoNm을 검색 조건으로 사용합니다.
-        return videoRepository.findByVideoNmContaining(searchKeyword);
+        return videoRepository.findByVideoNmContainingOrCastContainingOrActorsContainingOrDescriptionContainingOrGenresContaining(searchKeyword, searchKeyword, searchKeyword, searchKeyword, searchKeyword);
     }
 }

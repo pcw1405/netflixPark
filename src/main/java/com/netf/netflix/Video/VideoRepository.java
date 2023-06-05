@@ -10,7 +10,5 @@ public interface VideoRepository extends JpaRepository<Video, Long> {
 
     List<Video> findByVideoNmContaining(String searchKeyword);
     List<Video> findByGenresContaining(String searchKeyword);
-
-//    Page<Video> findByVideoNmContainingOrGenresContainingAndVideoRole(String searchKeyword1, String searchKeyword2, VideoRole videoRole, Pageable pageable);
-
+    List<Video> findByVideoNmContainingOrCastContainingOrActorsContainingOrDescriptionContainingOrGenresContaining(String videoNm, String cast, String actors, String description, String genres);
 }
