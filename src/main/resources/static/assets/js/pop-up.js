@@ -1,20 +1,17 @@
 
 $(document).ready(function () {
 
-    $(".video-description").click(function(event) {
-        event.stopPropagation();
-
-        $("video").each(function() {
-            this.pause();
-        });
+   $(".searchresult img").click(function(e) {
+       e.stopPropagation();
+        // $("video").each(function() {
+        //     this.pause();
+        // });
 
         var $description = $(this);
-        var $parent = $description.parent();
-        var descriptionText = $(this).text();
+        // var $parent = $description.parent();
 
         var $popup = $(".popup");
 
-        // 비디오 컨테이너 추가
         var $videoContainer = $(".videoContainer");
         var $videoSpace = $videoContainer.find(".videoSpace");
         if ($videoSpace.length === 0) {
@@ -24,56 +21,62 @@ $(document).ready(function () {
             $videoContainer.append($videoSpace);
         }
 
-        // 비디오 추가
-        var $video = $parent.find("video").clone();
+        // var $video = $parent.find("video").clone();
+        var videoUrl = $(this).attr('data-video-url');
+        var $video = $('<video>', {
+            src: videoUrl,
+           controls: false, // 컨트롤러 비활성화
+             autoplay: true, // 자동 재생 활성화
+//             muted: false, // 음소거 비활성화 (선택적)
+            width: '495px',
+            height: '400px'
+        });
+
         $video.prop("autoplay", true);
         $videoSpace.empty().append($video);
         $videoSpace.css({
-          width: "100%",
-          height: "100%"
+            width: "500px",
+            height: "400px"
         });
 
-        // 텍스트 컨테이너 추가
         var $textContainer = $(".textContainer");
         var $textSpace = $textContainer.find(".textSpace");
         if ($textSpace.length === 0) {
             $textSpace = $("<div>", {
-                class: "textSpace"
+                class: "textSpace",
+                css: {
+                height: "250px"
+                }
             });
-            $textContainer.append($textSpace);
+            $textContainer.empty().append($textSpace);
         }
 
-        // 구분선 추가
         $textSpace.empty().append("<hr>");
 
-        // 텍스트 추가
         var $descriptionText = $("<div>");
-        var paragraphs = descriptionText.split("\n");
-        var mergedParagraphs = [];
 
-        paragraphs.forEach(function(paragraph) {
-            if (paragraph.includes("#")) {
-                // "#"이 포함된 경우, 통합된 텍스트로 처리
-                var trimmedParagraph = paragraph.trim();
-                if (mergedParagraphs.length > 0) {
-                    mergedParagraphs[mergedParagraphs.length - 1] += " " + trimmedParagraph;
-                } else {
-                    mergedParagraphs.push(trimmedParagraph);
-                }
-            } else {
-                // 일반적인 경우, 개별 텍스트로 처리
-                mergedParagraphs.push(paragraph);
-            }
-        });
+//videoNm
+         var videoNm = $(this).attr('data-video-nm');
+             var videoGenres = $(this).attr('data-video-genres');
+             var videoDescription = $(this).attr('data-video-description');
+             var videoActors = $(this).attr('data-video-actors');
+             var videoCast = $(this).attr('data-video-cast');
 
-        mergedParagraphs.forEach(function(paragraph) {
-            $descriptionText.append($("<div>").text(paragraph));
-        });
+        // var $descriptionText = $("<div>").text(videoDescription);
 
-        $textSpace.append($descriptionText);
+        $descriptionText.empty().append(
+          $("<div>").text("제목: " + videoNm),
+          $("<div>").text("장르: " + videoGenres),
+          $("<div>").text("설명: " + videoDescription),
+          $("<div>").text("배우: " + videoActors),
+          $("<div>").text("감독: " + videoCast)
+        );
 
-        $(".popup").css("display", "block");
+        $textSpace.empty().append($descriptionText);
+
+        $popup.css("display", "block");
     });
+
 
     $(document).on("click", function(event) {
       var $target = $(event.target);

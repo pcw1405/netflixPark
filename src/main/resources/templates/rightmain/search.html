@@ -4,16 +4,51 @@
       layout:decorate="~{layouts/layout1}">
 
 <th:block layout:fragment="script">
-    <script th:src="@{/assets/js/search.js}"></script>
+    <script th:src="@{/assets/js/pop-up.js}"></script>
 </th:block>
 
 <th:block layout:fragment="css">
     <link rel="stylesheet" th:href="@{/assets/css/global.css}">
     <link rel="stylesheet" th:href="@{/assets/css/browse.css}">
     <link rel="stylesheet" th:href="@{/assets/css/search.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/popup.css}">
 </th:block>
 <div layout:fragment="content" class="content">
     <main id="mainContainer" class="p-b-40">
+        <div class="popup">
+
+            <div class="videoContainer">
+                <div class="popup-close" >x</div>
+
+                <div class="temp">
+                    <button class="go-button" onclick="window.location.href='single.html'">
+
+            <span>
+              <svg viewBox="0 0 24 24">
+                <path d="M6 4l15 8-15 8z" fill="currentColor"></path>
+              </svg>
+            </span> 재생
+                    </button>
+
+
+                    <i class="like2 fa-regular fa-heart" onclick="likeVideo(1)"></i>
+
+                </div>
+
+                <!--    비디오 컨테이너    -->
+            </div>
+
+            <!--  비디오 컨테이너 -->
+
+            <div class="textContainer">
+                <!--        여기가 텍스트를 주입하는 곳    -->
+
+
+            </div>
+
+
+        </div>
+
         <div>
             <form th:action="@{/search}" method="get" class="container justify-content-center">
                 <div class="searchform d-flex flex-center flex-middle input-group" style="padding-top: 150px;">
@@ -23,7 +58,13 @@
             </form>
             <div class="searchresult d-flex justify-content-center">
                     <div th:each="video : ${list}" style="width:320px; margin:15px;">
-                        <img th:if="${video.videoImg != null}" th:src="@{${video.videoImg.imgUrl}}" alt="Video Image" style="" th:data-video-url="@{${video.videoFile.fileUrl}}">
+                        <img th:if="${video.videoImg != null}" th:src="@{${video.videoImg.imgUrl}}" alt="Video Image" style="" th:data-video-url="@{${video.videoFile.fileUrl}}"
+                             th:data-video-nm="@{${video.videoNm}}"
+                             th:data-video-genres="@{${video.genres}}"
+                             th:data-video-description="@{${video.description}}"
+                             th:data-video-actors="@{${video.actors}}"
+                             th:data-video-cast="@{${video.cast}}"
+                        >
                         <h2 th:if="${video.videoImg == null}">검색 결과 없음</h2>
                     </div>
             </div>
@@ -31,31 +72,8 @@
     </main>
 <!--메인 종료-->
 
-    <div id="videoPopup" class="popup">
-        <div class="popup-content">
-            <video id="videoPlayer" controls></video>
-        </div>
-    </div>
-    <script>
-        var images = document.querySelectorAll('.searchresult img');
-images.forEach(function(image) {
-  image.addEventListener('click', function() {
-    var videoUrl = this.getAttribute('data-video-url');
-    var videoPlayer = document.getElementById('videoPlayer');
-    videoPlayer.src = videoUrl;
 
-    var popup = document.getElementById('videoPopup');
-    popup.style.display = 'block';
-  });
-});
 
-var popup = document.getElementById('videoPopup');
-popup.addEventListener('click', function() {
-  this.style.display = 'none';
-  var videoPlayer = document.getElementById('videoPlayer');
-  videoPlayer.pause();
-});
-    </script>
 
 </div>
 
