@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<div th:fragment="myPopup" class="popup">
+<!--  <div class="popup">-->
+    <div class="videoContainer">
+      <div class="popup-close">x</div>
+
+      <div class="temp">
+        <button class="go-button" onclick="window.location.href='single.html'">
+          <span>
+            <svg viewBox="0 0 24 24">
+              <path d="M6 4l15 8-15 8z" fill="currentColor"></path>
+            </svg>
+          </span>
+        </button>
+
+        <i class="like2 fa-regular fa-heart" onclick="likeVideo(1)"></i>
+      </div>
+
+      <!-- 비디오 컨테이너 -->
+    </div>
+
+    <!-- 비디오 컨테이너 -->
+
+    <div class="textContainer">
+      <!-- 여기가 텍스트를 주입하는 곳 -->
+    </div>
+<!--  </div>-->
+</div>
+</html>

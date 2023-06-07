@@ -56,8 +56,8 @@
                     <button class="btn btn-outline-secondary" id="button-addon2" type="submit">검색</button>
                 </div>
             </form>
-            <div class="searchresult d-flex justify-content-center">
-                    <div th:each="video : ${list}" style="width:320px; margin:15px;">
+            <div class=" d-flex justify-content-center">
+                    <div class="searchlist" th:each="video : ${list}" style="width:320px; margin:15px;">
                         <img th:if="${video.videoImg != null}" th:src="@{${video.videoImg.imgUrl}}" alt="Video Image" style="" th:data-video-url="@{${video.videoFile.fileUrl}}"
                              th:data-video-nm="@{${video.videoNm}}"
                              th:data-video-genres="@{${video.genres}}"

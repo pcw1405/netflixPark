@@ -22,6 +22,7 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Controller
 @RequiredArgsConstructor
@@ -30,7 +31,7 @@ public class VideoController {
 
     private final VideoService videoService;
     private final VideoImgRepository videoImgRepository;
-
+    private final VideoRepository videoRepository;
 
 
     @GetMapping(value = "/video/new")
@@ -89,6 +90,61 @@ public class VideoController {
 
         return "/rightmain/search";
     }
+
+    @GetMapping("/drama")
+    public String dramaList( Model model){
+
+          List<String> subjects = videoRepository.findAllGenres();
+        List<Video> videos = videoRepository.findByVideoRole(VideoRole.DRAMA);
+
+        for (Video video : videos) {
+            System.out.println(video.getId()+video.getVideoNm()+video.getGenres()+video.getDescription());
+        }
+
+        if (!videos.isEmpty()) {
+            // 랜덤한 인덱스를 생성
+            int randomIndex = new Random().nextInt(videos.size());
+            // 랜덤한 비디오 선택
+            Video randomVideo = videos.get(randomIndex);
+            // 선택한 비디오를 모델에 추가
+            model.addAttribute("randomVideo", randomVideo);
+        }
+
+
+        model.addAttribute("subjects",subjects);
+        model.addAttribute("videos",videos);
+
+
+        return "/leftmain/drama";
+    }
+
+    @GetMapping("/movie")
+    public String movieList( Model model){
+
+        List<String> subjects = videoRepository.findAllGenres();
+        List<Video> videos = videoRepository.findByVideoRole(VideoRole.MOVIE);
+
+        for (Video video : videos) {
+            System.out.println(video.getId()+video.getVideoNm()+video.getGenres()+video.getDescription());
+        }
+
+        if (!videos.isEmpty()) {
+            // 랜덤한 인덱스를 생성
+            int randomIndex = new Random().nextInt(videos.size());
+            // 랜덤한 비디오 선택
+            Video randomVideo = videos.get(randomIndex);
+            // 선택한 비디오를 모델에 추가
+            model.addAttribute("randomVideo", randomVideo);
+        }
+
+
+        model.addAttribute("subjects",subjects);
+        model.addAttribute("videos",videos);
+
+
+        return "/leftmain/drama";
+    }
+
 
 
 }

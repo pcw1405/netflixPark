@@ -1,8 +1,11 @@
 
 $(document).ready(function () {
 
-   $(".searchresult img").click(function(e) {
+   //var $searchResultItems = $(".searchresult img, .searchresult video");
+
+   $(".searchresult ,.searchlist").click(function popupVideoHandler(e)  {
        e.stopPropagation();
+       var $clickedElement = $(this);
         // $("video").each(function() {
         //     this.pause();
         // });
@@ -22,7 +25,9 @@ $(document).ready(function () {
         }
 
         // var $video = $parent.find("video").clone();
-        var videoUrl = $(this).attr('data-video-url');
+//        var videoUrl = $(this).attr('data-video-url');
+        var videoUrl = $(this).find('[data-video-url]').attr('data-video-url');
+
         var $video = $('<video>', {
             src: videoUrl,
            controls: false, // 컨트롤러 비활성화
@@ -56,11 +61,12 @@ $(document).ready(function () {
         var $descriptionText = $("<div>");
 
 //videoNm
-         var videoNm = $(this).attr('data-video-nm');
-             var videoGenres = $(this).attr('data-video-genres');
-             var videoDescription = $(this).attr('data-video-description');
-             var videoActors = $(this).attr('data-video-actors');
-             var videoCast = $(this).attr('data-video-cast');
+
+ var videoNm = $clickedElement.find('[data-video-nm]').attr('data-video-nm');
+  var videoGenres = $clickedElement.find('[data-video-genres]').attr('data-video-genres');
+  var videoDescription = $clickedElement.find('[data-video-description]').attr('data-video-description');
+  var videoActors = $clickedElement.find('[data-video-actors]').attr('data-video-actors');
+  var videoCast = $clickedElement.find('[data-video-cast]').attr('data-video-cast');
 
         // var $descriptionText = $("<div>").text(videoDescription);
 
