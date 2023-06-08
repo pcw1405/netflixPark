@@ -1,9 +1,9 @@
 package com.netf.netflix.Entity;
 
+import com.netf.netflix.Membership.MembershipRole;
 import com.netf.netflix.Constant.Role;
 import com.netf.netflix.Dto.MemberFormDto;
 import lombok.*;
-import org.springframework.lang.Nullable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
@@ -39,9 +39,11 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @Enumerated(EnumType.STRING)
+    private MembershipRole membershipRole;
+
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Profile> profiles = new ArrayList<>();
-
 
     public static Member createMember(MemberFormDto memberFormDto, PasswordEncoder passwordEncoder) {
         Member member = new Member();
@@ -50,6 +52,7 @@ public class Member {
         String password = passwordEncoder.encode(memberFormDto.getPassword());
         member.setPassword(password);
         member.setRole(Role.USER);
+        member.setMembershipRole(MembershipRole.NONE);
         return member;
     }
 
@@ -69,6 +72,5 @@ public class Member {
 
         return profile;
     }
-
     // 생성자, 게터, 세터, toString 등의 생략된 코드
 }
