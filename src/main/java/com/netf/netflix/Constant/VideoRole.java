@@ -1,4 +1,4 @@
-package com.netf.netflix.Video;
+package com.netf.netflix.Constant;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;

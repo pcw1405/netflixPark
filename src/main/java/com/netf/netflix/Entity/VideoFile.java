@@ -1,5 +1,6 @@
-package com.netf.netflix.Video;
+package com.netf.netflix.Entity;
 
+import com.netf.netflix.Entity.Video;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

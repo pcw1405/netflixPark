@@ -57,7 +57,7 @@ public class HomeController {
 
 
     @GetMapping(value = "/user")
-    public String drama(){
+    public String user(){
         return "user-profile/user";
     }
 }

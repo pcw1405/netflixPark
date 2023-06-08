@@ -1,4 +1,4 @@
-package com.netf.netflix.Video;
+package com.netf.netflix.Service;
 
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Service;

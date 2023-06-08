@@ -1,5 +1,7 @@
-package com.netf.netflix.Video;
+package com.netf.netflix.Repository;
 
+import com.netf.netflix.Constant.VideoRole;
+import com.netf.netflix.Entity.Video;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

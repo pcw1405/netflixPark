@@ -1,26 +1,23 @@
-package com.netf.netflix.Video;
+package com.netf.netflix.Controller;
 
-import groovy.util.logging.Slf4j;
+import com.netf.netflix.Constant.VideoRole;
+import com.netf.netflix.Dto.MemberFormDto;
+import com.netf.netflix.Entity.Video;
+import com.netf.netflix.Repository.MemberRepository;
+import com.netf.netflix.Repository.VideoImgRepository;
+import com.netf.netflix.Repository.VideoRepository;
+import com.netf.netflix.Service.VideoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.transaction.Transactional;
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -36,13 +33,13 @@ public class VideoController {
 
     @GetMapping(value = "/video/new")
     public String videoForm(Model model){
-        model.addAttribute("videoFormDto", new VideoFormDto());
+        model.addAttribute("videoFormDto", new MemberFormDto.VideoFormDto());
         return "videos/videoForm";
     }
 
     @PostMapping(value = "/video/new")
-    public String videoCreateFrom(@Valid VideoFormDto videoFormDto, BindingResult bindingResult, Model model,
-                                   @RequestParam("videoImgFile") MultipartFile videoImgFile,
+    public String videoCreateFrom(@Valid MemberFormDto.VideoFormDto videoFormDto, BindingResult bindingResult, Model model,
+                                  @RequestParam("videoImgFile") MultipartFile videoImgFile,
                                   @RequestParam("videoFile") MultipartFile videoFile){
 
         if(bindingResult.hasErrors()){

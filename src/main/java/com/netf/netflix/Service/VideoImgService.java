@@ -1,5 +1,8 @@
-package com.netf.netflix.Video;
+package com.netf.netflix.Service;
 
+import com.netf.netflix.Repository.MemberRepository;
+import com.netf.netflix.Entity.VideoImg;
+import com.netf.netflix.Repository.VideoImgRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Value;

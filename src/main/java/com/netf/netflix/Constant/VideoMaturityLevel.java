@@ -1,4 +1,4 @@
-package com.netf.netflix.Video;
+package com.netf.netflix.Constant;
 
 public enum VideoMaturityLevel {
     KID, ALL

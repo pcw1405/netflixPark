@@ -1,5 +1,6 @@
-package com.netf.netflix.Video;
+package com.netf.netflix.Repository;
 
+import com.netf.netflix.Entity.VideoFile;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface VideoFileRepository extends JpaRepository<VideoFile, Long> {

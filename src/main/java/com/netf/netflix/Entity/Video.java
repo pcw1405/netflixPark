@@ -1,12 +1,13 @@
-package com.netf.netflix.Video;
+package com.netf.netflix.Entity;
 
+import com.netf.netflix.Constant.VideoMaturityLevel;
+import com.netf.netflix.Constant.VideoRole;
+import com.netf.netflix.Dto.MemberFormDto;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name="video")
@@ -47,7 +48,7 @@ public class Video{
     @OneToOne(mappedBy = "video", cascade = CascadeType.ALL)
     private VideoFile videoFile;
 
-    public void updateItem(VideoFormDto videoFormDto){
+    public void updateItem(MemberFormDto.VideoFormDto videoFormDto){
         this.videoNm = videoFormDto.getVideoNm();
         this.cast = videoFormDto.getCast();
         this.actors = videoFormDto.getActors();

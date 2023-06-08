@@ -1,14 +1,17 @@
-package com.netf.netflix.Video;
+package com.netf.netflix.Service;
 
+import com.netf.netflix.Dto.MemberFormDto;
+import com.netf.netflix.Entity.Video;
+import com.netf.netflix.Entity.VideoFile;
+import com.netf.netflix.Entity.VideoImg;
+import com.netf.netflix.Repository.MemberRepository;
+import com.netf.netflix.Repository.VideoImgRepository;
+import com.netf.netflix.Repository.VideoRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -24,7 +27,7 @@ public class VideoService {
 
     private final VideoFileService videoFileService;
 
-    public Long saveVideo(VideoFormDto videoFormDto, MultipartFile videoImgFile, MultipartFile videoFile) throws Exception{
+    public Long saveVideo(MemberFormDto.VideoFormDto videoFormDto, MultipartFile videoImgFile, MultipartFile videoFile) throws Exception{
 
         //영상정보 등록
         Video video = videoFormDto.createVideo();

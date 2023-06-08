@@ -3,7 +3,7 @@
 ////import com.netf.netflix.Entity.ProfileImg;
 ////import com.netf.netflix.Repository.ProfileImgRepository;
 //import com.netf.netflix.Repository.ProfileRepository;
-//import com.netf.netflix.Video.FileService;
+//import com.netf.netflix.Service.FileService;
 //import lombok.RequiredArgsConstructor;
 //import org.springframework.beans.factory.annotation.Value;
 //import org.springframework.stereotype.Service;
