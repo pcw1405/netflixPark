@@ -5,13 +5,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class MembershipService {
-    public void changeMembershipRole(Member member, MembershipRole newRole) {
+    public void changeMembershipRole(Member member, MembershipRole newRole, LocalDate membershipExpirationDate) {
         member.setMembershipRole(newRole);
-        // Perform additional tasks based on the new membership role
-        // For example, update relationships with other entities, send notifications, etc.
+        member.setMembershipExpirationDate(membershipExpirationDate);
     }
 }

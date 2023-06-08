@@ -3,7 +3,26 @@
       xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/layout1}">
 
-<th:block layout:fragment="script"></th:block>
+<th:block layout:fragment="script">
+  <script th:inline="javascript">
+    $(document).ready(function(){
+      $('form').on('submit', function(e) {
+        e.preventDefault();
+
+        var membershipRole = $('input[name="membershipRole"]:checked').val();
+
+        if (membershipRole) {
+          var message = [[${message}]];
+          if (message !== '') {
+            alert(message);
+          }
+          // Submit the form
+          this.submit();
+        }
+      });
+    });
+  </script>
+</th:block>
 
 <th:block layout:fragment="css">
   <link rel="stylesheet" th:href="@{/assets/css/membership.css}" />

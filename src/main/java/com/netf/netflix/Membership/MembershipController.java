@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.constraints.Null;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Controller
 @RequiredArgsConstructor
@@ -37,8 +40,20 @@ public class MembershipController {
                                 Model model, HttpSession session){
         String loggedInUser = (String) session.getAttribute("loggedInUser");
         Member member = memberRepository.findByEmail(loggedInUser);
-        membershipService.changeMembershipRole(member, membershipRole);
-        return "redirect:/membership";
+        LocalDate membershipExpirationDate = member.getMembershipExpirationDate();
+        LocalDate currentDate = LocalDate.now();
+
+        if (membershipExpirationDate != null) {
+            LocalDate newExpirationDate = currentDate.plusMonths(1);
+            member.setMembershipExpirationDate(newExpirationDate);
+            model.addAttribute("message","맴버쉽이 연장되었습니다.");
+            return "redirect:/membership";
+        }else{
+            LocalDate newExpirationDate = currentDate.plusMonths(1);
+            membershipService.changeMembershipRole(member, membershipRole, newExpirationDate);
+            model.addAttribute("message","맴버쉽이 결제되었습니다.");
+            return "redirect:/membership";
+        }
     }
 
 }

@@ -10,6 +10,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +43,8 @@ public class Member {
 
     @Enumerated(EnumType.STRING)
     private MembershipRole membershipRole;
+
+    private LocalDate membershipExpirationDate;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Profile> profiles = new ArrayList<>();
