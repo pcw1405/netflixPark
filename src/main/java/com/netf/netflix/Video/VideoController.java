@@ -142,7 +142,7 @@ public class VideoController {
         model.addAttribute("videos",videos);
 
 
-        return "/leftmain/drama";
+        return "/leftmain/movies";
     }
 
 

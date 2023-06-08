@@ -1,5 +1,6 @@
 package com.netf.netflix.Video;
 
+import com.netf.netflix.Dto.ProfileImgDto;
 import lombok.Getter;
 import lombok.Setter;
 import org.modelmapper.ModelMapper;
@@ -16,7 +17,7 @@ public class VideoImgDto {
 
     private static ModelMapper modelMapper = new ModelMapper();
 
-    public static VideoImgDto of(VideoImg videoImg){
-        return modelMapper.map(videoImg, VideoImgDto.class);
+    public static ProfileImgDto of(VideoImg videoImg){
+        return modelMapper.map(videoImg, ProfileImgDto.class);
     }
 }

@@ -9,7 +9,7 @@
 	    font-size:25px;
 		}
 		.head-box{
-        		width:900px;
+        		width:1200px;
         		height:150px;
         	    margin:0 auto;
         	    position:fixed;
@@ -46,20 +46,33 @@
         margin-left:20px;}
 
         .bobo{
+        width:1200px;
         margin-bottom:200px;
         }
         #icon-image,#icon-image1,#icon-image2{
         width:900px;
         margin: 0 auto;
+        border-box:box-sizing;
+
         }
        .heading{
       margin: 30px 0;
       font-size:30px;
       }
+
       section img{
       padding-right:30px;
       cursor:pointer;
       }
+      .profile-image-container {
+          float: left;
+        margin-bottom:40px;
+      }
 
+      .clearfix::after {
+          content: "";
+          display: table;
+          clear: both;
+      }
 
 

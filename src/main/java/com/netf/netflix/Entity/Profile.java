@@ -8,7 +8,7 @@ import org.springframework.lang.Nullable;
 import javax.persistence.*;
 
 @Entity
-@Table(name="profiles")
+@Table(name = "profiles")
 @Getter
 @Setter
 @ToString
@@ -29,12 +29,26 @@ public class Profile {
 
     @Column(name = "maturity_level")
     private String maturityLevel;
-    //관람등급 구현?생각중
-    @Nullable
-    @Column(name = "profile_image_url")
-    private String profileImageUrl;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
+    @Column(name="image_path")
+    private String imagePath = "/images/icons/plus.png";
+
+//    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JoinColumn(name = "profile_img_id")
+//    private ProfileImg profileImg;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id", nullable = false)
     private Member member;
+
+    // Getters and setters
+
+//    public void setProfileImg(ProfileImg profileImg) {
+//        this.profileImg = profileImg;
+//        profileImg.setProfile(this);
+//    }
+//
+//    public ProfileImg getProfileImg() {
+//        return profileImg;
+//    }
 }

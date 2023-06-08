@@ -19,11 +19,11 @@
                 <p class="tv">프로필 변경</p>
             </div>
             <div class="profile-card">
-                <img th:src="@{/images/icons/user1.PNG}" alt="selectuserimg">
-                <button class="pen" type="button" onclick="location.href='/'";><i class="fa-solid fa-pen">
+                <img th:src="@{${profile.profileImageUrl}}" alt="selectuserimg">
+                <button class="pen" type="button" onclick="location.href='/profile'";><i class="fa-solid fa-pen">
+                    <input type="file" id="profileImage" name="profileImage">
 
-                </i>
-                </button>
+                </i></button>
             </div>
             <div class="change-main">
                 <input type="text" value="윤영민">

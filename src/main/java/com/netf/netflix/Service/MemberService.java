@@ -21,6 +21,14 @@ public class MemberService implements UserDetailsService {
 
     private final MemberRepository memberRepository;
 
+
+    public Member findMemberByEmail(String email) {
+        return memberRepository.findByEmail(email);
+    }
+    public Member findMemberById(Long id) {
+        return memberRepository.findById(id).orElse(null);
+    }
+
     public Member saveMember(Member member){
         validateDuplicateMember(member);
         return memberRepository.save(member);
@@ -49,9 +57,4 @@ public class MemberService implements UserDetailsService {
 
 
 }
-
-
-
-
-
 

@@ -13,7 +13,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.firewall.HttpFirewall;
+import org.springframework.security.web.firewall.StrictHttpFirewall;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -32,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .mvcMatchers("assets/**", "assets/js/**", "/img/**").permitAll()
+                .mvcMatchers("/assets/**", "/assets/js/**", "/img/**").permitAll()
                 .mvcMatchers("/", "/members/**", "/item/**", "/images/**", "/**").permitAll()
                 .mvcMatchers("/login").permitAll()
                 .mvcMatchers("/register").permitAll()
@@ -54,6 +57,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .accessDeniedPage("/access-denied"); // 접근 거부 시 이동할 URL
         http.csrf().ignoringAntMatchers("/callBackPush/**")//csrf예외처리
                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+
+        // 프로필 정보를 세션에 저장하는 필터 추가
+        http.addFilterBefore(new ProfileInfoFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
     @Override
@@ -66,5 +72,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
+    }
+
+    @Bean
+    public HttpFirewall httpFirewall() {
+        StrictHttpFirewall firewall = new StrictHttpFirewall();
+        firewall.setAllowUrlEncodedDoubleSlash(true);
+        return firewall;
     }
 }

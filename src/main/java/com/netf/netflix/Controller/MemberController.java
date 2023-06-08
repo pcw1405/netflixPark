@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.sql.*;
+import java.util.Arrays;
+import java.util.List;
 
 @RequestMapping("/members")
 @Controller
@@ -81,17 +83,17 @@ public class MemberController {
             // 세션에 사용자 정보 저장
             session.setAttribute("loggedInUser", email);
 
-            return "redirect:/members/profile"; // 로그인 후 이동할 페이지 설정
+            return "redirect:/profile/profile"; // 로그인 후 이동할 페이지 설정
         } catch (AuthenticationException e) {
             // 인증 실패 시
             model.addAttribute("loginError", "아이디 또는 비밀번호가 잘못되었습니다.");
             return "/login";
         }
+
     }
 
-    @GetMapping(value="/profile")
-    public String profile(Model model){
-        model.addAttribute("memberFormDto",new MemberFormDto());
-        return "/profile";
-    }
+
+
+
+
 }

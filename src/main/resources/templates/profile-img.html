@@ -1,72 +1,63 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
-<link rel="stylesheet" th:href="@{/assets/lib/bootstrap.css}">
-<script th:src="@{/assets/lib/bootstrap.js}"></script>
-<script src="https://kit.fontawesome.com/42c6a3cece.js" crossorigin="anonymous"></script>
-<th:block layout:fragment="css">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/assets/lib/bootstrap.css}">
     <link rel="stylesheet" th:href="@{/assets/css/profile-img.css}">
-</th:block>
-
-<div layout:fragment="content">
-    <body>
-        <div>
-            <img th:src="@{/images/Netflix_Logo.png}" class="main_logo_img" alt="메인로고이미지">
-        </div>
-        <div class="head-box d-flex container">
-            <span class="me-auto p-2 d-flex align-items-center">
-            <i class="fa fa-arrow-left"></i>
-                    <span class="tv">프로필 변경
-                    <br/>프로필 아이콘을 선택하세요.</span>
-            </span>
-                <span class="profile-card d-flex align-items-center">
-                     <span>윤영민</span>
-                     <img th:src="@{/images/icons/user1.PNG}" alt="selectuserimg">
-
-                </span>
-            </div>
-        <div class="container pb-5 bobo"></div>
-        <section id="icon-image" class="container p-t-40">
-            <h4 class="heading">
-                대표 아이콘
-            </h4>
-            <div class="container p-0 d-flex flex-start flex-middle flex-no-wrap owl-carousel align-items-center">
-                <div class="video d-flex justify-content-start">
-                    <img th:src="@{/images/icons/user1.png}" class="p-t-10 p-20 hover_fix_img">
-                    <img th:src="@{/images/icons/user2.png}" class="p-t-10 hover_fix_img">
-                    <img th:src="@{/images/icons/user3.png}" class="p-t-10 hover_fix_img">
-                    <img th:src="@{/images/icons/user4.png}" class="p-t-10 hover_fix_img">
-                </div>
-            </div>
-        </section>
-        <section id="icon-image1" class="container p-t-40">
-            <h4 class="heading">
-               주인공 아이콘
-            </h4>
-            <div class="container p-0 d-flex flex-start flex-middle flex-no-wrap owl-carousel align-items-center">
-                <div class="video d-flex justify-content-star hover_fix">
-                    <img th:src="@{/images/icons/user5.png}" class="p-t-10 hover_fix_img">
-                    <img th:src="@{/images/icons/user6.png}" class="p-t-10 hover_fix_img">
-                    <img th:src="@{/images/icons/user7.png}" class="p-t-10 hover_fix_img">
-                    <img th:src="@{/images/icons/user8.png}" class="p-t-10 hover_fix_img">
-                    <img th:src="@{/images/icons/user9.png}" class="p-t-10 hover_fix_img">
-                </div>
-            </div>
-        </section>
-        <section id="icon-image2" class="container p-t-40">
-            <h4 class="heading">
-                블랙핑크 아이콘
-            </h4>
-            <div class="container p-0 d-flex flex-start flex-middle flex-no-wrap owl-carousel align-items-center">
-                <div class="video d-flex justify-content-star hover_fix">
-                    <img th:src="@{/images/icons/user10.png}" class="p-t-10 hover_fix_img">
-                    <img th:src="@{/images/icons/user11.png}" class="p-t-10 hover_fix_img">
-                    <img th:src="@{/images/icons/user12.png}" class="p-t-10 hover_fix_img">
-                    <img th:src="@{/images/icons/user13.png}" class="p-t-10 hover_fix_img">
-                </div>
-            </div>
-        </section>
-
-    </body>
+    <script th:src="@{/assets/lib/bootstrap.js}"></script>
+    <script src="https://kit.fontawesome.com/42c6a3cece.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div>
+    <img th:src="@{/images/Netflix_Logo.png}" class="main_logo_img" alt="메인로고이미지">
 </div>
+<div class="head-box d-flex container">
+    <span class="me-auto p-2 d-flex align-items-center" onclick="goToProfileNew()">
+        <i class="fa fa-arrow-left"></i>
+        <span class="tv">프로필 변경<br/>프로필 아이콘을 선택하세요.</span>
+    </span>
+    <span class="profile-card d-flex align-items-center">
+<!--        <img id="selectedImage" th:src="@{/images/icons/plus.PNG}" alt="selectuserimg">-->
+        <img id="profileImage" src="#" alt="selectuserimg" th:src="${imageUrl != null ? imageUrl : '/images/icons/plus.png'}">
+        <form method="POST" action="/upload-profile-img" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <button type="submit">이미지 등록</button>
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+        </form>
+    </span>
+</div>
+
+<div class="container-fluid pb-5 bobo" style="margin-left:25%; margin-right:25%;"></div>
+<section id="icon-image" class="row p-t-20">
+    <h4 class="heading">대표 아이콘</h4>
+    <div class="owl-carousel align-items-center">
+        <div th:each="profileImg, status : ${imgList}">
+            <div class="profile-image-container" th:data-image-id="${profileImg.id}">
+                <img th:src="@{'/upload/profile_img/' + ${profileImg.profileImgName}}" alt="프로필 이미지" class="profile-img" onclick="selectImage(this.src)">
+            </div>
+
+            <div th:if="${status.index % 5 == 4}" class="clearfix"></div>
+        </div>
+    </div>
+</section>
+
+<script>
+    var selectedImagePath = "/images/icons/plus.PNG"; // 기본 이미지 경로 설정
+
+    // 이미지 선택 함수
+    function selectImage(imagePath) {
+        var selectedImageElement = document.getElementById('selectedImage');
+        selectedImageElement.src = imagePath;
+        selectedImagePath = imagePath;
+
+        console.log(selectedImagePath)
+    }
+
+    function goToProfileNew() {
+        var profileImageUrlFromDatabase = encodeURIComponent(selectedImagePath);
+        var url = '/profile/profile-new?image=' + profileImageUrlFromDatabase;
+        window.location.href = url;
+    }
+</script>
+
+</body>
 </html>
