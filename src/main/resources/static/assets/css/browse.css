@@ -378,6 +378,8 @@ section#top-10 img{
     transition: transform 0.2s;
     z-index: 5;
     cursor: pointer;
+      width: 341px;
+      height: 192px;
 }
 .video-description{
     z-index: 6;

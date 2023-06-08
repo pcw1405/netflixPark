@@ -34,7 +34,8 @@ $(document).ready(function () {
              autoplay: true, // 자동 재생 활성화
 //             muted: false, // 음소거 비활성화 (선택적)
             width: '495px',
-            height: '400px'
+            height: '400px',
+            class:"popupVideo"
         });
 
         $video.prop("autoplay", true);
@@ -104,5 +105,7 @@ $(document).ready(function () {
         $(".textSpace").remove();
       });
     });
+
+
 
  });
