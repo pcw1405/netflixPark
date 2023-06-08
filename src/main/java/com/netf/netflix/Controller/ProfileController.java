@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/profile")
@@ -33,17 +34,23 @@ public class ProfileController {
 
     @GetMapping("/home/{profileId}")
     public String showProfileHome(@PathVariable("profileId") Long profileId, Model model) {
-        Profile profile = profileRepository.findById(profileId).orElse(null);
-        if (profile == null) {
+        Profile selectedProfile = profileRepository.findById(profileId).orElse(null);
+        if (selectedProfile == null) {
             throw new RuntimeException("프로필을 찾을 수 없습니다.");
         }
 
-        // 해당하는 프로필에 대한 로직을 수행하고, 홈 화면으로 데이터를 전달하는 로직을 추가해주세요.
-          model.addAttribute("profileName", profile.getName());
+        // 모델에 선택된 프로필 정보를 추가
+        model.addAttribute("selectedProfile", selectedProfile);
 
-        return "home"; // 해당하는 홈 화면의 Thymeleaf 템플릿 이름으로 수정해주세요.
+        // 나머지 프로필 정보를 가져와서 모델에 추가
+        List<Profile> otherProfiles = profileRepository.findByMember(selectedProfile.getMember())
+                .stream()
+                .filter(profile -> !profile.getId().equals(profileId))
+                .collect(Collectors.toList());
+        model.addAttribute("otherProfiles", otherProfiles);
+
+        return "home"; // 헤더 템플릿을 리턴하도록 수정해주세요.
     }
-
 //    @GetMapping("/profile/{id}")
 //    public String viewProfile(@PathVariable("id") Long profileId, Model model) {
 //        // 프로필 ID를 사용하여 프로필 정보를 조회
