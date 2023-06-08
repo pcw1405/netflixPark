@@ -1,0 +1,28 @@
+#mainContainer{
+    background-color : rgb(231,231,231);
+    padding-top : 150px;
+}
+h2{
+    color : #707070;
+    margin-bottom : 50px;
+}
+.membershipSection{
+    width : 1000px;
+    margin : 0 auto;
+}
+
+label{
+    padding : 5px;
+    width : 970px;
+    margin-bottom : 20px;
+}
+#buttongroup{
+    width : 970px;
+}
+
+footer{
+    background-color: rgb(231,231,231) !important;
+    color : #707070 !important;
+}
+
+
