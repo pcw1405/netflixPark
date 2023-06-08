@@ -39,8 +39,8 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @Enumerated(EnumType.STRING)
-    private MembershipRole membershipRole;
+//    @Enumerated(EnumType.STRING)
+//    private MembershipRole membershipRole;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Profile> profiles = new ArrayList<>();
@@ -52,7 +52,7 @@ public class Member {
         String password = passwordEncoder.encode(memberFormDto.getPassword());
         member.setPassword(password);
         member.setRole(Role.USER);
-        member.setMembershipRole(MembershipRole.NONE);
+//        member.setMembershipRole(MembershipRole.NONE);
         return member;
     }
 
