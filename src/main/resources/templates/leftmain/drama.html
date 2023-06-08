@@ -33,7 +33,7 @@
                 <div>
                     <!--trailer video-->
                     <video class="hero-background-image p-b-40" id="hero-video" th:poster="${randomVideo.videoImg.imgUrl}">
-<!--                           th:poster="@{/images/main_img/hot1.jpg}">-->
+                        <!--                           th:poster="@{/images/main_img/hot1.jpg}">-->
 
                         >
                         <source th:src="${randomVideo.videoFile.fileUrl}"
@@ -75,32 +75,37 @@
 
                     <div class="synopsis m-t-20" style="max-width: 500px;">
                         <p th:text="${randomVideo.description}">
-<!--                            An overdue honeymoon. A shocking crime. A roomful of suspects. If Nick and Audrey can stay alive, this could be their best vacation ever.-->
+                            <!--                            An overdue honeymoon. A shocking crime. A roomful of suspects. If Nick and Audrey can stay alive, this could be their best vacation ever.-->
                         </p>
                     </div>
-                    <div class="buttons-container m-t-20 searchlist">
-                        <button class="play-button"><span>
-                                    <svg viewBox="0 0 24 24">
-                                        <path d="M6 4l15 8-15 8z" fill="currentColor"></path>
-                                    </svg>
-                                </span> <a href="single.html">재생</a></button>
+                    <div class="buttons-container m-t-20 searchlist"  >
+                        <button class="play-button full">
 
-                        <button class="more-info-button m-t-20 " th:data-video-url="@{${randomVideo.videoFile.fileUrl}}"
-                                th:data-video-nm="@{${randomVideo.videoNm}}"
-                                th:data-video-genres="@{${randomVideo.genres}}"
-                                th:data-video-description="@{${randomVideo.description}}"
-                                th:data-video-actors="@{${randomVideo.actors}}"
-                                th:data-video-cast="@{${randomVideo.cast}}"
-                        >
-                            <span>
-                                    <svg viewBox="0 0 24 24">
-                                        <path
-                                                d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10zm-2 0a8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8zm-9 6v-7h2v7h-2zm1-8.75a1.21 1.21 0 0 1-.877-.364A1.188 1.188 0 0 1 10.75 8c0-.348.123-.644.372-.886.247-.242.54-.364.878-.364.337 0 .63.122.877.364.248.242.373.538.373.886s-.124.644-.373.886A1.21 1.21 0 0 1 12 9.25z"
-                                                fill="currentColor"></path>
-                                    </svg>
-                            </span>더보기
+    <span>
+        <svg viewBox="0 0 24 24">
+            <path d="M6 4l15 8-15 8z" fill="currentColor"></path>
+        </svg>
+    </span>
+                            <a>재생</a>
+                        </button>
 
-                        </button >
+                        <span class="">
+                            <button class="more-info-button m-t-20 " th:data-video-url="@{${randomVideo.videoFile.fileUrl}}"
+                                    th:data-video-nm="@{${randomVideo.videoNm}}"
+                                    th:data-video-genres="@{${randomVideo.genres}}"
+                                    th:data-video-description="@{${randomVideo.description}}"
+                                    th:data-video-actors="@{${randomVideo.actors}}"
+                                    th:data-video-cast="@{${randomVideo.cast}}"
+                            >
+                                <span>
+                                        <svg viewBox="0 0 24 24">
+                                            <path
+                                                    d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10zm-2 0a8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8zm-9 6v-7h2v7h-2zm1-8.75a1.21 1.21 0 0 1-.877-.364A1.188 1.188 0 0 1 10.75 8c0-.348.123-.644.372-.886.247-.242.54-.364.878-.364.337 0 .63.122.877.364.248.242.373.538.373.886s-.124.644-.373.886A1.21 1.21 0 0 1 12 9.25z"
+                                                    fill="currentColor"></path>
+                                        </svg>
+                                </span>더보기
+                            </button >
+                        </span>
                     </div>
                 </div>
             </section>
@@ -128,7 +133,7 @@
                                     th:src="${video.videoFile.fileUrl}"
                                     type="video/mp4">
                             <!--                            이 비디디오 소스 링크도 업로드방식인데 반복문을 돌려야한다 -->
-<!--                            Your browser does not support the video tag.-->
+                            <!--                            Your browser does not support the video tag.-->
                         </video>
 
                         <div class="video-description d-flex flex-end direction-column " th:data-video-url="@{${video.videoFile.fileUrl}}"
@@ -139,8 +144,8 @@
                              th:data-video-cast="@{${video.cast}}"
 
                         >
-                            <div class="play-button d-flex justify-content-start">
-                                <svg viewBox="0 0 24 24">
+                            <div class="play-button d-flex justify-content-start ">
+                                <svg viewBox="0 0 24 24" class="full" >
                                     <path d="M6 4l15 8-15 8z" fill="black"></path>
                                 </svg>
                                 <div class="like-button" onclick="likeVideo(1)">
@@ -149,13 +154,13 @@
                             </div>
                             <div>
                                 <h4 class="heading f-w-8 text-shadow">
-<!--                                    Never Have I Ever-->
+                                    <!--                                    Never Have I Ever-->
                                     <p th:text="${video.videoNm}"></p>
                                 </h4>
                             </div>
                             <div class="info d-flex flex-middle flex-no-wrap">
-                                <p class="rated text-shadow"><strong>18+</strong></p>
-                                                                <p class="season-count text-shadow">시즌 1</p>
+                                <!--                                <p class="rated text-shadow"><strong>18+</strong></p>-->
+                                <!--                                                                <p class="season-count text-shadow">시즌 1</p>-->
                             </div>
                             <div class="genere d-flex flex-no-wrap text-shadow">
                                 <p th:text="'#' + ${video.genres}"></p>
@@ -168,7 +173,7 @@
 
                 </div>
 
-                    <script th:inline="javascript">
+                <script th:inline="javascript">
 
                        function deleteEmptySessions() {
                         var sessions = document.querySelectorAll('#mylist');
@@ -194,6 +199,12 @@
         </div>
     </main>
 </div>
+<script>
+
+</script>
+
+
+
 
 
 

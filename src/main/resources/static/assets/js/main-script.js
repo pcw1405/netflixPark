@@ -49,7 +49,34 @@ $(document).ready(function () {
         $('video', this).get(0).pause();
         $('video', this).get(0).load();
     } 
-    
 
+
+
+
+    $(".like-button").click(function(event) {
+      event.stopPropagation();
+    });
+
+
+
+    $(".full").click(function() {
+      setTimeout(function() {
+          var $video = $('.popup .videoContainer video');
+
+          if ($video.length > 0) {
+            var videoElement = $video.get(0);
+
+            if (videoElement.requestFullscreen) {
+              videoElement.requestFullscreen();
+            } else if (videoElement.mozRequestFullScreen) {
+              videoElement.mozRequestFullScreen();
+            } else if (videoElement.webkitRequestFullscreen) {
+              videoElement.webkitRequestFullscreen();
+            } else if (videoElement.msRequestFullscreen) {
+              videoElement.msRequestFullscreen();
+            }
+          }
+        }, 1000);
+    });
 });
 
