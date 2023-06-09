@@ -218,3 +218,25 @@ button:focus {
   section:last-of-type {
     margin-bottom: 40px;
   }
+  #notification-item{
+  width:450px;
+  }
+
+  .notification-item1 img{
+  display:block !important;
+  width:150px !important;
+  height:70px !important;
+
+  }
+  .notification-item1 span{
+  font-size:20px !important;
+  font-weight:bold !important;
+  color:white !important;
+  line-height:20px;
+  padding-left:0px !important;
+  }
+  .notification-item1 p{
+  font-size:10px !important;
+  color:#888 !important;
+  }
+

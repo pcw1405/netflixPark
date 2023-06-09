@@ -3,7 +3,9 @@ package com.netf.netflix.Controller;
 import com.netf.netflix.Constant.VideoRole;
 import com.netf.netflix.Dto.MemberFormDto;
 import com.netf.netflix.Dto.VideoFormDto;
+import com.netf.netflix.Dto.VideoImgDto;
 import com.netf.netflix.Entity.Video;
+import com.netf.netflix.Entity.VideoImg;
 import com.netf.netflix.Repository.MemberRepository;
 import com.netf.netflix.Repository.VideoImgRepository;
 import com.netf.netflix.Repository.VideoRepository;
@@ -19,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -31,12 +35,16 @@ public class VideoController {
     private final VideoImgRepository videoImgRepository;
     private final VideoRepository videoRepository;
 
+//    private static final List<VideoImgDto> uploadedVideoList = new ArrayList<>();
+
 
     @GetMapping(value = "/video/new")
-    public String videoForm(Model model){
+    public String videoForm(Model model) {
         model.addAttribute("videoFormDto", new VideoFormDto());
         return "videos/videoForm";
     }
+
+
 
     @PostMapping(value = "/video/new")
     public String videoCreateFrom(@Valid VideoFormDto videoFormDto, BindingResult bindingResult, Model model,
@@ -56,39 +64,20 @@ public class VideoController {
     }
 
     @GetMapping("/search")
-    public String videoList(Model model, String searchKeyword){
-
+    public String videoList(Model model, String searchKeyword) {
         List<Video> list = null;
 
-        if (searchKeyword ==null){
-            list=null;
-        }else{
-            list=videoService.videoSearchList(searchKeyword);
+        if (searchKeyword == null) {
+            list = null;
+        } else {
+            list = videoService.videoSearchList(searchKeyword);
         }
-//        List<Video> videoList = new ArrayList<>();
-//        for (Video video : list) {
-//            VideoImg videoImg = video.getVideoImg();
-//            if (videoImg != null) {
-//                String imgUrl = videoImg.getImgUrl();
-//                videoImg.setImgUrl(imgUrl);
-//                videoList.add(video);
-//                System.out.println(imgUrl);
-//            }
-//        }
 
-//        int nowPage=list.getPageable().getPageNumber() +1;
-//        int startPage=Math.max(nowPage-4,1);
-//        int endPage=Math.min(nowPage+5,list.getTotalPages());
-//        String imgLocation="/temp";
-//        model.addAttribute("imgLocation", imgLocation);
-        model.addAttribute("list",list);
-//        model.addAttribute("nowPage",nowPage);
-//        model.addAttribute("startPage",startPage);
-//        model.addAttribute("endPage",endPage);
+        model.addAttribute("list", list);
+        model.addAttribute("uploadedVideoList", videoImgRepository.findAll()); // 이미지 정보 조회
 
         return "/rightmain/search";
     }
-
     @GetMapping("/drama")
     public String dramaList( Model model){
 

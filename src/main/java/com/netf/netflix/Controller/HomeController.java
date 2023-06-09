@@ -2,9 +2,12 @@ package com.netf.netflix.Controller;
 
 import com.netf.netflix.Entity.Member;
 import com.netf.netflix.Entity.Profile;
+import com.netf.netflix.Entity.VideoImg;
 import com.netf.netflix.Repository.ProfileRepository;
+import com.netf.netflix.Repository.VideoImgRepository;
 import com.netf.netflix.Service.MemberService;
 import com.netf.netflix.Service.ProfileService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,17 +19,23 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
+@RequiredArgsConstructor
 public class HomeController {
 
     private final MemberService memberService;
     private final ProfileRepository profileRepository;
 
+    private final VideoImgRepository videoImgRepository;
 
-    public HomeController(MemberService memberService, ProfileRepository profileRepository) {
-        this.memberService = memberService;
-        this.profileRepository = profileRepository;
 
-    }
+
+
+//    public HomeController(MemberService memberService, ProfileRepository profileRepository,VideoImgRepository videoImgRepository) {
+//        this.memberService = memberService;
+//        this.profileRepository = profileRepository;
+//        this.videoImgRepository=videoImgRepository;
+//
+//    }
 
     @GetMapping("/")
     public String home(Model model, Principal principal) {
@@ -51,6 +60,9 @@ public class HomeController {
                 .filter(profile -> !profile.getId().equals(selectedProfile.getId()))
                 .collect(Collectors.toList());
         model.addAttribute("otherProfiles", otherProfiles);
+
+        List<VideoImg> videoImgs = videoImgRepository.findAll();
+        model.addAttribute("videoImgs",videoImgs);
 
         return "home";
     }

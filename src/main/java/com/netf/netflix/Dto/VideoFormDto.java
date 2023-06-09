@@ -2,7 +2,6 @@ package com.netf.netflix.Dto;
 
 import com.netf.netflix.Constant.VideoMaturityLevel;
 import com.netf.netflix.Constant.VideoRole;
-import com.netf.netflix.Dto.MemberFormDto;
 import com.netf.netflix.Entity.Video;
 import lombok.Getter;
 import lombok.Setter;
@@ -37,5 +36,10 @@ public class VideoFormDto {
     public Video createVideo(){
         return modelMapper.map(this, Video.class);
     }
+
+    public static VideoFormDto of(Video video){
+        return modelMapper.map(video, VideoFormDto.class);
+    }
+
 
 }

@@ -69,7 +69,7 @@
 /* dropdown styling header notification start */
   .notification .dropdown-content{
       right: 6%;
-      border-top: 3px solid white;
+      border-top: 3px solid #292929;
       padding-top: 0;
       padding-bottom: 0;
   }
@@ -149,7 +149,7 @@
     height: 0;
     border-style: solid;
     border-width: 10px 10px 0 10px;
-    border-color: #fff transparent transparent transparent;
+    border-color: #292929 transparent transparent transparent;
     margin-left: 0px;
     display: inline-block;
     transform: rotate(180deg);
@@ -159,7 +159,7 @@
       border: none;
       opacity: 0.4;
       margin: 15px 0px;
-      background-color: white;
+      background-color: #292929;
       width: 100%;
   }
   .dropdown-content a {

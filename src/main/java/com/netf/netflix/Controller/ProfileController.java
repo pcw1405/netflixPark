@@ -3,9 +3,13 @@ package com.netf.netflix.Controller;
 import com.netf.netflix.Dto.ProfileDto;
 import com.netf.netflix.Entity.Member;
 import com.netf.netflix.Entity.Profile;
+import com.netf.netflix.Entity.Video;
+import com.netf.netflix.Entity.VideoImg;
 import com.netf.netflix.Repository.MemberRepository;
 //import com.netf.netflix.Repository.ProfileImgRepository;
 import com.netf.netflix.Repository.ProfileRepository;
+import com.netf.netflix.Repository.VideoImgRepository;
+import com.netf.netflix.Repository.VideoRepository;
 import com.netf.netflix.Service.ProfileService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -31,6 +35,8 @@ public class ProfileController {
     private final MemberRepository memberRepository;
     private final ProfileRepository profileRepository;
 //    private final ProfileImgRepository profileImgRepository;
+    private final VideoImgRepository videoImgRepository;
+    private final VideoRepository videoRepository;
 
     @GetMapping("/home/{profileId}")
     public String showProfileHome(@PathVariable("profileId") Long profileId, Model model) {
@@ -48,7 +54,9 @@ public class ProfileController {
                 .filter(profile -> !profile.getId().equals(profileId))
                 .collect(Collectors.toList());
         model.addAttribute("otherProfiles", otherProfiles);
-
+//        (하단내용 movie drama mylist 추가해야함)
+        List<VideoImg> videoImgs = videoImgRepository.findAll();
+        model.addAttribute("videoImgs",videoImgs);
         return "home"; // 헤더 템플릿을 리턴하도록 수정해주세요.
     }
 //    @GetMapping("/profile/{id}")
@@ -109,9 +117,6 @@ public class ProfileController {
         Profile profile = profileDto.getProfile();
         profile.setMember(member);
         profileService.saveProfile(profile);
-
-        logger.info("Profile saved: {}", profile);
-
         return "redirect:/profile/profile";
     }
 }

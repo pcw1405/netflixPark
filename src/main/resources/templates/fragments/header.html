@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
 <div th:fragment="header">
     <header class="d-flex space-between flex-center flex-middle container">
@@ -20,11 +20,22 @@
                 <img src="../../images/icons/search.svg" alt="search icon" />
             </a>
             <div class="dropdown notification">
-                <img src="../../images/icons/notification.svg" alt="notificatio icon" />
-                <div class="dropdown-content">
-                    <!-- 알림 내용 생략 -->
+                <img src="../../images/icons/notification.svg" alt="notification icon" />
+                <div class="dropdown-content" id="notification-item">
+                    <th:block th:each="video : ${videoImgs}">
+                        <a href="#" class="profile-item notification-item1 d-flex">
+                            <img th:src="${video.imgUrl}" alt="uploaded video image" class="video-img align-self-stretch">
+
+                            <div class="align-self-center d-flex flex-column">
+                                <span class="mb-2" th:text="${video.video.videoNm}"></span>
+                            <p class="pt-2" th:text="${#dates.format(video.uploadDate, 'yyyy-MM-dd HH:mm:ss')}">업로드 시간? 지나온 기간</p>
+                            </div>
+                        </a>
+                    </th:block>
+                    <!-- 기타 알림 항목 -->
                 </div>
             </div>
+
 
             <!-- 프로필 구간 -->
             <div class="dropdown">
