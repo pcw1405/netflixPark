@@ -42,13 +42,11 @@ public class MembershipController {
         if(membershipExpirationDate != null) {
             LocalDate newExpirationDate = currentDate.plusMonths(1);
             membershipService.changeMembershipRole(member, membershipRole, newExpirationDate);
-            model.addAttribute("message","맴버쉽이 연장되었습니다.");
-            return "redirect:/membership";
+            return "redirect:/user";
         }else{
             LocalDate newExpirationDate = currentDate.plusMonths(1);
             membershipService.changeMembershipRole(member, membershipRole, newExpirationDate);
-            model.addAttribute("message","맴버쉽이 결제되었습니다.");
-            return "redirect:/membership";
+            return "redirect:/user";
         }
     }
 

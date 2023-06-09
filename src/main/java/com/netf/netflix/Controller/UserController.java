@@ -33,13 +33,15 @@ public class UserController {
 
         return "user-profile/user";
     }
-
-    @PostMapping(value = "/user")
-    public String userUpdate(){
-
-
-        return "";
-    }
+//
+//    @PostMapping(value = "/user")
+//    public String userUpdate(HttpSession session, Model model){
+//        String loggedInUser = (String) session.getAttribute("loggedInUser");
+//        Member member = memberRepository.findByEmail(loggedInUser);
+//
+//
+//        return "";
+//    }
 
 
 }
