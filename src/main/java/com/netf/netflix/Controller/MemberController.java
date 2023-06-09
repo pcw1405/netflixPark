@@ -47,7 +47,7 @@ public class MemberController {
         if(bindingResult.hasErrors()){
             return "/register";
         }try{
-            Member member =Member.createMember(memberFormDto, passwordEncoder);
+            Member member = Member.createMember(memberFormDto, passwordEncoder);
             memberService.saveMember(member);
         }catch (IllegalStateException e){
             model.addAttribute("errorMessage",e.getMessage());
@@ -81,8 +81,8 @@ public class MemberController {
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
             // 세션에 사용자 정보 저장
-            session.setAttribute("loggedInUser", email);
 
+            session.setAttribute("loggedInUser", email);
             return "redirect:/profile/profile"; // 로그인 후 이동할 페이지 설정
         } catch (AuthenticationException e) {
             // 인증 실패 시

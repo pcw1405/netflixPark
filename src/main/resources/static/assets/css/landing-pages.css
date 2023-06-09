@@ -249,3 +249,7 @@ input.btn-check{
 label.left{
     margin-right : 10px !important;
 }
+
+label#passwordMatchLabel{
+    height : 20px;
+}

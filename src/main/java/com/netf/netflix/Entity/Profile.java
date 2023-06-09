@@ -31,7 +31,7 @@ public class Profile {
     private String maturityLevel;
 
     @Column(name="image_path")
-    private String imagePath = "/images/icons/user1.png";
+    private String imagePath = "/images/icons/user11.png";
 
 //    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 //    @JoinColumn(name = "profile_img_id")

@@ -11,13 +11,6 @@
     <link rel="stylesheet" th:href="@{/assets/css/global.css}" />
     <link rel="stylesheet" th:href="@{/assets/css/landing-pages.css}" />
 </head>
-<style>
-  <style>
-      body::before{
-          background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 60%, rgba(0, 0, 0, 0.9) 100%),url('./images/mainimage/loginmain1.jpg');
-      }
-  </style>
-</style>
 
 <body>
 <!-- index page block start | main landing page home | -->
@@ -35,29 +28,24 @@
             <h2 class="formtitle">
                 회원가입
             </h2>
-            <form id="loginForm" action="/members/new" th:object="${memberFormDto}"  class="d-flex direction-column" method="post" name="loginForm" >
+            <form id="loginForm" action="/members/new" th:object="${memberFormDto}"  class="d-flex direction-column" method="post" name="loginForm" onsubmit="return checkPasswordMatch()">
 
 
-                <label th:for="name"></label>
                 <input type="text" id="name" th:field="*{name}" class="from-control name" placeholder="이름을 입력해주세요">
-                <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="fieldError">잘못된 이름입니다.</p>
+                <p id="errorName" style="display: none;" th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="fieldError">잘못된 이름입니다.</p>
 
 
-                <label th:for="email"></label>
                 <input type="email" id="email"  th:field="*{email}" class="form-control email" placeholder="이메일을 입력해주세요">
-                <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="fieldError">잘못된 이메일주소 입니다..</p>
+                <p id="errorEmail" style="display: none;" th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="fieldError">잘못된 이메일주소 입니다..</p>
 
+                <input type="text" id="phoneNumber"  th:field="*{phoneNumber}" class="form-control phoneNumber" placeholder="전화번호를 - 없이 입력해주세요">
 
-                <label th:for="password"></label>
                 <input type="password" id="password" th:field="*{password}" class="form-control password" placeholder="비밀번호를 입력해주세요">
+                <input type="password" id="passwordcheck" class="form-control password" placeholder="비밀번호를 다시 입력해주세요">
+                <label id="passwordMatchLabel" for="passwordcheck"></label>
                 <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="fieldError">잘못된 비밀번호입니다.</p>
 
-                <button type="submit" class="button submitButton">회원가입</button>
-
-<!--                <div th:if="${#strings.isEmpty(memberDto.id)}" >-->
-<!--                    <button th:formaction="@{/register}" type="submit" class="button submitButton">회원가입</button>-->
-<!--                </div>-->
-
+                <button type="submit" id="signInButton" class="button submitButton">회원가입</button>
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 
 
@@ -75,27 +63,49 @@
 </main>
 
 <script>
-        //function to validate email address on input text change and enable submit button if it's true
-        document.getElementById('errorEmail').style.display = "none";
-        document.getElementById('errorPassword').style.display = "none";
-        document.getElementById('errorName').style.display = "none";
-        function validateEmail() {
-            let email = document.getElementById('email').value;
-            let re = /\S+@\S+\.\S+/;
-            let result = re.test(email);
-            if (result) {
-                document.getElementById('errorEmail').style.display = "none";
-                document.getElementById('errorName').style.display = "none";
-                document.getElementById('signInButton').disabled = false;
-               // document.getElementById("email-form").submit();
-            }
-            else {
-                document.getElementById('errorEmail').style.display = "block";
-                document.getElementById('errorName').style.display = "block";
-                document.getElementById('signInButton').disabled = true;
-            }
-        }
+    function validateEmail() {
+        var email = document.getElementById('email').value;
+        var re = /\S+@\S+\.\S+/;
+        var result = re.test(email);
 
-    </script>
+        if (result) {
+            document.getElementById('errorEmail').style.display = "none";
+            document.getElementById('errorName').style.display = "none";
+            document.getElementById('signInButton').disabled = false;
+        } else {
+            document.getElementById('errorEmail').style.display = "block";
+            document.getElementById('errorName').style.display = "block";
+            document.getElementById('signInButton').disabled = true;
+        }
+    }
+
+    var passwordElement = document.getElementById("password");
+    var passwordCheckElement = document.getElementById("passwordcheck");
+    var passwordMatchLabelElement = document.getElementById("passwordMatchLabel");
+
+    passwordElement.addEventListener("input", checkPasswordMatch);
+    passwordCheckElement.addEventListener("input", checkPasswordMatch);
+
+    function checkPasswordMatch() {
+        var password = passwordElement.value;
+        var passwordCheck = passwordCheckElement.value;
+
+        if (password === passwordCheck) {
+            passwordMatchLabelElement.textContent = "비밀번호가 일치합니다.";
+            passwordMatchLabelElement.style.color = "green";
+        } else {
+            passwordMatchLabelElement.textContent = "비밀번호가 일치하지 않습니다.";
+            passwordMatchLabelElement.style.color = "red";
+        }
+    }
+
+    document.getElementById('signInButton').addEventListener("click", function(e) {
+        if (passwordElement.value !== passwordCheckElement.value) {
+            e.preventDefault();
+            passwordCheckElement.focus();
+        }
+    });
+</script>
+
 </body>
 </html>

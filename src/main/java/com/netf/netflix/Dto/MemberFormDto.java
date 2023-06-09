@@ -21,9 +21,7 @@ import javax.validation.constraints.NotEmpty;
 @Setter
 public class MemberFormDto {
 
-
     private long id;
-
 
     @NotBlank(message = "이름은 필수 입력값입니다.")
     private String name;
@@ -37,6 +35,7 @@ public class MemberFormDto {
     @Length(min=8, max=16,message = "비밀번호는 8자이상 ,16자이하로 입력해주세요")
     private String password;
 
-
+    @NotEmpty(message = "전화번호는 필수 입력값입니다.")
+    private String phoneNumber;
 
 }

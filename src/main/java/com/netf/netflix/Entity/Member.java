@@ -2,7 +2,7 @@ package com.netf.netflix.Entity;
 
 import com.netf.netflix.Constant.Role;
 import com.netf.netflix.Dto.MemberFormDto;
-import com.netf.netflix.Membership.MembershipRole;
+import com.netf.netflix.Constant.MembershipRole;
 import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -12,7 +12,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +49,7 @@ public class Member {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Profile> profiles = new ArrayList<>();
 
-    @Pattern(regexp = "[0-9]{10,11}", message = "10~11자릐 숫자만 입력가능합니다.")
+    @Pattern(regexp = "[0-9]{10,11}", message = "10~11자리 숫자만 입력가능합니다.")
     private String phoneNumber;
 
     private String creaditCardNum;
@@ -62,6 +61,7 @@ public class Member {
         String password = passwordEncoder.encode(memberFormDto.getPassword());
         member.setPassword(password);
         member.setRole(Role.USER);
+        member.setPhoneNumber(memberFormDto.getPhoneNumber());
         member.setMembershipRole(MembershipRole.NONE);
         return member;
     }

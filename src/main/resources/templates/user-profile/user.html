@@ -32,7 +32,7 @@
         <div class="right">
           <div class="d-flex space-between">
             <div class="email">
-              <strong>yym0320@naver.com</strong>
+              <strong th:text="${member.email}"></strong>
             </div>
             <div class="link">
               <a href="#" class="link-item">
@@ -43,7 +43,7 @@
 
           <div class="d-flex space-between">
             <div class="password">
-              비밀번호: *********
+              <p>비밀번호:*************</p>
             </div>
             <div class="link">
               <a href="#" class="link-item">
@@ -54,7 +54,7 @@
 
           <div class="d-flex space-between">
             <div class="email">
-              전화번호: 010-6408-9227
+              <p th:text="${member.phoneNumber}"></p>
             </div>
             <div class="link">
               <a href="#" class="link-item">
@@ -66,7 +66,7 @@
 
           <div class="carddetail d-flex space-between flex-middle">
 
-            <h4><span class="icon-visa">신용카드</span> •••• •••• •••• 5350</h4>
+            <h4><span class="icon-visa">신용카드</span><span th:text="${member.creaditCardNum}"></span></h4>
 
             <div class="link">
               <a href="#" class="link-item">
@@ -76,16 +76,6 @@
                 결제 상세정보
               </a>
             </div>
-          </div>
-          <div class="line"></div>
-
-          <div class="gift-card d-flex direction-column">
-            <a href="#" class="link-item">
-              기프티카드 또는 할인 코드 입력
-            </a>
-            <a href="#" class="link-item">
-              기프트카드 판매처
-            </a>
           </div>
         </div>
       </div>
@@ -98,7 +88,7 @@
 
         </div>
         <div class="right d-flex space-between">
-          <h4><span class="icon-visa">프리미엄 ULTRA HD</span></h4>
+          <h4><span class="icon-visa" th:text="${member.membershipRole}"></span></h4>
           <a th:href="@{/membership}" class="link-item">멤버쉽 변경</a>
         </div>
       </div>
@@ -123,63 +113,21 @@
         <div class="left">
           <h4 class="headline">프로필 & 자녀 보호 설정</h4>
         </div>
+
         <div class="right">
           <div class="">
-            <div class="info-container d-flex flex-middle space-between">
+            <div class="info-container d-flex flex-middle space-between" th:each="profiles : ${profiles}">
               <div class="name d-flex">
-                <img src="../../images/icons/user1.png" alt="user" class="user-icon" />
+                <img th:src="${profiles.imagePath}" alt="user" class="user-icon" />
                 <div class="content">
-                  <p class="username">윤영민</p>
-                  <p class="maturity">모든 관람등급</p>
+                  <p class="username" th:text="${profiles.name}"></p>
+                  <p class="maturity" th:text="${profiles.maturityLevel}"></p>
                 </div>
-              </div>
-
-              <div class="righticon">
-                <svg class="chevron-down" viewBox="0 0 18 18">
-                  <path fill="#aaa" d="M11.56 5.56L10.5 4.5 6 9l4.5 4.5 1.06-1.06L8.12 9z"></path>
-                </svg>
               </div>
             </div>
             <div class="line"></div>
           </div>
 
-          <div class="">
-            <div class="info-container d-flex flex-middle space-between">
-              <div class="name d-flex">
-                <img src="../../images/icons/user2.png" alt="user" class="user-icon" />
-                <div class="content">
-                  <p class="username">박청원</p>
-                  <p class="maturity">모든 관람등급</p>
-                </div>
-              </div>
-
-              <div class="righticon">
-                <svg class="chevron-down" viewBox="0 0 18 18">
-                  <path fill="#aaa" d="M11.56 5.56L10.5 4.5 6 9l4.5 4.5 1.06-1.06L8.12 9z"></path>
-                </svg>
-              </div>
-            </div>
-            <div class="line"></div>
-          </div>
-
-          <div class="">
-            <div class="info-container d-flex flex-middle space-between">
-              <div class="name d-flex">
-                <img src="../../images/icons/user3.png" alt="user" class="user-icon" />
-                <div class="content">
-                  <p class="username">강동언</p>
-                  <p class="maturity">모든 관람등급</p>
-                </div>
-              </div>
-
-              <div class="righticon">
-                <svg class="chevron-down" viewBox="0 0 18 18">
-                  <path fill="#aaa" d="M11.56 5.56L10.5 4.5 6 9l4.5 4.5 1.06-1.06L8.12 9z"></path>
-                </svg>
-              </div>
-            </div>
-            <div class="line"></div>
-          </div>
         </div>
 
 

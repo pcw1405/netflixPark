@@ -1,5 +1,6 @@
-package com.netf.netflix.Membership;
+package com.netf.netflix.Service;
 
+import com.netf.netflix.Constant.MembershipRole;
 import com.netf.netflix.Entity.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

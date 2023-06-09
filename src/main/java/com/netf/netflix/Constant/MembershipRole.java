@@ -1,4 +1,4 @@
-package com.netf.netflix.Membership;
+package com.netf.netflix.Constant;
 
 public enum MembershipRole {
     BASIC, STANDARD, PREMIUM, NONE

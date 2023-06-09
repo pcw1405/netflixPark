@@ -1,13 +1,12 @@
-package com.netf.netflix.Membership;
+package com.netf.netflix.Controller;
 
 
-import com.netf.netflix.Membership.MembershipRole;
+import com.netf.netflix.Constant.MembershipRole;
 import com.netf.netflix.Entity.Member;
-import com.netf.netflix.Membership.MembershipService;
+import com.netf.netflix.Service.MembershipService;
 import com.netf.netflix.Repository.MemberRepository;
 import com.netf.netflix.Service.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,10 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-import javax.validation.constraints.Null;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Controller
 @RequiredArgsConstructor

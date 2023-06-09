@@ -55,9 +55,4 @@ public class HomeController {
         return "home";
     }
 
-
-    @GetMapping(value = "/user")
-    public String user(){
-        return "user-profile/user";
-    }
 }
