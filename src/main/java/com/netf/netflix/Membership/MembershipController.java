@@ -43,9 +43,9 @@ public class MembershipController {
         LocalDate membershipExpirationDate = member.getMembershipExpirationDate();
         LocalDate currentDate = LocalDate.now();
 
-        if (membershipExpirationDate != null) {
+        if(membershipExpirationDate != null) {
             LocalDate newExpirationDate = currentDate.plusMonths(1);
-            member.setMembershipExpirationDate(newExpirationDate);
+            membershipService.changeMembershipRole(member, membershipRole, newExpirationDate);
             model.addAttribute("message","맴버쉽이 연장되었습니다.");
             return "redirect:/membership";
         }else{

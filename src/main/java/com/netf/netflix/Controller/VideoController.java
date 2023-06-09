@@ -2,6 +2,7 @@ package com.netf.netflix.Controller;
 
 import com.netf.netflix.Constant.VideoRole;
 import com.netf.netflix.Dto.MemberFormDto;
+import com.netf.netflix.Dto.VideoFormDto;
 import com.netf.netflix.Entity.Video;
 import com.netf.netflix.Repository.MemberRepository;
 import com.netf.netflix.Repository.VideoImgRepository;
@@ -33,12 +34,12 @@ public class VideoController {
 
     @GetMapping(value = "/video/new")
     public String videoForm(Model model){
-        model.addAttribute("videoFormDto", new MemberFormDto.VideoFormDto());
+        model.addAttribute("videoFormDto", new VideoFormDto());
         return "videos/videoForm";
     }
 
     @PostMapping(value = "/video/new")
-    public String videoCreateFrom(@Valid MemberFormDto.VideoFormDto videoFormDto, BindingResult bindingResult, Model model,
+    public String videoCreateFrom(@Valid VideoFormDto videoFormDto, BindingResult bindingResult, Model model,
                                   @RequestParam("videoImgFile") MultipartFile videoImgFile,
                                   @RequestParam("videoFile") MultipartFile videoFile){
 

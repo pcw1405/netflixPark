@@ -3,6 +3,7 @@ package com.netf.netflix.Entity;
 import com.netf.netflix.Constant.VideoMaturityLevel;
 import com.netf.netflix.Constant.VideoRole;
 import com.netf.netflix.Dto.MemberFormDto;
+import com.netf.netflix.Dto.VideoFormDto;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -48,7 +49,7 @@ public class Video{
     @OneToOne(mappedBy = "video", cascade = CascadeType.ALL)
     private VideoFile videoFile;
 
-    public void updateItem(MemberFormDto.VideoFormDto videoFormDto){
+    public void updateItem(VideoFormDto videoFormDto){
         this.videoNm = videoFormDto.getVideoNm();
         this.cast = videoFormDto.getCast();
         this.actors = videoFormDto.getActors();

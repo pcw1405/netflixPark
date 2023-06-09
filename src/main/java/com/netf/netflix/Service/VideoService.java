@@ -1,6 +1,7 @@
 package com.netf.netflix.Service;
 
 import com.netf.netflix.Dto.MemberFormDto;
+import com.netf.netflix.Dto.VideoFormDto;
 import com.netf.netflix.Entity.Video;
 import com.netf.netflix.Entity.VideoFile;
 import com.netf.netflix.Entity.VideoImg;
@@ -27,7 +28,7 @@ public class VideoService {
 
     private final VideoFileService videoFileService;
 
-    public Long saveVideo(MemberFormDto.VideoFormDto videoFormDto, MultipartFile videoImgFile, MultipartFile videoFile) throws Exception{
+    public Long saveVideo(VideoFormDto videoFormDto, MultipartFile videoImgFile, MultipartFile videoFile) throws Exception{
 
         //영상정보 등록
         Video video = videoFormDto.createVideo();
