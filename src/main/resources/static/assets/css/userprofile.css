@@ -187,3 +187,10 @@ main{
     background-color: black;
     padding-bottom: 20px;
 }
+
+/* user.html 부분 */
+
+#passwordMatchLabel{
+    width : 350px;
+    height : 40px;
+}

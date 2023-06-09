@@ -1,15 +1,24 @@
 package com.netf.netflix.Controller;
 
+import com.netf.netflix.Config.CustomUserDetails;
 import com.netf.netflix.Entity.Member;
 import com.netf.netflix.Entity.Profile;
 import com.netf.netflix.Repository.MemberRepository;
 import com.netf.netflix.Repository.ProfileRepository;
+import com.netf.netflix.Service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -19,8 +28,12 @@ import java.util.List;
 @Slf4j
 public class UserController {
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     private final MemberRepository memberRepository;
     private final ProfileRepository profileRepository;
+    private final MemberService memberService;
 
     @GetMapping(value = "/user")
     public String userInfoLoad(HttpSession session, Model model) {
@@ -33,15 +46,21 @@ public class UserController {
 
         return "user-profile/user";
     }
-//
-//    @PostMapping(value = "/user")
-//    public String userUpdate(HttpSession session, Model model){
+
+    @PostMapping(value = "/user-changePw")
+    public String updatePassword(@RequestParam("password") String password,
+                                 HttpSession session)throws Exception{
 //        String loggedInUser = (String) session.getAttribute("loggedInUser");
 //        Member member = memberRepository.findByEmail(loggedInUser);
+//        String encodedPassword = passwordEncoder.encode(password);
+//        member.setPassword(encodedPassword);
 //
+//        memberService.changePassword(member, encodedPassword);
 //
-//        return "";
-//    }
+//        session.setAttribute("loggedInUser", member.getEmail());
+
+        return "redirect:/user";
+    }
 
 
 }

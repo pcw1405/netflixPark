@@ -34,23 +34,36 @@
             <div class="email">
               <strong th:text="${member.email}"></strong>
             </div>
-            <div class="link">
-              <a th:href="" class="link-item">
-                계정 이메일 변경
-              </a>
-            </div>
           </div>
 
+          <form action="/user-changePw" method="post" role="form">
           <div class="d-flex space-between">
             <div class="password">
               <p>비밀번호:*************</p>
             </div>
             <div class="link">
-              <a href="#" class="link-item">
-                비밀번호 변경
-              </a>
+              <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">비밀번호 변경</a>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">비밀번호 변경</h1>
+                      </div>
+
+                      <div class="modal-body">
+                        <input type="password" id="password" name="password" class="form-control password" placeholder="비밀번호를 입력해주세요">
+<!--                        <input type="password" id="passwordcheck" name="passwordcheck" class="form-control password" placeholder="비밀번호를 다시 입력해주세요">-->
+                      </div>
+                      <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
             </div>
           </div>
+          </form>
+
 
           <div class="d-flex space-between">
             <div class="email">
@@ -135,12 +148,7 @@
     </section>
   </main>
 </div>
-
-
-
 </div>
 
 
 
-
-</html>

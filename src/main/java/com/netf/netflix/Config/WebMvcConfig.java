@@ -21,8 +21,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .addResourceLocations(uploadPath)
                 .addResourceLocations("file:" + uploadPath + "/")
                 .setCacheControl(CacheControl.maxAge(365, TimeUnit.DAYS).cachePublic());
-
-
     }
 
 }

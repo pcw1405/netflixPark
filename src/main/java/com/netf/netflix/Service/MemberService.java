@@ -7,10 +7,12 @@ import com.netf.netflix.Entity.Member;
 import com.netf.netflix.Repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +22,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class MemberService implements UserDetailsService {
 
     private final MemberRepository memberRepository;
-
 
     public Member findMemberByEmail(String email) {
         return memberRepository.findByEmail(email);
@@ -55,6 +56,12 @@ public class MemberService implements UserDetailsService {
                 .build();
     }
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
+    public void changePassword(Member member, String newPassword) {
+        member.setPassword(passwordEncoder.encode(newPassword));
+        memberRepository.save(member);
+    }
 }
 
