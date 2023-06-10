@@ -1,5 +1,35 @@
 
 $(document).ready(function () {
+var header = $("meta[name='_csrf_header']").attr('content');
+var token = $("meta[name='_csrf']").attr('content');
+
+   $('.saveLike').click(function(event) {
+       event.stopPropagation(); // Prevent click event propagation
+            var $clickedElement = $(this);
+//       var videoId = $(this).data('video-id');
+        var videoId = $clickedElement.find('[data-video-id]').attr('data-video-id');
+       var data = {
+           videoId: videoId
+       };
+
+       $.ajax({
+           url: "/save-like",
+           type: "POST",
+           beforeSend: function(xhr) {
+               xhr.setRequestHeader(header, token);
+           },
+           dataType: 'json',
+           contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ videoId: videoId }), // 문자열 변환이 필요하지 않습니다.
+           success: function(response) {
+               console.log(response);
+           },
+           error: function(xhr, status, error) {
+               console.error('Failed to save like:', error);
+           }
+       });
+   });
+
 
     //autoplay hero section video 
 
@@ -59,6 +89,8 @@ $(document).ready(function () {
 
 
 
+
+
     $(".full").click(function() {
       setTimeout(function() {
           var $video = $('.popup .videoContainer video');
@@ -78,5 +110,7 @@ $(document).ready(function () {
           }
         }, 1000);
     });
+
+
 });
 

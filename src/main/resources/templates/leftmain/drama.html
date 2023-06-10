@@ -148,9 +148,16 @@
                                 <svg viewBox="0 0 24 24" class="full" >
                                     <path d="M6 4l15 8-15 8z" fill="black"></path>
                                 </svg>
-                                <div class="like-button" onclick="likeVideo(1)">
-                                    <i class="fa-regular fa-heart"></i>
+
+
+<!--                                -->
+
+                                <div class="like-button saveLike" >
+                                    <i class="fa-regular fa-heart " th:data-video-id="${video.id}"></i>
                                 </div>
+
+<!--                                -->
+
                             </div>
                             <div>
                                 <h4 class="heading f-w-8 text-shadow">
@@ -173,22 +180,7 @@
 
                 </div>
 
-                <script th:inline="javascript">
 
-                       function deleteEmptySessions() {
-                        var sessions = document.querySelectorAll('#mylist');
-                        sessions.forEach(function(session) {
-                            var searchListElements = session.getElementsByClassName('searchlist');
-                            if (searchListElements.length === 0) {
-                                session.remove();
-                            }
-                        });
-                        }
-
-                        // deleteEmptySessions 함수 호출
-                        deleteEmptySessions();
-
-                    </script>
 
             </section>
             <!--                세션 기준으로 장르별로 나눈다 여기까지 할리우드? 임의로 슬리러 장르를 for each문 -->
@@ -199,9 +191,7 @@
         </div>
     </main>
 </div>
-<script>
 
-</script>
 
 
 

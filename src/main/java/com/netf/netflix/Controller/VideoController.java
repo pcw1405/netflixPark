@@ -12,6 +12,7 @@ import com.netf.netflix.Repository.VideoRepository;
 import com.netf.netflix.Service.VideoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,7 +21,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.nio.file.FileStore;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -132,6 +135,13 @@ public class VideoController {
         return "/leftmain/movies";
     }
 
-
+//    @PostMapping("/save-like")
+//    public ResponseEntity<String> saveLike(@RequestParam("videoId") Long videoId, HttpSession session) {
+//        String loggedInUser = (String) session.getAttribute("loggedInUser");
+//        videoService.saveLike(videoId);
+//
+//
+//        return ResponseEntity.ok("Like saved successfully");
+//    }
 
 }

@@ -2,10 +2,12 @@ package com.netf.netflix.Service;
 
 import com.netf.netflix.Dto.MemberFormDto;
 import com.netf.netflix.Dto.VideoFormDto;
+import com.netf.netflix.Entity.Profile;
 import com.netf.netflix.Entity.Video;
 import com.netf.netflix.Entity.VideoFile;
 import com.netf.netflix.Entity.VideoImg;
 import com.netf.netflix.Repository.MemberRepository;
+import com.netf.netflix.Repository.ProfileRepository;
 import com.netf.netflix.Repository.VideoImgRepository;
 import com.netf.netflix.Repository.VideoRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Service
@@ -27,6 +30,8 @@ public class VideoService {
     private final VideoImgService videoImgService;
 
     private final VideoFileService videoFileService;
+
+    private final ProfileRepository profileRepository;
 
     public Long saveVideo(VideoFormDto videoFormDto, MultipartFile videoImgFile, MultipartFile videoFile) throws Exception{
 
@@ -57,4 +62,24 @@ public class VideoService {
         return videoRepository.findByVideoNmContainingOrCastContainingOrActorsContainingOrDescriptionContainingOrGenresContaining(searchKeyword, searchKeyword, searchKeyword, searchKeyword, searchKeyword);
 
     }
+
+//    public void saveLike(Long videoId, HttpSession session) {
+//
+//        // 비디오 아이디를 이용하여 필요한 로직을 수행한 후에 데이터베이스에 저장하는 예시입니다.
+//        // 여기서는 간단히 Video 객체를 가져와서 출력하는 예시를 보여줍니다.
+//        Long profileId = (Long) session.getAttribute("profileNm");
+//        Profile profile = profileRepository.findById(profileId).orElse(null);
+//
+//        Video video = videoRepository.findById(videoId).orElse(null);
+//
+//        if (video != null) {
+//            System.out.println("Liked Video: " + video.getVideoNm());
+//            // 데이터베이스에 저장하는 로직을 추가하세요.
+//
+//
+//        }
+
+
+//    }
+//
 }

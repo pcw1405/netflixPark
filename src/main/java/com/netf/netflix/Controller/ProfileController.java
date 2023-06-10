@@ -11,9 +11,11 @@ import com.netf.netflix.Repository.ProfileRepository;
 import com.netf.netflix.Repository.VideoImgRepository;
 import com.netf.netflix.Repository.VideoRepository;
 import com.netf.netflix.Service.ProfileService;
+import com.netf.netflix.Service.VideoService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,7 +23,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -37,9 +41,12 @@ public class ProfileController {
 //    private final ProfileImgRepository profileImgRepository;
     private final VideoImgRepository videoImgRepository;
     private final VideoRepository videoRepository;
+    private final VideoService videoService;
 
     @GetMapping("/home/{profileId}")
-    public String showProfileHome(@PathVariable("profileId") Long profileId, Model model) {
+    public String showProfileHome(@PathVariable("profileId") Long profileId, Model model, HttpSession session) {
+
+        session.setAttribute("profileNm",profileId);
         Profile selectedProfile = profileRepository.findById(profileId).orElse(null);
         if (selectedProfile == null) {
             throw new RuntimeException("프로필을 찾을 수 없습니다.");
@@ -119,6 +126,8 @@ public class ProfileController {
         profileService.saveProfile(profile);
         return "redirect:/profile/profile";
     }
+
+
 }
 //    @Autowired
 //    private ProfileRepository profileRepository;
@@ -217,4 +226,5 @@ public class ProfileController {
 //        // 프로필 페이지로 이동
 //        return "profile";
 //    }
+
 

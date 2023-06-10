@@ -106,6 +106,45 @@ $(document).ready(function () {
       });
     });
 
+//var header = $("meta[name='_csrf_header']").attr('content');
+//var token = $("meta[name='_csrf']").attr('content');
+//var url = "/save-like";
+//
+//    $.ajax({
+//        url: url,
+//        beforeSend: function(xhr){
+//            xhr.setRequestHeader(header, token);
+//        },
+//        success: function(res) {
+//            console.log(res);
+//        }
+//    });
+//
+//   $('.saveLike').click(function() {
+//    event.stopPropagation(); // Prevent click event propagation
+//           var videoId = $(this).data('video-id');
+//
+//           var data = {
+//               videoId: videoId
+//           };
+//
+//           $.ajax({
+//               url: "/save-like",
+//               type: "POST",
+//               beforeSend: function(xhr) {
+//                   xhr.setRequestHeader(header, token);
+//               },
+//               dataType: 'json',
+//               contentType: 'application/json; charset=utf-8',
+//               data: JSON.stringify(data),
+//               success: function(response) {
+//                   console.log(response);
+//               },
+//               error: function(xhr, status, error) {
+//                   console.error('Failed to save like:', error);
+//               }
+//           });
+//       });
 
 
  });

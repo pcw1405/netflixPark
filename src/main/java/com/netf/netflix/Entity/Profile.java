@@ -6,6 +6,8 @@ import lombok.ToString;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "profiles")
@@ -41,6 +43,12 @@ public class Profile {
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
+
+    @ElementCollection
+    @CollectionTable(name = "favorite_videos", joinColumns = @JoinColumn(name = "profile_id"))
+    @Column(name = "video_id")
+    private Set<Long> favoriteVideos;
+
     // Getters and setters
 
 //    public void setProfileImg(ProfileImg profileImg) {
@@ -51,4 +59,6 @@ public class Profile {
 //    public ProfileImg getProfileImg() {
 //        return profileImg;
 //    }
+
+
 }
