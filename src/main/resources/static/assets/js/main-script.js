@@ -6,7 +6,9 @@ $(document).ready(function () {
    $('.saveLike').click(function(event) {
        event.stopPropagation(); // Prevent click event propagation
             var $clickedElement = $(this);
-            $clickedElement.find('i').css('color', 'red');
+//                    $originalElement= $(this);
+//            $clickedElement.find('i').css('color', 'red');
+//            $('.popup').find('.saveLike i').css('color', 'red');
 
         var videoId = $clickedElement.find('[data-video-id]').attr('data-video-id');
        var data = {
@@ -24,13 +26,39 @@ $(document).ready(function () {
             data: JSON.stringify({ videoId: videoId }), // 문자열 변환
            success: function(response) {
                console.log(response);
-                  $clickedElement.find('i').css('color', 'red');
+if ($clickedElement !== null) {
+  $clickedElement.find('i').css('color', 'red');
+  $clickedElement.find('i').attr('data-iColor', 'red');
+}
 
+if ($('.popup') !== null) {
+  $('.popup').find('.saveLike i').css('color', 'red');
+  $('.popup').find('.saveLike i').attr('data-iColor', 'red');
+}
+
+if ($originalElement !== null) {
+  $originalElement.find('i').css('color', 'red');
+  $originalElement.find('i').attr('data-iColor', 'red');
+}
+                     $originalElement = $();
            },
            error: function(xhr, status, error) {
                console.error('Failed to save like:', error);
-              $clickedElement.find('i').css('color', 'white');
+if ($clickedElement !== null) {
+  $clickedElement.find('i').css('color', 'white');
+  $clickedElement.find('i').attr('data-iColor', 'white');
+}
 
+if ($('.popup') !== null) {
+  $('.popup').find('.saveLike i').css('color', 'white');
+  $('.popup').find('.saveLike i').attr('data-iColor', 'white');
+}
+
+if ($originalElement !== null) {
+  $originalElement.find('i').css('color', 'white');
+  $originalElement.find('i').attr('data-iColor', 'white');
+}
+            $originalElement = $();
            }
        });
    });

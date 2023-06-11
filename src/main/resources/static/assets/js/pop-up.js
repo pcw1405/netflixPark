@@ -1,11 +1,13 @@
-
+    var $originalElement=null
 $(document).ready(function () {
 
    //var $searchResultItems = $(".searchresult img, .searchresult video");
 
+
    $(".searchresult ,.searchlist").click(function popupVideoHandler(e)  {
        e.stopPropagation();
        var $clickedElement = $(this);
+        $originalElement= $(this);
         // $("video").each(function() {
         //     this.pause();
         // });
@@ -68,8 +70,15 @@ $(document).ready(function () {
   var videoDescription = $clickedElement.find('[data-video-description]').attr('data-video-description');
   var videoActors = $clickedElement.find('[data-video-actors]').attr('data-video-actors');
   var videoCast = $clickedElement.find('[data-video-cast]').attr('data-video-cast');
-
+  var videoRecent = $clickedElement.find('[data-video-recent]').attr('data-video-recent');
+   console.log(videoRecent);
+   $('.popup').find('.saveLike i').attr('data-video-id', videoRecent);
         // var $descriptionText = $("<div>").text(videoDescription);
+//var videoIColor = $('.video-description .like-button.saveLike i').attr('data-video-iColor');
+ var videoIColor = $clickedElement.find('[data-iColor]').attr('data-iColor');
+ console.log(videoIColor);
+
+ $('.popup').find('.saveLike i').attr('data-iColor', videoIColor);
 
         $descriptionText.empty().append(
           $("<div>").text("제목: " + videoNm),
@@ -81,7 +90,14 @@ $(document).ready(function () {
 
         $textSpace.empty().append($descriptionText);
 
+              $('.saveLike i').each(function() {
+                    var iColor = $(this).attr('data-iColor');
+                    $(this).css('color', iColor);
+                });
+
         $popup.css("display", "block");
+
+
     });
 
 
@@ -105,6 +121,11 @@ $(document).ready(function () {
         $(".textSpace").remove();
       });
     });
+
+      $('.saveLike i').each(function() {
+            var iColor = $(this).attr('data-iColor');
+            $(this).css('color', iColor);
+        });
 
 //var header = $("meta[name='_csrf_header']").attr('content');
 //var token = $("meta[name='_csrf']").attr('content');

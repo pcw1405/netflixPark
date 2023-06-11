@@ -151,14 +151,14 @@
                                 </svg>
 
 
-<!--                                -->
+                                <!--                                -->
 
                                 <div class="like-button saveLike" >
                                     <i class="fa-regular fa-heart" th:data-video-id="${video.id}" th:data-iColor="${favoriteVideos != null && favoriteVideos.contains(video.id) ? 'red' : 'white'}"></i>
 
                                 </div>
 
-<!--                                -->
+                                <!--                                -->
 
                             </div>
                             <div>
@@ -186,7 +186,7 @@
 
             </section>
             <!--                세션 기준으로 장르별로 나눈다 여기까지 할리우드? 임의로 슬리러 장르를 for each문 -->
-                <script th:inline="javascript">
+            <script th:inline="javascript">
 
                        function deleteEmptySessions() {
                         var sessions = document.querySelectorAll('#mylist');
