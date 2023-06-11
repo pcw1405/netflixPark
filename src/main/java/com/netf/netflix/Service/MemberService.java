@@ -60,8 +60,11 @@ public class MemberService implements UserDetailsService {
     private PasswordEncoder passwordEncoder;
 
     public void changePassword(Member member, String newPassword) {
-        member.setPassword(passwordEncoder.encode(newPassword));
-        memberRepository.save(member);
+        member.setPassword(newPassword);
+    }
+
+    public void changePhoneNumber(Member member, String phoneNum) {
+        member.setPhoneNumber(phoneNum);
     }
 }
 

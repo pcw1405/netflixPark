@@ -50,15 +50,27 @@ public class UserController {
     @PostMapping(value = "/user-changePw")
     public String updatePassword(@RequestParam("password") String password,
                                  HttpSession session)throws Exception{
-//        String loggedInUser = (String) session.getAttribute("loggedInUser");
-//        Member member = memberRepository.findByEmail(loggedInUser);
-//        String encodedPassword = passwordEncoder.encode(password);
-//        member.setPassword(encodedPassword);
-//
-//        memberService.changePassword(member, encodedPassword);
-//
-//        session.setAttribute("loggedInUser", member.getEmail());
+        String loggedInUser = (String) session.getAttribute("loggedInUser");
+        Member member = memberRepository.findByEmail(loggedInUser);
+        String encodedPassword = passwordEncoder.encode(password);
+        member.setPassword(encodedPassword);
 
+        memberService.changePassword(member, encodedPassword);
+
+        session.setAttribute("loggedInUser", member.getEmail());
+        log.info("정상적으로 비밀번호가 바꼈음");
+        return "redirect:/user";
+    }
+
+    @PostMapping(value = "/user-changePhoneNum")
+    public String updatePhoneNum(@RequestParam("phoneNum") String phoneNum,
+                                 HttpSession session)throws Exception{
+        String loggedInUser = (String) session.getAttribute("loggedInUser");
+        Member member = memberRepository.findByEmail(loggedInUser);
+
+        memberService.changePhoneNumber(member, phoneNum);
+
+        session.setAttribute("loggedInUser", member.getEmail());
         return "redirect:/user";
     }
 
