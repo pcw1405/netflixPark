@@ -1,12 +1,13 @@
 
 $(document).ready(function () {
-var header = $("meta[name='_csrf_header']").attr('content');
-var token = $("meta[name='_csrf']").attr('content');
+    var header = $("meta[name='_csrf_header']").attr('content');
+    var token = $("meta[name='_csrf']").attr('content');
 
    $('.saveLike').click(function(event) {
        event.stopPropagation(); // Prevent click event propagation
             var $clickedElement = $(this);
-//       var videoId = $(this).data('video-id');
+            $clickedElement.find('i').css('color', 'red');
+
         var videoId = $clickedElement.find('[data-video-id]').attr('data-video-id');
        var data = {
            videoId: videoId
@@ -20,15 +21,54 @@ var token = $("meta[name='_csrf']").attr('content');
            },
            dataType: 'json',
            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify({ videoId: videoId }), // 문자열 변환이 필요하지 않습니다.
+            data: JSON.stringify({ videoId: videoId }), // 문자열 변환
+           success: function(response) {
+               console.log(response);
+                  $clickedElement.find('i').css('color', 'red');
+
+           },
+           error: function(xhr, status, error) {
+               console.error('Failed to save like:', error);
+              $clickedElement.find('i').css('color', 'white');
+
+           }
+       });
+   });
+
+   // 최근 시청한 비디오
+   $('.getRecent').click(function(event) {
+       event.stopPropagation(); // Prevent click event propagation
+       var $clickElement = $(this);
+
+       var recentVideoId = $clickElement.find('[data-video-recent]').attr('data-video-recent');
+       console.log(recentVideoId);
+       var data = {
+           recentVideoId: recentVideoId
+       };
+
+       $.ajax({
+           url: "/addRecentlyViewedVideo",
+           type: "POST",
+           beforeSend: function(xhr) {
+               xhr.setRequestHeader(header, token);
+           },
+           dataType: 'json',
+           contentType: 'application/json; charset=utf-8',
+           data: JSON.stringify({ recentVideoId: recentVideoId }),
            success: function(response) {
                console.log(response);
            },
            error: function(xhr, status, error) {
-               console.error('Failed to save like:', error);
+               console.error('Failed to addVideoToFavorites:', error);
            }
        });
    });
+
+
+    $('.saveLike i').each(function() {
+        var iColor = $(this).attr('data-iColor');
+        $(this).css('color', iColor);
+    });
 
 
     //autoplay hero section video 
@@ -81,14 +121,9 @@ var token = $("meta[name='_csrf']").attr('content');
     } 
 
 
-
-
     $(".like-button").click(function(event) {
       event.stopPropagation();
     });
-
-
-
 
 
     $(".full").click(function() {

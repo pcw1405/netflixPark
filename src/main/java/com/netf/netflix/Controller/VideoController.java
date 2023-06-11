@@ -4,11 +4,14 @@ import com.netf.netflix.Constant.VideoRole;
 import com.netf.netflix.Dto.MemberFormDto;
 import com.netf.netflix.Dto.VideoFormDto;
 import com.netf.netflix.Dto.VideoImgDto;
+import com.netf.netflix.Entity.Profile;
 import com.netf.netflix.Entity.Video;
 import com.netf.netflix.Entity.VideoImg;
 import com.netf.netflix.Repository.MemberRepository;
+import com.netf.netflix.Repository.ProfileRepository;
 import com.netf.netflix.Repository.VideoImgRepository;
 import com.netf.netflix.Repository.VideoRepository;
+import com.netf.netflix.Service.ProfileService;
 import com.netf.netflix.Service.VideoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
@@ -24,10 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.nio.file.FileStore;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -37,7 +37,8 @@ public class VideoController {
     private final VideoService videoService;
     private final VideoImgRepository videoImgRepository;
     private final VideoRepository videoRepository;
-
+    private final ProfileRepository profileRepository;
+    private final ProfileService profileService;
 //    private static final List<VideoImgDto> uploadedVideoList = new ArrayList<>();
 
 
@@ -81,8 +82,17 @@ public class VideoController {
 
         return "/rightmain/search";
     }
+
     @GetMapping("/drama")
-    public String dramaList( Model model){
+    public String dramaList( Model model,HttpSession session){
+
+        Long profileId = (Long) session.getAttribute("profileNm");
+        // 프로필 ID를 통해 프로필을 조회하고 favoriteVideos 값을 가져옵니다
+        Profile profile = profileRepository.findById(profileId)
+                .orElseThrow(() -> new RuntimeException("Profile not found"));
+
+        // favoriteVideos 값을 모델에 추가합니다
+        model.addAttribute("favoriteVideos", profile.getFavoriteVideos());
 
           List<String> subjects = videoRepository.findAllGenres();
         List<Video> videos = videoRepository.findByVideoRole(VideoRole.DRAMA);
@@ -135,13 +145,44 @@ public class VideoController {
         return "/leftmain/movies";
     }
 
-//    @PostMapping("/save-like")
-//    public ResponseEntity<String> saveLike(@RequestParam("videoId") Long videoId, HttpSession session) {
-//        String loggedInUser = (String) session.getAttribute("loggedInUser");
-//        videoService.saveLike(videoId);
-//
-//
-//        return ResponseEntity.ok("Like saved successfully");
-//    }
+    @GetMapping("/mylist")
+    public String myList( Model model,HttpSession session){
+
+        Long profileId = (Long) session.getAttribute("profileNm");
+        Profile profile = profileRepository.findById(profileId)
+                .orElseThrow(() -> new RuntimeException("Profile not found"));
+        profileService.printFavoriteVideoIds(profileId);
+
+        // 좋아하는 비디오 리스트 가져오기
+        Set<Long> favoriteVideosId = profile.getFavoriteVideos();
+
+        List<Video> favoriteVideos =videoRepository.findAllById(favoriteVideosId);
+        // 모델에 좋아하는 비디오 리스트 추가
+        model.addAttribute("favoriteVideos", favoriteVideos);
+        return "/leftmain/mylist";
+    }
+
+    @GetMapping("/recent")
+    public String recentView( Model model,HttpSession session){
+
+        Long profileId = (Long) session.getAttribute("profileNm");
+        Profile profile = profileRepository.findById(profileId)
+                .orElseThrow(() -> new RuntimeException("Profile not found"));
+        profileService.printRecentlyViewedVideos(profileId);
+
+        // 좋아하는 비디오 리스트 가져오기
+        List<Long> recentViewId = profile.getRecentlyViewedVideos();
+        List<Video> recentVideos = new ArrayList<>();
+
+        for (Long videoId : recentViewId) {
+            Video video = videoRepository.findById(videoId)
+                    .orElseThrow(() -> new IllegalArgumentException("Invalid video ID: " + videoId));
+            recentVideos.add(video);
+        }
+
+// 모델에 좋아하는 비디오 리스트 추가
+        model.addAttribute("recentVideos", recentVideos);
+        return "/leftmain/recent";
+    }
 
 }

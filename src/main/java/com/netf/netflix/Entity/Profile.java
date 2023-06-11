@@ -44,11 +44,6 @@ public class Profile {
     private Member member;
 
 
-    @ElementCollection
-    @CollectionTable(name = "favorite_videos", joinColumns = @JoinColumn(name = "profile_id"))
-    @Column(name = "video_id")
-    private Set<Long> favoriteVideos;
-
     // Getters and setters
 
 //    public void setProfileImg(ProfileImg profileImg) {
@@ -60,5 +55,15 @@ public class Profile {
 //        return profileImg;
 //    }
 
+    @ElementCollection
+    @CollectionTable(name = "favorite_videos", joinColumns = @JoinColumn(name = "profile_id"))
+    @Column(name = "video_id")
+    private Set<Long> favoriteVideos;
+
+    @Column(name = "recently_viewed_videos")
+    @ElementCollection
+    @CollectionTable(name = "recently_viewed_videos", joinColumns = @JoinColumn(name = "profile_id"))
+    @OrderColumn(name = "viewed_videos_index")
+    private List<Long> recentlyViewedVideos;
 
 }

@@ -39,18 +39,18 @@
                 <!--                여기서부터 -->
                 <h4 class="mylist-heading" >
 
-                    <span >내가 찜한 콘탠츠 </span>
+                    <span >내가 최근 본 콘탠츠 </span>
                 </h4>
 
                 <div class="mylist-container d-flex flex-start flex-middle flex-no-wrap owl-carousel">
-                    <div th:each="video : ${favoriteVideos}" class="video searchlist">
+                    <div th:each="video : ${recentVideos}" class="video searchlist">
                         <video class="mylist-img p-r-10 p-t-10 video-item"
                                th:poster="${video.videoImg.imgUrl}">
                             <!--                            poster부분도 for each문으로 반복문을 돌려야한다 -->
                             <source
                                     th:src="${video.videoFile.fileUrl}"
                                     type="video/mp4">
-
+                            <!--                            이 비디디오 소스 링크도 업로드방식인데 반복문을 돌려야한다 -->
                             <!--                            Your browser does not support the video tag.-->
                         </video>
 
@@ -68,6 +68,7 @@
                                 </svg>
 
 
+                                <!--                                -->
 
                                 <div class="like-button saveLike" >
                                     <i class="fa-regular fa-heart " th:data-video-id="${video.id}"></i>
