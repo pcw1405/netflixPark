@@ -117,7 +117,16 @@ public class VideoController {
     }
 
     @GetMapping("/movie")
-    public String movieList( Model model){
+    public String movieList( Model model,HttpSession session){
+
+        Long profileId = (Long) session.getAttribute("profileNm");
+        // 프로필 ID를 통해 프로필을 조회하고 favoriteVideos 값을 가져옵니다
+        Profile profile = profileRepository.findById(profileId)
+                .orElseThrow(() -> new RuntimeException("Profile not found"));
+
+        // favoriteVideos 값을 모델에 추가합니다
+        model.addAttribute("favoriteVideos", profile.getFavoriteVideos());
+
 
         List<String> subjects = videoRepository.findAllGenres();
         List<Video> videos = videoRepository.findByVideoRole(VideoRole.MOVIE);
@@ -151,12 +160,14 @@ public class VideoController {
                 .orElseThrow(() -> new RuntimeException("Profile not found"));
         profileService.printFavoriteVideoIds(profileId);
 
+        model.addAttribute("favoriteVideos", profile.getFavoriteVideos());
+
         // 좋아하는 비디오 리스트 가져오기
         Set<Long> favoriteVideosId = profile.getFavoriteVideos();
 
-        List<Video> favoriteVideos =videoRepository.findAllById(favoriteVideosId);
+        List<Video> videos =videoRepository.findAllById(favoriteVideosId);
         // 모델에 좋아하는 비디오 리스트 추가
-        model.addAttribute("favoriteVideos", favoriteVideos);
+        model.addAttribute("videos", videos);
         return "/leftmain/mylist";
     }
 
@@ -167,6 +178,8 @@ public class VideoController {
         Profile profile = profileRepository.findById(profileId)
                 .orElseThrow(() -> new RuntimeException("Profile not found"));
         profileService.printRecentlyViewedVideos(profileId);
+
+        model.addAttribute("favoriteVideos", profile.getFavoriteVideos());
 
         // 좋아하는 비디오 리스트 가져오기
         List<Long> recentViewId = profile.getRecentlyViewedVideos();

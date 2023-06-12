@@ -28,7 +28,7 @@
         <div th:replace="fragments/popup :: myPopup"></div>
         <!-- hero section -->
         <div class="">
-            <section id="browse-dashboard" class=" d-flex direction-column flex-start middle-align" th:with="randomVideo=${randomVideo}">
+            <section id="browse-dashboard" class=" d-flex direction-column flex-start middle-align" th:with="randomVideo=${randomVideo}" th:if="${randomVideo != null}" >
                 <div>
                     <!--trailer video-->
                     <video class="hero-background-image p-b-40" id="hero-video" th:poster="${randomVideo.videoImg.imgUrl}">
@@ -126,7 +126,7 @@
                 </h4>
 
                 <div class="mylist-container d-flex flex-start flex-middle flex-no-wrap owl-carousel">
-                    <div th:if="${video.genres.contains(subject)}" th:each="video : ${videos}" class="video searchlist getRecent ">
+                    <div th:if="${videos != null and video.genres.contains(subject)}" th:each="video : ${videos}" class="video searchlist getRecent ">
                         <video class="mylist-img p-r-10 p-t-10 video-item"
                                th:poster="${video.videoImg.imgUrl}">
                             <!--                            poster부분도 for each문으로 반복문을 돌려야한다 -->

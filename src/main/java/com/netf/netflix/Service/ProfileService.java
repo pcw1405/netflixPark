@@ -78,6 +78,19 @@ public class ProfileService {
             recentlyViewedVideos = new ArrayList<>();
         }
 
+        // Remove any existing occurrence of the video ID
+        if (recentlyViewedVideos.contains(videoId)) {
+            recentlyViewedVideos.remove(videoId);
+        }
+
+        if (recentlyViewedVideos.contains(videoId)) {
+            recentlyViewedVideos.remove(videoId);
+        }
+
+        if (recentlyViewedVideos.contains(videoId)) {
+            recentlyViewedVideos.remove(videoId);
+        }
+
         // Add the new video ID to the beginning of the list
         recentlyViewedVideos.add(0, videoId);
 

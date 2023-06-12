@@ -16,7 +16,6 @@
     <link rel="stylesheet" th:href="@{/assets/css/browse.css}">
     <link rel="stylesheet" th:href="@{/assets/css/popup.css}">
     <!--    팝업에 대한 css -->
-    <!--    header처럼 불러올 수 있게 한다 -->
     <style>
 
 
@@ -29,7 +28,7 @@
         <div th:replace="fragments/popup :: myPopup"></div>
         <!-- hero section -->
         <div class="">
-            <section id="browse-dashboard" class=" d-flex direction-column flex-start middle-align" th:with="randomVideo=${randomVideo}">
+            <section id="browse-dashboard" class=" d-flex direction-column flex-start middle-align" th:with="randomVideo=${randomVideo}" th:if="${randomVideo != null}" >
                 <div>
                     <!--trailer video-->
                     <video class="hero-background-image p-b-40" id="hero-video" th:poster="${randomVideo.videoImg.imgUrl}">
@@ -78,30 +77,37 @@
                             <!--                            An overdue honeymoon. A shocking crime. A roomful of suspects. If Nick and Audrey can stay alive, this could be their best vacation ever.-->
                         </p>
                     </div>
-                    <div class="buttons-container m-t-20 searchlist">
-                        <button class="play-button"><span>
-                                    <svg viewBox="0 0 24 24">
-                                        <path d="M6 4l15 8-15 8z" fill="currentColor"></path>
-                                    </svg>
-                                </span> <a href="single.html">재생</a></button>
+                    <div class="buttons-container m-t-20 searchlist getRecent"  >
+                        <button class="play-button full">
 
-                        <button class="more-info-button m-t-20 " th:data-video-url="@{${randomVideo.videoFile.fileUrl}}"
-                                th:data-video-nm="@{${randomVideo.videoNm}}"
-                                th:data-video-genres="@{${randomVideo.genres}}"
-                                th:data-video-description="@{${randomVideo.description}}"
-                                th:data-video-actors="@{${randomVideo.actors}}"
-                                th:data-video-cast="@{${randomVideo.cast}}"
-                        >
                             <span>
-                                    <svg viewBox="0 0 24 24">
-                                        <path
-                                                d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10zm-2 0a8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8zm-9 6v-7h2v7h-2zm1-8.75a1.21 1.21 0 0 1-.877-.364A1.188 1.188 0 0 1 10.75 8c0-.348.123-.644.372-.886.247-.242.54-.364.878-.364.337 0 .63.122.877.364.248.242.373.538.373.886s-.124.644-.373.886A1.21 1.21 0 0 1 12 9.25z"
-                                                fill="currentColor"></path>
-                                    </svg>
-                            </span>더보기
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M6 4l15 8-15 8z" fill="currentColor"></path>
+                                </svg>
+                            </span>
+                            <a>재생</a>
+                        </button>
 
-                        </button >
+                        <span class="">
+                            <button class="more-info-button m-t-20 " th:data-video-url="@{${randomVideo.videoFile.fileUrl}}"
+                                    th:data-video-nm="@{${randomVideo.videoNm}}"
+                                    th:data-video-genres="@{${randomVideo.genres}}"
+                                    th:data-video-description="@{${randomVideo.description}}"
+                                    th:data-video-actors="@{${randomVideo.actors}}"
+                                    th:data-video-cast="@{${randomVideo.cast}}"
+                                    th:data-video-recent="@{${randomVideo.id}}"
+                            >
+                                <span>
+                                        <svg viewBox="0 0 24 24">
+                                            <path
+                                                    d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10zm-2 0a8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8zm-9 6v-7h2v7h-2zm1-8.75a1.21 1.21 0 0 1-.877-.364A1.188 1.188 0 0 1 10.75 8c0-.348.123-.644.372-.886.247-.242.54-.364.878-.364.337 0 .63.122.877.364.248.242.373.538.373.886s-.124.644-.373.886A1.21 1.21 0 0 1 12 9.25z"
+                                                    fill="currentColor"></path>
+                                        </svg>
+                                </span>더보기
+                            </button >
+                        </span>
                     </div>
+
                 </div>
             </section>
         </div>
@@ -111,7 +117,7 @@
 
 
             <!--hollywood new release -->
-            <section th:each="subject: ${subjects}" id="mylist" class="container">
+            <section th:each="subject: ${subjects}" id="mylist" class="container" th:if="${subjects != null}">
 
                 <!--                여기서부터 -->
                 <h4 class="mylist-heading" >
@@ -120,7 +126,7 @@
                 </h4>
 
                 <div class="mylist-container d-flex flex-start flex-middle flex-no-wrap owl-carousel">
-                    <div th:if="${video.genres.contains(subject)}" th:each="video : ${videos}" class="video searchlist">
+                    <div th:if="${videos != null and video.genres.contains(subject)}" th:each="video : ${videos}" class="video searchlist getRecent">
                         <video class="mylist-img p-r-10 p-t-10 video-item"
                                th:poster="${video.videoImg.imgUrl}">
                             <!--                            poster부분도 for each문으로 반복문을 돌려야한다 -->
@@ -136,15 +142,24 @@
                              th:data-video-description="@{${video.description}}"
                              th:data-video-actors="@{${video.actors}}"
                              th:data-video-cast="@{${video.cast}}"
+                             th:data-video-recent="@{${video.id}}"
 
                         >
-                            <div class="play-button d-flex justify-content-start">
-                                <svg viewBox="0 0 24 24">
+                            <div class="play-button d-flex justify-content-start ">
+                                <svg viewBox="0 0 24 24" class="full" >
                                     <path d="M6 4l15 8-15 8z" fill="black"></path>
                                 </svg>
-                                <div class="like-button" onclick="likeVideo(1)">
-                                    <i class="fa-regular fa-heart"></i>
+
+
+                                <!--                                -->
+
+                                <div class="like-button saveLike" >
+                                    <i class="fa-regular fa-heart" th:data-video-id="${video.id}" th:data-iColor="${favoriteVideos != null && favoriteVideos.contains(video.id) ? 'red' : 'white'}"></i>
+
                                 </div>
+
+                                <!--                                -->
+
                             </div>
                             <div>
                                 <h4 class="heading f-w-8 text-shadow">
@@ -153,8 +168,8 @@
                                 </h4>
                             </div>
                             <div class="info d-flex flex-middle flex-no-wrap">
-                                <p class="rated text-shadow"><strong>18+</strong></p>
-                                <p class="season-count text-shadow">시즌 1</p>
+                                <!--                                <p class="rated text-shadow"><strong>18+</strong></p>-->
+                                <!--                                                                <p class="season-count text-shadow">시즌 1</p>-->
                             </div>
                             <div class="genere d-flex flex-no-wrap text-shadow">
                                 <p th:text="'#' + ${video.genres}"></p>
@@ -167,7 +182,11 @@
 
                 </div>
 
-                <script th:inline="javascript">
+
+
+            </section>
+            <!--                세션 기준으로 장르별로 나눈다 여기까지 할리우드? 임의로 슬리러 장르를 for each문 -->
+            <script th:inline="javascript">
 
                        function deleteEmptySessions() {
                         var sessions = document.querySelectorAll('#mylist');
@@ -184,15 +203,15 @@
 
                     </script>
 
-            </section>
-            <!--                세션 기준으로 장르별로 나눈다 여기까지 할리우드? 임의로 슬리러 장르를 for each문 -->
-
-            <!--new release -->
 
 
         </div>
     </main>
 </div>
+
+
+
+
 
 
 

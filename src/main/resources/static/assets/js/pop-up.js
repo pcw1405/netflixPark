@@ -32,7 +32,7 @@ $(document).ready(function () {
 
         var $video = $('<video>', {
             src: videoUrl,
-           controls: false, // 컨트롤러 비활성화
+           controls: true, // 컨트롤러 비활성화
              autoplay: true, // 자동 재생 활성화
 //             muted: false, // 음소거 비활성화 (선택적)
             width: '495px',
