@@ -104,7 +104,7 @@ public class ProfileController {
         String loggedInUser = (String) session.getAttribute("loggedInUser");
         Member member = memberRepository.findByEmail(loggedInUser);
         if (member == null) {
-            throw new RuntimeException("사용자 정보를 수 없습니다.");
+            throw new RuntimeException("사용자 정보를 찾을 수 없습니다.");
         }
         List<Profile> profiles = profileRepository.findByMember(member);
         model.addAttribute("profiles", profiles);
@@ -123,8 +123,9 @@ public class ProfileController {
         return "profile-updateform";
     }
 
-    @PostMapping("/updateProfile")
-    public String updateProfileDto(@ModelAttribute("profiles") @Valid ProfileDto profileDto, BindingResult bindingResult, HttpSession session) {
+    @ResponseBody
+    @PostMapping("/profile/updateProfile")
+    public String updateProfile( Profile profiles, BindingResult bindingResult, HttpSession session) {
         Long profileId = (Long) session.getAttribute("profileId");
         if (profileId == null) {
             throw new RuntimeException("프로필 ID를 찾을 수 없습니다.");
@@ -141,17 +142,17 @@ public class ProfileController {
             throw new RuntimeException("프로필 정보를 찾을 수 없습니다.");
         }
 
-        if (bindingResult.hasErrors()) {
-            // 유효성 검사 에러 처리
-            return "profile-form";
-        }
+//        profileDto.updateProfileFields();
+//        profile.setMember(member);
 
-        // 프로필 필드 값을 업데이트
-        profileService.updateProfile(profile, profileDto.getName(), profileDto.getLanguage(), profileDto.getNickname(), profileDto.getMaturityLevel());
-//        session.setAttribute("loggedInUser", profile);
-
+        profileService.updateProfile(profile,
+                profiles.getName(),
+                profiles.getLanguage(),
+                profiles.getNickname(),
+                profiles.getMaturityLevel()
+        );
+        session.setAttribute("loggedInUser",profile);
         return "redirect:/profile/profile";
     }
-
 }
 

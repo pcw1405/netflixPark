@@ -20,8 +20,8 @@
           <li th:each="profile : ${profiles}">
             <div class="profile">
               <a th:href="@{/profile/home/{profileId}(profileId=${profile.id})}">
-                <div class="profile-card">
-                  <img th:src="@{/images/icons/plus.png}" alt="user1img">
+                <div th:each="imageUrl : ${imageUrls}">
+                  <img th:src="@{${imageUrl}}" alt="프로필 이미지">
                 </div>
                 <p class="profile-card" th:text="${profile.name}"></p>
               </a>
@@ -32,7 +32,6 @@
 
       <div class="button">
         <a th:href="@{/profile/profile-update}" class="made-profile"><p>프로필 관리</p></a>
-
       </div>
     </div>
   </div>

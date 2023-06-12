@@ -2,12 +2,14 @@ package com.netf.netflix.Service;
 
 import com.netf.netflix.Entity.Member;
 import com.netf.netflix.Entity.Profile;
+import com.netf.netflix.Entity.ProfileImg;
 import com.netf.netflix.Entity.Video;
 import com.netf.netflix.Repository.ProfileRepository;
 import com.netf.netflix.Repository.VideoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.*;
 
@@ -16,7 +18,7 @@ import java.util.*;
 public class ProfileService {
     private final ProfileRepository profileRepository;
     private final VideoRepository videoRepository;
-
+    private final ProfileImgService profileImgService;
 
     public void saveProfile(Profile profile) {
         profileRepository.save(profile);
@@ -120,4 +122,8 @@ public class ProfileService {
         return profileRepository.findById(profileId).orElse(null);
     }
 
+    public void ProfileImgsave(MultipartFile ProfileImgFile) throws Exception {
+        ProfileImg profileImg = new ProfileImg();
+        profileImgService.uploadProfileImg(profileImg, ProfileImgFile);
+    }
 }

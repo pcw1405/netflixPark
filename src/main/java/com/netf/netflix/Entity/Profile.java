@@ -1,5 +1,6 @@
 package com.netf.netflix.Entity;
 
+import com.netf.netflix.Dto.ProfileImgDto;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -32,28 +33,17 @@ public class Profile {
     @Column(name = "maturity_level")
     private String maturityLevel;
 
-    @Column(name="image_path")
-    private String imagePath = "/images/icons/user11.png";
+    @Column(name="imageUrl")
+    private String imageUrl;
 
-//    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    @JoinColumn(name = "profile_img_id")
-//    private ProfileImg profileImg;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
-
-    // Getters and setters
-
-//    public void setProfileImg(ProfileImg profileImg) {
-//        this.profileImg = profileImg;
-//        profileImg.setProfile(this);
-//    }
-//
-//    public ProfileImg getProfileImg() {
-//        return profileImg;
-//    }
+    @OneToOne(mappedBy = "profile",cascade = CascadeType.ALL)
+    private ProfileImg profileImg;
 
     @ElementCollection
     @CollectionTable(name = "favorite_videos", joinColumns = @JoinColumn(name = "profile_id"))
@@ -65,5 +55,14 @@ public class Profile {
     @CollectionTable(name = "recently_viewed_videos", joinColumns = @JoinColumn(name = "profile_id"))
     @OrderColumn(name = "viewed_videos_index")
     private List<Long> recentlyViewedVideos;
+
+    public void setProfileImgDto(ProfileImgDto profileImgDto) {
+        if (this.profileImg == null) {
+            this.profileImg = new ProfileImg();
+        }
+        this.profileImg.setProfileImgName(profileImgDto.getProfileImgName());
+        this.profileImg.setProfileOriImgName(profileImgDto.getProfileOriImgName());
+        this.imageUrl=profileImgDto.getImageUrl();
+    }
 
 }

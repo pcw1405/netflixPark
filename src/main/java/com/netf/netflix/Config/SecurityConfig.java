@@ -42,6 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .mvcMatchers("/admin/**").hasRole("ADMIN")
                 .mvcMatchers("/profile").hasRole("USER")
                 .antMatchers("/save-like").permitAll()
+                .mvcMatchers("/profile/saveImageUrl").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -82,3 +83,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return firewall;
     }
 }
+

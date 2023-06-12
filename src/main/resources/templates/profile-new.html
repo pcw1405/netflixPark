@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>프로필 생성</title>
     <link rel="stylesheet" th:href="@{/assets/css/profile-change.css}">
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://kit.fontawesome.com/42c6a3cece.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -17,11 +16,11 @@
     </div>
     <div class="profile-card">
         <img id="profileImage" src="#" alt="selectuserimg" th:src="${imageUrl != null ? imageUrl : '/images/icons/plus.png'}">
-        <button class="pen" type="button" onclick="location.href='/profile-img/show'"><i class="fa-solid fa-pen"></i></button>
+        <button class="pen" type="button" onclick="location.href='/profile-img'"><i class="fa-solid fa-pen"></i></button>
     </div>
 
     <div class="change-main">
-        <form th:action="@{/profile/saveProfile}" method="post" onsubmit="saveProfile(event)">
+        <form th:action="@{/profile/saveProfile}" method="post">
             <input type="text" id="name" name="name" placeholder="이름 등록">
             <br/>
             <br/>
@@ -47,6 +46,7 @@
                 <div class="button">
                     <button class="click" type="submit">저장</button>
                     <input type="hidden" name="_csrf" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                    <input type="hidden" id="imgUrl" name="imgUrl" th:value="${imageUrl != null ? imageUrl : ''}">
                     <button class="click" type="button" onclick="location.href='/'">취소</button>
                 </div>
             </div>
