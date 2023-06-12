@@ -1,6 +1,7 @@
 package com.netf.netflix.Service;
 
 
+import com.netf.netflix.Constant.MembershipRole;
 import com.netf.netflix.Constant.Role;
 import com.netf.netflix.Entity.Member;
 
@@ -22,6 +23,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class MemberService implements UserDetailsService {
 
     private final MemberRepository memberRepository;
+
+
 
     public Member findMemberByEmail(String email) {
         return memberRepository.findByEmail(email);
@@ -65,6 +68,10 @@ public class MemberService implements UserDetailsService {
 
     public void changePhoneNumber(Member member, String phoneNum) {
         member.setPhoneNumber(phoneNum);
+    }
+
+    public static void membershipDrop(Member member) {
+        member.setMembershipRole(MembershipRole.NONE);
     }
 }
 
