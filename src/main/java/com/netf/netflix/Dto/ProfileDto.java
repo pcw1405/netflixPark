@@ -19,7 +19,7 @@ public class ProfileDto {
         this.profile= new Profile();
     }
     public void updateProfileFields() {
-        profile.setImagePath(imagePath);
+//        profile.setImagePath(imagePath);
         profile.setName(name);
         profile.setLanguage(language);
         profile.setNickname(nickname);

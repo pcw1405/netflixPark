@@ -5,21 +5,18 @@ import com.netf.netflix.Entity.Profile;
 import com.netf.netflix.Entity.Video;
 import com.netf.netflix.Repository.ProfileRepository;
 import com.netf.netflix.Repository.VideoRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
+@RequiredArgsConstructor
 public class ProfileService {
     private final ProfileRepository profileRepository;
     private final VideoRepository videoRepository;
-    @Autowired
-    public ProfileService(ProfileRepository profileRepository,VideoRepository videoRepositoryRepository) {
-        this.profileRepository = profileRepository;
-        this.videoRepository =videoRepositoryRepository;
 
-    }
 
     public void saveProfile(Profile profile) {
         profileRepository.save(profile);
@@ -30,6 +27,7 @@ public class ProfileService {
         profile.setLanguage(language);
         profile.setNickname(nickname);
         profile.setMaturityLevel(maturityLevel);
+        profileRepository.save(profile);
     }
 
 
