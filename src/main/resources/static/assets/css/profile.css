@@ -1,75 +1,82 @@
+body {
+  color: white;
+  background-color: #111;
+}
 
-	body {
-			color: white;
-			background-color:#111;
-		}
-		a{
-	    text-decoration: none;
-	    color:#808080;
-	    font-size:25px;
-		}
-		.main_logo_img{
-            max-width : 200px !important;
-            max-height: 50px !important;
-            min-height: 68px !important;
-            min-width: 120px !important;
-        }
+a {
+  text-decoration: none;
+  color: #808080;
+  font-size: 25px;
+}
 
-		div.profile-aria{
-		width:1200px;
-		text-align:center;
-		margin:0 auto;
-			position:absolute;
-			top:50%;
-			left:50%;
-			transform:translate(-50%, -50%)
-		}
-		p.tv {
-			text-align: center;
-			font-size: 65px;
-			margin-bottom: 40px;
-		}
-		li {
-			float: left;
-			list-style: none;
-			margin: 10px;
-			display: block;
-		}
-		div.profile {
-			width: 150px;
-			height: 200px;
-			margin-right:50px;
-			background: transparent;
-		}
-		div.profile-card img{
-			width: 150px;
-			height: 150px;
-		}
-		p.profile-card {
-			color: #808080;
-			text-align: center;
-		}
-	a.made-profile{
-	position:absolute;
-	bottom:-25%;
-	left:40%;
-	transform:translate(-50%, -50%)
-	height:35px;
-	text-align:center;
-	border:1px solid #808080;
-	width:170px;
-	margin: 0 auto;
-	font-size:23px;
-	}
-	div.profile:hover img{
-	border:4px solid white;
-	}
-    .plus img{
-    color:#333;
+.main_logo_img {
+  max-width: 200px !important;
+  max-height: 50px !important;
+  min-height: 68px !important;
+  min-width: 120px !important;
+}
 
-    }
-	p{
-	margin:5px 0;
-	padding:0;}
+div.profile-aria {
+  width: 1200px;
+  text-align: center;
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
+p.tv {
+  text-align: center;
+  font-size: 65px;
+  margin-bottom: 40px;
+}
 
+ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+li {
+  margin: 0 25px;
+}
+
+div.profile {
+  width: 150px;
+  height: 200px;
+  background: transparent;
+}
+
+div.profile-card img {
+  width: 150px;
+  height: 150px;
+}
+
+p.profile-card {
+  color: #808080;
+  text-align: center;
+}
+
+a.made-profile {
+  position: absolute;
+  bottom: -25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 35px;
+  text-align: center;
+  border: 1px solid #808080;
+  width: 170px;
+  margin: 0 auto;
+  font-size: 23px;
+}
+
+div.profile:hover img {
+  border: 4px solid white;
+}
+
+p {
+  margin: 5px 0;
+  padding: 0;
+}

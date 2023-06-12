@@ -28,15 +28,6 @@ public class HomeController {
     private final VideoImgRepository videoImgRepository;
 
 
-
-
-//    public HomeController(MemberService memberService, ProfileRepository profileRepository,VideoImgRepository videoImgRepository) {
-//        this.memberService = memberService;
-//        this.profileRepository = profileRepository;
-//        this.videoImgRepository=videoImgRepository;
-//
-//    }
-
     @GetMapping("/")
     public String home(Model model, Principal principal) {
         // 로그인된 멤버의 정보 가져오기

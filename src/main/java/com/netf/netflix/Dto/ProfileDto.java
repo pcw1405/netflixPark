@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProfileDto {
+    private Long id;
     private String name;
     private String language;
     private String nickname;
@@ -18,6 +19,7 @@ public class ProfileDto {
         this.profile= new Profile();
     }
     public void updateProfileFields() {
+        profile.setImagePath(imagePath);
         profile.setName(name);
         profile.setLanguage(language);
         profile.setNickname(nickname);

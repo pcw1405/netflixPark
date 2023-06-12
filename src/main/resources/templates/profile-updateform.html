@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>프로필 수정폼</title>
+  <link rel="stylesheet" th:href="@{/assets/css/profile-change.css}">
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="https://kit.fontawesome.com/42c6a3cece.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div>
+  <img th:src="@{/images/Netflix_Logo.png}" class="main_logo_img" alt="메인로고이미지">
+</div>
+<div class="profile-aria">
+  <div>
+    <p class="tv">프로필 생성</p>
+  </div>
+  <div class="profile-card">
+    <img id="profileImage" src="#" alt="selectuserimg" th:src="${imageUrl != null ? imageUrl : '/images/icons/plus.png'}">
+    <button class="pen" type="button" onclick="location.href='/profile-img/show'"><i class="fa-solid fa-pen"></i></button>
+  </div>
+
+  <div class="change-main">
+    <form action="/profile/updateProfile" method="post" name="profile">
+      <input type="text" id="name" name="name" placeholder="이름 등록" th:value="${profile != null ? profile.name : ''}">
+      <br/>
+      <br/>
+      <p class="lang">언어</p>
+      <label for="langs" class="langs"></label>
+      <select id="langs" name="language">
+        <option label="한국어" th:selected="${profile != null && profile.language == '한국어'}">한국어</option>
+        <option label="English" th:selected="${profile != null && profile.language == 'English'}">English</option>
+      </select>
+      <p class="nick">게임 닉네임:</p>
+      <p class="nick-content"> 닉네임은 모든 넷플릭스 게임에서 다른 넷플릭스 회원들과 같이 플레이할 때 사용되는 고유의 이름입니다. <a href="/" class="nicka">자세히 알아보기</a></p>
+      <input type="text" id="nickname" name="nickname" placeholder="게임 닉네임 등록" th:value="${profile != null ? profile.nickname : ''}">
+      <h4 class="sector">관람등급 설정:</h4>
+      <label for="maturityLevel"></label>
+      <select id="maturityLevel" name="maturityLevel">
+        <option class="p2" th:selected="${profile != null && profile.maturityLevel == '모든 관람등급'}">모든 관람등급</option>
+        <option class="p2" th:selected="${profile != null && profile.maturityLevel == '키즈 등급'}">키즈 등급</option>
+      </select>
+      <p><br/></p>
+      <p class="nick">이 프로필에서는 모든 관람등급의 콘텐츠가 표시됩니다.</p>
+
+      <div class="buttonzip">
+        <div class="button">
+          <button class="click" type="submit">저장</button>
+          <input type="hidden" name="_csrf" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+          <button class="click" type="button" onclick="location.href='/'">취소</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>

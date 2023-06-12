@@ -10,6 +10,6 @@ import java.util.Optional;
 
 @Repository
 public interface ProfileRepository extends JpaRepository<Profile, Long> {
-    Optional<Profile>findByMemberId(String memberId);
+    Optional<Profile> findByIdAndMemberId(Long id, String memberId);
     List<Profile> findByMember(Member member);
 }

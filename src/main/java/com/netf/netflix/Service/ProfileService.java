@@ -1,5 +1,6 @@
 package com.netf.netflix.Service;
 
+import com.netf.netflix.Entity.Member;
 import com.netf.netflix.Entity.Profile;
 import com.netf.netflix.Entity.Video;
 import com.netf.netflix.Repository.ProfileRepository;
@@ -22,6 +23,13 @@ public class ProfileService {
 
     public void saveProfile(Profile profile) {
         profileRepository.save(profile);
+    }
+
+    public void updateProfile(Profile profile, String name,String language,String nickname ,String maturityLevel) {
+        profile.setName(name);
+        profile.setLanguage(language);
+        profile.setNickname(nickname);
+        profile.setMaturityLevel(maturityLevel);
     }
 
 
@@ -96,6 +104,9 @@ public class ProfileService {
                 System.out.println("Recently viewed video ID: " + videoId);
             }
         }
+    }
+    public Profile getProfileById(Long profileId){
+        return profileRepository.findById(profileId).orElse(null);
     }
 
 }

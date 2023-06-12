@@ -1,13 +1,10 @@
 package com.netf.netflix.Controller;
 
 import com.netf.netflix.Constant.VideoRole;
-import com.netf.netflix.Dto.MemberFormDto;
 import com.netf.netflix.Dto.VideoFormDto;
-import com.netf.netflix.Dto.VideoImgDto;
 import com.netf.netflix.Entity.Profile;
 import com.netf.netflix.Entity.Video;
 import com.netf.netflix.Entity.VideoImg;
-import com.netf.netflix.Repository.MemberRepository;
 import com.netf.netflix.Repository.ProfileRepository;
 import com.netf.netflix.Repository.VideoImgRepository;
 import com.netf.netflix.Repository.VideoRepository;
@@ -15,7 +12,6 @@ import com.netf.netflix.Service.ProfileService;
 import com.netf.netflix.Service.VideoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,7 +22,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.nio.file.FileStore;
 import java.util.*;
 
 @Controller
@@ -83,7 +78,7 @@ public class VideoController {
         return "/rightmain/search";
     }
 
-    @GetMapping("/drama")
+    @GetMapping("/drama/{profileId}")
     public String dramaList( Model model,HttpSession session){
 
         Long profileId = (Long) session.getAttribute("profileNm");
@@ -113,6 +108,9 @@ public class VideoController {
 
         model.addAttribute("subjects",subjects);
         model.addAttribute("videos",videos);
+        //세션 + 하단 두줄 영화 및 mylist 추가
+//        List<VideoImg> videoImgs = videoImgRepository.findAll();
+//        model.addAttribute("videoImgs",videoImgs);
 
 
         return "/leftmain/drama";
@@ -180,7 +178,7 @@ public class VideoController {
             recentVideos.add(video);
         }
 
-// 모델에 좋아하는 비디오 리스트 추가
+// 모델에 좋아하는 비디오 리스트 추가o
         model.addAttribute("recentVideos", recentVideos);
         return "/leftmain/recent";
     }
