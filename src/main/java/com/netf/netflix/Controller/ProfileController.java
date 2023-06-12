@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 import java.util.Optional;
@@ -68,14 +69,21 @@ public class ProfileController {
             throw new RuntimeException("사용자 정보를 찾을 수 없습니다.");
         }
         List<Profile> profiles = profileRepository.findByMember(member);
-//        System.out.println("profiles : " + profiles);
+
+        List<String> imageUrls = new ArrayList<>();
+        for (Profile profile : profiles) {
+            String imageUrl = profile.getImageUrl(); // 이미지 URL을 가져오는 로직
+            imageUrls.add(imageUrl);
+        }
         model.addAttribute("profiles", profiles);
+        model.addAttribute("imageUrls", imageUrls);
+
         return "profile";
     }
-
     @GetMapping("/profile-new")
-    public String profileForm(Model model) {
+    public String profileForm(Model model, @RequestParam(value = "image",required = false)String imageUrl) {
         model.addAttribute("profileDto", new ProfileDto());
+        model.addAttribute("imageUrl",imageUrl);
         return "profile-new";
     }
 
@@ -92,11 +100,16 @@ public class ProfileController {
             throw new RuntimeException("사용자 정보를 찾을 수 없습니다.");
         }
 
+
+
+        profileDto.getProfile().setMember(member); // 멤버와 프로필 연결
+
+        String imageUrl = profileDto.getImageUrl(); // 이미지 URL 가져오기
+        profileDto.getProfile().setImageUrl(imageUrl); // 프로필 엔티티의 imageUrl 필드에 저장
         profileDto.updateProfileFields(); // 프로필 필드 값을 업데이트
 
-        Profile profile = profileDto.getProfile();
-        profile.setMember(member);
-        profileService.saveProfile(profile);
+        profileService.saveProfile(profileDto.getProfile()); // 프로필 저장
+
         return "redirect:/profile/profile";
     }
     @GetMapping("/profile-update")

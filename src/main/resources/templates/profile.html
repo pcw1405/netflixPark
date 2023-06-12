@@ -17,12 +17,10 @@
       </div>
       <div>
         <ul>
-          <li th:each="profile : ${profiles}">
+          <li th:each="profile, status : ${profiles}">
             <div class="profile">
               <a th:href="@{/profile/home/{profileId}(profileId=${profile.id})}">
-                <div th:each="imageUrl : ${imageUrls}">
-                  <img th:src="@{${imageUrl}}" alt="프로필 이미지">
-                </div>
+                <img th:src="${imageUrls[status.index]}" alt="프로필 이미지">
                 <p class="profile-card" th:text="${profile.name}"></p>
               </a>
             </div>

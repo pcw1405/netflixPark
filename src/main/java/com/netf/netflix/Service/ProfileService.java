@@ -126,4 +126,8 @@ public class ProfileService {
         ProfileImg profileImg = new ProfileImg();
         profileImgService.uploadProfileImg(profileImg, ProfileImgFile);
     }
+    public List<Profile> getAllProfiles() {
+        return profileRepository.findAll();
+    }
+
 }

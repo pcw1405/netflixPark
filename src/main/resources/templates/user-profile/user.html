@@ -27,11 +27,7 @@
           <h4 class="headline">
             멤버쉽 & 결제정보
           </h4>
-          <form action="/member-secession" method="post">
-            <input type="hidden" name="membershipDrop" value="NONE">
-            <button class="button">멤버쉽 탈퇴</button>
-            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-          </form>
+          <button class="button">멤버쉽 탈퇴</button>
         </div>
         <div class="right">
           <div class="d-flex space-between">
@@ -98,6 +94,8 @@
             </div>
           </form>
 
+
+
           <div class="line"></div>
 
           <div class="carddetail d-flex space-between flex-middle">
@@ -150,24 +148,21 @@
           <h4 class="headline">프로필 & 자녀 보호 설정</h4>
         </div>
 
-          <div class="right d-flex flex-column">
-              <div class="info-container d-flex flex-middle space-between" th:each="profile : ${profiles}">
-                <div class="name d-flex flex-item flex-middle">
-                  <img th:src="${profile.imagePath}" alt="user" class="user-icon"/>
-                  <p class="username" th:text="${profile.name}"> </p>
-                  <p class="maturity" th:text="${profile.maturityLevel}"> </p>
+        <div class="right">
+          <div class="">
+            <div class="info-container d-flex flex-middle space-between" th:each="profiles : ${profiles}">
+              <div class="name d-flex">
+                <img th:src="${profiles.imagePath}" alt="user" class="user-icon" />
+                <div class="content">
+                  <p class="username" th:text="${profiles.name}"></p>
+                  <p class="maturity" th:text="${profiles.maturityLevel}"></p>
                 </div>
-                <div class="flex-item">
-                  <form action="/profile-delete" method="post">
-                    <input type="hidden" name="profileId" th:value="${profile.id}">
-                    <a type="submit" class="ms-auto">프로필 삭제</a>
-                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-                  </form>
-                </div>
-
               </div>
-              <div class="line"></div>
             </div>
+            <div class="line"></div>
+          </div>
+
+        </div>
 
 
       </div>
@@ -212,5 +207,5 @@
 </div>
 </div>
 
-</html>
+
 

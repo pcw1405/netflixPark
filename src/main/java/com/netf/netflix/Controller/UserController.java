@@ -74,26 +74,5 @@ public class UserController {
         return "redirect:/user";
     }
 
-    @PostMapping(value = "/member-secession")
-    public String memberSecession(@RequestParam("membershipDrop") String membershipDroptheBeat,
-                                  HttpSession session){
-        String loggedInUser = (String) session.getAttribute("loggedInUser");
-        Member member = memberRepository.findByEmail(loggedInUser);
-        if(membershipDroptheBeat == "NONE"){
-            MemberService.membershipDrop(member);
-        }
-        session.setAttribute("loggedInUser", member.getEmail());
-        return "redirect:/user";
-    }
-
-    @PostMapping("/profile-delete")
-    public String userProfileDelete(@RequestParam("profileId") Long profileId){
-
-
-        profileRepository.deleteById(profileId);
-
-
-        return "redirect:/user";
-    }
 
 }

@@ -2,7 +2,6 @@ package com.netf.netflix.Controller;
 
 import com.netf.netflix.Dto.MemberFormDto;
 import com.netf.netflix.Entity.Member;
-import com.netf.netflix.Repository.MemberRepository;
 import com.netf.netflix.Service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -30,7 +32,6 @@ import java.util.List;
 public class MemberController {
     private final MemberService memberService;
     private final PasswordEncoder passwordEncoder;
-    private final MemberRepository memberRepository;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -91,23 +92,8 @@ public class MemberController {
 
     }
 
-    @GetMapping(value = "/find-id")
-    public String findIdMain(){
-        return "/find-id";
-    }
 
-    @PostMapping(value = "/find-email")
-    public String findIdPost(Model model, @RequestParam("name") String name,
-                             @RequestParam("phonenum") String phonenum){
-        Member member = memberRepository.findByNameAndPhoneNumber(name, phonenum);
-        String foundEmail = member.getEmail();
-        if (foundEmail != null){
-            model.addAttribute("Message", foundEmail);
-        }else{
-            model.addAttribute("Message","찾으시는 이메일이 없습니다. 이름과 전화번호를 확인해주세요");
-        }
 
-        return "/find-id";
-    }
+
 
 }

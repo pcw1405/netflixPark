@@ -16,14 +16,13 @@ public class ProfileDto {
     private String language;
     private String nickname;
     private String maturityLevel;
-//    private String profileImageUrl;
-    private String imagePath;
+    private String imageUrl;
     private Profile profile;
     public ProfileDto() {
         this.profile= new Profile();
     }
     public void updateProfileFields() {
-//        profile.setImagePath(imagePath);
+        profile.setImageUrl(imageUrl);
         profile.setName(name);
         profile.setLanguage(language);
         profile.setNickname(nickname);

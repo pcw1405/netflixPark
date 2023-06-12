@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>프로필 생성</title>
     <link rel="stylesheet" th:href="@{/assets/css/profile-change.css}">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://kit.fontawesome.com/42c6a3cece.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -20,7 +21,7 @@
     </div>
 
     <div class="change-main">
-        <form th:action="@{/profile/saveProfile}" method="post">
+        <form th:action="@{/profile/saveProfile}" method="post" onsubmit="submitForm()">
             <input type="text" id="name" name="name" placeholder="이름 등록">
             <br/>
             <br/>
@@ -46,13 +47,19 @@
                 <div class="button">
                     <button class="click" type="submit">저장</button>
                     <input type="hidden" name="_csrf" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-                    <input type="hidden" id="imgUrl" name="imgUrl" th:value="${imageUrl != null ? imageUrl : ''}">
+                    <input type="hidden" id="imageUrl" name="imageUrl">
                     <button class="click" type="button" onclick="location.href='/'">취소</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
-
 </body>
+<script>
+    function submitForm() {
+        var imageUrlInput = document.getElementById('imageUrl');
+        var profileImage = document.getElementById('profileImage');
+        imageUrlInput.value = profileImage.src;
+    }
+</script>
 </html>

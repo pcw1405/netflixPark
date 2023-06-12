@@ -47,6 +47,7 @@ public class ProfileImgController {
             return "profile-img";
         }
 
+
         return "redirect:/profile-img";
     }
 }

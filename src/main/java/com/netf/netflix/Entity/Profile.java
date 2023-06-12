@@ -4,7 +4,6 @@ import com.netf.netflix.Dto.ProfileImgDto;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.util.List;
