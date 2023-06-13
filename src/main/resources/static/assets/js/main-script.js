@@ -33,8 +33,14 @@ if ($clickedElement !== null) {
 
 
 if ($('.popup') !== null) {
-  $('.popup').find('.saveLike i').css('color', 'red');
-  $('.popup').find('.saveLike i').attr('data-iColor', 'red');
+
+if (videoId === $('.popup').find('[data-video-id]').attr('data-video-id')) {
+  // 조건이 참인 경우 실행할 코드
+    $('.popup').find('.saveLike i').css('color', 'red');
+    $('.popup').find('.saveLike i').attr('data-iColor', 'red');
+}
+//  $('.popup').find('.saveLike i').css('color', 'red');
+//  $('.popup').find('.saveLike i').attr('data-iColor', 'red');
 }
 
 if ($originalElement !== null) {
@@ -48,9 +54,11 @@ $('[data-video-id]').each(function() {
   // data-video-id 값이 videoId와 일치하는 경우 해당 요소의 save-like 버튼을 찾아 색상을 변경한다
   if (currentVideoId === videoId) {
 //    var saveLikeButton = $(this).siblings('.video-description').find('.saveLike i');
-var saveLikeButton = $(this).find('.saveLike i');
+var saveLikeButton = $(this).find(' i');
+ $(this).attr('data-iColor', 'red');
 
-    saveLikeButton.attr('data-iColor', 'red');
+
+//    saveLikeButton.attr('data-iColor', 'red');
 
     // data-iColor 값이 'red'인 경우 색상을 red로, 그렇지 않은 경우 색상을 white로 변경한다
     var iColor = saveLikeButton.attr('data-iColor');
@@ -77,37 +85,52 @@ if ($clickedElement !== null) {
 }
 
 if ($('.popup') !== null) {
-  $('.popup').find('.saveLike i').css('color', 'white');
-  $('.popup').find('.saveLike i').attr('data-iColor', 'white');
+if (videoId === $('.popup').find('[data-video-id]').attr('data-video-id')) {
+  // 조건이 참인 경우 실행할 코드
+    $('.popup').find('.saveLike i').css('color', 'white');
+    $('.popup').find('.saveLike i').attr('data-iColor', 'white');
 }
 
-if ($originalElement !== null) {
+
+//  $('.popup').find('.saveLike i').css('color', 'white');
+//  $('.popup').find('.saveLike i').attr('data-iColor', 'white');
+}
+
+    if ($originalElement !== null) {
   $originalElement.find('i').css('color', 'white');
   $originalElement.find('i').attr('data-iColor', 'white');
-}
+    }
 
-$('[data-video-id]').each(function() {
-  var currentVideoId = $(this).attr('data-video-id');
 
-  // data-video-id 값이 videoId와 일치하는 경우 해당 요소의 save-like 버튼을 찾아 색상을 변경한다
-  if (currentVideoId === videoId) {
-//    var saveLikeButton = $(this).siblings('.video-description').find('.saveLike i');
-var saveLikeButton = $(this).find('.saveLike i');
 
-    saveLikeButton.attr('data-iColor', 'white');
+    $('[data-video-id]').each(function() {
+         var currentVideoId = $(this).attr('data-video-id');
+
+
+    // data-video-id 값이 videoId와 일치하는 경우 해당 요소의 save-like 버튼을 찾아 색상을 변경한다
+        if (currentVideoId === videoId) {
+        //    var saveLikeButton = $(this).siblings('.video-description').find('.saveLike i');
+        var saveLikeButton = $(this).find('i');
+      $(this).attr('data-iColor', 'white');
+//        $('.popup').find('.saveLike i').css('color', 'white');
+//        $('.popup').find('.saveLike i').attr('data-iColor', 'white');
+
+//    saveLikeButton.attr('data-iColor', 'white');
+//        findI.find('I').attr('data-iColor', 'white');
 
     // data-iColor 값이 'red'인 경우 색상을 red로, 그렇지 않은 경우 색상을 white로 변경한다
     var iColor = saveLikeButton.attr('data-iColor');
 
     var saveLikeButtonColor = saveLikeButton.attr('data-iColor');
     saveLikeButtonColor='white'
-if (saveLikeButtonColor == 'red') {
+    if (saveLikeButtonColor == 'red') {
       saveLikeButton.css('color', 'red');
     } else {
       saveLikeButton.css('color', 'white');
     }
-  }
-});
+
+    }
+    });
 
 
 
@@ -146,7 +169,7 @@ if (saveLikeButtonColor == 'red') {
    });
 
 
-    $('.saveLike i').each(function() {
+    $('.saveLike i ,.findI i').each(function() {
         var iColor = $(this).attr('data-iColor');
         $(this).css('color', iColor);
     });
