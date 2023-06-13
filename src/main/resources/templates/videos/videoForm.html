@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/layout1}">
+      xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
+
+<script th:src="@{/assets/lib/jquery 3.7.0.js}"></script>
+<link rel="stylesheet" th:href="@{/assets/lib/bootstrap.css}">
+<script th:src="@{/assets/lib/bootstrap.js}"></script>
 
 <th:block layout:fragment="script">
     <script th:src="@{/assets/js/VideoForm.js}"></script>
@@ -35,11 +38,19 @@
         #login-form-section{
             margin-top : 150px;
         }
+        #editButton{
+            position : absolute;
+            top : 50px;
+            right : 100px;
+            padding : 10px 40px;
+            background-color : white;
+            color : black;
+        }
     </style>
 </th:block>
 
 <div layout:fragment="content">
-
+    <a href="/videoEditForm" id="editButton">비디어 수정 및 삭제</a>
         <main style="padding: 0px 10px;" >
             <section id="login-form-section">
                 <!--Login form start-->

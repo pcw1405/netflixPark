@@ -21,6 +21,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.*;
@@ -293,5 +297,26 @@ public class VideoController {
         model.addAttribute("recentVideos", recentVideos);
         return "/leftmain/recent";
     }
+
+    @GetMapping("/videoEditForm")
+    public String videoEditForm(@RequestParam(defaultValue = "0") int page, Model model) {
+        int pageSize = 10; // 페이지당 아이템 개수
+
+        Pageable pageable = PageRequest.of(page, pageSize);
+        Page<Video> videoPage = videoRepository.findPaginated(pageable);
+        List<Video> videoList = videoPage.getContent();
+        int totalPages = videoPage.getTotalPages();
+
+        model.addAttribute("videoList", videoList);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", totalPages);
+
+        return "/videos/videoEditForm";
+    }
+
+
+
+
+
 
 }

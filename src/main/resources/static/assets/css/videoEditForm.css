@@ -1,0 +1,16 @@
+body{
+    line-height : 1.2;
+    font-size : 14px;
+}
+.move-button{
+    text-align : center;
+}
+.uploadContainer{
+    max-width : 1000px;
+}
+table{
+    text-align : center;
+}
+td.description{
+    text-align : left;
+}

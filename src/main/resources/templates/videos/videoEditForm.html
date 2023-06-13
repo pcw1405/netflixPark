@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
+
+<script th:src="@{/assets/lib/jquery 3.7.0.js}"></script>
+<link rel="stylesheet" th:href="@{/assets/lib/bootstrap.css}">
+<script th:src="@{/assets/lib/bootstrap.js}"></script>
+
+<th:block layout:fragment="script">
+  <script th:src="@{/assets/js/VideoForm.js}"></script>
+</th:block>
+<th:block layout:fragment="css">
+  <link rel="stylesheet" th:href="@{/assets/css/landing-pages.css}">
+  <link rel="stylesheet" th:href="@{/assets/css/videoEditForm.css}">
+  <style>
+
+  </style>
+</th:block>
+
+<div layout:fragment="content">
+  <main style="padding: 0px 10px;" >
+    <section id="login-form-section">
+
+      <form role="form" method="post" class="uploadContainer d-flex direction-column" enctype="multipart/form-data">
+        <h2>영상 수정</h2>
+        <div class="input-group mb-3">
+          <button class="btn btn-outline-secondary" type="button" id="button-addon1">검색</button>
+          <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+        </div>
+
+        <table class="table table-dark align-middle">
+          <thead>
+          <tr>
+            <th scope="col">영상 번호</th>
+            <th scope="col">영상 이름</th>
+            <th scope="col">감독</th>
+            <th scope="col">배우</th>
+            <th scope="col">장르</th>
+            <th scope="col">줄거리</th>
+            <th scope="col">수정</th>
+            <th scope="col">삭제</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr scope="row" th:each="video : ${videoList}">
+            <td th:text="${video.id}"></td>
+            <td th:text="${video.videoNm}"></td>
+            <td th:text="${video.cast}"></td>
+            <td th:text="${video.actors}"></td>
+            <td th:text="${video.genres}"></td>
+            <td class="description" th:text="${video.description}"></td>
+            <td>
+              <a class="btn btn-primary" th:href="@{/videoEdit(videoId=${video.id})}">수정</a>
+            </td>
+            <td>
+              <a class="btn btn-danger" th:href="@{/videoDelete(videoId=${video.id})}">삭제</a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+
+        <div class="move-button">
+          <a class="btn btn-secondary" th:href="@{/videoEditForm(page=${currentPage-1})}" th:if="${currentPage > 0}">이전 페이지</a>
+          <a class="btn btn-secondary" th:href="@{/videoEditForm(page=${currentPage+1})}" th:if="${currentPage < totalPages-1}">다음 페이지</a>
+        </div>
+      </form>
+    </section>
+  </main>
+</div>
+</html>
+
