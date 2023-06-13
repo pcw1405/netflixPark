@@ -1,6 +1,7 @@
 package com.netf.netflix.Service;
 
 
+import com.netf.netflix.Constant.MembershipRole;
 import com.netf.netflix.Constant.Role;
 import com.netf.netflix.Entity.Member;
 
@@ -66,5 +67,6 @@ public class MemberService implements UserDetailsService {
     public void changePhoneNumber(Member member, String phoneNum) {
         member.setPhoneNumber(phoneNum);
     }
+    public static void membershipDrop(Member member) {member.setMembershipRole(MembershipRole.NONE); }
 }
 

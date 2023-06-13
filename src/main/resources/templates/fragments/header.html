@@ -49,7 +49,7 @@
                         <th:block th:each="profile : ${otherProfiles}" th:if="${profile.id != selectedProfile.id}">
                             <a th:href="@{/profile/home/{profileId}(profileId=${profile.id})}"
                                class="profile-item d-flex flex-middle hide-profile">
-                                <img th:src="${profile.imagePath}" alt="user profile icon" class="user-icon" />
+                                <img th:src="${profile.imageUrl}" alt="user profile icon" class="user-icon" />
                                 <span th:text="${profile.name}"></span>
                             </a>
                         </th:block>

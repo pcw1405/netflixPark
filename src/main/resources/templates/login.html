@@ -33,24 +33,24 @@
 
           <label th:for="email"></label>
           <input type="email"name="email" id="email" class="email" placeholder="이메일 주소 입력"/>
-<!--          <p  class="fieldError">잘못된 이메일주소 입니다..</p>-->
+          <!--          <p  class="fieldError">잘못된 이메일주소 입니다..</p>-->
 
           <label th:for="password"></label>
           <input type="password"  name="password" id="password" placeholder="비밀번호를 입력해주세요." required/>
-<!--          <p  class="fieldError">잘못된 비밀번호입니다.</p>-->
+          <!--          <p  class="fieldError">잘못된 비밀번호입니다.</p>-->
 
           <button class="button submitButton" id="singInButton">로그인</button>
           <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-            <!--&lt;!&ndash;            <a style="text-decoration: none; color: white;" href="/user_dashboard/browse.html">로그인</a>&ndash;&gt;-->
-            <!--&lt;!&ndash;-->
+          <!--&lt;!&ndash;            <a style="text-decoration: none; color: white;" href="/user_dashboard/browse.html">로그인</a>&ndash;&gt;-->
+          <!--&lt;!&ndash;-->
 
 
-          <div class="rememberMe">
-            <input type="checkbox" name="rememberMe" id="rememberMe" class="rememberMe">
-            <label for="rememberMe"><span class="login-remember-me-label-text">로그인 정보 저장</span></label>
-            <p>
-              <br/>
-            </p>
+          <div class="rememberMe d-flex space-between">
+            <div>
+              <input type="checkbox" name="rememberMe" id="rememberMe" class="rememberMe">
+              <label for="rememberMe"><span class="login-remember-me-label-text">로그인 정보 저장</span></label>
+            </div>
+            <a href="/members/find-id" class="findmember ms-auto">도움이 필요하신가요?</a>
           </div>
 
           <p class="signUpText para">
@@ -67,28 +67,44 @@
   </main>
 
   <script>
-          //function to validate email address on input text change and enable submit button if it's true
-          document.getElementById('errorEmail').style.display = "none";
-          document.getElementById('errorPassword').style.display = "none";
-          function validateEmail() {
-              let email = document.getElementById('email').value;
-              let re = /\S+@\S+\.\S+/;
-              let result = re.test(email);
-              if (result) {
-                  document.getElementById('errorEmail').style.display = "none";
-                  document.getElementById('signInButton').disabled = false;
-                 // document.getElementById("email-form").submit();
-              }
-              else {
-                  document.getElementById('errorEmail').style.display = "block";
-                  document.getElementById('signInButton').disabled = true;
-              }
-          }
+  // DOM 요소 캐시
+  var errorEmailElement = document.getElementById('errorEmail');
+  var errorPasswordElement = document.getElementById('errorPassword');
+  var emailInputElement = document.getElementById('email');
+  var signInButtonElement = document.getElementById('signInButton');
 
- document.getElementById("signInButton").addEventListener("click", function(e) {
-  e.preventDefault();
-  })
-      </script>
+  // 이메일 유효성 검사
+  function validateEmail() {
+    var email = emailInputElement.value;
+    var re = /\S+@\S+\.\S+/;
+    var result = re.test(email);
+    if (result) {
+      errorEmailElement.style.display = "none";
+      signInButtonElement.disabled = false;
+    } else {
+      errorEmailElement.style.display = "block";
+      signInButtonElement.disabled = true;
+    }
+  }
+
+  // 페이지 로드 시, 저장된 로그인 정보 가져와서 체크박스 상태 설정
+  window.addEventListener("load", function() {
+    var rememberMe = localStorage.getItem("rememberMe");
+    if (rememberMe === "true") {
+      rememberMeCheckbox.checked = true;
+    }
+  });
+
+  // 체크박스 상태 변경 시, 로그인 정보 저장 여부 업데이트
+  rememberMeCheckbox.addEventListener("change", function() {
+    if (this.checked) {
+      localStorage.setItem("rememberMe", "true");
+    } else {
+      localStorage.setItem("rememberMe", "false");
+    }
+  });
+</script>
+
 </div>
 
 </html>

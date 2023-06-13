@@ -55,7 +55,9 @@
 		position:absolute;
 		background:black;
 		border-radius:50%;
-		color:white;
+		color:white !important;
+		width:23px;
+		height:23px;
 		border:none;
 		font-size:15px;
 		bottom:-10px;
