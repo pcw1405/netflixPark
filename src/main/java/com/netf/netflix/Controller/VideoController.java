@@ -89,7 +89,7 @@ public class VideoController {
         // favoriteVideos 값을 모델에 추가합니다
         model.addAttribute("favoriteVideos", profile.getFavoriteVideos());
 
-          List<String> subjects = videoRepository.findAllGenres();
+        List<String> subjects = videoRepository.findAllGenres();
         List<Video> videos = videoRepository.findByVideoRole(VideoRole.DRAMA);
 
         for (Video video : videos) {
