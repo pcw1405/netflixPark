@@ -41,6 +41,7 @@ public class UserController {
         Member member = memberRepository.findByEmail(loggedInUser);
         List<Profile> profiles = profileRepository.findByMember(member);
 
+
         model.addAttribute("member", member);
         model.addAttribute("profiles", profiles);
 
@@ -86,13 +87,11 @@ public class UserController {
         return "redirect:/user";
     }
 
-    @PostMapping("/profile-delete")
+    @PostMapping(value = "/profile-delete")
     public String userProfileDelete(@RequestParam("profileId") Long profileId){
 
         profileRepository.deleteById(profileId);
 
         return "redirect:/user";
     }
-
-
 }
