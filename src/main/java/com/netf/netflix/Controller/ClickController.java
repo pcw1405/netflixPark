@@ -1,6 +1,7 @@
 package com.netf.netflix.Controller;
 
 import com.netf.netflix.Service.ProfileService;
+import com.netf.netflix.Service.VideoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import java.util.Map;
 public class ClickController {
 
     private final ProfileService profileService;
+    private final VideoService videoService;
 
     @PostMapping("/save-like")
     public ResponseEntity<?> saveLike(@RequestBody Map<String, Object> requestData, HttpSession session) {
@@ -61,6 +63,7 @@ public class ClickController {
 
         try{
             profileService.addRecentlyViewedVideo(profileId,  videoId);
+            videoService.addViewCount(videoId);
 
             // ResponseEntity를 사용하여 JSON 데이터와 HTTP 상태 코드 반환
             String jsonResponse = "{\"message\": \"Video added to recently viewed videos\"}";

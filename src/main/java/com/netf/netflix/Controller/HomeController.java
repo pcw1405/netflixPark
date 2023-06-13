@@ -106,7 +106,8 @@ public class HomeController {
             System.out.println("null입니다");
         }
 
-
+        List<Video> top10Videos = videoRepository.findTop10ByOrderByViewCountDesc();
+        model.addAttribute("top10Videos", top10Videos);
 
         return "home";
     }

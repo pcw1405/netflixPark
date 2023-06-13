@@ -63,23 +63,26 @@ public class VideoService {
 
     }
 
-//    public void saveLike(Long videoId, HttpSession session) {
-//
-//        // 비디오 아이디를 이용하여 필요한 로직을 수행한 후에 데이터베이스에 저장하는 예시입니다.
-//        // 여기서는 간단히 Video 객체를 가져와서 출력하는 예시를 보여줍니다.
-//        Long profileId = (Long) session.getAttribute("profileNm");
-//        Profile profile = profileRepository.findById(profileId).orElse(null);
-//
-//        Video video = videoRepository.findById(videoId).orElse(null);
-//
-//        if (video != null) {
-//            System.out.println("Liked Video: " + video.getVideoNm());
-//            // 데이터베이스에 저장하는 로직을 추가하세요.
-//
-//
-//        }
+    public void addViewCount(long videoId) {
+
+        // 비디오 아이디를 이용하여 필요한 로직을 수행한 후에 데이터베이스에 저장하는 예시입니다.
+        // 여기서는 간단히 Video 객체를 가져와서 출력하는 예시를 보여줍니다.
+        Video targetVideo = videoRepository.findById(videoId).orElse(null);
+
+        if (targetVideo != null) {
+            System.out.println("Liked Video: " + targetVideo.getVideoNm());
+            // 데이터베이스에 저장하는 로직을 추가하세요.
+
+            // 비디오 조회수 증가
+            int currentViewCount = targetVideo.getViewCount();
+            targetVideo.setViewCount(currentViewCount + 1);
+
+            // 레포지토리에 저장
+            videoRepository.save(targetVideo);
+
+        }
 
 
-//    }
+    }
 //
 }
