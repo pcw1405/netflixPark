@@ -24,4 +24,7 @@ public interface VideoRepository extends JpaRepository<Video, Long> {
 
     List<Video> findByVideoRole(VideoRole videoRole);
 
+    @Query("SELECT DISTINCT v FROM Video v JOIN FETCH v.videoImg vi ORDER BY vi.uploadDate DESC")
+    List<Video> findDistinctByOrderByVideoImgUploadDateDesc();
+
 }
