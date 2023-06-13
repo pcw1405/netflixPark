@@ -67,7 +67,9 @@ public class MemberService implements UserDetailsService {
     public void changePhoneNumber(Member member, String phoneNum) {
         member.setPhoneNumber(phoneNum);
     }
-    public static void membershipDrop(Member member) {member.setMembershipRole(MembershipRole.NONE); }
+    public void membershipDrop(Member member) {
+        member.setMembershipRole(MembershipRole.NONE);
+    }
 
 
 }

@@ -75,12 +75,12 @@ public class UserController {
     }
 
     @PostMapping(value = "/member-secession")
-    public String memberSecession(@RequestParam("membershipDrop") String membershipDroptheBeat,
+    public String memberSecession(@RequestParam("membershipDrop") String membershipDrop,
                                   HttpSession session){
         String loggedInUser = (String) session.getAttribute("loggedInUser");
         Member member = memberRepository.findByEmail(loggedInUser);
-        if(membershipDroptheBeat == "NONE"){
-            MemberService.membershipDrop(member);
+        if(membershipDrop.equals("NONE")){
+            memberService.membershipDrop(member);
         }
         session.setAttribute("loggedInUser", member.getEmail());
         return "redirect:/user";
@@ -89,11 +89,10 @@ public class UserController {
     @PostMapping("/profile-delete")
     public String userProfileDelete(@RequestParam("profileId") Long profileId){
 
-
         profileRepository.deleteById(profileId);
-
 
         return "redirect:/user";
     }
+
 
 }
