@@ -101,7 +101,7 @@ public class ProfileController {
         }
 
 
-
+            //프로필이미지연동 하단 4줄
         profileDto.getProfile().setMember(member); // 멤버와 프로필 연결
 
         String imageUrl = profileDto.getImageUrl(); // 이미지 URL 가져오기
