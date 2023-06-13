@@ -108,6 +108,11 @@ public class MemberController {
         return "/find-id";
     }
 
+    @GetMapping(value = "/find-pw")
+    public String findPwMain(){
+        return "/find-pw";
+    }
+
 
 
 
