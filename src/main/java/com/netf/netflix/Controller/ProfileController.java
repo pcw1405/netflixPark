@@ -43,7 +43,6 @@ public class ProfileController {
         if (selectedProfile == null) {
             throw new RuntimeException("프로필을 찾을 수 없습니다.");
         }
-
         // 모델에 선택된 프로필 정보를 추가
         model.addAttribute("selectedProfile", selectedProfile);
 
@@ -113,8 +112,6 @@ public class ProfileController {
         return "home"; // 헤더 템플릿을 리턴하도록 수정해주세요.
 
     }
-//    @GetMapping("/profile/{id}")
-
     @GetMapping("/profile")
     public String showProfile(Model model, HttpSession session) {
         String loggedInUser = (String) session.getAttribute("loggedInUser");
@@ -155,7 +152,7 @@ public class ProfileController {
         }
 
 
-            //프로필이미지연동 하단 4줄
+        //프로필이미지연동 하단 4줄
         profileDto.getProfile().setMember(member); // 멤버와 프로필 연결
 
         String imageUrl = profileDto.getImageUrl(); // 이미지 URL 가져오기

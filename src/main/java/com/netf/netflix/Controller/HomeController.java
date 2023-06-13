@@ -75,7 +75,7 @@ public class HomeController {
             // 선택한 비디오를 모델에 추가
             model.addAttribute("randomVideo", randomVideo);
         }
-        
+
         //최근본
         List<Long> recentViewId =  selectedProfile.getRecentlyViewedVideos();
         List<Video> recentVideos = new ArrayList<>();

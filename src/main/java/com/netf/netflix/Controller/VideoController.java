@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
@@ -62,9 +64,32 @@ public class VideoController {
         return "videos/videoForm";
     }
 
-    @GetMapping("/search")
-    public String videoList(Model model, String searchKeyword) {
+    @GetMapping("/search/{profileId}")
+    public String videoList(@PathVariable("profileId")Long profileId, Model model, String searchKeyword,HttpSession session) {
+        session.setAttribute("profileNm",profileId);
+        Profile profile = profileRepository.findById(profileId)
+                .orElseThrow(() -> new RuntimeException("Profile not found"));
+        Profile selectedProfile = profileRepository.findById(profileId).orElse(null);
+        if (selectedProfile == null) {
+            throw new RuntimeException("프로필을 찾을 수 없습니다.");
+        }
+        model.addAttribute("selectedProfile", selectedProfile);
+        List<Profile> otherProfiles = profileRepository.findByMember(profile.getMember())
+                .stream()
+                .filter(p -> !p.getId().equals(profileId))
+                .collect(Collectors.toList());
+        model.addAttribute("otherProfiles", otherProfiles);
+
+        String profileImageUrl = profile.getImageUrl();
+        // 프로필 이미지 URL이 null인 경우 기본값을 설정합니다
+        if (profileImageUrl == null) {
+            profileImageUrl = "/images/default-profile-image.jpg";  // 기본 이미지 URL 설정
+        }
+        model.addAttribute("profileImageUrl", profileImageUrl);
+
         List<Video> list = null;
+        List<VideoImg> videoImgs = videoImgRepository.findAll();
+        model.addAttribute("videoImgs",videoImgs);
 
         if (searchKeyword == null) {
             list = null;
@@ -79,12 +104,23 @@ public class VideoController {
     }
 
     @GetMapping("/drama/{profileId}")
-    public String dramaList( Model model,HttpSession session){
+    public String dramaList(@PathVariable("profileId") Long profileId, Model model, HttpSession session){
 
-        Long profileId = (Long) session.getAttribute("profileNm");
-        // 프로필 ID를 통해 프로필을 조회하고 favoriteVideos 값을 가져옵니다
+        session.setAttribute("profileNm",profileId);
         Profile profile = profileRepository.findById(profileId)
                 .orElseThrow(() -> new RuntimeException("Profile not found"));
+        Profile selectedProfile = profileRepository.findById(profileId).orElse(null);
+        if (selectedProfile == null) {
+            throw new RuntimeException("프로필을 찾을 수 없습니다.");
+        }
+
+        // 헤더이미지부르는부분
+        model.addAttribute("selectedProfile", selectedProfile);
+        List<Profile> otherProfiles = profileRepository.findByMember(profile.getMember())
+                .stream()
+                .filter(p -> !p.getId().equals(profileId))
+                .collect(Collectors.toList());
+        model.addAttribute("otherProfiles", otherProfiles);
 
         // favoriteVideos 값을 모델에 추가합니다
         model.addAttribute("favoriteVideos", profile.getFavoriteVideos());
@@ -111,22 +147,39 @@ public class VideoController {
         //세션 + 하단 두줄 영화 및 mylist 추가
 //        List<VideoImg> videoImgs = videoImgRepository.findAll();
 //        model.addAttribute("videoImgs",videoImgs);
-
+        String profileImageUrl = profile.getImageUrl();
+        // 프로필 이미지 URL이 null인 경우 기본값을 설정합니다
+        if (profileImageUrl == null) {
+            profileImageUrl = "/images/default-profile-image.jpg";  // 기본 이미지 URL 설정
+        }
+        List<VideoImg> videoImgs = videoImgRepository.findAll();
+        model.addAttribute("videoImgs",videoImgs);
+        model.addAttribute("profileImageUrl", profileImageUrl);
 
         return "/leftmain/drama";
     }
 
-    @GetMapping("/movie")
-    public String movieList( Model model,HttpSession session){
+    @GetMapping("/movie/{profileId}")
+    public String movieList(@PathVariable("profileId")Long profileId, Model model,HttpSession session){
 
-        Long profileId = (Long) session.getAttribute("profileNm");
+        session.getAttribute("profileNm");
         // 프로필 ID를 통해 프로필을 조회하고 favoriteVideos 값을 가져옵니다
         Profile profile = profileRepository.findById(profileId)
                 .orElseThrow(() -> new RuntimeException("Profile not found"));
 
-        // favoriteVideos 값을 모델에 추가합니다
+        Profile selectedProfile = profileRepository.findById(profileId).orElse(null);
+        if (selectedProfile == null) {
+            throw new RuntimeException("프로필을 찾을 수 없습니다.");
+        }
+
         model.addAttribute("favoriteVideos", profile.getFavoriteVideos());
 
+        model.addAttribute("selectedProfile", selectedProfile);
+        List<Profile> otherProfiles = profileRepository.findByMember(profile.getMember())
+                .stream()
+                .filter(p -> !p.getId().equals(profileId))
+                .collect(Collectors.toList());
+        model.addAttribute("otherProfiles", otherProfiles);
 
         List<String> subjects = videoRepository.findAllGenres();
         List<Video> videos = videoRepository.findByVideoRole(VideoRole.MOVIE);
@@ -144,52 +197,97 @@ public class VideoController {
             model.addAttribute("randomVideo", randomVideo);
         }
 
+        String profileImageUrl = profile.getImageUrl();
+        // 프로필 이미지 URL이 null인 경우 기본값을 설정합니다
+        if (profileImageUrl == null) {
+            profileImageUrl = "/images/default-profile-image.jpg";  // 기본 이미지 URL 설정
+        }
+        model.addAttribute("profileImageUrl", profileImageUrl);
 
+        List<VideoImg> videoImgs = videoImgRepository.findAll();
+        model.addAttribute("videoImgs",videoImgs);
         model.addAttribute("subjects",subjects);
         model.addAttribute("videos",videos);
 
 
-        return "/leftmain/movies";
+        return "/leftmain/movie";
     }
 
-    @GetMapping("/mylist")
-    public String myList( Model model,HttpSession session){
+    @GetMapping("/mylist/{profileId}")
+    public String myList(@PathVariable("profileId")Long profileId, Model model,HttpSession session){
 
-        Long profileId = (Long) session.getAttribute("profileNm");
+        session.getAttribute("profileNm");
         Profile profile = profileRepository.findById(profileId)
                 .orElseThrow(() -> new RuntimeException("Profile not found"));
+        Profile selectedProfile = profileRepository.findById(profileId).orElse(null);
+        if (selectedProfile == null) {
+            throw new RuntimeException("프로필을 찾을 수 없습니다.");
+        }
         profileService.printFavoriteVideoIds(profileId);
 
         model.addAttribute("favoriteVideos", profile.getFavoriteVideos());
 
+        model.addAttribute("selectedProfile", selectedProfile);
+        List<Profile> otherProfiles = profileRepository.findByMember(profile.getMember())
+                .stream()
+                .filter(p -> !p.getId().equals(profileId))
+                .collect(Collectors.toList());
+        model.addAttribute("otherProfiles", otherProfiles);
         // 좋아하는 비디오 리스트 가져오기
         Set<Long> favoriteVideosId = profile.getFavoriteVideos();
 
+        String profileImageUrl = profile.getImageUrl();
+        // 프로필 이미지 URL이 null인 경우 기본값을 설정합니다
+        if (profileImageUrl == null) {
+            profileImageUrl = "/images/default-profile-image.jpg";  // 기본 이미지 URL 설정
+        }
+        List<VideoImg> videoImgs = videoImgRepository.findAll();
+        model.addAttribute("videoImgs",videoImgs);
+        model.addAttribute("profileImageUrl", profileImageUrl);
         List<Video> videos =videoRepository.findAllById(favoriteVideosId);
         // 모델에 좋아하는 비디오 리스트 추가
         model.addAttribute("videos", videos);
         return "/leftmain/mylist";
     }
 
-    @GetMapping("/recent")
-    public String recentView( Model model,HttpSession session){
+    @GetMapping("/recent/{profileId}")
+    public String recentView(@PathVariable("profileId")Long profileId ,Model model,HttpSession session){
 
-        Long profileId = (Long) session.getAttribute("profileNm");
+        session.getAttribute("profileNm");
         Profile profile = profileRepository.findById(profileId)
                 .orElseThrow(() -> new RuntimeException("Profile not found"));
+        Profile selectedProfile = profileRepository.findById(profileId).orElse(null);
+        if (selectedProfile == null) {
+            throw new RuntimeException("프로필을 찾을 수 없습니다.");
+        }
         profileService.printRecentlyViewedVideos(profileId);
 
         model.addAttribute("favoriteVideos", profile.getFavoriteVideos());
+        model.addAttribute("selectedProfile", selectedProfile);
+        List<Profile> otherProfiles = profileRepository.findByMember(profile.getMember())
+                .stream()
+                .filter(p -> !p.getId().equals(profileId))
+                .collect(Collectors.toList());
+        model.addAttribute("otherProfiles", otherProfiles);
 
         // 좋아하는 비디오 리스트 가져오기
         List<Long> recentViewId = profile.getRecentlyViewedVideos();
         List<Video> recentVideos = new ArrayList<>();
+        List<VideoImg> videoImgs = videoImgRepository.findAll();
+        model.addAttribute("videoImgs",videoImgs);
 
         for (Long videoId : recentViewId) {
             Video video = videoRepository.findById(videoId)
                     .orElseThrow(() -> new IllegalArgumentException("Invalid video ID: " + videoId));
             recentVideos.add(video);
         }
+        String profileImageUrl = profile.getImageUrl();
+        // 프로필 이미지 URL이 null인 경우 기본값을 설정합니다
+        if (profileImageUrl == null) {
+            profileImageUrl = "/images/default-profile-image.jpg";  // 기본 이미지 URL 설정
+        }
+        model.addAttribute("profileImageUrl", profileImageUrl);
+
 
 // 모델에 좋아하는 비디오 리스트 추가o
         model.addAttribute("recentVideos", recentVideos);

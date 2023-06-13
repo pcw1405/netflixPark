@@ -11,14 +11,14 @@
                 <img th:src="@{/images/pngwing.com.png}" class="main_small_img" alt="">
             </a>
             <a th:href="@{/}" class="nav-item home">홈</a>
-            <a th:href="@{/movie}" class="nav-item">영화</a>
-            <a th:href="@{/drama}" class="nav-item">드라마</a>
-            <a th:href="@{/recent}" class="nav-item">최근시청기록</a>
-            <a th:href="@{/mylist}" class="nav-item">내가 찜한 콘텐츠</a>
+            <a th:href="@{/movie/{profileId}(profileId=${session.profileNm})}" class="nav-item">영화</a>
+            <a th:href="@{/drama/{profileId}(profileId=${session.profileNm})}" class="nav-item">드라마</a>
+            <a th:href="@{/recent/{profileId}(profileId=${session.profileNm})}" class="nav-item">최근 시청기록</a>
+            <a th:href="@{/mylist/{profileId}(profileId=${session.profileNm})}" class="nav-item">내가 찜한 콘텐츠</a>
             <a th:href="@{/video/new}" class="nav-item">비디오 업로드 </a>
         </div>
         <div class="righticons d-flex flex-end flex-middle">
-            <a th:href="@{/search}">
+            <a th:href="@{/search/{profileId}(profileId=${session.profileNm})}">
                 <img src="../../images/icons/search.svg" alt="search icon" />
             </a>
             <div class="dropdown notification">
@@ -30,7 +30,7 @@
 
                             <div class="align-self-center d-flex flex-column">
                                 <span class="mb-2" th:text="${video.video.videoNm}"></span>
-                            <p class="pt-2" th:text="${#dates.format(video.uploadDate, 'yyyy-MM-dd HH:mm:ss')}">업로드 시간? 지나온 기간</p>
+                                <p class="pt-2" th:text="${#dates.format(video.uploadDate, 'yyyy-MM-dd HH:mm:ss')}">업로드 시간? 지나온 기간</p>
                             </div>
                         </a>
                     </th:block>
@@ -41,7 +41,8 @@
 
             <!-- 프로필 구간 -->
             <div class="dropdown">
-                <img th:src="@{/images/icons/user1.png}" alt="user profile icon" class="user-icon" />
+                <img th:src="${selectedProfile.imageUrl}" alt="user profile icon" class="user-icon" />
+
                 <span class="profile-arrow"></span>
 
                 <div class="dropdown-content">
@@ -56,6 +57,7 @@
                     </div>
                     <div class="line"></div>
                     <div class="links d-flex direction-column">
+                        <a th:href="@{/profile/profile}">프로필 관리</a>
                         <a th:href="@{/user}">계정</a>
                         <a href="#">고객센터</a>
                         <a href="/">로그아웃</a>

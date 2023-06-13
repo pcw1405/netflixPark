@@ -21,7 +21,7 @@
             <div class="profile">
               <a th:href="@{/profile/profile-updateform/{profileId}(profileId=${profile.id})}">
                 <div class="profile-card">
-                  <img th:src="@{/images/icons/plus.png}" alt="user1img">
+                  <img th:src="${profile.imageUrl}" alt="user1img">
                 </div>
                 <p class="profile-card" th:text="${profile.name}"></p>
               </a>
