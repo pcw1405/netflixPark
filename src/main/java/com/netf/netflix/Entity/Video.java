@@ -50,6 +50,8 @@ public class Video{
     @OneToOne(mappedBy = "video", cascade = CascadeType.ALL)
     private VideoFile videoFile;
 
+    private int viewCount = 0;
+
     public void updateItem(VideoFormDto videoFormDto){
         this.videoNm = videoFormDto.getVideoNm();
         this.cast = videoFormDto.getCast();

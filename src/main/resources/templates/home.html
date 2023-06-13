@@ -98,6 +98,83 @@
     <!--paretn div with black bg after main hero section-->
     <div class="black-background"  >
 
+      <section id="ranking" class="container">
+
+        <!--                여기서부터 -->
+        <h4 class="mylist-heading" >
+
+          <span >오늘의 TOP10  </span>
+        </h4>
+        <!--                th:each="video, videoIndex : ${top10Videos}">-->
+        <div class="mylist-container d-flex flex-start flex-middle flex-no-wrap owl-carousel">
+          <div th:each="video, videoIndex  : ${top10Videos}" class="video searchlist getRecent" th:if="${top10Videos != null}">
+            <video class="mylist-img p-r-10 p-t-10 video-item"
+                   th:poster="${video.videoImg.imgUrl}">
+              <!--                            poster부분도 for each문으로 반복문을 돌려야한다 -->
+              <source
+                      th:src="${video.videoFile.fileUrl}"
+                      type="video/mp4">
+              <!--                            이 비디디오 소스 링크도 업로드방식인데 반복문을 돌려야한다 -->
+              <!--                            Your browser does not support the video tag.-->
+            </video>
+
+            <div class="video-description d-flex flex-end direction-column " th:data-video-url="@{${video.videoFile.fileUrl}}"
+                 th:data-video-nm="@{${video.videoNm}}"
+                 th:data-video-genres="@{${video.genres}}"
+                 th:data-video-description="@{${video.description}}"
+                 th:data-video-actors="@{${video.actors}}"
+                 th:data-video-cast="@{${video.cast}}"
+                 th:data-video-recent="@{${video.id}}"
+
+            >
+              <div class="play-button d-flex justify-content-start ">
+                <svg viewBox="0 0 24 24" class="full" >
+                  <path d="M6 4l15 8-15 8z" fill="black"></path>
+                </svg>
+
+
+                <!--                                -->
+
+                <div class="like-button saveLike" >
+                  <i class="fa-regular fa-heart fas" th:data-video-id="${video.id}" th:data-iColor="${favoriteVideos != null && favoriteVideos.contains(video.id) ? 'red' : 'white'}"></i>
+
+
+                </div>
+
+                <!--                                -->
+
+              </div>
+              <div>
+                <h4 class="heading f-w-8 text-shadow">
+                  <!--                                    Never Have I Ever-->
+                  <p th:text="${video.videoNm}"></p>
+                </h4>
+              </div>
+              <div class="info d-flex flex-middle flex-no-wrap">
+                <!--                                <p class="rated text-shadow"><strong>18+</strong></p>-->
+                <!--                                                                <p class="season-count text-shadow">시즌 1</p>-->
+              </div>
+              <div class="genere d-flex flex-no-wrap text-shadow" style="display: flex; position: relative;" >
+                <p th:text="'#' + ${video.genres}"></p>
+                <div style="position: absolute; right: 0; " >
+                  <span th:text="'TOP' + ${videoIndex.index + 1}" style="font-size: 18px; text-align: right; font-weight: bold " ></span>
+                  <span th:text="' ( view: ' + ${video.viewCount + ')'  }"></span>
+                </div>
+                <!--                                <p>#선정성</p>-->
+                <!--                                <p>#로맨스</p>-->
+                <!--                                <p>#사랑</p>-->
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
+
+
+      </section>
+
+
       <section id="recent_list" class="container">
 
         <!--                여기서부터 -->
