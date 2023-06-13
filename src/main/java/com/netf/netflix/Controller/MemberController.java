@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.net.URLEncoder;
 import java.sql.*;
 import java.util.Arrays;
 import java.util.List;
@@ -89,6 +90,7 @@ public class MemberController {
             return "/login";
         }
     }
+
     @GetMapping(value = "/find-id")
     public String findIdMain(){
         return "/find-id";
@@ -98,13 +100,11 @@ public class MemberController {
     public String findIdPost(Model model, @RequestParam("name") String name,
                              @RequestParam("phonenum") String phonenum){
         Member member = memberRepository.findByNameAndPhoneNumber(name, phonenum);
-        String foundEmail = member.getEmail();
-        if (foundEmail != null){
-            model.addAttribute("Message", foundEmail);
-        }else{
-            model.addAttribute("Message","찾으시는 이메일이 없습니다. 이름과 전화번호를 확인해주세요");
+        if(member == null || member.getEmail() == null){
+            model.addAttribute("message", "찾으시는 이메일이 없습니다. 이름과 전화번호를 확인해주세요.");
+        } else {
+            model.addAttribute("message", "찾으시는 아이디는: " + member.getEmail());
         }
-
         return "/find-id";
     }
 
@@ -113,6 +113,30 @@ public class MemberController {
         return "/find-pw";
     }
 
+    @PostMapping(value = "/find-pw")
+    public String findPwPost(HttpSession session, @RequestParam("email") String email,
+                             @RequestParam("phonenum") String phonenum, Model model) {
+        Member member = memberRepository.findByEmailAndPhoneNumber(email, phonenum);
+        if(member != null) {
+            session.setAttribute("member", member);
+            return "/set-pw";
+        }else{
+            model.addAttribute("Message", "회원정보 조회에 실패했습니다.");
+            return "/find-pw";
+        }
+    }
+
+    @PostMapping(value = "/set-pw")
+    public String setPwPost(@RequestParam("password") String password, HttpSession session) {
+        Member member = (Member) session.getAttribute("member");
+
+        String encodedPassword = passwordEncoder.encode(password);
+        member.setPassword(encodedPassword);
+
+        memberService.changePassword(member, encodedPassword);
+
+        return "/login";
+    }
 
 
 

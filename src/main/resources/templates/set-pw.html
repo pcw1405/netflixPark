@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
+>
+<script th:src="@{/assets/lib/jquery 3.7.0.js}"></script>
+
+<th:block layout:fragment="script"></th:block>
+<th:block layout:fragment="css">
+  <link rel="stylesheet" th:href="@{/assets/css/landing-pages.css}">
+</th:block>
+
+<div layout:fragment="content">
+
+  <main style="padding: 0px 10px;" >
+    <header class="d-flex space-between middle-align">
+      <a href="/">
+        <img th:src="@{/images/logo.png}" height="50px" width="170px" alt="site logo main" style="margin: auto;"></img>
+      </a>
+    </header>
+
+    <section id="login-form-section">
+
+      <div class="loginContainer d-flex direction-column">
+        <h2 class="formtitle">
+          비밀번호 재설정
+        </h2>
+        <form th:action="@{/members/set-pw}" id="loginForm" class="d-flex direction-column" method="post" name="loginForm">
+          <input type="password" id="password" name="password" class="form-control password"
+                 placeholder="비밀번호를 입력해주세요">
+          <input type="password" id="passwordcheck" class="form-control password" placeholder="비밀번호를 다시 입력해주세요">
+          <label id="passwordMatchLabel" for="passwordcheck"></label>
+          <input type="hidden" th:value="${member}" name="member"/>
+          <button class="button submitButton" id="singInButton">비밀번호 재설정</button>
+        </form>
+
+      </div>
+    </section>
+  </main>
+</div>
+
+</html>
