@@ -61,7 +61,6 @@ $(document).ready(function () {
 
 //        $textSpace.empty().append("<hr>");
 
-        var $descriptionText = $("<div>");
 
 //videoNm
 
@@ -73,32 +72,18 @@ $(document).ready(function () {
   var videoRecent = $clickedElement.find('[data-video-recent]').attr('data-video-recent');
    console.log(videoRecent);
    $('.popup').find('.saveLike i').attr('data-video-id', videoRecent);
-        // var $descriptionText = $("<div>").text(videoDescription);
+         var $descriptionText = $("<div>").text(videoDescription);
 //var videoIColor = $('.video-description .like-button.saveLike i').attr('data-video-iColor');
  var videoIColor = $clickedElement.find('[data-iColor]').attr('data-iColor');
  console.log(videoIColor);
 
  $('.popup').find('.saveLike i').attr('data-iColor', videoIColor);
 
-        $descriptionText.empty().append(
-//          $("<div>").text("제목: " + videoNm),
-//          $("<div>").text("장르: " + videoGenres),
-          $("<span>").text("설명: " + videoDescription),
-//          $("<div>").text("배우: " + videoActors)
-//          $("<div>").text("감독: " + videoCast)
-        );
 
-  var $descriptionText2 = $("<div>");
-        $descriptionText2.empty().append(
-//                  $("<div>").text("제목: " + videoNm),
-                  $("<span>").text("장르: " + videoGenres),
-        //          $("<div>").text("설명: " + videoDescription),
-                  $("<span>").text("배우: " + videoActors),
-                  $("<span>").text("감독: " + videoCast)
-                );
-
+           $('.subject1').empty().text(videoNm);
+             $('.story').empty().text(videoDescription);
                 $('.titleV').empty().append( $("<span>").text( videoNm));
-            $('.story').empty().append($descriptionText);
+//            $('.story').empty().append($descriptionText);
 
           $('.ganre').empty().append( $("<span>").text( videoCast));
             $('.actor').empty().append( $("<span>").text( videoActors));
