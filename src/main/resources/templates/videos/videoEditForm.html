@@ -7,68 +7,167 @@
 <script th:src="@{/assets/lib/bootstrap.js}"></script>
 
 <th:block layout:fragment="script">
-  <script th:src="@{/assets/js/VideoForm.js}"></script>
+    <script th:src="@{/assets/js/VideoForm.js}"></script>
+
+
 </th:block>
 <th:block layout:fragment="css">
-  <link rel="stylesheet" th:href="@{/assets/css/landing-pages.css}">
-  <link rel="stylesheet" th:href="@{/assets/css/videoEditForm.css}">
-  <style>
-
-  </style>
+    <link rel="stylesheet" th:href="@{/assets/css/landing-pages.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/videoEditForm.css}">
+    <style>
+        .input-group{
+            margin-bottom : 10px;
+        }
+    </style>
 </th:block>
 
 <div layout:fragment="content">
-  <main style="padding: 0px 10px;" >
-    <section id="login-form-section">
+    <main style="padding: 0px 10px;" >
+        <section id="login-form-section">
 
-      <div class="uploadContainer d-flex direction-column">
-        <h2>영상 수정</h2>
-        <form action="/videoEdit-search" method="get">
-          <div class="input-group mb-3">
-            <button class="btn btn-outline-secondary" type="submit" id="button-addon1">검색</button>
-            <input type="text" name="editSearch" class="form-control" placeholder="검색어를 입력해주세요" aria-label="Example text with button addon" aria-describedby="button-addon1">
-            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-          </div>
-        </form>
+            <div class="uploadContainer d-flex direction-column">
+                <h2>영상 수정</h2>
 
-        <table class="table table-dark align-middle">
-          <thead>
-          <tr>
-            <th scope="col">영상 번호</th>
-            <th scope="col">영상 이름</th>
-            <th scope="col">감독</th>
-            <th scope="col">배우</th>
-            <th scope="col">장르</th>
-            <th scope="col">줄거리</th>
-            <th scope="col">수정</th>
-            <th scope="col">삭제</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr scope="row" th:each="video : ${videoList}">
-            <td th:text="${video.id}"></td>
-            <td th:text="${video.videoNm}"></td>
-            <td th:text="${video.cast}"></td>
-            <td th:text="${video.actors}"></td>
-            <td th:text="${video.genres}"></td>
-            <td class="description" th:text="${video.description}"></td>
-            <td>
-              <a class="btn btn-primary" th:href="@{/videoEdit(videoId=${video.id})}">수정</a>
-            </td>
-            <td>
-              <a class="btn btn-danger" th:href="@{/videoDelete(videoId=${video.id})}">삭제</a>
-            </td>
-          </tr>
-          </tbody>
-        </table>
+                <form action="/videoEdit" method="post">
+                    <input type="hidden" name="videoId" th:value="${video.id}" />
 
-        <div class="move-button">
-          <a class="btn btn-secondary" th:href="@{/videoEdit-search(editSearch=${#request.getParameter('editSearch')}, page=${currentPage-1})}" th:if="${currentPage > 0}">이전 페이지</a>
-          <a class="btn btn-secondary" th:href="@{/videoEdit-search(editSearch=${#request.getParameter('editSearch')}, page=${currentPage+1})}" th:if="${currentPage < totalPages-1}">다음 페이지</a>
-        </div>
-      </div>
-    </section>
-  </main>
+                    <div class="form-group d-flex justify-content-center radio-box mb-2">
+                        <input type="radio" class="btn-check" name="videoRole" value="MOVIE" id="option1" autocomplete="off">
+                        <label class="btn btn-outline-primary left" for="option1">MOVIE</label>
+                        <input type="radio" class="btn-check" name="videoRole" value="DRAMA" id="option2" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="option2">DRAMA</label>
+
+                        <input type="radio" class="btn-check" name="videoMaturityLevel" value="ALL" id="option3" autocomplete="off">
+                        <label class="btn btn-outline-danger ms-5 left" for="option3">ALL</label>
+                        <input type="radio" class="btn-check" name="videoMaturityLevel" value="KID" id="option4" autocomplete="off">
+                        <label class="btn btn-outline-danger" for="option4">KID</label>
+                    </div>
+
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">영상명</span>
+                        </div>
+                        <input type="text" id="videoNm" name="videoNm" th:value="${video.videoNm}" class="form-control" placeholder="영상명을 입력해주세요">
+                    </div>
+
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">감독</span>
+                        </div>
+                        <input type="text" id="cast" name="cast" th:value="${video.cast}" class="form-control" placeholder="감독명을 입력해주세요">
+                    </div>
+
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">배우</span>
+                        </div>
+                        <input type="text" id="actors" name="actors" th:value="${video.actors}" class="form-control" placeholder="배우명을 입력해주세요">
+                    </div>
+
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">줄거리</span>
+                        </div>
+                        <input type="text" id="description" name="description" th:value="${video.description}" class="form-control" placeholder="줄거리를 입력해주세요">
+                    </div>
+
+                    <div class="input-group justify-content-center">
+                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="genres" value="로맨스" id="btnradio1" autocomplete="off">
+                            <label class="btn btn-outline-warning" for="btnradio1">로맨스</label>
+
+                            <input type="radio" class="btn-check" name="genres" value="액션" id="btnradio2" autocomplete="off">
+                            <label class="btn btn-outline-warning" for="btnradio2">액션</label>
+
+                            <input type="radio" class="btn-check" name="genres" value="스릴러" id="btnradio3" autocomplete="off">
+                            <label class="btn btn-outline-warning" for="btnradio3">스릴러</label>
+
+                            <input type="radio" class="btn-check" name="genres" value="일상" id="btnradio4" autocomplete="off">
+                            <label class="btn btn-outline-warning" for="btnradio4">일상</label>
+
+                            <input type="radio" class="btn-check" name="genres" value="추리" id="btnradio5" autocomplete="off">
+                            <label class="btn btn-outline-warning" for="btnradio5">추리</label>
+                        </div>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <label class="input-group-text imageUpLoad" for="inputGroupFile01">이미지</label>
+                        <input type="file" class="form-control" id="inputGroupFile01" name="videoImgFile" th:value="${video.videoImg.oriImgName}">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <label class="input-group-text videoUpLoad" for="inputGroupFile02">동영상</label>
+                        <input type="file" class="form-control" id="inputGroupFile02" name="videoFile" th:value="${video.videoFile.oriFileName}"/>
+                    </div>
+
+                    <div class="input-group">
+                        <button type="submit" class="btn btn-primary saveButton mx-auto" onclick="validateForm()">저장</button>
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                    </div>
+                </form>
+
+            </div>
+        </section>
+    </main>
 </div>
+
+<script>
+
+  $(document).ready(function() {
+  const videoRole = "[[${video.videoRole}]]";
+  const maturityLevel = "[[${video.videoMaturityLevel}]]";
+  const genre = "[[${video.genres}]]";
+
+  const option1 = document.getElementById("option1");
+  const option2 = document.getElementById("option2");
+
+  if (videoRole === option1.value) {
+    option1.checked = true;
+  }
+
+  if (videoRole === option2.value) {
+    option2.checked = true;
+  }
+
+  const option3 = document.getElementById("option3");
+  const option4 = document.getElementById("option4");
+
+  if (maturityLevel === option3.value) {
+    option3.checked = true;
+  }
+
+  if (maturityLevel === option4.value) {
+    option4.checked = true;
+  }
+
+  const option5 = document.getElementById("btnradio1");
+  const option6 = document.getElementById("btnradio2");
+  const option7 = document.getElementById("btnradio3");
+  const option8 = document.getElementById("btnradio4");
+  const option9 = document.getElementById("btnradio5");
+
+  if (genre === option5.value) {
+    option5.checked = true;
+  }
+  if (genre === option6.value) {
+    option6.checked = true;
+  }
+  if (genre === option7.value) {
+    option7.checked = true;
+  }
+  if (genre === option8.value) {
+    option8.checked = true;
+  }
+  if (genre === option9.value) {
+    option9.checked = true;
+  }
+  function validateForm() {
+  }
+
+});
+
+
+</script>
+
 </html>
 

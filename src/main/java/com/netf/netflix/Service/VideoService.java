@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -83,5 +84,18 @@ public class VideoService {
 
 
     }
-//
+    public void deleteVideo(Long videoId) {
+        videoRepository.deleteById(videoId);
+
+    }
+
+
+    public Video getVideoById(Long videoId) {
+        Optional<Video> videoOptional = videoRepository.findById(videoId);
+        if (videoOptional.isPresent()) {
+            return videoOptional.get();
+        } else {
+            throw new IllegalArgumentException("비디오 번호 '" + videoId + "'에 해당하는 비디오를 찾지 못하였습니다.");
+        }
+    }
 }

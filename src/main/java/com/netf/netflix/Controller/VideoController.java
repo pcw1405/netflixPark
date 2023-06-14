@@ -299,8 +299,8 @@ public class VideoController {
         return "/leftmain/recent";
     }
 
-    @GetMapping("/videoEditForm")
-    public String videoEditForm(@RequestParam(defaultValue = "0") int page, Model model) {
+    @GetMapping("/videoListForm")
+    public String videoListForm(@RequestParam(defaultValue = "0") int page, Model model) {
         int pageSize = 10; // 페이지당 아이템 개수
 
         Pageable pageable = PageRequest.of(page, pageSize);
@@ -312,33 +312,48 @@ public class VideoController {
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", totalPages);
 
-        return "/videos/videoEditForm";
+        return "/videos/videoListForm";
     }
 
-    @GetMapping("/videoEdit-search")
+    @GetMapping("/videoList-search")
     public String searchVideos(@RequestParam("editSearch") String searchKeyword,
                                @RequestParam(defaultValue = "0") int page,
                                Model model) {
-        int pageSize = 10; // Number of items per page
+        int pageSize = 10;
 
-        // Perform the search and retrieve the search results
         List<Video> searchResults = videoService.videoSearchList(searchKeyword);
 
-        // Calculate the start and end indices for the current page
         int startIndex = page * pageSize;
         int endIndex = Math.min(startIndex + pageSize, searchResults.size());
 
-        // Get the videos for the current page
         List<Video> videoList = searchResults.subList(startIndex, endIndex);
 
-        // Add the search results and pagination attributes to the model
         model.addAttribute("videoList", videoList);
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", (int) Math.ceil((double) searchResults.size() / pageSize));
 
-        return "/videos/videoEditForm";
+        return "/videos/videoListForm";
     }
 
+    @PostMapping("/videoDelete")
+    public String editvideodelete(@RequestParam("videoId") Long videoId) {
+
+        videoService.deleteVideo(videoId);
+
+        return "redirect:/videoListForm";
+    }
+
+    @GetMapping("/videoEdit")
+    public String editVideo(@RequestParam("videoId") Long videoId, Model model) {
+        // Retrieve the video from the database using the videoId
+        Video video = videoService.getVideoById(videoId);
+
+        // Add the video object to the model
+        model.addAttribute("video", video);
+
+        // Return the edit form view
+        return "/videos/videoEditForm";
+    }
 
 
 
