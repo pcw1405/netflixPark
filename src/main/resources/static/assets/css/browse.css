@@ -59,6 +59,9 @@
   .nav-item{
       padding: 0px 15px;
   }
+
+
+
   .righticons img{
       width: 22px;
       margin-right: 25px;
@@ -440,6 +443,7 @@ section#top-10 img{
     flex-basis: 100%;
     flex-wrap: nowrap;
 }
+
 .big-section img{
     max-width: 50%;
     padding-right: 30px;
@@ -561,4 +565,16 @@ footer ul li{
         font-size : 20px;
         margin-left : 5px;
     }
-  
+
+    header {
+      position: fixed !important;
+      z-index: 2000 !important;
+    }
+
+    .dropdown-content {
+        overflow-y: auto;
+        max-height: 800px; /* 내용이 표시될 최대 높이 */
+    }
+
+
+
