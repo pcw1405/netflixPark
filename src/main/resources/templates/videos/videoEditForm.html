@@ -25,7 +25,7 @@
             <div class="uploadContainer d-flex direction-column">
                 <h2>영상 수정</h2>
 
-                <form action="/videoUpdate" method="post" th:object="${videoFormDto}">
+                <form action="/videoUpdate" method="post" th:object="${videoFormDto}" enctype="multipart/form-data">
                     <input type="hidden" name="videoId" th:value="${video.id}"/>
 
                     <div class="form-group d-flex justify-content-center radio-box mb-2">

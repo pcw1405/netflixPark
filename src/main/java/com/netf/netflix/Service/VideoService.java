@@ -7,18 +7,21 @@ import com.netf.netflix.Entity.Video;
 import com.netf.netflix.Entity.VideoFile;
 import com.netf.netflix.Entity.VideoImg;
 import com.netf.netflix.Repository.*;
+import groovy.util.logging.Slf4j;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
+@Slf4j
 public class VideoService {
 
     private final VideoRepository videoRepository;
@@ -100,9 +103,6 @@ public class VideoService {
 
         Video video = videoRepository.findById(videoFormDto.getId()).orElse(null);
         video.updateVideo(videoFormDto);
-        if (video == null) {
-            throw new Exception("Video not found");  // 예외 처리: 비디오가 존재하지 않을 경우
-        }
 
         VideoImg videoImg = videoImgRepository.findByVideo(video);
         videoImg.setVideo(video);
@@ -112,12 +112,9 @@ public class VideoService {
 
         videoImgService.updateVideoImg(videoImg, videoImgFile);
 
-
-        videoFileService.saveVideoFile(updatedVideoFile, videoFile);
+        videoFileService.updateVideoFile(updatedVideoFile, videoFile);
 
         return video.getId();
     }
-
-
 
 }

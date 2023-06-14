@@ -309,7 +309,7 @@ public class VideoController {
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", totalPages);
 
-        return "/videos/videoListForm";
+        return "videos/videoListForm";
     }
 
     @GetMapping("/videoList-search")
@@ -329,7 +329,7 @@ public class VideoController {
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", (int) Math.ceil((double) searchResults.size() / pageSize));
 
-        return "/videos/videoListForm";
+        return "videos/videoListForm";
     }
 
     @PostMapping("/videoDelete")
@@ -349,24 +349,20 @@ public class VideoController {
         model.addAttribute("video", video);
 
         // Return the edit form view
-        return "/videos/videoEditForm";
+        return "videos/videoEditForm";
     }
 
     @PostMapping("/videoUpdate")
     public String videoUpdate(@ModelAttribute("videoFormDto") VideoFormDto videoFormDto,
+                              @RequestParam("videoId") Long videoId,
                               @RequestParam("videoImgFile") MultipartFile videoImgFile,
                               @RequestParam("videoFile") MultipartFile videoFile,
-                              BindingResult bindingResult, Model model) throws Exception {
-
+                              Model model) throws Exception {
+        videoFormDto.setId(videoId);
         videoService.updateVideo(videoFormDto, videoImgFile, videoFile);
 
-
-        return "";
+        return "redirect:/videoEdit?videoId=" + videoId;
     }
-
-
-
-
 
 
 }

@@ -43,7 +43,10 @@ public class VideoImgService {
 
         imgName = fileService.uploadFile(videoImgLocation, oriImgName, videoImgFile.getBytes());
         imgUrl = "/upload/video_img/" + imgName;
-
+        if (videoImg.getImgName() != null) {
+            String filePath = videoImgLocation + "/" + videoImg.getImgName();
+            fileService.deleteFile(filePath);
+        }
         videoImg.createdVideoImg(oriImgName, imgName, imgUrl);
         videoImgRepository.save(videoImg);
     }
