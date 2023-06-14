@@ -52,7 +52,7 @@ public class Video{
 
     private int viewCount = 0;
 
-    public void updateItem(VideoFormDto videoFormDto){
+    public void updateVideo(VideoFormDto videoFormDto){
         this.videoNm = videoFormDto.getVideoNm();
         this.cast = videoFormDto.getCast();
         this.actors = videoFormDto.getActors();

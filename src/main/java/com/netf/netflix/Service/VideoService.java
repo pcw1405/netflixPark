@@ -6,10 +6,7 @@ import com.netf.netflix.Entity.Profile;
 import com.netf.netflix.Entity.Video;
 import com.netf.netflix.Entity.VideoFile;
 import com.netf.netflix.Entity.VideoImg;
-import com.netf.netflix.Repository.MemberRepository;
-import com.netf.netflix.Repository.ProfileRepository;
-import com.netf.netflix.Repository.VideoImgRepository;
-import com.netf.netflix.Repository.VideoRepository;
+import com.netf.netflix.Repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +24,8 @@ public class VideoService {
     private final VideoRepository videoRepository;
 
     private final VideoImgRepository videoImgRepository;
+
+    private final VideoFileRepository videoFileRepository;
 
     private final VideoImgService videoImgService;
 
@@ -88,8 +87,6 @@ public class VideoService {
         videoRepository.deleteById(videoId);
 
     }
-
-
     public Video getVideoById(Long videoId) {
         Optional<Video> videoOptional = videoRepository.findById(videoId);
         if (videoOptional.isPresent()) {
@@ -98,4 +95,29 @@ public class VideoService {
             throw new IllegalArgumentException("비디오 번호 '" + videoId + "'에 해당하는 비디오를 찾지 못하였습니다.");
         }
     }
+
+    public Long updateVideo(VideoFormDto videoFormDto, MultipartFile videoImgFile, MultipartFile videoFile) throws Exception{
+
+        Video video = videoRepository.findById(videoFormDto.getId()).orElse(null);
+        video.updateVideo(videoFormDto);
+        if (video == null) {
+            throw new Exception("Video not found");  // 예외 처리: 비디오가 존재하지 않을 경우
+        }
+
+        VideoImg videoImg = videoImgRepository.findByVideo(video);
+        videoImg.setVideo(video);
+
+        VideoFile updatedVideoFile = videoFileRepository.findByVideo(video);
+        updatedVideoFile.setVideo(video);
+
+        videoImgService.updateVideoImg(videoImg, videoImgFile);
+
+
+        videoFileService.saveVideoFile(updatedVideoFile, videoFile);
+
+        return video.getId();
+    }
+
+
+
 }

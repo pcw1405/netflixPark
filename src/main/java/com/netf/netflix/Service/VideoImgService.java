@@ -35,4 +35,16 @@ public class VideoImgService {
         videoImg.createdVideoImg(oriImgName, imgName, imgUrl);
         videoImgRepository.save(videoImg);
     }
+
+    public void updateVideoImg(VideoImg videoImg, MultipartFile videoImgFile) throws Exception {
+        String oriImgName = videoImgFile.getOriginalFilename();
+        String imgName = "";
+        String imgUrl = "";
+
+        imgName = fileService.uploadFile(videoImgLocation, oriImgName, videoImgFile.getBytes());
+        imgUrl = "/upload/video_img/" + imgName;
+
+        videoImg.createdVideoImg(oriImgName, imgName, imgUrl);
+        videoImgRepository.save(videoImg);
+    }
 }

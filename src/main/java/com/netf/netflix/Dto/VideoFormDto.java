@@ -37,6 +37,10 @@ public class VideoFormDto {
         return modelMapper.map(this, Video.class);
     }
 
+    public Video updateVideo(){
+        return modelMapper.map(this, Video.class);
+    }
+
     public static VideoFormDto of(Video video){
         return modelMapper.map(video, VideoFormDto.class);
     }

@@ -7,9 +7,6 @@
 <script th:src="@{/assets/lib/bootstrap.js}"></script>
 
 <th:block layout:fragment="script">
-    <script th:src="@{/assets/js/VideoForm.js}"></script>
-
-
 </th:block>
 <th:block layout:fragment="css">
     <link rel="stylesheet" th:href="@{/assets/css/landing-pages.css}">
@@ -28,8 +25,8 @@
             <div class="uploadContainer d-flex direction-column">
                 <h2>영상 수정</h2>
 
-                <form action="/videoEdit" method="post">
-                    <input type="hidden" name="videoId" th:value="${video.id}" />
+                <form action="/videoUpdate" method="post" th:object="${videoFormDto}">
+                    <input type="hidden" name="videoId" th:value="${video.id}"/>
 
                     <div class="form-group d-flex justify-content-center radio-box mb-2">
                         <input type="radio" class="btn-check" name="videoRole" value="MOVIE" id="option1" autocomplete="off">
@@ -90,22 +87,23 @@
                         </div>
                     </div>
 
+                    <p>기존에 저장된 이미지 : <span th:text="${video.videoImg.oriImgName}"></span></p>
                     <div class="input-group mb-3">
                         <label class="input-group-text imageUpLoad" for="inputGroupFile01">이미지</label>
-                        <input type="file" class="form-control" id="inputGroupFile01" name="videoImgFile" th:value="${video.videoImg.oriImgName}">
+                        <input type="file" class="form-control" id="inputGroupFile01" name="videoImgFile">
                     </div>
 
+                    <p>기존에 저장된 동영상 : <span th:text="${video.videoFile.oriFileName}"></span></p>
                     <div class="input-group mb-3">
                         <label class="input-group-text videoUpLoad" for="inputGroupFile02">동영상</label>
-                        <input type="file" class="form-control" id="inputGroupFile02" name="videoFile" th:value="${video.videoFile.oriFileName}"/>
+                        <input type="file" class="form-control" id="inputGroupFile02" name="videoFile"/>
                     </div>
 
                     <div class="input-group">
-                        <button type="submit" class="btn btn-primary saveButton mx-auto" onclick="validateForm()">저장</button>
+                        <button type="submit" class="btn btn-primary saveButton mx-auto" onclick="">저장</button>
                         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                     </div>
                 </form>
-
             </div>
         </section>
     </main>
@@ -163,6 +161,10 @@
   }
   function validateForm() {
   }
+
+
+
+
 
 });
 
