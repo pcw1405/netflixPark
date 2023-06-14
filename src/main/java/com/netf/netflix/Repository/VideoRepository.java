@@ -32,4 +32,5 @@ public interface VideoRepository extends JpaRepository<Video, Long> {
     @Query("SELECT v FROM Video v")
     Page<Video> findPaginated(Pageable pageable);
 
+
 }

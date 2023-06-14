@@ -12,6 +12,7 @@ import com.netf.netflix.Service.ProfileService;
 import com.netf.netflix.Service.VideoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -313,6 +314,31 @@ public class VideoController {
 
         return "/videos/videoEditForm";
     }
+
+    @GetMapping("/videoEdit-search")
+    public String searchVideos(@RequestParam("editSearch") String searchKeyword,
+                               @RequestParam(defaultValue = "0") int page,
+                               Model model) {
+        int pageSize = 10; // Number of items per page
+
+        // Perform the search and retrieve the search results
+        List<Video> searchResults = videoService.videoSearchList(searchKeyword);
+
+        // Calculate the start and end indices for the current page
+        int startIndex = page * pageSize;
+        int endIndex = Math.min(startIndex + pageSize, searchResults.size());
+
+        // Get the videos for the current page
+        List<Video> videoList = searchResults.subList(startIndex, endIndex);
+
+        // Add the search results and pagination attributes to the model
+        model.addAttribute("videoList", videoList);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", (int) Math.ceil((double) searchResults.size() / pageSize));
+
+        return "/videos/videoEditForm";
+    }
+
 
 
 

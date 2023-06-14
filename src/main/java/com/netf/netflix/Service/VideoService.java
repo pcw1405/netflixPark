@@ -60,7 +60,6 @@ public class VideoService {
 //        }
         // 기본적으로 videoNm을 검색 조건으로 사용합니다.
         return videoRepository.findByVideoNmContainingOrCastContainingOrActorsContainingOrDescriptionContainingOrGenresContaining(searchKeyword, searchKeyword, searchKeyword, searchKeyword, searchKeyword);
-
     }
 
     public void addViewCount(long videoId) {
