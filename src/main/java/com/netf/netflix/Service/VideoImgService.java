@@ -36,15 +36,21 @@ public class VideoImgService {
         videoImgRepository.save(videoImg);
     }
 
-    public void updateVideoImg(VideoImg videoImg, MultipartFile videoImgFile) throws Exception {
-        String oriImgName = videoImgFile.getOriginalFilename();
-        String imgName = "";
-        String imgUrl = "";
+        public void updateVideoImg(VideoImg videoImg, MultipartFile videoImgFile) throws Exception {
+            String oriImgName = videoImgFile.getOriginalFilename();
+            String imgName = "";
+            String imgUrl = "";
 
-        imgName = fileService.uploadFile(videoImgLocation, oriImgName, videoImgFile.getBytes());
-        imgUrl = "/upload/video_img/" + imgName;
+            imgName = fileService.uploadFile(videoImgLocation, oriImgName, videoImgFile.getBytes());
+            imgUrl = "/upload/video_img/" + imgName;
 
-        videoImg.createdVideoImg(oriImgName, imgName, imgUrl);
-        videoImgRepository.save(videoImg);
-    }
+            // 기존 파일 삭제
+            if (videoImg.getImgName() != null) {
+                String filePath = videoImgLocation + "/" + videoImg.getImgName();
+                fileService.deleteFile(filePath);
+            }
+            videoImg.createdVideoImg(oriImgName, imgName, imgUrl);
+
+            videoImgRepository.save(videoImg);
+        }
 }

@@ -36,4 +36,22 @@ public class VideoFileService {
         videoFileRepository.save(videoFile);
     }
 
+    public void updateVideoFile(VideoFile videoFile, MultipartFile videoClipFile) throws Exception {
+        String oriFileName = videoClipFile.getOriginalFilename();
+        String fileName = "";
+        String fileUrl = "";
+
+        fileName = fileService.uploadFile(videoFileLocation, oriFileName, videoClipFile.getBytes());
+        fileUrl = "/upload/video_file/" + fileName;
+
+        // 기존 파일 삭제
+        if (videoFile.getFileName() != null) {
+            String filePath = videoFileLocation + "/" + videoFile.getFileName();
+            fileService.deleteFile(filePath);
+        }
+
+        videoFile.createdVideoFile(oriFileName, fileName, fileUrl);
+
+        videoFileRepository.save(videoFile);
+    }
 }

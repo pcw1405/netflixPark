@@ -85,20 +85,13 @@ public class VideoService {
     }
     public void deleteVideo(Long videoId) {
         videoRepository.deleteById(videoId);
+    }
 
-    }
-    public Video getVideoById(Long videoId) {
-        Optional<Video> videoOptional = videoRepository.findById(videoId);
-        if (videoOptional.isPresent()) {
-            return videoOptional.get();
-        } else {
-            throw new IllegalArgumentException("비디오 번호 '" + videoId + "'에 해당하는 비디오를 찾지 못하였습니다.");
-        }
-    }
 
     public Long updateVideo(VideoFormDto videoFormDto, MultipartFile videoImgFile, MultipartFile videoFile) throws Exception{
 
-        Video video = videoRepository.findById(videoFormDto.getId()).orElse(null);
+        Video video = videoRepository.findById(videoFormDto.getId());
+
         video.updateVideo(videoFormDto);
         if (video == null) {
             throw new Exception("Video not found");  // 예외 처리: 비디오가 존재하지 않을 경우
@@ -112,12 +105,9 @@ public class VideoService {
 
         videoImgService.updateVideoImg(videoImg, videoImgFile);
 
-
-        videoFileService.saveVideoFile(updatedVideoFile, videoFile);
+        videoFileService.updateVideoFile(updatedVideoFile, videoFile);
 
         return video.getId();
     }
-
-
 
 }

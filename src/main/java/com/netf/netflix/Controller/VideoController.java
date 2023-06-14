@@ -342,8 +342,8 @@ public class VideoController {
 
     @GetMapping("/videoEdit")
     public String editVideo(@RequestParam("videoId") Long videoId, Model model) {
-        // Retrieve the video from the database using the videoId
-        Video video = videoService.getVideoById(videoId);
+
+        Optional<Video> video = videoRepository.findById(videoId);
 
         // Add the video object to the model
         model.addAttribute("video", video);
@@ -357,16 +357,9 @@ public class VideoController {
                               @RequestParam("videoImgFile") MultipartFile videoImgFile,
                               @RequestParam("videoFile") MultipartFile videoFile,
                               BindingResult bindingResult, Model model) throws Exception {
-
+        System.out.println("여기서 문제다!1");
         videoService.updateVideo(videoFormDto, videoImgFile, videoFile);
-
-
-        return "";
+        return "/videos/videoEditForm";
     }
-
-
-
-
-
 
 }

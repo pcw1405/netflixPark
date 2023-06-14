@@ -11,8 +11,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface VideoRepository extends JpaRepository<Video, Long> {
-
-    Optional<Video> findById(Long videoId);
     List<Video> findByVideoNmContaining(String searchKeyword);
     List<Video> findByGenresContaining(String searchKeyword);
     List<Video> findByVideoNmContainingOrCastContainingOrActorsContainingOrDescriptionContainingOrGenresContaining(String videoNm, String cast, String actors, String description, String genres);
@@ -31,6 +29,5 @@ public interface VideoRepository extends JpaRepository<Video, Long> {
 
     @Query("SELECT v FROM Video v")
     Page<Video> findPaginated(Pageable pageable);
-
 
 }
