@@ -42,8 +42,8 @@
                     <span >내가 찜한 콘탠츠 </span>
                 </h4>
 
-                <div class="mylist-container d-flex flex-start flex-middle flex-no-wrap owl-carousel">
-                    <div th:each="video : ${videos}" class="video searchlist getRecent" th:if="${videos != null}">
+                <div class="mylist-container d-flex flex-start flex-middle flex-no-wrap owl-carousel ">
+                    <div th:each="video : ${videos}" class="video searchlist getRecent mylike" th:if="${videos != null}">
                         <video class="mylist-img p-r-10 p-t-10 video-item"
                                th:poster="${video.videoImg.imgUrl}">
                             <!--                            poster부분도 for each문으로 반복문을 돌려야한다 -->
@@ -69,7 +69,7 @@
 
 
 
-                                <div class="like-button saveLike" >
+                                <div class="like-button saveLike " >
                                     <i class="fa-regular fa-heart fas" th:data-video-id="${video.id}" th:data-iColor="${favoriteVideos != null && favoriteVideos.contains(video.id) ? 'red' : 'white'}"></i>
 
                                 </div>

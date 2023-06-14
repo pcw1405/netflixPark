@@ -256,7 +256,7 @@
         </h4>
 
         <div class="mylist-container d-flex flex-start flex-middle flex-no-wrap owl-carousel">
-          <div th:each="video : ${like_videos}" class="video searchlist getRecent" th:if="${like_videos != null}">
+          <div th:each="video : ${like_videos}" class="video searchlist getRecent mylike" th:if="${like_videos != null}">
             <video class="mylist-img p-r-10 p-t-10 video-item"
                    th:poster="${video.videoImg.imgUrl}">
               <!--                            poster부분도 for each문으로 반복문을 돌려야한다 -->

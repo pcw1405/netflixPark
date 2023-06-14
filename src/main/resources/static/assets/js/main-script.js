@@ -1,4 +1,4 @@
-
+var $originalElement
 $(document).ready(function () {
     var header = $("meta[name='_csrf_header']").attr('content');
     var token = $("meta[name='_csrf']").attr('content');
@@ -6,7 +6,7 @@ $(document).ready(function () {
    $('.saveLike').click(function(event) {
        event.stopPropagation(); // Prevent click event propagation
             var $clickedElement = $(this);
-//                    $originalElement= $(this);
+                   $originalElement= $(this);
 //            $clickedElement.find('i').css('color', 'red');
 //            $('.popup').find('.saveLike i').css('color', 'red');
 
@@ -26,6 +26,7 @@ $(document).ready(function () {
             data: JSON.stringify({ videoId: videoId }), // 문자열 변환
            success: function(response) {
                console.log(response);
+
 if ($clickedElement !== null) {
   $clickedElement.find('i').css('color', 'red');
   $clickedElement.find('i').attr('data-iColor', 'red');
@@ -52,7 +53,7 @@ $('[data-video-id]').each(function() {
   var currentVideoId = $(this).attr('data-video-id');
 
   // data-video-id 값이 videoId와 일치하는 경우 해당 요소의 save-like 버튼을 찾아 색상을 변경한다
-  if (currentVideoId === videoId) {
+  if (currentVideoId == videoId) {
 //    var saveLikeButton = $(this).siblings('.video-description').find('.saveLike i');
 var saveLikeButton = $(this).find(' i');
  $(this).attr('data-iColor', 'red');
@@ -89,6 +90,7 @@ if (videoId === $('.popup').find('[data-video-id]').attr('data-video-id')) {
   // 조건이 참인 경우 실행할 코드
     $('.popup').find('.saveLike i').css('color', 'white');
     $('.popup').find('.saveLike i').attr('data-iColor', 'white');
+
 }
 
 
@@ -112,6 +114,11 @@ if (videoId === $('.popup').find('[data-video-id]').attr('data-video-id')) {
         //    var saveLikeButton = $(this).siblings('.video-description').find('.saveLike i');
         var saveLikeButton = $(this).find('i');
       $(this).attr('data-iColor', 'white');
+//       $(this).parents('.searchlist').remove();
+
+    $(this).parents('.owl-item:has(.mylike)').remove();
+//         $('.mylist-container').css('display', 'flex');
+//         $('.mylist-container').css('justify-content', 'flex-start');
 //        $('.popup').find('.saveLike i').css('color', 'white');
 //        $('.popup').find('.saveLike i').attr('data-iColor', 'white');
 
