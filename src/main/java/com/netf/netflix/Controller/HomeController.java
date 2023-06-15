@@ -75,6 +75,14 @@ public class HomeController {
             // 선택한 비디오를 모델에 추가
             model.addAttribute("randomVideo", randomVideo);
         }
+        List<Video> randomVideos = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            int randomIndex = new Random().nextInt(videos.size());
+            Video randomVideo = videos.get(randomIndex);
+            randomVideos.add(randomVideo);
+        }
+        model.addAttribute("randomVideo2", randomVideos);
+
 
         //최근본
         List<Long> recentViewId =  selectedProfile.getRecentlyViewedVideos();
@@ -108,6 +116,9 @@ public class HomeController {
 
         List<Video> top10Videos = videoRepository.findTop10ByOrderByViewCountDesc();
         model.addAttribute("top10Videos", top10Videos);
+
+
+
 
         return "home";
     }

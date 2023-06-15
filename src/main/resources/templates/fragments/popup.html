@@ -5,12 +5,25 @@
     <script th:src="@{/assets/js/pop-up.js}"></script>
 
 </th:block>
+<style th:inline="text">
+        .recommend {
+            width: 300px !important;
+            height: 300px !important;
+            background-color: yellow;
+        }
+    </style>
+
 
 <div th:fragment="myPopup" class="popup">
     <!--  <div class="popup">-->
     <div class="videoContainer">
-        <div class="popup-close">x</div>
+        <div class="popup-close">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="Hawkins-Icon Hawkins-Icon-Standard" data-name="Close" data-uia="previewModal-closebtn" role="button" aria-label="close" tabindex="0">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M2.29297 3.70706L10.5859 12L2.29297 20.2928L3.70718 21.7071L12.0001 13.4142L20.293 21.7071L21.7072 20.2928L13.4143 12L21.7072 3.70706L20.293 2.29285L12.0001 10.5857L3.70718 2.29285L2.29297 3.70706Z" fill="currentColor"></path>
+            </svg>
+        </div>
 
+        <h2 class="titleV"></h2>
         <div class="temp ">
             <button class="go-button fullSpeed"   >
           <span>
@@ -24,15 +37,81 @@
                 <i class="fa-regular fa-heart fas " data-video-id  data-iColor ></i>
             </div>
         </div>
+        <div class="black_bridge">
 
+        </div>
         <!-- 비디오 컨테이너 -->
     </div>
 
     <!-- 비디오 컨테이너 -->
 
-    <div class="textContainer">
+    <div class="textContainer" data-video-id>
         <!-- 여기가 텍스트를 주입하는 곳 -->
+
+
+        <div class="story_box">
+
+            <div class="tmp">
+            <p>
+                    <!--                <span style="color:#717171;" >   </span> -->
+                    <span style="color:#717171;"> 제목:  </span> <span class=" subject1">  </span>
+            </p >
+
+            <p>
+<!--                <span style="color:#717171;" >   </span> -->
+                <span style="color:#717171;"> 설명:  </span> <span class="story">  </span>
+            </p >
+            </div>
+
+        </div>
+        <div class="short_box">
+
+            <p >  <span style="color:#717171;"> 장르 </span>
+                <span class="ganre" > </span>
+            </p>
+
+            <p>
+                <span style="color:#717171;"> 감독 </span>
+                <span class="videoCast"> </span>
+            </p>
+
+            <p>
+                <span style="color:#717171;"> 배우 </span>
+                <span class="actor"> </span>
+
+
+            </p>
+
+
+
+        </div>
+
     </div>
+    <p class="recommend_title"> 추천 콘텐츠 </p>
+    <div class=" d-flex justify-content-center ">
+
+        <div class="searchlist getRecent recommend text-center " th:each="rdvideo : ${randomVideo2}"
+             th:if="${randomVideo2!= null}" style=" background-color:rgb(51, 51, 51) ; width:300px; height:200px; margin:15px display:inline-block;">
+            <img th:if="${rdvideo.videoImg != null}" th:src="@{${rdvideo.videoImg.imgUrl}}" alt="Video Image"  th:data-video-url="@{${rdvideo.videoFile.fileUrl}}"
+                 style=" margin-top:17px;  width:260px;   "
+                 th:data-video-nm="@{${rdvideo.videoNm}}"
+                 th:data-video-genres="@{${rdvideo.genres}}"
+                 th:data-video-description="@{${rdvideo.description}}"
+                 th:data-video-actors="@{${rdvideo.actors}}"
+                 th:data-video-cast="@{${rdvideo.cast}}"
+                 th:data-video-recent="@{${rdvideo.id}}"
+                 th:data-video-id="@{${rdvideo.id}}"
+            >
+            <h2 th:if="${rdvideo.videoImg == null}">검색 결과 없음</h2>
+            <p th:text="${rdvideo.videoNm + ' #' + rdvideo.genres}" style="margin-top:5px;"></p>
+
+<!--            <span th:text="'#' + ${rdvideo.genres}"></span>-->
+        </div>
+
+    </div>
+
+
+
     <!--  </div>-->
 </div>
 

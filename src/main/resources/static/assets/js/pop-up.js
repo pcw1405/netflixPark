@@ -32,19 +32,19 @@ $(document).ready(function () {
 
         var $video = $('<video>', {
             src: videoUrl,
-           controls: true, // 컨트롤러 비활성화
+           controls: false, // 컨트롤러 비활성화
              autoplay: true, // 자동 재생 활성화
 //             muted: false, // 음소거 비활성화 (선택적)
-            width: '495px',
-            height: '400px',
+            width: '100%',
+            height: '100%',
             class:"popupVideo"
         });
 
         $video.prop("autoplay", true);
         $videoSpace.empty().append($video);
         $videoSpace.css({
-            width: "500px",
-            height: "400px"
+            width: "100%",
+            height: "100%"
         });
 
         var $textContainer = $(".textContainer");
@@ -56,12 +56,11 @@ $(document).ready(function () {
                 height: "250px"
                 }
             });
-            $textContainer.empty().append($textSpace);
+//            $textContainer.empty().append($textSpace);
         }
 
-        $textSpace.empty().append("<hr>");
+//        $textSpace.empty().append("<hr>");
 
-        var $descriptionText = $("<div>");
 
 //videoNm
 
@@ -73,22 +72,24 @@ $(document).ready(function () {
   var videoRecent = $clickedElement.find('[data-video-recent]').attr('data-video-recent');
    console.log(videoRecent);
    $('.popup').find('.saveLike i').attr('data-video-id', videoRecent);
-        // var $descriptionText = $("<div>").text(videoDescription);
+         var $descriptionText = $("<div>").text(videoDescription);
 //var videoIColor = $('.video-description .like-button.saveLike i').attr('data-video-iColor');
  var videoIColor = $clickedElement.find('[data-iColor]').attr('data-iColor');
  console.log(videoIColor);
 
  $('.popup').find('.saveLike i').attr('data-iColor', videoIColor);
 
-        $descriptionText.empty().append(
-          $("<div>").text("제목: " + videoNm),
-          $("<div>").text("장르: " + videoGenres),
-          $("<div>").text("설명: " + videoDescription),
-          $("<div>").text("배우: " + videoActors),
-          $("<div>").text("감독: " + videoCast)
-        );
 
-        $textSpace.empty().append($descriptionText);
+           $('.subject1').empty().text(videoNm);
+             $('.story').empty().text(videoDescription);
+                $('.titleV').empty().append( $("<span>").text( videoNm));
+//            $('.story').empty().append($descriptionText);
+
+          $('.ganre').empty().append( $("<span>").text( videoCast));
+            $('.actor').empty().append( $("<span>").text( videoActors));
+             $('.videoCast').empty().append( $("<span>").text( videoCast));
+
+//        $('.story_box').empty().append($descriptionText);
 
               $('.saveLike i').each(function() {
                     var iColor = $(this).attr('data-iColor');

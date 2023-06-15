@@ -309,7 +309,7 @@ public class VideoController {
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", totalPages);
 
-        return "/videos/videoListForm";
+        return "videos/videoListForm";
     }
 
     @GetMapping("/videoList-search")
@@ -329,7 +329,7 @@ public class VideoController {
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", (int) Math.ceil((double) searchResults.size() / pageSize));
 
-        return "/videos/videoListForm";
+        return "videos/videoListForm";
     }
 
     @PostMapping("/videoDelete")
@@ -342,24 +342,27 @@ public class VideoController {
 
     @GetMapping("/videoEdit")
     public String editVideo(@RequestParam("videoId") Long videoId, Model model) {
-
-        Optional<Video> video = videoRepository.findById(videoId);
+        // Retrieve the video from the database using the videoId
+        Video video = videoService.getVideoById(videoId);
 
         // Add the video object to the model
         model.addAttribute("video", video);
 
         // Return the edit form view
-        return "/videos/videoEditForm";
+        return "videos/videoEditForm";
     }
 
     @PostMapping("/videoUpdate")
     public String videoUpdate(@ModelAttribute("videoFormDto") VideoFormDto videoFormDto,
+                              @RequestParam("videoId") Long videoId,
                               @RequestParam("videoImgFile") MultipartFile videoImgFile,
                               @RequestParam("videoFile") MultipartFile videoFile,
-                              BindingResult bindingResult, Model model) throws Exception {
-        System.out.println("여기서 문제다!1");
+                              Model model) throws Exception {
+        videoFormDto.setId(videoId);
         videoService.updateVideo(videoFormDto, videoImgFile, videoFile);
-        return "/videos/videoEditForm";
+
+        return "redirect:/videoEdit?videoId=" + videoId;
     }
+
 
 }

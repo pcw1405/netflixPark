@@ -1,100 +1,138 @@
- body.popup-open {
-   /*    overflow: hidden; 스크롤바 비활성화 */
-    }
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
 
-    .popup-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
 
-      background-color: rgba(0, 0, 0, 0.5); /* 검은색 투명 배경 */
-    /*   z-index: 9; 팝업보다 낮은 z-index 값 */
-    }
 
-    .popup {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 500px;
-      height:650px;
-      background-color: black;
-      padding: 1px;
-      color: white;
-      z-index: 29999;
-       border-radius: 10px;
-       border: 2px solid white;
-    }
+.popup {
+  display: none;
+  position: fixed;
+  top: calc(50% + 10px); /* top 값 조정 */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height:700px;
+  max-height: calc(100% - 100px);
+  background-color: RGB(24, 24, 24);
+ overflow-x: hidden; /* 가로 스크롤바 숨김 */
+   overflow-y: scroll; /* 세로 스크롤바 유지 */
+  color: white;
+  z-index: 29999;
+  border-radius: 10px;
+  padding-bottom: 15px;
+}
 
     .popup-close {
     width:30px;
     height:30px;
-    position:relative;
-      float: right;
+    position:absolute;
+        right:2%;
+        top:2%;
       cursor: pointer;
-      background:black;
+      background:RGB(24, 24, 24);
         font-weight: 800;
       color: white;
       z-index:50;
       border-radius: 50%;
       text-align: center;
-      border: 1px solid white;
+      border: 1px solid gray;
     margin-right: 5px;
     }
 
+    .popup-close:hover{
+        transform: scale(1.1); /* 약간 크게 만들기 */
+        border: 2px solid white; /* 2px 흰색 테두리 설정 */
+    }
+
+
+
+
     .videoContainer{
 
-        width:500px;
+        width:100%;
         height:400px;
         position: relative;
-
+     /*    border-bottom: 1px solid white; 가로선 스타일을 지정합니다. */
+        overflow:hidden;
+        background-color: RGB(24, 24, 24);
 
     }
+
+    .titleV span{
+        position: absolute;
+        z-index: 500;
+        bottom: 20%;
+        left: 4%;
+        font-family: "Hanna",sans-serif;
+        font-size: 50px;
+        text-shadow: 5px 5px 8px rgba(0, 0, 0, 0.5);
+           font-style: italic;
+
+    }
+
     .videoSpace{
+        overflow:hidden;
         position:relative;
         z-index:0;
-        width:500px;
-        height:400px;
+        width:100%;
+        height:100%;
     }
 
-    .like2{
-            float:right;
-            margin-left:10px;
-            font-size:30px;
-             border-radius: 50%;
+    .videoContainer video {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+       object-fit: cover;
+      top: 0;
+      left: 0;
+      /* 테두리 설정 */
+        border-radius: 10px; /* 테두리 둥글게 만들기 */
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* 그라데이션 효과 추가 */
     }
 
-    .like2:hover{
-        background-color:pink;
-    }
+
+
+
     .temp{
         position:absolute;
+        width:125px;
+        height:30px;
         z-index:1;
-        left:1%;
-        bottom:8%;
+        left:2%;
+        bottom:12%;
+
        }
 
+      .videoContainer .saveLike{
+            float:right;
+            font-size:25px;
+             border-radius: 50%;
+              margin-top: -5px;
+        }
 
    .go-button {
 
+        border: 1px solid gray;
 
-        border: none;
         background-color: transparent;
         padding: 0;
         align-items: center;
         justify-content: center;
         border-radius: 50%;
-         border-radius: 15px;
+         border-radius: 5px;
+         float:left;
+         margin-left:5px;
         width: 80px;
         height: 30px;
-        box-shadow: 0 0 0 2px #000;
+        /*box-shadow: 0 0 0 2px #000;*/
         background-color:white;
 
     }
 
   .go-button:hover {
-    background-color: yellow;
+
+          border: 2px solid gray; /* 2px 흰색 테두리 설정 */
+
     }
 
   .go-button svg {
@@ -103,7 +141,73 @@
     fill: currentColor;
    }
 
+
+
     .textSpace {
       margin-top:30px;
       margin-left: 15px;
+        align-items: center;
     }
+
+
+    .black_bridge {
+      position: absolute;
+      z-index:500;
+      bottom: 0;
+      left:0;
+      width: 100%;
+      height: 45px;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+    }
+
+    .textContainer{
+        width:800px;
+        height:150px;
+        position:relative;
+
+
+
+
+    }
+
+    .story_box {
+      float:left;
+      width: 500px;
+      height:150px;
+    /*  border-right: 1px solid white;  가로선 스타일을 지정합니다. */
+      background-color: RGB(24, 24, 24);
+
+        font-family: "Hanna",sans-serif;
+    }
+
+    .short_box {
+          float:left;
+          width:200px;
+          height:100%;
+
+             /* 가로선 스타일을 지정합니다. */
+          background-color: RGB(24, 24, 24);
+            font-family: "Hanna",sans-serif;
+    }
+
+
+
+    .tmp {
+    width:400px;
+    height:150px;
+    margin: 10px auto 0;
+}
+
+
+.short_box p {
+    margin-top: 10px;
+    margin-left:5px;
+    text-shadow: 2px 2px 4px rgba(128, 128, 128, 0.5);
+
+.short_box p span {
+    margin-left: 5px;
+    text-shadow: 2px 2px 4px rgba(128, 128, 128, 0.5);
+}
+
+
+
