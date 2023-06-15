@@ -88,7 +88,7 @@
                             <a>재생</a>
                         </button>
 
-                        <span class="">
+                        <span class="findI">
                             <button class="more-info-button m-t-20 " th:data-video-url="@{${randomVideo.videoFile.fileUrl}}"
                                     th:data-video-nm="@{${randomVideo.videoNm}}"
                                     th:data-video-genres="@{${randomVideo.genres}}"
@@ -96,6 +96,8 @@
                                     th:data-video-actors="@{${randomVideo.actors}}"
                                     th:data-video-cast="@{${randomVideo.cast}}"
                                     th:data-video-recent="@{${randomVideo.id}}"
+                                    th:data-video-id="@{${randomVideo.id}}"
+                                    th:data-iColor="${favoriteVideos != null && favoriteVideos.contains(randomVideo.id) ? 'red' : 'white'}"
                             >
                                 <span>
                                         <svg viewBox="0 0 24 24">
@@ -117,16 +119,16 @@
 
 
             <!--hollywood new release -->
-            <section th:each="subject: ${subjects}" id="mylist" class="container" th:if="${subjects != null}">
+            <section th:each="subject: ${subjects}" id="mylist" class="container">
 
                 <!--                여기서부터 -->
                 <h4 class="mylist-heading" >
 
-                    <span th:text="${subject}"></span> 영화
+                    <span th:text="${subject}"></span>영화
                 </h4>
 
                 <div class="mylist-container d-flex flex-start flex-middle flex-no-wrap owl-carousel">
-                    <div th:if="${videos != null and video.genres.contains(subject)}" th:each="video : ${videos}" class="video searchlist getRecent">
+                    <div th:if="${videos != null and video.genres.contains(subject)}" th:each="video : ${videos}" class="video searchlist getRecent ">
                         <video class="mylist-img p-r-10 p-t-10 video-item"
                                th:poster="${video.videoImg.imgUrl}">
                             <!--                            poster부분도 for each문으로 반복문을 돌려야한다 -->
@@ -143,7 +145,7 @@
                              th:data-video-actors="@{${video.actors}}"
                              th:data-video-cast="@{${video.cast}}"
                              th:data-video-recent="@{${video.id}}"
-                             th:data-iColor="${favoriteVideos != null && favoriteVideos.contains(randomVideo.id) ? 'red' : 'white'}"
+                             th:data-video-id="${video.id}"
 
                         >
                             <div class="play-button d-flex justify-content-start ">
@@ -154,9 +156,8 @@
 
                                 <!--                                -->
 
-                                <div class="like-button saveLike" >
-                                    <i class="fa-regular fa-heart fas" th:data-video-id="${video.id}" th:data-iColor="${favoriteVideos != null && favoriteVideos.contains(video.id) ? 'red' : 'white'}"></i>
-
+                                <div class="like-button saveLike findI" >
+                                    <i class="fa-regular fa-heart fas " th:data-video-id="${video.id}" th:data-iColor="${favoriteVideos != null && favoriteVideos.contains(video.id) ? 'red' : 'white'}"></i>
                                 </div>
 
                                 <!--                                -->

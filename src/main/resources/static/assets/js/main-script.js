@@ -59,6 +59,8 @@ var saveLikeButton = $(this).find(' i');
  $(this).attr('data-iColor', 'red');
 
 
+
+
 //    saveLikeButton.attr('data-iColor', 'red');
 
     // data-iColor 값이 'red'인 경우 색상을 red로, 그렇지 않은 경우 색상을 white로 변경한다

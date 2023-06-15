@@ -61,6 +61,7 @@
                              th:data-video-actors="@{${video.actors}}"
                              th:data-video-cast="@{${video.cast}}"
                              th:data-video-recent="@{${video.id}}"
+                             th:data-video-id="@{${video.id}}"
                         >
                             <div class="play-button d-flex justify-content-start ">
                                 <svg viewBox="0 0 24 24" class="full" >
@@ -69,7 +70,7 @@
 
 
 
-                                <div class="like-button saveLike " >
+                                <div class="like-button saveLike findI " >
                                     <i class="fa-regular fa-heart fas" th:data-video-id="${video.id}" th:data-iColor="${favoriteVideos != null && favoriteVideos.contains(video.id) ? 'red' : 'white'}"></i>
 
                                 </div>

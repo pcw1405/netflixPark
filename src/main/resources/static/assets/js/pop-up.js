@@ -77,6 +77,15 @@ $(document).ready(function () {
  var videoIColor = $clickedElement.find('[data-iColor]').attr('data-iColor');
  console.log(videoIColor);
 
+ // 요소를 선택합니다.
+var dataCheckValue = $('.popup [data-video-id]').attr('data-video-id');
+
+console.log("dataCheckValue: " + dataCheckValue);
+
+
+
+
+
  $('.popup').find('.saveLike i').attr('data-iColor', videoIColor);
 
 
@@ -95,6 +104,25 @@ $(document).ready(function () {
                     var iColor = $(this).attr('data-iColor');
                     $(this).css('color', iColor);
                 });
+
+         var imageElements = $('.searchlist img');
+
+         // 각 이미지 요소에 대해서 처리합니다.
+         imageElements.each(function() {
+             // rdvideo.id 값을 가져옵니다.
+             var rdVideoId = $(this).attr('data-video-id');
+            console.log("rdVideoId: " + rdVideoId);
+             // th:data-check 값을 가져옵니다.
+
+             // rdvideo.id와 th:data-check 값을 비교합니다.
+             if (rdVideoId === dataCheckValue) {
+                 // 값이 동일한 경우 해당하는 searchlist를 숨깁니다.
+                 $(this).closest('.searchlist').hide();
+             }else{
+             $(this).closest('.searchlist').show();
+             }
+         });
+
 
         $popup.css("display", "block");
 

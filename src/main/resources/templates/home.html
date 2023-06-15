@@ -69,7 +69,7 @@
               <a>재생</a>
             </button>
 
-            <span class="">
+            <span class="findI">
                             <button class="more-info-button m-t-20 " th:data-video-url="@{${randomVideo.videoFile.fileUrl}}"
                                     th:data-video-nm="@{${randomVideo.videoNm}}"
                                     th:data-video-genres="@{${randomVideo.genres}}"
@@ -125,6 +125,7 @@
                  th:data-video-actors="@{${video.actors}}"
                  th:data-video-cast="@{${video.cast}}"
                  th:data-video-recent="@{${video.id}}"
+                 th:data-video-id="@{${video.id}}"
 
             >
               <div class="play-button d-flex justify-content-start ">
@@ -135,7 +136,7 @@
 
                 <!--                                -->
 
-                <div class="like-button saveLike" >
+                <div class="like-button saveLike findI" >
                   <i class="fa-regular fa-heart fas" th:data-video-id="${video.id}" th:data-iColor="${favoriteVideos != null && favoriteVideos.contains(video.id) ? 'red' : 'white'}"></i>
 
 
@@ -202,6 +203,7 @@
                  th:data-video-actors="@{${video.actors}}"
                  th:data-video-cast="@{${video.cast}}"
                  th:data-video-recent="@{${video.id}}"
+                 th:data-video-id="@{${video.id}}"
 
             >
               <div class="play-button d-flex justify-content-start ">
@@ -212,9 +214,8 @@
 
                 <!--                                -->
 
-                <div class="like-button saveLike" >
+                <div class="like-button saveLike findI" >
                   <i class="fa-regular fa-heart fas" th:data-video-id="${video.id}" th:data-iColor="${favoriteVideos != null && favoriteVideos.contains(video.id) ? 'red' : 'white'}"></i>
-
 
                 </div>
 
@@ -274,6 +275,7 @@
                  th:data-video-actors="@{${video.actors}}"
                  th:data-video-cast="@{${video.cast}}"
                  th:data-video-recent="@{${video.id}}"
+                 th:data-video-id="@{${video.id}}"
             >
               <div class="play-button d-flex justify-content-start ">
                 <svg viewBox="0 0 24 24" class="full" >
@@ -282,7 +284,7 @@
 
 
 
-                <div class="like-button saveLike" >
+                <div class="like-button saveLike findI" >
                   <i class="fa-regular fa-heart fas" th:data-video-id="${video.id}" th:data-iColor="${favoriteVideos != null && favoriteVideos.contains(video.id) ? 'red' : 'white'}"></i>
 
                 </div>
@@ -343,6 +345,7 @@
                  th:data-video-actors="@{${video.actors}}"
                  th:data-video-cast="@{${video.cast}}"
                  th:data-video-recent="@{${video.id}}"
+                 th:data-video-id="@{${video.id}}"
             >
               <div class="play-button d-flex justify-content-start ">
                 <svg viewBox="0 0 24 24" class="full" >
@@ -351,7 +354,7 @@
 
 
 
-                <div class="like-button saveLike" >
+                <div class="like-button saveLike findI" >
                   <i class="fa-regular fa-heart fas" th:data-video-id="${video.id}" th:data-iColor="${favoriteVideos != null && favoriteVideos.contains(video.id) ? 'red' : 'white'}"></i>
 
                 </div>
