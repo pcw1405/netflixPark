@@ -5,6 +5,10 @@ import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.UUID;
 
 @Service
@@ -23,13 +27,15 @@ public class FileService {
         return savedFileName;
     }
 
-    public void deleteFile(String filePath) throws Exception {
-        File file = new File(filePath);
-        if (file.exists()) {
-            if (file.delete()) {
+    public void deleteFile(String filePath) throws IOException {
+        Path path = Paths.get(filePath);
+        if (Files.exists(path)) {
+            try {
+                Files.delete(path);
                 log.info("File deleted successfully: " + filePath);
-            } else {
+            } catch (IOException e) {
                 log.warning("Failed to delete file: " + filePath);
+                throw e;
             }
         } else {
             log.warning("File does not exist: " + filePath);

@@ -44,7 +44,6 @@ public class VideoFileService {
         fileName = fileService.uploadFile(videoFileLocation, oriFileName, videoClipFile.getBytes());
         fileUrl = "/upload/video_file/" + fileName;
 
-        // 기존 파일 삭제
         if (videoFile.getFileName() != null) {
             String filePath = videoFileLocation + "/" + videoFile.getFileName();
             fileService.deleteFile(filePath);
