@@ -340,15 +340,13 @@ public class VideoController {
         return "redirect:/videoListForm";
     }
 
-    @GetMapping("/videoEdit")
+    @GetMapping("/videoEdit{videoId}")
     public String editVideo(@RequestParam("videoId") Long videoId, Model model) {
-        // Retrieve the video from the database using the videoId
-        Video video = videoService.getVideoById(videoId);
 
-        // Add the video object to the model
+        Video video = videoRepository.findById(videoId).orElse(null);
+
         model.addAttribute("video", video);
 
-        // Return the edit form view
         return "videos/videoEditForm";
     }
 

@@ -93,7 +93,7 @@ public class VideoService {
 
     public Long updateVideo(VideoFormDto videoFormDto, MultipartFile videoImgFile, MultipartFile videoFile) throws Exception{
 
-        Video video = videoRepository.findById(videoFormDto.getId());
+        Video video = videoRepository.findById(videoFormDto.getId()).orElse(null);
 
         video.updateVideo(videoFormDto);
 
