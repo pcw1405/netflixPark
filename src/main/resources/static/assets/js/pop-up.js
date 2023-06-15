@@ -85,7 +85,7 @@ $(document).ready(function () {
                 $('.titleV').empty().append( $("<span>").text( videoNm));
 //            $('.story').empty().append($descriptionText);
 
-          $('.ganre').empty().append( $("<span>").text( videoCast));
+          $('.ganre').empty().append( $("<span>").text( videoGenres));
             $('.actor').empty().append( $("<span>").text( videoActors));
              $('.videoCast').empty().append( $("<span>").text( videoCast));
 

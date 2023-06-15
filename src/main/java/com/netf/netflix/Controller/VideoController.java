@@ -134,15 +134,26 @@ public class VideoController {
             System.out.println(video.getId()+video.getVideoNm()+video.getGenres()+video.getDescription());
         }
 
-        if (!videos.isEmpty()) {
-            // 랜덤한 인덱스를 생성
-            int randomIndex = new Random().nextInt(videos.size());
-            // 랜덤한 비디오 선택
-            Video randomVideo = videos.get(randomIndex);
-            // 선택한 비디오를 모델에 추가
-            model.addAttribute("randomVideo", randomVideo);
+//        랜덤비디오
+
+        List<Video> allVideos = videoRepository.findAll();
+        List<Video> randomVideos = new ArrayList<>();
+        Set<Integer> chosenIndexes = new HashSet<>();
+
+        while (randomVideos.size() < 4 && chosenIndexes.size() < allVideos.size()) {
+            int randomIndex = new Random().nextInt(allVideos.size());
+            if (chosenIndexes.contains(randomIndex)) {
+                continue; // 이미 선택된 인덱스는 건너뛰기
+            }
+            chosenIndexes.add(randomIndex);
+            Video randomVideo = allVideos.get(randomIndex);
+            randomVideos.add(randomVideo);
         }
 
+        model.addAttribute("randomVideo2", randomVideos);
+        if (!randomVideos.isEmpty()) {
+            model.addAttribute("randomVideo", randomVideos.get(0));
+        }
 
         model.addAttribute("subjects",subjects);
         model.addAttribute("videos",videos);
@@ -189,14 +200,24 @@ public class VideoController {
         for (Video video : videos) {
             System.out.println(video.getId()+video.getVideoNm()+video.getGenres()+video.getDescription());
         }
+//랜덤비디오
+        List<Video> allVideos = videoRepository.findAll();
+        List<Video> randomVideos = new ArrayList<>();
+        Set<Integer> chosenIndexes = new HashSet<>();
 
-        if (!videos.isEmpty()) {
-            // 랜덤한 인덱스를 생성
-            int randomIndex = new Random().nextInt(videos.size());
-            // 랜덤한 비디오 선택
-            Video randomVideo = videos.get(randomIndex);
-            // 선택한 비디오를 모델에 추가
-            model.addAttribute("randomVideo", randomVideo);
+        while (randomVideos.size() < 4 && chosenIndexes.size() < allVideos.size()) {
+            int randomIndex = new Random().nextInt(allVideos.size());
+            if (chosenIndexes.contains(randomIndex)) {
+                continue; // 이미 선택된 인덱스는 건너뛰기
+            }
+            chosenIndexes.add(randomIndex);
+            Video randomVideo = allVideos.get(randomIndex);
+            randomVideos.add(randomVideo);
+        }
+
+        model.addAttribute("randomVideo2", randomVideos);
+        if (!randomVideos.isEmpty()) {
+            model.addAttribute("randomVideo", randomVideos.get(0));
         }
 
         String profileImageUrl = profile.getImageUrl();
@@ -360,6 +381,22 @@ public class VideoController {
         videoService.updateVideo(videoFormDto, videoImgFile, videoFile);
 
         return "redirect:/videoEdit?videoId=" + videoId;
+    }
+
+
+    @GetMapping("/viewCount")
+    public String countView(Model model, HttpSession session) {
+        Long profileId = (Long) session.getAttribute("profileNm");
+        Profile profile = profileRepository.findById(profileId)
+                .orElseThrow(() -> new RuntimeException("Profile not found"));
+
+
+        model.addAttribute("favoriteVideos", profile.getFavoriteVideos());
+        // 조회수의 순서대로 상위 10개의 비디오를 가져오기
+        List<Video> top10Videos = videoRepository.findTop10ByOrderByViewCountDesc();
+        model.addAttribute("top10Videos", top10Videos);
+
+        return "/leftmain/viewTest";
     }
 
 
