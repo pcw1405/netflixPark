@@ -16,10 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
@@ -67,21 +64,23 @@ public class HomeController {
 //                .orElseThrow(() -> new RuntimeException("Profile not found"));
         // 랜덤 부분
         List<Video> videos = videoRepository.findAll();
-        if (!videos.isEmpty()) {
-            // 랜덤한 인덱스를 생성
-            int randomIndex = new Random().nextInt(videos.size());
-            // 랜덤한 비디오 선택
-            Video randomVideo = videos.get(randomIndex);
-            // 선택한 비디오를 모델에 추가
-            model.addAttribute("randomVideo", randomVideo);
-        }
         List<Video> randomVideos = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
+        Set<Integer> chosenIndexes = new HashSet<>();
+
+        while (randomVideos.size() < 4 && chosenIndexes.size() < videos.size()) {
             int randomIndex = new Random().nextInt(videos.size());
+            if (chosenIndexes.contains(randomIndex)) {
+                continue; // 이미 선택된 인덱스는 건너뛰기
+            }
+            chosenIndexes.add(randomIndex);
             Video randomVideo = videos.get(randomIndex);
             randomVideos.add(randomVideo);
         }
+
         model.addAttribute("randomVideo2", randomVideos);
+        if (!randomVideos.isEmpty()) {
+            model.addAttribute("randomVideo", randomVideos.get(0));
+        }
 
 
         //최근본
