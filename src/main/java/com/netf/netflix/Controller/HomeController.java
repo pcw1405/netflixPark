@@ -1,19 +1,15 @@
 package com.netf.netflix.Controller;
 
-import com.netf.netflix.Constant.Role;
 import com.netf.netflix.Entity.Member;
 import com.netf.netflix.Entity.Profile;
 import com.netf.netflix.Entity.Video;
 import com.netf.netflix.Entity.VideoImg;
-import com.netf.netflix.Repository.MemberRepository;
 import com.netf.netflix.Repository.ProfileRepository;
 import com.netf.netflix.Repository.VideoImgRepository;
 import com.netf.netflix.Repository.VideoRepository;
 import com.netf.netflix.Service.MemberService;
 import com.netf.netflix.Service.ProfileService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +25,7 @@ public class HomeController {
 
     private final MemberService memberService;
     private final ProfileRepository profileRepository;
-    private final MemberRepository memberRepository;
+
     private final VideoImgRepository videoImgRepository;
     private final VideoRepository videoRepository;
 
@@ -120,13 +116,9 @@ public class HomeController {
         List<Video> top10Videos = videoRepository.findTop10ByOrderByViewCountDesc();
         model.addAttribute("top10Videos", top10Videos);
 
-        // Get the role of the user
-//            Role role = member.getRole();
-//
-//        model.addAttribute("role", role);
-
-
         return "home";
     }
+
+
 
 }

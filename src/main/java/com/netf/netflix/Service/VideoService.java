@@ -103,14 +103,6 @@ public class VideoService {
         VideoFile updatedVideoFile = videoFileRepository.findByVideo(video);
         updatedVideoFile.setVideo(video);
 
-
-
-//        if (videoImgFile != null) {
-//            videoImgService.updateVideoImg(videoImg, videoImgFile);
-//        }
-//        if (videoFile != null) {
-//            videoFileService.updateVideoFile(updatedVideoFile, videoFile);
-//        }
         videoImgService.updateVideoImg(videoImg, videoImgFile);
         videoFileService.updateVideoFile(updatedVideoFile, videoFile);
 
