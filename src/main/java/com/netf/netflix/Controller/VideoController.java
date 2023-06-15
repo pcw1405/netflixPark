@@ -73,10 +73,13 @@ public class VideoController {
     }
 
     @GetMapping("/search/{profileId}")
-    public String videoList(@PathVariable("profileId")Long profileId, Model model, String searchKeyword,HttpSession session) {
+    public String videoList(@PathVariable("profileId")Long profileId, Model model,
+                            @RequestParam("searchKeyword") String searchKeyword,HttpSession session) {
         session.setAttribute("profileNm",profileId);
+
         Profile profile = profileRepository.findById(profileId)
                 .orElseThrow(() -> new RuntimeException("Profile not found"));
+
         Profile selectedProfile = profileRepository.findById(profileId).orElse(null);
         if (selectedProfile == null) {
             throw new RuntimeException("프로필을 찾을 수 없습니다.");
@@ -89,7 +92,7 @@ public class VideoController {
         model.addAttribute("otherProfiles", otherProfiles);
 
         String profileImageUrl = profile.getImageUrl();
-        // 프로필 이미지 URL이 null인 경우 기본값을 설정합니다
+
         if (profileImageUrl == null) {
             profileImageUrl = "/images/default-profile-image.jpg";  // 기본 이미지 URL 설정
         }
@@ -106,7 +109,7 @@ public class VideoController {
         }
 
         model.addAttribute("list", list);
-        model.addAttribute("uploadedVideoList", videoImgRepository.findAll()); // 이미지 정보 조회
+        model.addAttribute("uploadedVideoList", videoImgRepository.findAll());
 
         return "/rightmain/search";
     }
@@ -359,8 +362,8 @@ public class VideoController {
         return "videos/videoListForm";
     }
 
-    @PostMapping("/videoDelete")
-    public String editvideodelete(@RequestParam("videoId") Long videoId) {
+    @PostMapping("/video-Delete")
+    public String deleteVideo(@RequestParam("videoId") Long videoId) {
 
         videoService.deleteVideo(videoId);
 
@@ -395,7 +398,6 @@ public class VideoController {
         Long profileId = (Long) session.getAttribute("profileNm");
         Profile profile = profileRepository.findById(profileId)
                 .orElseThrow(() -> new RuntimeException("Profile not found"));
-
 
         model.addAttribute("favoriteVideos", profile.getFavoriteVideos());
         // 조회수의 순서대로 상위 10개의 비디오를 가져오기

@@ -15,42 +15,11 @@
 </th:block>
 <div layout:fragment="content" class="content">
     <main id="mainContainer" class="p-b-40">
-        <div class="popup">
+        <div th:replace="fragments/popup :: myPopup"></div>
 
-            <div class="videoContainer">
-                <div class="popup-close" >x</div>
-
-                <div class="temp">
-                    <button class="go-button">
-
-            <span>
-              <svg viewBox="0 0 24 24">
-                <path d="M6 4l15 8-15 8z" fill="currentColor"></path>
-              </svg>
-            </span> 재생
-                    </button>
-
-
-                    <i class="like2 fa-regular fa-heart" onclick="likeVideo(1)"></i>
-
-                </div>
-
-                <!--    비디오 컨테이너    -->
-            </div>
-
-            <!--  비디오 컨테이너 -->
-
-            <div class="textContainer">
-                <!--        여기가 텍스트를 주입하는 곳    -->
-
-
-            </div>
-
-
-        </div>
 
         <div>
-            <form th:action="@{/search}" method="get" class="container justify-content-center">
+            <form action="{/search/{profileId}}" method="get" class="container justify-content-center">
                 <div class="searchform d-flex flex-center flex-middle input-group" style="padding-top: 150px;">
                     <input class="form-control" type="text" name="searchKeyword" placeholder="검색.." autocomplete="off" aria-describedby="button-addon2">
                     <button class="btn btn-outline-secondary" id="button-addon2" type="submit">검색</button>
