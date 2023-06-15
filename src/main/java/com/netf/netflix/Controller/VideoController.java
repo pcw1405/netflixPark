@@ -383,7 +383,6 @@ public class VideoController {
         return "redirect:/videoEdit?videoId=" + videoId;
     }
 
-
     @GetMapping("/viewCount")
     public String countView(Model model, HttpSession session) {
         Long profileId = (Long) session.getAttribute("profileNm");
