@@ -1,0 +1,83 @@
+
+	body {
+			color: white;
+			background-color:#111;
+		}
+		a{
+	    text-decoration: none;
+	    color:#808080;
+	    font-size:25px;
+		}
+		.head-box{
+        		width:1200px;
+        		height:150px;
+        	    margin:0 auto;
+        	    position:fixed;
+        	    text-align:center;
+        	    left:50%;
+        	    top:20%;
+        	    transform: translate(-50%,-50%);
+        	    text-align:center;
+        		}
+		.main_logo_img{
+            max-width : 200px !important;
+            max-height: 50px !important;
+            min-height: 68px !important;
+            min-width: 120px !important;
+        }
+        span.tv{
+        float:left;
+        font-size:20px;
+        text-align:left;
+        }
+        span .fa{
+        float:left;
+        font-size:30px;
+        display:block;
+        margin-right:20px;
+        }
+        .profile-card{
+        float:right;
+        font-size:25px;
+        }
+        .profile-card img{
+        width:70px;
+        height:70px;
+        margin-left:20px;}
+
+        .bobo{
+        width:1200px;
+        margin-bottom:200px;
+        }
+        #icon-image,#icon-image1,#icon-image2{
+        width:900px;
+        margin: 0 auto;
+        border-box:box-sizing;
+
+        }
+       .heading{
+      margin: 30px 0;
+      font-size:30px;
+      }
+        button{
+        padding: 0px;
+        color:#111;
+        border:none;
+        }
+      section img{
+      padding-right:30px;
+      cursor:pointer;
+      background-color:#111;
+      }
+      .profile-image-container {
+          float: left;
+        margin-bottom:40px;
+      }
+
+      .clearfix::after {
+          content: "";
+          display: table;
+          clear: both;
+      }
+
+

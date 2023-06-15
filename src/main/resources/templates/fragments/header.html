@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
-
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<script src="@{/assets/lib/jquery 3.7.0.js}"></script>
 <div th:fragment="header">
     <header class="d-flex space-between flex-center flex-middle container">
         <meta name="_csrf" th:content="${_csrf.token}"/>
@@ -10,12 +10,12 @@
                 <img th:src="@{/images/Netflix_Logo.png}" class="main_logo_img" alt="메인로고이미지">
                 <img th:src="@{/images/pngwing.com.png}" class="main_small_img" alt="">
             </a>
-            <a th:href="@{/}" class="nav-item home">홈</a>
-            <a th:href="@{/movie/{profileId}(profileId=${session.profileNm})}" class="nav-item">영화</a>
-            <a th:href="@{/drama/{profileId}(profileId=${session.profileNm})}" class="nav-item">드라마</a>
-            <a th:href="@{/recent/{profileId}(profileId=${session.profileNm})}" class="nav-item">최근 시청기록</a>
-            <a th:href="@{/mylist/{profileId}(profileId=${session.profileNm})}" class="nav-item">내가 찜한 콘텐츠</a>
-            <a th:href="@{/video/new}" class="nav-item">비디오 업로드 </a>
+            <a th:href="@{/}" sec:authorize="isAnonymous() "class="nav-item home">홈</a>
+            <a th:href="@{/movie/{profileId}(profileId=${session.profileNm})}" sec:authorize="isAuthenticated()" class="nav-item">영화</a>
+            <a th:href="@{/drama/{profileId}(profileId=${session.profileNm})}" sec:authorize="isAuthenticated()"class="nav-item">드라마</a>
+            <a th:href="@{/recent/{profileId}(profileId=${session.profileNm})}" sec:authorize="hasAnyAuthority('ROLE_ADMIN')" class="nav-item">최근 시청기록</a>
+            <a th:href="@{/mylist/{profileId}(profileId=${session.profileNm})}" sec:authorize="hasAnyAuthority('ROLE_ADMIN')" class="nav-item">내가 찜한 콘텐츠</a>
+            <a th:href="@{/video/new}" sec:authorize="hasAnyAuthority('ROLE_ADMIN')" class="nav-item">비디오 업로드 </a>
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap" rel="stylesheet">
@@ -70,5 +70,20 @@
         </div>
     </header>
 </div>
+<script>
+ $(document).ready(function() {
+  $(".dropdown").on("click", function() {
+    $(this).find(".dropdown-menu").toggleClass("show");
+  });
+
+  $(document).on("click", function(event) {
+    var dropdown = $(".dropdown");
+    if (!dropdown.is(event.target) && dropdown.has(event.target).length === 0) {
+      dropdown.find(".dropdown-menu").removeClass("show");
+    }
+  });
+});
+
+</script>
 
 </html>

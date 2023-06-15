@@ -41,4 +41,8 @@ public class ProfileImg {
     public void setProfileImgUrl(String profileImgUrl) {
         this.imageUrl = profileImgUrl;
     }
+
+    public String getUrl() {
+        return imageUrl;
+    }
 }

@@ -1,3 +1,4 @@
+<!-- profile-updateform.html -->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -13,11 +14,13 @@
 </div>
 <div class="profile-aria">
   <div>
-    <p class="tv">프로필 생성</p>
+    <p class="tv">프로필 수정</p>
   </div>
   <div class="profile-card">
-    <img id="profileImage" src="#" alt="selectuserimg" th:src="${imageUrl != null ? imageUrl : '/images/icons/plus.png'}">
-    <button class="pen" type="button" onclick="location.href='/profile-img'"><i class="fa-solid fa-pen"></i></button>
+    <img id="profileImage" src="#" alt="selectuserimg" th:src="${profile.imageUrl}">
+    <a th:href="@{/profile-update-img/{profileId}(profileId=${profile.id})}">
+      <button class="pen" type="button"><i class="fa-solid fa-pen"></i></button>
+    </a>
   </div>
 
   <div class="change-main">
@@ -47,9 +50,14 @@
         <div class="button">
           <button class="click" type="submit">저장</button>
           <input type="hidden" name="_csrf" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-          <button class="click" type="button" onclick="location.href='/'">취소</button>
         </div>
       </div>
+
+    </form>
+    <form action="/profile/profile-delete" method="post">
+      <input type="hidden" name="profileId" th:value="${profile.id}">
+      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+      <button>삭제 </button>
     </form>
   </div>
 </div>

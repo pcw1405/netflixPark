@@ -50,4 +50,9 @@ public class ProfileImgService {
         profileImgRepository.save(profileImg);
     }
 
+
+    public ProfileImg getProfileImageById(Long imageId) {
+        return profileImgRepository.findById(imageId).orElse(null);
+    }
+
 }

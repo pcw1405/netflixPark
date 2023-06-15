@@ -61,7 +61,7 @@ public class Profile {
         }
         this.profileImg.setProfileImgName(profileImgDto.getProfileImgName());
         this.profileImg.setProfileOriImgName(profileImgDto.getProfileOriImgName());
-        this.imageUrl=profileImgDto.getImageUrl();
+        this.imageUrl = profileImgDto.getImageUrl();
     }
 
 }

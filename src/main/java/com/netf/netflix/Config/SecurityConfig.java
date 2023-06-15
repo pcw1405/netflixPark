@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .mvcMatchers("/", "/members/**", "/item/**", "/images/**", "/**").permitAll()
                 .mvcMatchers("/login").permitAll()
                 .mvcMatchers("/register").permitAll()
-                .mvcMatchers("/admin/**").hasRole("ADMIN")
+                .mvcMatchers("/video/**").hasRole("ADMIN")
                 .mvcMatchers("/profile").hasRole("USER")
                 .antMatchers("/save-like").permitAll()
                 .mvcMatchers("/profile/saveImageUrl").permitAll()
@@ -53,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/")
+                .logoutSuccessUrl("/login")
                 .and()
                 .exceptionHandling()
                 .accessDeniedPage("/access-denied"); // 접근 거부 시 이동할 URL

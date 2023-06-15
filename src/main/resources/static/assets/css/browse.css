@@ -70,31 +70,35 @@
 
 
 /* dropdown styling header notification start */
-  .notification .dropdown-content{
-      right: 6%;
-      border-top: 3px solid #292929;
-      padding-top: 0;
-      padding-bottom: 0;
-  }
-  .notification .dropdown-content a{
-      border-bottom: 1px solid rgb(85, 85, 85);
-      color: rgb(226, 226, 226);
-  }
-  .notification .dropdown-content span{
-    font-size: 13px;
-    font-weight: 300;
-    padding-left: 5px;
-  }
-  .notification .dropdown-content::after{
-    position: absolute;
-    z-index: 20000;
-    content: "";
-    top: -30px;
-    right: 0px;
-    width: 100%;
-    height: 38px;
-    background-color: #ffffff00;
-  }
+ .notification .dropdown-content {
+   right: 6%;
+   border-top: 10px solid transparent;
+   padding-top: 0;
+   padding-bottom: 0;
+ }
+
+ .notification .dropdown-content a {
+   border-bottom: 1px solid rgb(85, 85, 85);
+   color: rgb(226, 226, 226);
+ }
+
+ .notification .dropdown-content span {
+   font-size: 13px;
+   font-weight: 300;
+   padding-left: 5px;
+ }
+
+ .notification .dropdown-content::after {
+   position: absolute;
+   z-index: 20000;
+   content: "";
+   top: 0px !important;
+   right: 0px;
+   width: 100%;
+   height: 38px;
+   background-color: #ffffff00;
+ }
+
 
 /* dropdown styling header notification end */
 .righticons .user-icon{
@@ -115,64 +119,73 @@
   }
 
   /* dropdown styling header user account */
-  .profile-arrow{
-      margin-top: -15px;
-  }
-  .dropdown{
-      cursor: pointer;
-  }
+.profile-arrow{
+  margin-top: -15px;
+}
 
-  .dropdown-content {
-    display: none;
-    flex-direction: column;
-    margin-top: 20px;
-    padding: 20px 0px;
-    right: 2%;
-    position: absolute;
-    background-color: rgb(41, 41, 41);
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  .dropdown-content::after{
-    position: absolute;
-    content: "";
-    top: -20px;
-    right: 0px;
-    width: 100%;
-    height: 22px;
-    background-color: #ffffff00;
-  }
-  .dropdown-content::before{
-    position: absolute;
-    content: "";
-    top: -10px;
-    right: 23px;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 10px 10px 0 10px;
-    border-color: #292929 transparent transparent transparent;
-    margin-left: 0px;
-    display: inline-block;
-    transform: rotate(180deg);
-  }
-  .dropdown-content .line{
-      height: 1px;
-      border: none;
-      opacity: 0.4;
-      margin: 15px 0px;
-      background-color: #292929;
-      width: 100%;
-  }
-  .dropdown-content a {
-    float: none;
-    color: white;
-    font-size: 14px;
-    padding: 12px 16px;
-    text-decoration: none;
-    text-align: left;
-  }
+.dropdown{
+  cursor: pointer;
+  position: relative; /* 추가 */
+}
+
+.dropdown-content {
+  display: none;
+  flex-direction: column;
+  border-top:20px solid transparent;
+  top: 35px;
+  right: 2%;
+  position: absolute;
+  background-color: rgb(41, 41, 41);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content { /* 수정 */
+  display: flex;
+}
+
+.dropdown-content::after {
+  position: absolute;
+  content: "";
+  top: 0px;
+  right: 0px;
+  width: 100%;
+  height: 22px;
+}
+
+.dropdown-content::before {
+  position: absolute;
+  content: "";
+  top: -10px;
+  right: 23px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 10px 0 10px;
+  border-color: #292929 transparent transparent transparent;
+  margin-left: 0px;
+  display: inline-block;
+  transform: rotate(180deg);
+}
+
+.dropdown-content .line {
+  height: 1px;
+  border: none;
+  opacity: 0.4;
+  margin: 15px 0px;
+  background-color: #292929;
+  width: 100%;
+}
+
+.dropdown-content a {
+  float: none;
+  color: white;
+  font-size: 14px;
+  padding: 12px 16px;
+  text-decoration: none;
+  text-align: left;
+}
   .righticons .dropdown:hover .dropdown-content{
     display: block;
 }

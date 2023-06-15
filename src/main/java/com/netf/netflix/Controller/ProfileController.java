@@ -195,35 +195,29 @@ public class ProfileController {
         return "profile-updateform";
     }
 
-    @ResponseBody
-    @PostMapping("/profile/updateProfile")
-    public String updateProfile( Profile profiles, BindingResult bindingResult, HttpSession session) {
+    @PostMapping("/updateProfile")
+    public String updateProfile(@RequestParam("name") String name,
+                                @RequestParam("nickname") String nickname,
+                                @RequestParam("maturityLevel") String maturityLevel,
+                                @RequestParam("language") String language,
+                                HttpSession session) {
         Long profileId = (Long) session.getAttribute("profileId");
-        if (profileId == null) {
-            throw new RuntimeException("프로필 ID를 찾을 수 없습니다.");
-        }
+        Profile profile = profileRepository.findById(profileId).orElse(null);
 
-        String loggedInUser = (String) session.getAttribute("loggedInUser");
-        Member member = memberRepository.findByEmail(loggedInUser);
-        if (member == null) {
-            throw new RuntimeException("사용자 정보를 찾을 수 없습니다.");
-        }
+        profile.setNickname(nickname);
+        profile.setName(name);
+        profile.setLanguage(language);
+        profile.setMaturityLevel(maturityLevel);
 
-        Profile profile = profileService.getProfileById(profileId);
-        if (profile == null) {
-            throw new RuntimeException("프로필 정보를 찾을 수 없습니다.");
-        }
+        profileRepository.save(profile);
 
-//        profileDto.updateProfileFields();
-//        profile.setMember(member);
+        return "redirect:/profile/profile";
+    }
+    @PostMapping(value = "/profile-delete")
+    public String userProfileDelete(@RequestParam("profileId") Long profileId){
 
-        profileService.updateProfile(profile,
-                profiles.getName(),
-                profiles.getLanguage(),
-                profiles.getNickname(),
-                profiles.getMaturityLevel()
-        );
-        session.setAttribute("loggedInUser",profile);
+        profileRepository.deleteById(profileId);
+
         return "redirect:/profile/profile";
     }
 }
