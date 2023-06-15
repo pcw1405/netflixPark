@@ -37,6 +37,7 @@ public class VideoFileService {
     }
 
     public void updateVideoFile(VideoFile videoFile, MultipartFile videoClipFile) throws Exception {
+        if(!videoClipFile.isEmpty()){
         String oriFileName = videoClipFile.getOriginalFilename();
         String fileName = "";
         String fileUrl = "";
@@ -52,6 +53,7 @@ public class VideoFileService {
         videoFile.createdVideoFile(oriFileName, fileName, fileUrl);
 
         videoFileRepository.save(videoFile);
+        }
     }
 
 

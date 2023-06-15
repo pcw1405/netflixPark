@@ -37,6 +37,7 @@ public class VideoImgService {
     }
 
     public void updateVideoImg(VideoImg videoImg, MultipartFile videoImgFile) throws Exception {
+        if(!videoImgFile.isEmpty()){
         String oriImgName = videoImgFile.getOriginalFilename();
         String imgName = "";
         String imgUrl = "";
@@ -51,5 +52,6 @@ public class VideoImgService {
 
         videoImg.createdVideoImg(oriImgName, imgName, imgUrl);
         videoImgRepository.save(videoImg);
+        }
     }
 }

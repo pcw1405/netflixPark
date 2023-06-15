@@ -4,8 +4,10 @@ import com.netf.netflix.Constant.VideoRole;
 import com.netf.netflix.Dto.VideoFormDto;
 import com.netf.netflix.Entity.Profile;
 import com.netf.netflix.Entity.Video;
+import com.netf.netflix.Entity.VideoFile;
 import com.netf.netflix.Entity.VideoImg;
 import com.netf.netflix.Repository.ProfileRepository;
+import com.netf.netflix.Repository.VideoFileRepository;
 import com.netf.netflix.Repository.VideoImgRepository;
 import com.netf.netflix.Repository.VideoRepository;
 import com.netf.netflix.Service.ProfileService;
@@ -38,6 +40,7 @@ public class VideoController {
     private final VideoRepository videoRepository;
     private final ProfileRepository profileRepository;
     private final ProfileService profileService;
+    private final VideoFileRepository videoFileRepository;
 //    private static final List<VideoImgDto> uploadedVideoList = new ArrayList<>();
 
 
@@ -378,10 +381,6 @@ public class VideoController {
                               @RequestParam("videoFile") MultipartFile videoFile,
                               Model model) throws Exception {
         videoFormDto.setId(videoId);
-
-
-
-
 
         videoService.updateVideo(videoFormDto, videoImgFile, videoFile);
 

@@ -103,14 +103,9 @@ public class VideoService {
         VideoFile updatedVideoFile = videoFileRepository.findByVideo(video);
         updatedVideoFile.setVideo(video);
 
-        String oriimgname = videoImgFile.getOriginalFilename();
-        if (oriimgname != null || !oriimgname.equals(videoImg.getOriImgName())) {
-            videoImgService.updateVideoImg(videoImg, videoImgFile);
-        }
-        String orifilename = videoFile.getOriginalFilename();
-        if (orifilename != null || !orifilename.equals(updatedVideoFile.getOriFileName())) {
-            videoFileService.updateVideoFile(updatedVideoFile, videoFile);
-        }
+        videoImgService.updateVideoImg(videoImg, videoImgFile);
+        videoFileService.updateVideoFile(updatedVideoFile, videoFile);
+
         return video.getId();
     }
 
