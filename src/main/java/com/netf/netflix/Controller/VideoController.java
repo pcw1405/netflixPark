@@ -378,6 +378,11 @@ public class VideoController {
                               @RequestParam("videoFile") MultipartFile videoFile,
                               Model model) throws Exception {
         videoFormDto.setId(videoId);
+
+
+
+
+
         videoService.updateVideo(videoFormDto, videoImgFile, videoFile);
 
         return "redirect:/videoEdit?videoId=" + videoId;

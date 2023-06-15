@@ -103,13 +103,14 @@ public class VideoService {
         VideoFile updatedVideoFile = videoFileRepository.findByVideo(video);
         updatedVideoFile.setVideo(video);
 
-        if (videoImgFile.getOriginalFilename() != videoImg.getOriImgName()) {
+        String oriimgname = videoImgFile.getOriginalFilename();
+        if (oriimgname != null || !oriimgname.equals(videoImg.getOriImgName())) {
             videoImgService.updateVideoImg(videoImg, videoImgFile);
         }
-        if (videoFile.getOriginalFilename() != updatedVideoFile.getOriFileName()) {
+        String orifilename = videoFile.getOriginalFilename();
+        if (orifilename != null || !orifilename.equals(updatedVideoFile.getOriFileName())) {
             videoFileService.updateVideoFile(updatedVideoFile, videoFile);
         }
-
         return video.getId();
     }
 

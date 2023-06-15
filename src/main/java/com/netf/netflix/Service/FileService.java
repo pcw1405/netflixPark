@@ -17,11 +17,14 @@ public class FileService {
     public String uploadFile(String uploadPath, String originalFileName,
                              byte[] fileData) throws Exception{
         UUID uuid = UUID.randomUUID();
-        String extension = originalFileName.substring(originalFileName
-                .lastIndexOf("."));
+        String extension = "";
+        int dotIndex = originalFileName.lastIndexOf(".");
+        if (dotIndex > 0) {
+            extension = originalFileName.substring(dotIndex);
+        }
         String savedFileName = uuid.toString() + extension;
-        String fileUpLoadFullUrl = uploadPath + "/" + savedFileName;
-        FileOutputStream fos = new FileOutputStream(fileUpLoadFullUrl);
+        String fileUploadFullUrl = uploadPath + "/" + savedFileName;
+        FileOutputStream fos = new FileOutputStream(fileUploadFullUrl);
         fos.write(fileData);
         fos.close();
         return savedFileName;
