@@ -108,20 +108,26 @@ console.log("dataCheckValue: " + dataCheckValue);
          var imageElements = $('.searchlist img');
 
          // 각 이미지 요소에 대해서 처리합니다.
-         imageElements.each(function() {
-             // rdvideo.id 값을 가져옵니다.
-             var rdVideoId = $(this).attr('data-video-id');
-            console.log("rdVideoId: " + rdVideoId);
-             // th:data-check 값을 가져옵니다.
+      imageElements.each(function() {
+          var rdVideoId = $(this).attr('data-video-id');
+          console.log("VideoId: " + rdVideoId);
 
-             // rdvideo.id와 th:data-check 값을 비교합니다.
-             if (rdVideoId === dataCheckValue) {
-                 // 값이 동일한 경우 해당하는 searchlist를 숨깁니다.
-                 $(this).closest('.searchlist').hide();
-             }else{
-             $(this).closest('.searchlist').show();
-             }
-         });
+          // 이미지 요소의 부모 요소 중에 `.popup` 클래스를 갖는지 확인합니다.
+          if ($(this).parents('.popup').length > 0) {
+
+              // rdVideoId와 dataCheckValue를 비교하여 조건을 처리합니다.
+              if (rdVideoId === dataCheckValue) {
+                  // 값이 동일한 경우 해당하는 searchlist를 숨깁니다.
+                  $(this).closest('.searchlist').hide();
+                  $('.alwaysShow').show();
+                  console.log("popup filter: hide" );
+              } else {
+                  $(this).closest('.searchlist').show();
+                  $('.alwaysShow').show();
+                        console.log("popup filter :show " );
+              }
+          }
+      });
 
 
         $popup.css("display", "block");

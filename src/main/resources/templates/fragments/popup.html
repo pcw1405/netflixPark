@@ -33,7 +33,7 @@
           </span>
             </button>
 
-            <div class="like-button saveLike findI"  >
+            <div class="like-button saveLike findI "  >
                 <i class="fa-regular fa-heart fas " th:data-video-id  th:data-iColor th:data-video-check></i>
             </div>
         </div>
@@ -87,10 +87,10 @@
         </div>
 
     </div>
-    <p class="recommend_title"> 추천 콘텐츠 </p>
+    <p class="recommend_title" th:if="${randomVideo2 != null}">추천 콘텐츠</p>
     <div class=" d-flex justify-content-center ">
 
-        <div class="searchlist getRecent recommend text-center " th:each="rdvideo : ${randomVideo2}"
+        <div class="searchlist getRecent recommend text-center" th:each="rdvideo : ${randomVideo2}"
              th:if="${randomVideo2!= null}" style=" background-color:rgb(51, 51, 51) ; width:300px; height:200px; margin:15px display:inline-block;">
             <img th:if="${rdvideo.videoImg != null}" th:src="@{${rdvideo.videoImg.imgUrl}}" alt="Video Image"  th:data-video-url="@{${rdvideo.videoFile.fileUrl}}"
                  style=" margin-top:17px;  width:260px;   "

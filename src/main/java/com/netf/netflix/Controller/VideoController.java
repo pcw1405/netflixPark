@@ -106,6 +106,10 @@ public class VideoController {
         model.addAttribute("list", list);
         model.addAttribute("uploadedVideoList", videoImgRepository.findAll());
 
+
+
+        model.addAttribute("favoriteVideos", profile.get().getFavoriteVideos());
+
         return "/rightmain/search";
     }
 

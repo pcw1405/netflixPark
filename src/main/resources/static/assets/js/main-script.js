@@ -261,6 +261,26 @@ if (videoId === $('.popup').find('[data-video-id]').attr('data-video-id')) {
         }, 1000);
     });
 
+        $(".fullSpeed").click(function() {
+          setTimeout(function() {
+              var $video = $('.popup .videoContainer video');
+
+              if ($video.length > 0) {
+                var videoElement = $video.get(0);
+
+                if (videoElement.requestFullscreen) {
+                  videoElement.requestFullscreen();
+                } else if (videoElement.mozRequestFullScreen) {
+                  videoElement.mozRequestFullScreen();
+                } else if (videoElement.webkitRequestFullscreen) {
+                  videoElement.webkitRequestFullscreen();
+                } else if (videoElement.msRequestFullscreen) {
+                  videoElement.msRequestFullscreen();
+                }
+              }
+            }, 50);
+        });
+
 
 });
 
