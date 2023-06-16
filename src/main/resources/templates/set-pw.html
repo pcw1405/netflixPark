@@ -31,12 +31,27 @@
           <input type="password" id="passwordcheck" class="form-control password" placeholder="비밀번호를 다시 입력해주세요">
           <label id="passwordMatchLabel" for="passwordcheck"></label>
           <input type="hidden" th:value="${member}" name="member"/>
-          <button class="button submitButton" id="singInButton">비밀번호 재설정</button>
+          <button class="button submitButton" id="singInButton" disabled>비밀번호 재설정</button>
         </form>
 
       </div>
     </section>
   </main>
 </div>
+<script>
+    $(document).ready(function() {
+    $('#password, #passwordcheck').on('keyup', function() {
+        var password = $('#password').val();
+        var passwordcheck = $('#passwordcheck').val();
 
+        if (password === passwordcheck && password !== '') {
+            $('#passwordMatchLabel').text('비밀번호 일치').css('color', 'green');
+            $('#singInButton').prop('disabled', false);
+        } else {
+            $('#passwordMatchLabel').text('비밀번호 불일치').css('color', 'red');
+            $('#singInButton').prop('disabled', true);
+        }
+    });
+});
+</script>
 </html>

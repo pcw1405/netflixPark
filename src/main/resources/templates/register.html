@@ -19,7 +19,6 @@
         <a href="/">
             <img th:src="@{/images/logo.png}"  height="50px" width="170px" alt="site logo main">
         </a>
-        <button class="button"><a href="/login"> 로그인</a></button>
     </header>
     <section id="login-form-section">
         <!--Login form start-->
@@ -34,7 +33,6 @@
                 <input type="text" id="name" th:field="*{name}" class="from-control name" placeholder="이름을 입력해주세요">
                 <p id="errorName" style="display: none;" th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="fieldError">잘못된 이름입니다.</p>
 
-
                 <input type="email" id="email"  th:field="*{email}" class="form-control email" placeholder="이메일을 입력해주세요">
                 <p id="errorEmail" style="display: none;" th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="fieldError">잘못된 이메일주소 입니다..</p>
 
@@ -45,16 +43,15 @@
                 <label id="passwordMatchLabel" for="passwordcheck"></label>
                 <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="fieldError">잘못된 비밀번호입니다.</p>
 
-                <button type="submit" id="signInButton" class="button submitButton">회원가입</button>
+                <button type="submit" id="signInButton" class="button submitButton" disabled>회원가입</button>
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-
 
                 <p class="signUpText para">
                     계정이 있으신가요?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="signUp"><a th:href="@{/members/login}">로그인 하러가기</a></span>
                 </p>
-                <p class="bottomMessage para" style="font-size: 13px;">
-                    이 페이지는 Google reCAPTCHA의 보호를 받아 사용자가 로봇이 아님을 확인합니다. <span style="color:royalblue; font-size: 15px;"> 자세히알아보기.</span>
-                </p>
+<!--                <p class="bottomMessage para" style="font-size: 13px;">-->
+<!--                    이 페이지는 Google reCAPTCHA의 보호를 받아 사용자가 로봇이 아님을 확인합니다. <span style="color:royalblue; font-size: 15px;"> 자세히알아보기.</span>-->
+<!--                </p>-->
             </form>
         </div>
 
@@ -63,21 +60,33 @@
 </main>
 
 <script>
-    function validateEmail() {
-        var email = document.getElementById('email').value;
-        var re = /\S+@\S+\.\S+/;
-        var result = re.test(email);
 
-        if (result) {
-            document.getElementById('errorEmail').style.display = "none";
-            document.getElementById('errorName').style.display = "none";
-            document.getElementById('signInButton').disabled = false;
-        } else {
-            document.getElementById('errorEmail').style.display = "block";
-            document.getElementById('errorName').style.display = "block";
-            document.getElementById('signInButton').disabled = true;
-        }
+
+document.addEventListener("DOMContentLoaded", function(){
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var phoneNumber = document.getElementById('phoneNumber').value;
+    var password = document.getElementById('password').value;
+
+    if(name != "" && email != ""; && phoneNumber != ""; && password != "";){
+        document.getElementById('signInButton').disabled = false;
     }
+
+function validateEmail() {
+    var email = document.getElementById('email').value;
+    var re = /\S+@\S+\.\S+/;
+    var result = re.test(email);
+
+    if (result) {
+        document.getElementById('errorEmail').style.display = "none";
+        document.getElementById('errorName').style.display = "none";
+        document.getElementById('signInButton').disabled = false;
+    } else {
+        document.getElementById('errorEmail').style.display = "block";
+        document.getElementById('errorName').style.display = "block";
+        document.getElementById('signInButton').disabled = true;
+    }
+}
 
     var passwordElement = document.getElementById("password");
     var passwordCheckElement = document.getElementById("passwordcheck");
@@ -86,25 +95,27 @@
     passwordElement.addEventListener("input", checkPasswordMatch);
     passwordCheckElement.addEventListener("input", checkPasswordMatch);
 
-    function checkPasswordMatch() {
-        var password = passwordElement.value;
-        var passwordCheck = passwordCheckElement.value;
+function checkPasswordMatch() {
+    var password = passwordElement.value;
+    var passwordCheck = passwordCheckElement.value;
 
-        if (password === passwordCheck) {
-            passwordMatchLabelElement.textContent = "비밀번호가 일치합니다.";
-            passwordMatchLabelElement.style.color = "green";
-        } else {
-            passwordMatchLabelElement.textContent = "비밀번호가 일치하지 않습니다.";
-            passwordMatchLabelElement.style.color = "red";
-        }
+    if (password === passwordCheck || password === '' || passwordCheck === '') {
+        passwordMatchLabelElement.textContent = "비밀번호가 일치합니다.";
+        passwordMatchLabelElement.style.color = "green";
+    } else {
+        passwordMatchLabelElement.textContent = "비밀번호가 일치하지 않습니다.";
+        passwordMatchLabelElement.style.color = "red";
     }
+}
 
-    document.getElementById('signInButton').addEventListener("click", function(e) {
-        if (passwordElement.value !== passwordCheckElement.value) {
-            e.preventDefault();
-            passwordCheckElement.focus();
-        }
+document.getElementById('signInButton').addEventListener("click", function(e) {
+    if (passwordElement.value !== passwordCheckElement.value) {
+        e.preventDefault();
+        passwordCheckElement.focus();
+    }
     });
+});
+
 </script>
 
 </body>
