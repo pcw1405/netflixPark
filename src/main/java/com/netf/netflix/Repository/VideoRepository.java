@@ -1,5 +1,6 @@
 package com.netf.netflix.Repository;
 
+import com.netf.netflix.Constant.VideoMaturityLevel;
 import com.netf.netflix.Constant.VideoRole;
 import com.netf.netflix.Entity.Video;
 import org.springframework.data.domain.Page;
@@ -24,6 +25,8 @@ public interface VideoRepository extends JpaRepository<Video, Long> {
 
     @Query("SELECT DISTINCT v FROM Video v JOIN FETCH v.videoImg vi ORDER BY vi.uploadDate DESC")
     List<Video> findDistinctByOrderByVideoImgUploadDateDesc();
+
+    List<Video> findByVideoMaturityLevel(VideoMaturityLevel videoMaturityLevel);
 
     List<Video> findTop10ByOrderByViewCountDesc();
 

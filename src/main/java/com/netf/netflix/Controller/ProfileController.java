@@ -1,5 +1,6 @@
 package com.netf.netflix.Controller;
 
+import com.netf.netflix.Constant.VideoMaturityLevel;
 import com.netf.netflix.Dto.ProfileDto;
 import com.netf.netflix.Entity.Member;
 import com.netf.netflix.Entity.Profile;
@@ -62,6 +63,25 @@ public class ProfileController {
 //        Long profileId = (Long) session.getAttribute("profileNm");
 //        Profile profile = profileRepository.findById(profileId)
 //                .orElseThrow(() -> new RuntimeException("Profile not found"));
+
+        System.out.println("나의 MaturityLevel: "+ selectedProfile.getMaturityLevel() );
+
+        //키드만 추출하는 키드필터(키드비디오들) 생성
+        List<Video> kidFilter = videoRepository.findByVideoMaturityLevel(VideoMaturityLevel.KID);
+
+        if(selectedProfile.getMaturityLevel().equals(Profile.MaturityLevel.KID)){
+            System.out.println("키드입니다 ");
+            System.out.println("MaturityLevel: "+ selectedProfile.getMaturityLevel() );
+//            List<Video> kidFilter = videoRepository.findByVideoMaturityLevel(VideoMaturityLevel.KID);
+//            if (list != null) {
+//                list.retainAll(kidFilter);
+//                System.out.println("키드에 대한 영상만 추출 ");
+//            }
+        }else{
+            System.out.println("어른입니다");
+        }
+
+
         // 랜덤 부분
         List<Video> videos = videoRepository.findAll();
         List<Video> randomVideos = new ArrayList<>();
@@ -75,6 +95,17 @@ public class ProfileController {
             chosenIndexes.add(randomIndex);
             Video randomVideo = videos.get(randomIndex);
             randomVideos.add(randomVideo);
+        }
+
+        if(selectedProfile.getMaturityLevel().equals(Profile.MaturityLevel.KID)){
+            System.out.println("키드입니다 ");
+//            List<Video> kidFilter = videoRepository.findByVideoMaturityLevel(VideoMaturityLevel.KID);
+            if (randomVideos != null) {
+                randomVideos.retainAll(kidFilter);
+//                System.out.println("키드에 대한 영상만 추출 ");
+            }
+        }else{
+            System.out.println("어른입니다");
         }
 
         model.addAttribute("randomVideo2", randomVideos);
@@ -107,6 +138,18 @@ public class ProfileController {
 
 
         List<Video> uploadVideos = videoRepository.findDistinctByOrderByVideoImgUploadDateDesc();
+        if(selectedProfile.getMaturityLevel().equals(Profile.MaturityLevel.KID)){
+            System.out.println("키드입니다 ");
+//            List<Video> kidFilter = videoRepository.findByVideoMaturityLevel(VideoMaturityLevel.KID);
+            if (uploadVideos != null) {
+                uploadVideos.retainAll(kidFilter);
+                System.out.println("업데이티드 비디오에 대한 키드에 대한 영상만 추출 ");
+            }
+        }else{
+            System.out.println("어른입니다");
+        }
+
+
         if(uploadVideos!=null){
             model.addAttribute("uploadVideos",uploadVideos );
         }else{
@@ -114,6 +157,18 @@ public class ProfileController {
         }
 
         List<Video> top10Videos = videoRepository.findTop10ByOrderByViewCountDesc();
+        if(selectedProfile.getMaturityLevel().equals(Profile.MaturityLevel.KID)){
+            System.out.println("키드입니다 ");
+
+//            List<Video> kidFilter = videoRepository.findByVideoMaturityLevel(VideoMaturityLevel.KID);
+            if (top10Videos != null) {
+                top10Videos.retainAll(kidFilter);
+                System.out.println("키드에 대한 영상만 추출 ");
+            }
+        }else{
+            System.out.println("어른입니다");
+        }
+
         model.addAttribute("top10Videos", top10Videos);
 
 
