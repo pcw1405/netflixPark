@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title>프로필 수정폼</title>
   <link rel="stylesheet" th:href="@{/assets/css/profile-change.css}">
+  <script th:src="@{/assets/lib/bootstrap.js}"></script>
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
   <script src="https://kit.fontawesome.com/42c6a3cece.js" crossorigin="anonymous"></script>
 </head>
@@ -38,27 +39,37 @@
       <p class="nick-content"> 닉네임은 모든 넷플릭스 게임에서 다른 넷플릭스 회원들과 같이 플레이할 때 사용되는 고유의 이름입니다. <a href="/" class="nicka">자세히 알아보기</a></p>
       <input type="text" id="nickname" name="nickname" placeholder="게임 닉네임 등록" th:value="${profile != null ? profile.nickname : ''}">
       <h4 class="sector">관람등급 설정:</h4>
-      <label for="maturityLevel"></label>
-      <select id="maturityLevel" name="maturityLevel">
-        <option class="p2" th:selected="${profile != null && profile.maturityLevel == '모든 관람등급'}">모든 관람등급</option>
-        <option class="p2" th:selected="${profile != null && profile.maturityLevel == '키즈 등급'}">키즈 등급</option>
-      </select>
+      <div class="radio-box">
+        <input type="radio" class="btn-check" name="maturityLevel" value="ALL" id="option1" autocomplete="off" th:checked="${profile != null && profile.maturityLevel == 'ALL'}">
+        <label class="btn btn-outline-danger ms-5 left" for="option1">ALL</label>
+        <input type="radio" class="btn-check" name="maturityLevel" value="KID" id="option2" autocomplete="off" th:checked="${profile != null && profile.maturityLevel == 'KID'}">
+        <label class="btn btn-outline-danger" for="option2">KID</label>
+      </div>
       <p><br/></p>
       <p class="nick">이 프로필에서는 모든 관람등급의 콘텐츠가 표시됩니다.</p>
 
       <div class="buttonzip">
-        <div class="button">
-          <button class="click" type="submit">저장</button>
-          <input type="hidden" name="_csrf" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-        </div>
+        <button class="click" type="submit">저장</button>
+        <input type="hidden" name="profileId" th:value="${profile.id}">
+        <button class="click delete" formaction="/profile/profile-delete" formmethod="post">삭제</button>
+        <input type="hidden" name="_csrf" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
       </div>
+    </form>
+    <script>
+      $(document).ready(function(){
+        const maturityLevel = "[[${profile.maturityLevel}]]";
+        const option1 = document.getElementById("option1");
+        const option2 = document.getElementById("option2");
 
-    </form>
-    <form action="/profile/profile-delete" method="post">
-      <input type="hidden" name="profileId" th:value="${profile.id}">
-      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-      <button>삭제 </button>
-    </form>
+        if (maturityLevel === option1.value) {
+          option1.checked = true;
+        }
+
+        if (maturityLevel === option2.value) {
+          option2.checked = true;
+        }
+      });
+    </script>
   </div>
 </div>
 </body>

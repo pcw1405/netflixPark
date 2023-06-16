@@ -65,18 +65,7 @@ public class Profile {
     }
 
     public enum MaturityLevel {
-        ALL("모든 관람등급"),
-        KID("키즈 등급");
-
-        private String description;
-
-        MaturityLevel(String description) {
-            this.description = description;
-        }
-
-        public String getDescription() {
-            return description;
-        }
+        ALL,KID
 
     }
 }
