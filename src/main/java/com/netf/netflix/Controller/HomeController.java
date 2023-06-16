@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -29,29 +30,31 @@ public class HomeController {
     private final VideoImgRepository videoImgRepository;
     private final VideoRepository videoRepository;
 
-    @GetMapping("/")
-    public String home(Model model, Principal principal) {
+    @GetMapping("/home/{profileId}")
+    public String home(@PathVariable("profileId") Long profileId, Model model, Principal principal, HttpSession session) {
         // 로그인된 멤버의 정보 가져오기
+        session.setAttribute("profileNm",profileId);
+        Profile profile = profileRepository.findById(profileId)
+                .orElseThrow(() -> new RuntimeException("Profile not found"));
+        Profile selectedProfile = profileRepository.findById(profileId).orElse(null);
+        if (selectedProfile == null) {
+            throw new RuntimeException("프로필을 찾을 수 없습니다.");
+        }
+
+        // 헤더이미지부르는부분
+        model.addAttribute("selectedProfile", selectedProfile);
+        List<Profile> otherProfiles = profileRepository.findByMember(profile.getMember())
+                .stream()
+                .filter(p -> !p.getId().equals(profileId))
+                .collect(Collectors.toList());
+        model.addAttribute("otherProfiles", otherProfiles);
+
         String email = principal.getName();
         Member member = memberService.findMemberByEmail(email);
 
-        // 멤버의 프로필 리스트 가져오기
-        List<Profile> profiles = profileRepository.findByMember(member);
 
-        // 프로필 이름 리스트 가져오기
-        List<String> profileNames = profiles.stream()
-                .map(Profile::getName)
-                .collect(Collectors.toList());
 
-        // 첫 번째 프로필을 선택된 프로필로 설정
-        Profile selectedProfile = profiles.get(0);
-        model.addAttribute("selectedProfile", selectedProfile);
 
-        // 나머지 프로필 정보를 가져와서 모델에 추가
-        List<Profile> otherProfiles = profiles.stream()
-                .filter(profile -> !profile.getId().equals(selectedProfile.getId()))
-                .collect(Collectors.toList());
-        model.addAttribute("otherProfiles", otherProfiles);
 
         List<VideoImg> videoImgs = videoImgRepository.findAll();
         model.addAttribute("videoImgs",videoImgs);

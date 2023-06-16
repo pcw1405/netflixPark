@@ -6,11 +6,11 @@
         <meta name="_csrf" th:content="${_csrf.token}"/>
         <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
         <div class="nav-links d-flex flex-center flex-middle">
-            <a th:href="@{/}">
+            <a th:href="@{/home/{profileId}(profileId=${session.profileNm})}">
                 <img th:src="@{/images/Netflix_Logo.png}" class="main_logo_img" alt="메인로고이미지">
                 <img th:src="@{/images/pngwing.com.png}" class="main_small_img" alt="">
             </a>
-            <a th:href="@{/}" sec:authorize="isAuthenticated() "class="nav-item home">홈</a>
+            <a th:href="@{/home/{profileId}(profileId=${session.profileNm})}" sec:authorize="isAuthenticated() "class="nav-item home">홈</a>
             <a th:href="@{/movie/{profileId}(profileId=${session.profileNm})}" sec:authorize="isAuthenticated()" class="nav-item">영화</a>
             <a th:href="@{/drama/{profileId}(profileId=${session.profileNm})}" sec:authorize="isAuthenticated()"class="nav-item">드라마</a>
             <a th:href="@{/recent/{profileId}(profileId=${session.profileNm})}"  sec:authorize="isAuthenticated()" class="nav-item">최근 시청기록</a>
