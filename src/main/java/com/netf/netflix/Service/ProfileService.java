@@ -24,7 +24,7 @@ public class ProfileService {
         profileRepository.save(profile);
     }
 
-    public void updateProfile(Profile profile, String name, String language, String nickname, String maturityLevel) {
+    public void updateProfile(Profile profile, String name, String language, String nickname, Profile.MaturityLevel maturityLevel) {
         profile.setName(name);
         profile.setLanguage(language);
         profile.setNickname(nickname);

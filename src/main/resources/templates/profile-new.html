@@ -37,8 +37,8 @@
             <h4 class="sector">관람등급 설정:</h4>
             <label for="maturityLevel"></label>
             <select id="maturityLevel" name="maturityLevel">
-                <option class="p2" th:selected="${profile != null && profile.maturityLevel == '모든 관람등급'}">모든 관람등급</option>
-                <option class="p2" th:selected="${profile != null && profile.maturityLevel == '키즈 등급'}">키즈 등급</option>
+                <option class="p2" value="ALL" th:selected="${profile != null && profile.maturityLevel == '모든 관람등급'}">모든 관람등급</option>
+                <option class="p2"  VALUE="KID" th:selected="${profile != null && profile.maturityLevel == '키즈 등급'}">키즈 등급</option>
             </select>
             <p><br/></p>
             <p class="nick">이 프로필에서는 모든 관람등급의 콘텐츠가 표시됩니다.</p>

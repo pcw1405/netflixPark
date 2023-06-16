@@ -66,7 +66,7 @@ public class Member {
         return member;
     }
 
-    public Profile createProfile(String name, String language, String nickname, String maturityLevel) {
+    public Profile createProfile(String name, String language, String nickname, Profile.MaturityLevel maturityLevel) {
         if (profiles.size() >= 5) {
             throw new RuntimeException("프로필은 최대 5개까지 생성할 수 있습니다.");
         }

@@ -198,7 +198,7 @@ public class ProfileController {
     @PostMapping("/updateProfile")
     public String updateProfile(@RequestParam("name") String name,
                                 @RequestParam("nickname") String nickname,
-                                @RequestParam("maturityLevel") String maturityLevel,
+                                @RequestParam("maturityLevel") Profile.MaturityLevel maturityLevel,
                                 @RequestParam("language") String language,
                                 HttpSession session) {
         Long profileId = (Long) session.getAttribute("profileId");

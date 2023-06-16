@@ -29,19 +29,19 @@ public class Profile {
     @Column(name = "nickname")
     private String nickname;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "maturity_level")
-    private String maturityLevel;
+    private MaturityLevel maturityLevel;
 
-    @Column(name="imageUrl")
+    @Column(name = "imageUrl")
     private String imageUrl;
-
 
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
-    @OneToOne(mappedBy = "profile",cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "profile", cascade = CascadeType.ALL)
     private ProfileImg profileImg;
 
     @ElementCollection
@@ -64,4 +64,19 @@ public class Profile {
         this.imageUrl = profileImgDto.getImageUrl();
     }
 
+    public enum MaturityLevel {
+        ALL("모든 관람등급"),
+        KID("키즈 등급");
+
+        private String description;
+
+        MaturityLevel(String description) {
+            this.description = description;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+    }
 }

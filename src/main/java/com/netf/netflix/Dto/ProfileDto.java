@@ -15,7 +15,7 @@ public class ProfileDto {
     private String name;
     private String language;
     private String nickname;
-    private String maturityLevel;
+    private Profile.MaturityLevel maturityLevel;
     private String imageUrl;
     private Profile profile;
     public ProfileDto() {
