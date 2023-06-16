@@ -72,14 +72,14 @@ public class VideoController {
     public String videoList(Model model,String searchKeyword,HttpSession session) {
 
         Long profileId = (Long) session.getAttribute("profileNm");
-        Optional<Profile> profile = profileRepository.findById(profileId);
+        Profile profile = profileRepository.findById(profileId).orElse(null);
 
         Long selectedId = profileId;
 
         Optional<Profile> selectedProfile = profileRepository.findById(selectedId);
         model.addAttribute("selectedProfile", selectedProfile.orElse(null));
 
-        List<Profile> otherProfiles = profileRepository.findByMember(profile.get().getMember())
+        List<Profile> otherProfiles = profileRepository.findByMember(profile.getMember())
                 .stream()
                 .filter(p -> !p.getId().equals(profileId))
                 .collect(Collectors.toList());
@@ -105,10 +105,7 @@ public class VideoController {
 
         model.addAttribute("list", list);
         model.addAttribute("uploadedVideoList", videoImgRepository.findAll());
-
-
-
-        model.addAttribute("favoriteVideos", profile.get().getFavoriteVideos());
+        model.addAttribute("favoriteVideos", profile.getFavoriteVideos());
 
         return "/rightmain/search";
     }
@@ -362,11 +359,23 @@ public class VideoController {
     }
 
     @PostMapping("/video-Delete")
-    public String deleteVideo(@RequestParam("videoId") Long videoId) {
+    public String deleteVideo(@RequestParam("videoId") Long videoId,
+                              @RequestParam(defaultValue = "0") int page, Model model) {
 
         videoService.deleteVideo(videoId);
 
-        return "redirect:/videoListForm";
+        int pageSize = 10; // 페이지당 아이템 개수
+
+        Pageable pageable = PageRequest.of(page, pageSize);
+        Page<Video> videoPage = videoRepository.findPaginated(pageable);
+        List<Video> videoList = videoPage.getContent();
+        int totalPages = videoPage.getTotalPages();
+
+        model.addAttribute("videoList", videoList);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", totalPages);
+
+        return "videos/videoListForm";
     }
 
     @GetMapping("/videoEdit{videoId}")
