@@ -63,58 +63,70 @@
 
 
 document.addEventListener("DOMContentLoaded", function(){
-    var name = document.getElementById('name').value;
-    var email = document.getElementById('email').value;
-    var phoneNumber = document.getElementById('phoneNumber').value;
-    var password = document.getElementById('password').value;
+    var nameElement = document.getElementById('name');
+    var emailElement = document.getElementById('email');
+    var phoneNumberElement = document.getElementById('phoneNumber');
+    var passwordElement = document.getElementById('password');
+    var signInButton = document.getElementById('signInButton');
+    var errorEmailElement = document.getElementById('errorEmail');
+    var errorNameElement = document.getElementById('errorName');
 
-    if(name != "" && email != ""; && phoneNumber != ""; && password != "";){
-        document.getElementById('signInButton').disabled = false;
+    nameElement.addEventListener('input', validateForm);
+    emailElement.addEventListener('input', validateForm);
+    phoneNumberElement.addEventListener('input', validateForm);
+    passwordElement.addEventListener('input', validateForm);
+
+    signInButton.disabled = true;
+
+    function validateForm() {
+        var name = nameElement.value;
+        var email = emailElement.value;
+        var phoneNumber = phoneNumberElement.value;
+        var password = passwordElement.value;
+        var isValidEmail = validateEmail(email);
+
+        if (name !== "" && email !== "" && phoneNumber !== "" && password !== "" && isValidEmail) {
+            signInButton.disabled = false;
+            errorEmailElement.style.display = "none";
+            errorNameElement.style.display = "none";
+        } else {
+            signInButton.disabled = true;
+        }
     }
 
-function validateEmail() {
-    var email = document.getElementById('email').value;
-    var re = /\S+@\S+\.\S+/;
-    var result = re.test(email);
-
-    if (result) {
-        document.getElementById('errorEmail').style.display = "none";
-        document.getElementById('errorName').style.display = "none";
-        document.getElementById('signInButton').disabled = false;
-    } else {
-        document.getElementById('errorEmail').style.display = "block";
-        document.getElementById('errorName').style.display = "block";
-        document.getElementById('signInButton').disabled = true;
+    function validateEmail(email) {
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
     }
-}
 
-    var passwordElement = document.getElementById("password");
     var passwordCheckElement = document.getElementById("passwordcheck");
     var passwordMatchLabelElement = document.getElementById("passwordMatchLabel");
 
     passwordElement.addEventListener("input", checkPasswordMatch);
     passwordCheckElement.addEventListener("input", checkPasswordMatch);
 
-function checkPasswordMatch() {
-    var password = passwordElement.value;
-    var passwordCheck = passwordCheckElement.value;
+    function checkPasswordMatch() {
+        var password = passwordElement.value;
+        var passwordCheck = passwordCheckElement.value;
 
-    if (password === passwordCheck || password === '' || passwordCheck === '') {
-        passwordMatchLabelElement.textContent = "비밀번호가 일치합니다.";
-        passwordMatchLabelElement.style.color = "green";
-    } else {
-        passwordMatchLabelElement.textContent = "비밀번호가 일치하지 않습니다.";
-        passwordMatchLabelElement.style.color = "red";
+        if (password === passwordCheck || password === '' || passwordCheck === '') {
+            passwordMatchLabelElement.textContent = "비밀번호가 일치합니다.";
+            passwordMatchLabelElement.style.color = "green";
+        } else {
+            passwordMatchLabelElement.textContent = "비밀번호가 일치하지 않습니다.";
+            passwordMatchLabelElement.style.color = "red";
+        }
     }
-}
 
-document.getElementById('signInButton').addEventListener("click", function(e) {
-    if (passwordElement.value !== passwordCheckElement.value) {
-        e.preventDefault();
-        passwordCheckElement.focus();
-    }
+    signInButton.addEventListener("click", function(e) {
+        if (passwordElement.value !== passwordCheckElement.value) {
+            e.preventDefault();
+            passwordCheckElement.focus();
+        }
     });
 });
+
+
 
 </script>
 
