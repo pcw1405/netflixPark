@@ -70,6 +70,7 @@ $(document).ready(function () {
   var videoActors = $clickedElement.find('[data-video-actors]').attr('data-video-actors');
   var videoCast = $clickedElement.find('[data-video-cast]').attr('data-video-cast');
   var videoRecent = $clickedElement.find('[data-video-recent]').attr('data-video-recent');
+  var videoLevel = $clickedElement.find('[data-video-level]').attr('data-video-level');
    console.log(videoRecent);
    $('.popup').find('.saveLike i').attr('data-video-id', videoRecent);
          var $descriptionText = $("<div>").text(videoDescription);
@@ -97,6 +98,7 @@ console.log("dataCheckValue: " + dataCheckValue);
           $('.ganre').empty().append( $("<span>").text( videoGenres));
             $('.actor').empty().append( $("<span>").text( videoActors));
              $('.videoCast').empty().append( $("<span>").text( videoCast));
+              $('.level').empty().append( $("<span>").text( videoLevel));
 
 //        $('.story_box').empty().append($descriptionText);
 

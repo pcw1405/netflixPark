@@ -199,6 +199,7 @@
 }
 
 
+
 .short_box p {
     margin-top: 10px;
     margin-left:5px;
@@ -211,3 +212,7 @@
 
 
 
+.level{
+
+    color:green;
+}

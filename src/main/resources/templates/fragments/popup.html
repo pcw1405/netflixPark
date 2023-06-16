@@ -65,6 +65,10 @@
 
         </div>
         <div class="short_box">
+<!--            th:data-video-level="${video.videoMaturityLevel}"-->
+            <p >  <span style="color:#717171;"> 등급 </span>
+                <span class="level" > </span>
+            </p>
 
             <p >  <span style="color:#717171;"> 장르 </span>
                 <span class="ganre" > </span>
@@ -101,6 +105,7 @@
                  th:data-video-cast="@{${rdvideo.cast}}"
                  th:data-video-recent="@{${rdvideo.id}}"
                  th:data-video-id="@{${rdvideo.id}}"
+                 th:data-video-level="${rdvideo.videoMaturityLevel}"
             >
             <h2 th:if="${rdvideo.videoImg == null}">검색 결과 없음</h2>
             <p th:text="${rdvideo.videoNm + ' #' + rdvideo.genres}" style="margin-top:5px;"></p>

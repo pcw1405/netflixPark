@@ -38,6 +38,7 @@
                          th:data-video-id="@{${video.id}}"
                          th:data-video-recent="@{${video.id}}"
                          th:data-iColor="${favoriteVideos != null && favoriteVideos.contains(video.id) ? 'red' : 'white'}"
+                         th:data-video-level="${video.videoMaturityLevel}"
                     >
                     <h2 th:if="${video.videoImg == null}">검색 결과 없음</h2>
                 </div>

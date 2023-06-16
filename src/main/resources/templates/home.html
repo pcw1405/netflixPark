@@ -78,6 +78,7 @@
                                     th:data-video-cast="@{${randomVideo.cast}}"
                                     th:data-video-recent="@{${randomVideo.id}}"
                                     th:data-iColor="${favoriteVideos != null && favoriteVideos.contains(randomVideo.id) ? 'red' : 'white'}"
+                                    th:data-video-level="${randomVideo.videoMaturityLevel}"
 
                             >
                                 <span>
@@ -126,6 +127,7 @@
                  th:data-video-cast="@{${video.cast}}"
                  th:data-video-recent="@{${video.id}}"
                  th:data-video-id="@{${video.id}}"
+                 th:data-video-level="${video.videoMaturityLevel}"
 
             >
               <div class="play-button d-flex justify-content-start ">
@@ -152,6 +154,7 @@
                 </h4>
               </div>
               <div class="info d-flex flex-middle flex-no-wrap">
+                <p th:text="${video.videoMaturityLevel}"></p>
                 <!--                                <p class="rated text-shadow"><strong>18+</strong></p>-->
                 <!--                                                                <p class="season-count text-shadow">시즌 1</p>-->
               </div>
@@ -204,6 +207,7 @@
                  th:data-video-cast="@{${video.cast}}"
                  th:data-video-recent="@{${video.id}}"
                  th:data-video-id="@{${video.id}}"
+                 th:data-video-level="${video.videoMaturityLevel}"
 
             >
               <div class="play-button d-flex justify-content-start ">
@@ -229,6 +233,7 @@
                 </h4>
               </div>
               <div class="info d-flex flex-middle flex-no-wrap">
+                <p th:text="${video.videoMaturityLevel}"></p>
                 <!--                                <p class="rated text-shadow"><strong>18+</strong></p>-->
                 <!--                                                                <p class="season-count text-shadow">시즌 1</p>-->
               </div>
@@ -276,6 +281,7 @@
                  th:data-video-cast="@{${video.cast}}"
                  th:data-video-recent="@{${video.id}}"
                  th:data-video-id="@{${video.id}}"
+                 th:data-video-level="${video.videoMaturityLevel}"
             >
               <div class="play-button d-flex justify-content-start ">
                 <svg viewBox="0 0 24 24" class="full" >
@@ -299,6 +305,7 @@
                 </h4>
               </div>
               <div class="info d-flex flex-middle flex-no-wrap">
+                <p th:text="${video.videoMaturityLevel}"></p>
                 <!--                                <p class="rated text-shadow"><strong>18+</strong></p>-->
                 <!--                                                                <p class="season-count text-shadow">시즌 1</p>-->
               </div>
@@ -346,6 +353,7 @@
                  th:data-video-cast="@{${video.cast}}"
                  th:data-video-recent="@{${video.id}}"
                  th:data-video-id="@{${video.id}}"
+                 th:data-video-level="${video.videoMaturityLevel}"
             >
               <div class="play-button d-flex justify-content-start ">
                 <svg viewBox="0 0 24 24" class="full" >
@@ -369,6 +377,7 @@
                 </h4>
               </div>
               <div class="info d-flex flex-middle flex-no-wrap">
+                <p th:text="${video.videoMaturityLevel}"></p>
                 <!--                                <p class="rated text-shadow"><strong>18+</strong></p>-->
                 <!--                                                                <p class="season-count text-shadow">시즌 1</p>-->
               </div>
