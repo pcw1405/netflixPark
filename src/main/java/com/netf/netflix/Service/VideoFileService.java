@@ -38,21 +38,21 @@ public class VideoFileService {
 
     public void updateVideoFile(VideoFile videoFile, MultipartFile videoClipFile) throws Exception {
         if(!videoClipFile.isEmpty()){
-        String oriFileName = videoClipFile.getOriginalFilename();
-        String fileName = "";
-        String fileUrl = "";
+            String oriFileName = videoClipFile.getOriginalFilename();
+            String fileName = "";
+            String fileUrl = "";
 
-        fileName = fileService.uploadFile(videoFileLocation, oriFileName, videoClipFile.getBytes());
-        fileUrl = "/upload/video_file/" + fileName;
+            fileName = fileService.uploadFile(videoFileLocation, oriFileName, videoClipFile.getBytes());
+            fileUrl = "/upload/video_file/" + fileName;
 
-        if (videoFile.getFileName() != null) {
-            String filePath = videoFileLocation + "/" + videoFile.getFileName();
-            fileService.deleteFile(filePath);
-        }
+            if (videoFile.getFileName() != null) {
+                String filePath = videoFileLocation + "/" + videoFile.getFileName();
+                fileService.deleteFile(filePath);
+            }
 
-        videoFile.createdVideoFile(oriFileName, fileName, fileUrl);
+            videoFile.createdVideoFile(oriFileName, fileName, fileUrl);
 
-        videoFileRepository.save(videoFile);
+            videoFileRepository.save(videoFile);
         }
     }
 

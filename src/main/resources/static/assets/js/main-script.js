@@ -27,9 +27,11 @@ $(document).ready(function () {
            success: function(response) {
                console.log(response);
 
+
 if ($clickedElement !== null) {
   $clickedElement.find('i').css('color', 'red');
   $clickedElement.find('i').attr('data-iColor', 'red');
+
 }
 
 

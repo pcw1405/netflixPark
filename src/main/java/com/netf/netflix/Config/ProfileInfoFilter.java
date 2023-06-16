@@ -1,5 +1,7 @@
 package com.netf.netflix.Config;
 
+import com.netf.netflix.Service.MemberService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
@@ -12,6 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class ProfileInfoFilter extends GenericFilterBean {
+    @Autowired
+    private MemberService memberService;
+
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws java.io.IOException, ServletException {

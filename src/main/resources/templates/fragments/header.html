@@ -13,15 +13,15 @@
             <a th:href="@{/}" sec:authorize="isAnonymous() "class="nav-item home">홈</a>
             <a th:href="@{/movie/{profileId}(profileId=${session.profileNm})}" sec:authorize="isAuthenticated()" class="nav-item">영화</a>
             <a th:href="@{/drama/{profileId}(profileId=${session.profileNm})}" sec:authorize="isAuthenticated()"class="nav-item">드라마</a>
-            <a th:href="@{/recent/{profileId}(profileId=${session.profileNm})}" sec:authorize="hasAnyAuthority('ROLE_ADMIN')" class="nav-item">최근 시청기록</a>
-            <a th:href="@{/mylist/{profileId}(profileId=${session.profileNm})}" sec:authorize="hasAnyAuthority('ROLE_ADMIN')" class="nav-item">내가 찜한 콘텐츠</a>
+            <a th:href="@{/recent/{profileId}(profileId=${session.profileNm})}" sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">최근 시청기록</a>
+            <a th:href="@{/mylist/{profileId}(profileId=${session.profileNm})}" sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">내가 찜한 콘텐츠</a>
             <a th:href="@{/video/new}" sec:authorize="hasAnyAuthority('ROLE_ADMIN')" class="nav-item">비디오 업로드 </a>
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap" rel="stylesheet">
         </div>
         <div class="righticons d-flex flex-end flex-middle">
-            <a th:href="@{/search/{profileId}(profileId=${session.profileNm})}">
+            <a th:href="@{/search}">
                 <img src="../../images/icons/search.svg" alt="search icon" />
             </a>
             <div class="dropdown notification">

@@ -38,4 +38,6 @@ public class MemberFormDto {
     @NotEmpty(message = "전화번호는 필수 입력값입니다.")
     private String phoneNumber;
 
+    private String role;
+
 }

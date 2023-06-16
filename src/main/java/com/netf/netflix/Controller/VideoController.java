@@ -15,8 +15,6 @@ import com.netf.netflix.Service.VideoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -49,10 +47,8 @@ public class VideoController {
     @GetMapping(value = "/video/new")
     public String videoForm(Model model) {
         model.addAttribute("videoFormDto", new VideoFormDto());
-
         return "videos/videoForm";
     }
-
 
 
     @PostMapping(value = "/video/new")
@@ -72,26 +68,24 @@ public class VideoController {
         return "videos/videoForm";
     }
 
-    @GetMapping("/search/{profileId}")
-    public String videoList(@PathVariable("profileId")Long profileId, Model model,
-                            @RequestParam("searchKeyword") String searchKeyword,HttpSession session) {
-        session.setAttribute("profileNm",profileId);
+    @GetMapping("/search")
+    public String videoList(Model model,String searchKeyword,HttpSession session) {
 
-        Profile profile = profileRepository.findById(profileId)
-                .orElseThrow(() -> new RuntimeException("Profile not found"));
+        Long profileId = (Long) session.getAttribute("profileNm");
+        Optional<Profile> profile = profileRepository.findById(profileId);
 
-        Profile selectedProfile = profileRepository.findById(profileId).orElse(null);
-        if (selectedProfile == null) {
-            throw new RuntimeException("프로필을 찾을 수 없습니다.");
-        }
-        model.addAttribute("selectedProfile", selectedProfile);
-        List<Profile> otherProfiles = profileRepository.findByMember(profile.getMember())
+        Long selectedId = profileId;
+
+        Optional<Profile> selectedProfile = profileRepository.findById(selectedId);
+        model.addAttribute("selectedProfile", selectedProfile.orElse(null));
+
+        List<Profile> otherProfiles = profileRepository.findByMember(profile.get().getMember())
                 .stream()
                 .filter(p -> !p.getId().equals(profileId))
                 .collect(Collectors.toList());
         model.addAttribute("otherProfiles", otherProfiles);
 
-        String profileImageUrl = profile.getImageUrl();
+        String profileImageUrl = selectedProfile.map(Profile::getImageUrl).orElse(null);
 
         if (profileImageUrl == null) {
             profileImageUrl = "/images/default-profile-image.jpg";  // 기본 이미지 URL 설정
@@ -100,7 +94,8 @@ public class VideoController {
 
         List<Video> list = null;
         List<VideoImg> videoImgs = videoImgRepository.findAll();
-        model.addAttribute("videoImgs",videoImgs);
+        model.addAttribute("videoImgs", videoImgs);
+
 
         if (searchKeyword == null) {
             list = null;
