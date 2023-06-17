@@ -71,6 +71,7 @@
 
             <span class="findI">
                             <button class="more-info-button m-t-20 " th:data-video-url="@{${randomVideo.videoFile.fileUrl}}"
+                                    th:if="${randomVideo != null}"
                                     th:data-video-nm="@{${randomVideo.videoNm}}"
                                     th:data-video-genres="@{${randomVideo.genres}}"
                                     th:data-video-description="@{${randomVideo.description}}"

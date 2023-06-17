@@ -69,18 +69,8 @@ public class HomeController {
 
 //키드만 추출하는 키드필터(키드비디오들) 생성
         List<Video> kidFilter = videoRepository.findByVideoMaturityLevel(VideoMaturityLevel.KID);
-        System.out.println("나의 MaturityLevel: "+ profile.getMaturityLevel() );
-        if(profile.getMaturityLevel().equals(Profile.MaturityLevel.KID)){
-            System.out.println("키드입니다 ");
-            System.out.println("MaturityLevel: "+ profile.getMaturityLevel() );
-//            List<Video> kidFilter = videoRepository.findByVideoMaturityLevel(VideoMaturityLevel.KID);
-//            if (list != null) {
-//                list.retainAll(kidFilter);
-//                System.out.println("키드에 대한 영상만 추출 ");
-//            }
-        }else{
-            System.out.println("어른입니다");
-        }
+        System.out.println("나의 MaturityLevel: " + (profile != null ? profile.getMaturityLevel() : "unknown"));
+
 
         // 랜덤 부분
         List<Video> videos = videoRepository.findAll();
@@ -97,14 +87,13 @@ public class HomeController {
             randomVideos.add(randomVideo);
         }
 
-        if(profile.getMaturityLevel().equals(Profile.MaturityLevel.KID)){
+        if (profile != null && profile.getMaturityLevel() != null && profile.getMaturityLevel().equals(Profile.MaturityLevel.KID)) {
             System.out.println("키드입니다 ");
-//            List<Video> kidFilter = videoRepository.findByVideoMaturityLevel(VideoMaturityLevel.KID);
-            if (randomVideos != null) {
+            if (randomVideos != null && kidFilter != null) {
                 randomVideos.retainAll(kidFilter);
-//                System.out.println("키드에 대한 영상만 추출 ");
+                System.out.println("키드에 대한 영상만 추출 ");
             }
-        }else{
+        } else {
             System.out.println("어른입니다");
         }
 
@@ -144,7 +133,7 @@ public class HomeController {
 
         List<Video> uploadVideos = videoRepository.findDistinctByOrderByVideoImgUploadDateDesc();
 
-        if(profile.getMaturityLevel().equals(Profile.MaturityLevel.KID)){
+        if (profile != null && profile.getMaturityLevel() != null && profile.getMaturityLevel().equals(Profile.MaturityLevel.KID)) {
             System.out.println("키드입니다 ");
 //            List<Video> kidFilter = videoRepository.findByVideoMaturityLevel(VideoMaturityLevel.KID);
             if (uploadVideos != null) {
@@ -166,7 +155,7 @@ public class HomeController {
         List<Video> top10Videos = videoRepository.findTop10ByOrderByViewCountDesc();
 
 
-        if(profile.getMaturityLevel().equals(Profile.MaturityLevel.KID)){
+        if (profile != null && profile.getMaturityLevel() != null && profile.getMaturityLevel().equals(Profile.MaturityLevel.KID)) {
             System.out.println("키드입니다 ");
 //            List<Video> kidFilter = videoRepository.findByVideoMaturityLevel(VideoMaturityLevel.KID);
             if (top10Videos != null) {

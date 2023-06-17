@@ -107,7 +107,7 @@ public class VideoController {
             list = videoService.videoSearchList(searchKeyword);
         }
 
-        if(profile.getMaturityLevel().equals(Profile.MaturityLevel.KID)){
+        if (profile != null && profile.getMaturityLevel() != null && profile.getMaturityLevel().equals(Profile.MaturityLevel.KID)) {
             System.out.println("키드입니다 "+ profile.getMaturityLevel() );
             List<Video> kidFilter = videoRepository.findByVideoMaturityLevel(VideoMaturityLevel.KID);
 
