@@ -29,11 +29,15 @@
       width: 95%;
       z-index: 25;
   }
-  @media (max-width: 600px){
+  @media (max-width: 750px){
       header{
           padding: 0px 0px;
           width: 100%;
       }
+
+    .nav-links{
+        padding-bottom:20px;
+    }
   }
   .logo{
       text-decoration: none;

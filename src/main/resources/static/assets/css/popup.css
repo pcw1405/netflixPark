@@ -22,6 +22,49 @@
   padding-bottom: 15px;
 }
 
+@media (max-width: 890px){
+
+ .popup {
+    width: 500px; /* 팝업 창의 너비를 줄입니다. */
+    height: 500px; /* 팝업 창의 높이를 줄입니다. */
+  }
+
+  .titleV span {
+    font-size: 30px; /* 제목의 글자 크기를 줄입니다. */
+  }
+
+  .videoContainer video {
+    border-radius: 5px; /* 비디오 테두리의 둥글기 정도를 줄입니다. */
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* 그림자의 강도를 줄입니다. */
+  }
+
+  .story_box {
+    width: 300px; /* 스토리 박스의 너비를 줄입니다. */
+  }
+
+  .short_box {
+    width: 100px; /* 쇼트 박스의 너비를 줄입니다. */
+  }
+
+  .tmp {
+    width: 300px; /* tmp 클래스의 너비를 줄입니다. */
+  }
+
+  .short_box p {
+    margin-top: 5px; /* 쇼트 박스의 문단 위쪽 여백을 줄입니다. */
+    margin-left: 3px; /* 쇼트 박스의 문단 왼쪽 여백을 줄입니다. */
+    text-shadow: 1px 1px 2px rgba(128, 128, 128, 0.5); /* 그림자의 강도를 줄입니다. */
+  }
+
+  .short_box p span {
+    margin-left: 3px; /* 쇼트 박스의 문단 내부 요소의 왼쪽 여백을 줄입니다. */
+    text-shadow: 1px 1px 2px rgba(128, 128, 128, 0.5); /* 그림자의 강도를 줄입니다. */
+  }
+
+  }
+
+
+
     .popup-close {
     width:30px;
     height:30px;
