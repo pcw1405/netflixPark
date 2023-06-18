@@ -6,6 +6,7 @@ import com.netf.netflix.Repository.MemberRepository;
 import com.netf.netflix.Service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -23,7 +24,9 @@ import javax.validation.Valid;
 import java.net.URLEncoder;
 import java.sql.*;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("/members")
 @Controller
@@ -43,18 +46,21 @@ public class MemberController {
     }
 
     @PostMapping(value = "/new")
-    public String newMember(@Valid MemberFormDto memberFormDto, BindingResult bindingResult, Model model){
-        if(bindingResult.hasErrors()){
-            return "/register";
-        }try{
+    @ResponseBody
+    public ResponseEntity<?> newMember(@RequestBody MemberFormDto memberFormDto, BindingResult bindingResult, Model model){
+        Map<String, Object> response = new HashMap<>();
+        try {
             Member member = Member.createMember(memberFormDto, passwordEncoder);
             memberService.saveMember(member);
-        }catch (IllegalStateException e){
-            model.addAttribute("errorMessage",e.getMessage());
-            return "/register";
+            response.put("message", "회원가입이 성공하였습니다. 로그인 해주세요");
+            response.put("code", 200);
+            return ResponseEntity.ok(response);
+        } catch (IllegalStateException e) {
+            return ResponseEntity.badRequest().body(response);
         }
-        return "redirect:/members/login";
     }
+
+
     @GetMapping(value ="/login")
     public String loginMember(){
         return "/login";
