@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <script src="@{/assets/lib/jquery 3.7.0.js}"></script>
+
+
 <div th:fragment="header">
     <header class="d-flex space-between flex-center flex-middle container">
         <meta name="_csrf" th:content="${_csrf.token}"/>
@@ -17,7 +19,7 @@
             <a th:href="@{/recent/{profileId}(profileId=${session.profileNm})}"  sec:authorize="isAuthenticated()" class="nav-item">최근 시청기록</a>
             <a th:href="@{/mylist/{profileId}(profileId=${session.profileNm})}"  sec:authorize="isAuthenticated()" class="nav-item">내가 찜한 콘텐츠</a>
             <a th:href="@{/video/new}" sec:authorize="hasRole('ROLE_ADMIN')"  class="nav-item">비디오 업로드 </a>
-            <a th:href="@{/video/videoListForm}" sec:authorize="hasRole('ROLE_ADMIN')"  class="nav-item">비디오 조회 및 수정 </a>
+            <a th:href="@{/videoListForm}" sec:authorize="hasRole('ROLE_ADMIN')"  class="nav-item">비디오 조회 및 수정 </a>
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap" rel="stylesheet">
@@ -29,11 +31,22 @@
             <div class="dropdown notification">
                 <img src="../../images/icons/notification.svg" alt="notification icon" />
                 <div class="dropdown-content" id="notification-item">
-                    <th:block th:each="video : ${videoImgs}">
-                        <a href="#" class="profile-item notification-item1 d-flex">
+                    <th:block th:each="video : ${videoImgs}" >
+                        <a href="#" class="profile-item notification-item1 d-flex searchlist getRecent">
                             <img th:src="${video.imgUrl}" alt="uploaded video image" class="video-img align-self-stretch">
 
-                            <div class="align-self-center d-flex flex-column">
+                            <div class="align-self-center d-flex flex-column" th:data-video-url="@{${video.video.videoFile.fileUrl}}"
+                                 th:data-video-nm="@{${video.video.videoNm}}"
+                                 th:data-video-genres="@{${video.video.genres}}"
+                                 th:data-video-description="@{${video.video.description}}"
+                                 th:data-video-actors="@{${video.video.actors}}"
+                                 th:data-video-cast="@{${video.video.cast}}"
+                                 th:data-video-recent="@{${video.video.id}}"
+                                 th:data-video-id="${video.video.id}"
+                                 th:data-video-level="${video.video.videoMaturityLevel}"
+                                 th:data-iColor="${favoriteVideos != null && favoriteVideos.contains(video.video.id) ? 'red' : 'white'}"
+
+                            >
                                 <span class="mb-2" th:text="${video.video.videoNm}"></span>
                                 <p class="pt-2" th:text="${#dates.format(video.uploadDate, 'yyyy-MM-dd HH:mm:ss')}">업로드 시간? 지나온 기간</p>
                             </div>
