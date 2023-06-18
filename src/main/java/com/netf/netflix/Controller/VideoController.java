@@ -389,9 +389,15 @@ public class VideoController {
         model.addAttribute("videoImgs",videoImgs);
 
         for (Long videoId : recentViewId) {
-            Video video = videoRepository.findById(videoId)
-                    .orElseThrow(() -> new IllegalArgumentException("Invalid video ID: " + videoId));
-            recentVideos.add(video);
+            Optional<Video> optionalVideo = videoRepository.findById(videoId);
+            if (optionalVideo.isPresent()) {
+                Video video = optionalVideo.get();
+                recentVideos.add(video);
+            } else {
+                // 비디오를 찾지 못한 경우에 대한 처리를 여기에 추가하면 됩니다.
+                // 예를 들어, 로그를 출력하거나 다른 예외를 던지는 등의 작업을 수행할 수 있습니다.
+                System.out.println("비디오를 찾을 수 없습니다. videoId: " + videoId);
+            }
         }
         String profileImageUrl = profile.getImageUrl();
         // 프로필 이미지 URL이 null인 경우 기본값을 설정합니다
