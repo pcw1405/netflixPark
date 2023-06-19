@@ -63,7 +63,7 @@ public class VideoController {
             // Handle validation errors
             Map<String, Object> response = new HashMap<>();
             response.put("code", 400);
-            response.put("message", "입력된 데이터가 올바르지 않습니다.");
+            response.put("message", "업로드에 실패하였습니다. 다시 확인하시고 시도해주세요");
             response.put("errors", bindingResult.getAllErrors());
             return ResponseEntity.badRequest().body(response);
         }
