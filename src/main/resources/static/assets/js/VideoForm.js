@@ -1,70 +1,39 @@
-function validateForm() {
-    var form = document.querySelector('form');
-    var videoNm = form.querySelector('input[name="videoNm"]');
-    var cast = form.querySelector('input[name="cast"]');
-    var actors = form.querySelector('input[name="actors"]');
-    var description = form.querySelector('input[name="description"]');
-    var form = document.querySelector('form');
-    var videoRole = form.querySelector('input[name="videoRole"]:checked');
-    var videoMaturityLevel = form.querySelector('input[name="videoMaturityLevel"]:checked');
-    var genres = form.querySelector('input[name="genres"]:checked');
-    var imageFile = form.querySelector('input[name="videoImgFile"]');
-    var videoFile = form.querySelector('input[name="videoFile"]');
+$(document).ready(function() {
+  // 저장 버튼 클릭 시 이벤트 핸들러
+  $('#submitButton').click(function() {
+    // FormData 객체 생성
+    var formData = new FormData($('.uploadContainer')[0]);
 
-    if (videoNm.value.trim() === '') {
-      alert('영상명을 입력해주세요.');
-      return false;
-    }
+    // JSON 데이터 추가
+    var json = {
+        videoNm: $('input[name="videoNm"]').val(),
+        cast: $('input[name="cast"]').val(),
+        actors: $('input[name="actors"]').val(),
+        description: $('input[name="description"]').val(),
+        genres : $('input[name="genres"]:checked').val(),
+        videoRole : $('input[name="videoRole"]:checked').val(),
+        videoMaturityLevel : $('input[name="videoMaturityLevel"]:checked').val()
+    };
+    console.log(formData);
+    console.log(json);
 
-    if (cast.value.trim() === '') {
-      alert('감독명을 입력해주세요.');
-      return false;
-    }
+    formData.append('json', JSON.stringify(json));
+    console.log(formData);
+    // AJAX 요청 보내기
+    $.ajax({
+      url: '/video/new',
+      type: 'POST',
+      processData: false,
+      contentType: false,
+      data: formData,
+      success: function(response) {
+        // 성공 시 동작
+        console.log(response);
+      },
+      error: function(response) {
+        console.log(response);
 
-    if (actors.value.trim() === '') {
-      alert('배우명을 입력해주세요.');
-      return false;
-    }
-
-    if (description.value.trim() === '') {
-      alert('줄거리를 입력해주세요.');
-      return false;
-    }
-    if (!videoRole) {
-      alert('영상 역할을 선택해주세요.');
-      return false;
-    }
-
-    if (!videoMaturityLevel) {
-      alert('시청 등급을 선택해주세요.');
-      return false;
-    }
-
-    if (!genres) {
-      alert('장르를 선택해주세요.');
-      return false;
-    }
-    if (imageFile.files.length === 0) {
-          alert('이미지 파일을 선택해주세요.');
-          return false;
-        } else {
-          var imageExtension = imageFile.files[0].name.split('.').pop().toLowerCase();
-          if (!['jpg', 'jpeg', 'png', 'gif'].includes(imageExtension)) {
-            alert('이미지 파일은 JPG, JPEG, PNG, GIF 형식만 허용됩니다.');
-            return false;
-          }
-        }
-
-        if (videoFile.files.length === 0) {
-          alert('동영상 파일을 선택해주세요.');
-          return false;
-        } else {
-          var videoExtension = videoFile.files[0].name.split('.').pop().toLowerCase();
-          if (!['mp4', 'avi', 'mov'].includes(videoExtension)) {
-            alert('동영상 파일은 MP4, AVI, MOV 형식만 허용됩니다.');
-            return false;
-          }
-        }
-        alert('영상업로드에 성공하였습니다.');
-    return true;
-}
+      }
+    });
+  });
+});

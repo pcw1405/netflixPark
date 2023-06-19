@@ -131,7 +131,7 @@
                         <input type="file" class="form-control" id="inputGroupFile02" name="videoFile"/>
                     </div>
 
-                    <button th:formaction="@{/video/new}" type="submit" class="btn btn-primary saveButton mx-auto" onclick="validateForm()">저장</button>
+                    <button type="button" class="btn btn-primary saveButton mx-auto" id="submitButton">저장</button>
                     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                 </form>
             </section>

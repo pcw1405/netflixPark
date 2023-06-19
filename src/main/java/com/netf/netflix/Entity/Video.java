@@ -20,7 +20,7 @@ public class Video{
 
     @Id
     @Column(name="video_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(nullable = false)

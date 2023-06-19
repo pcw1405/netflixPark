@@ -16,6 +16,8 @@ import com.netf.netflix.Service.VideoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -51,22 +53,25 @@ public class VideoController {
         return "videos/videoForm";
     }
 
-
-    @PostMapping(value = "/video/new")
-    public String videoCreateFrom(@Valid VideoFormDto videoFormDto, BindingResult bindingResult, Model model,
-                                  @RequestParam("videoImgFile") MultipartFile videoImgFile,
-                                  @RequestParam("videoFile") MultipartFile videoFile){
-
-        if(bindingResult.hasErrors()){
-            return "videos/videoForm";
+    @ResponseBody
+    @PostMapping(value = "/video/new", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<?> videoCreateFrom(@ModelAttribute("videoFormDto") @Valid VideoFormDto videoFormDto,
+                                             BindingResult bindingResult,
+                                             @RequestParam("videoImgFile") MultipartFile videoImgFile,
+                                             @RequestParam("videoFile") MultipartFile videoFile) throws Exception {
+        if (bindingResult.hasErrors()) {
+            // Handle validation errors
+            Map<String, Object> response = new HashMap<>();
+            response.put("code", 400);
+            response.put("message", "입력된 데이터가 올바르지 않습니다.");
+            response.put("errors", bindingResult.getAllErrors());
+            return ResponseEntity.badRequest().body(response);
         }
-        try {
-            videoService.saveVideo(videoFormDto, videoImgFile, videoFile);
-        } catch (Exception e) {
-            model.addAttribute("errorMessage","영상업로드중 문제가 발생하였습니다.");
-            return "videos/videoForm";
-        }
-        return "videos/videoForm";
+        videoService.saveVideo(videoFormDto, videoImgFile, videoFile);
+        Map<String, Object> response = new HashMap<>();
+        response.put("code", 200);
+        response.put("message", "업로드가 성공적으로 완료되었습니다.");
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/search")
@@ -412,8 +417,8 @@ public class VideoController {
         return "/leftmain/recent";
     }
 
-    @GetMapping("/videoListForm")
-    public String videoListForm(@RequestParam(defaultValue = "0") int page, Model model) {
+    @GetMapping(value = "/videoListForm")
+    public String videoList(@RequestParam(defaultValue = "0") int page, Model model) {
         int pageSize = 10; // 페이지당 아이템 개수
 
         Pageable pageable = PageRequest.of(page, pageSize);
