@@ -83,7 +83,13 @@ var dataCheckValue = $('.popup [data-video-id]').attr('data-video-id');
 
 console.log("dataCheckValue: " + dataCheckValue);
 
-
+if (videoLevel === "KID") {
+  $('.level').css('color', 'green'); // 녹색으로 색상 변경
+} else if (videoLevel === "ALL") {
+  $('.level').css('color', 'red'); // 빨강으로 색상 변경
+} else {
+  $('.level').css('color', ''); // 등급이 없는 경우 기본 색상으로 되돌림
+}
 
 
 
