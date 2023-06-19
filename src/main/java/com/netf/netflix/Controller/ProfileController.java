@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -146,11 +147,26 @@ public class ProfileController {
         return "profile";
     }
     @GetMapping("/profile-new")
-    public String profileForm(Model model, @RequestParam(value = "image",required = false)String imageUrl) {
+    public String profileForm(Model model, @RequestParam(value = "image", required = false) String imageUrl, RedirectAttributes redirectAttributes,HttpSession session) {
+        String loggedInUser = (String) session.getAttribute("loggedInUser");
+        Member member = memberRepository.findByEmail(loggedInUser);
+        if (member == null) {
+            throw new RuntimeException("사용자 정보를 찾을 수 없습니다.");
+        }
+
+        List<Profile> profiles = profileRepository.findByMember(member);
+        String message="";
+        if (profiles.size() >= 5) {
+            // 프로필 생성 갯수가 5개 이상인 경우 에러 메시지를 알림으로 설정하고 이전 페이지로 이동합니다.
+            redirectAttributes.addFlashAttribute("message", "프로필 생성 갯수가 제한을 초과하였습니다.");
+            return "redirect:/profile/profile";
+        }
+
         model.addAttribute("profileDto", new ProfileDto());
-        model.addAttribute("imageUrl",imageUrl);
+        model.addAttribute("imageUrl", imageUrl);
         return "profile-new";
     }
+
 
     @PostMapping("/saveProfile")
     public String saveProfile(@Valid @ModelAttribute("profileDto") ProfileDto profileDto, BindingResult bindingResult, HttpSession session) {

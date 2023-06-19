@@ -65,7 +65,11 @@ public class Profile {
     }
 
     public enum MaturityLevel {
-        ALL,KID
+        ALL,KID;
 
     }
+
+
+
+
 }

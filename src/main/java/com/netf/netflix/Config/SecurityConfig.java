@@ -41,6 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .mvcMatchers("/register").permitAll()
                 .mvcMatchers("/video/**").hasRole("ADMIN")
                 .mvcMatchers("/profile").hasRole("USER")
+                .mvcMatchers("/kid").hasRole("KID")
                 .antMatchers("/save-like").permitAll()
                 .mvcMatchers("/profile/saveImageUrl").permitAll()
                 .anyRequest().authenticated()

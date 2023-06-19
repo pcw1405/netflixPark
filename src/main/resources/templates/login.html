@@ -3,12 +3,11 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
 >
+<script src="https://www.google.com/recaptcha/enterprise.js?render=6LfIWqYmAAAAAKzvx3iz1jngQGm3wmT9qujzQ-yr"></script>
 
 <th:block layout:fragment="css">
   <link rel="stylesheet" th:href="@{/assets/css/landing-pages.css}">
-  <style>
 
-  </style>
 </th:block>
 
 <div layout:fragment="content">
@@ -57,7 +56,8 @@
             Netflix 회원이 아닌가요?<span class="mainsignUp"><a href="/members/new">&nbsp;&nbsp;&nbsp;지금 가입하세요.</a></span>
           </p>
           <p class="bottomMessage para" style="font-size: 13px;">
-            이 페이지는 Google reCAPTCHA의 보호를 받아 사용자가 로봇이 아님을 확인합니다. <span style="color:royalblue; font-size: 15px;"> 자세히알아보기.</span>
+            이 페이지는 Google reCAPTCHA의 보호를 받아 사용자가 로봇이 아님을 확인합니다. <span style="color:royalblue; font-size: 15px;"> <a style="color:royalblue; font-size: 15px;"
+                                                                                                                    href="https://policies.google.com/privacy?hl=ko">자세히알아보기.</a> </span>
           </p>
         </form>
       </div>
@@ -108,6 +108,16 @@
       localStorage.clear();
     }
   });
+     function onClick(e) {
+    e.preventDefault();
+    grecaptcha.enterprise.ready(async () => {
+      const token = await grecaptcha.enterprise.execute('6LfIWqYmAAAAAKzvx3iz1jngQGm3wmT9qujzQ-yr', {action: 'LOGIN'});
+      // IMPORTANT: The 'token' that results from execute is an encrypted response sent by
+      // reCAPTCHA Enterprise to the end user's browser.
+      // This token must be validated by creating an assessment.
+      // See https://cloud.google.com/recaptcha-enterprise/docs/create-assessment
+    });
+  }
 </script>
 
 </div>
