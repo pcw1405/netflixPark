@@ -111,20 +111,20 @@
 
 
 <script>
-  $(document).ready(function(){
-    const maturityLevel = "[[${profile.maturityLevel}]]";
+$(document).ready(function(){
+    const maturityLevel = "[[${video.videoMaturityLevel}]]";
+    const genre = "[[${video.genres}]]";
+    const videoRole = "[[${video.videoRole}]]";
     const option1 = document.getElementById("option1");
     const option2 = document.getElementById("option2");
 
-    if (maturityLevel === option1.value) {
+    if (videoRole === option1.value) {
       option1.checked = true;
     }
 
-    if (maturityLevel === option2.value) {
+    if (videoRole === option2.value) {
       option2.checked = true;
     }
-  });
-</script>
 
   const option3 = document.getElementById("option3");
   const option4 = document.getElementById("option4");
@@ -158,6 +158,8 @@
   if (genre === option9.value) {
     option9.checked = true;
   }
+
+
   function validateForm() {
   }
 

@@ -58,6 +58,8 @@ public class Video{
         this.actors = videoFormDto.getActors();
         this.description = videoFormDto.getDescription();
         this.videoRole = videoFormDto.getVideoRole();
+        this.videoMaturityLevel = videoFormDto.getVideoMaturityLevel();
+        this.genres = videoFormDto.getGenres();
     }
 
 //    public void addStock(int stockNumber){
