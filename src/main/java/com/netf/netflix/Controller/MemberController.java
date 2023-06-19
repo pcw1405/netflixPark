@@ -67,33 +67,31 @@ public class MemberController {
     }
     @GetMapping(value="/login/error")
     public String loginError(Model model){
-        model.addAttribute("loginEroorMsg","아이디 또는 비밀번호 확인해주세요.");
+        model.addAttribute("loginErrorMsg","아이디 또는 비밀번호 확인해주세요.");
         return "/login";
     }
 
+    @ResponseBody
     @PostMapping(value="/login")
-    public String loginMember(@ModelAttribute("memberFormDto") MemberFormDto memberFormDto, BindingResult bindingResult, Model model, HttpSession session) {
-        // 이메일과 비밀번호를 가져옴
+    public ResponseEntity<?> loginMember(@RequestBody MemberFormDto memberFormDto, Model model, HttpSession session) {
+
         String email = memberFormDto.getEmail();
         String password = memberFormDto.getPassword();
-
+        Map<String, Object> response = new HashMap<>();
         try {
-
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(email, password)
             );
-
             // 인증 성공 시
             SecurityContextHolder.getContext().setAuthentication(authentication);
-
             // 세션에 사용자 정보 저장
-
             session.setAttribute("loggedInUser", email);
-            return "redirect:/profile/profile"; // 로그인 후 이동할 페이지 설정
+            response.put("message","로그인에 성공했습니다.");
+            response.put("code", 200);
+            return ResponseEntity.ok(response);
         } catch (AuthenticationException e) {
-            // 인증 실패 시
-            model.addAttribute("loginError", "아이디 또는 비밀번호가 잘못되었습니다.");
-            return "/login";
+            response.put("message","아이디와 비밀번호를 확인해주세요");
+            return ResponseEntity.badRequest().body(response);
         }
     }
 
