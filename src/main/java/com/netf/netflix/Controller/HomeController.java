@@ -158,7 +158,7 @@ public class HomeController {
         }
 
 
-        List<Video> top10Videos = videoRepository.findTop10ByOrderByViewCountDesc();
+        List<Video> top10Videos = videoRepository.findTop10ByViewCountGreaterThanOrderByViewCountDesc(0);
 
 
         if (profile != null && profile.getMaturityLevel() != null && profile.getMaturityLevel().equals(Profile.MaturityLevel.KID)) {
