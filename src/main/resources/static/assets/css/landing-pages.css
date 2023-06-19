@@ -270,3 +270,11 @@ p.signUpText span.rightsignUp{
     margin-right: 30px;
     float : right;
 }
+p.signUpText span.signUp{
+    float : left;
+    margin-left:30px;
+}
+p.signUpText{
+    float : left;
+
+}

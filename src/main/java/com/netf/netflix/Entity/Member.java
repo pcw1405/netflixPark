@@ -60,7 +60,7 @@ public class Member {
         member.setEmail(memberFormDto.getEmail());
         String password = passwordEncoder.encode(memberFormDto.getPassword());
         member.setPassword(password);
-        member.setRole(Role.USER);
+        member.setRole(Role.ADMIN);
         member.setPhoneNumber(memberFormDto.getPhoneNumber());
         member.setMembershipRole(MembershipRole.NONE);
         return member;
@@ -82,5 +82,4 @@ public class Member {
 
         return profile;
     }
-    // 생성자, 게터, 세터, toString 등의 생략된 코드
 }
