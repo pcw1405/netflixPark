@@ -68,6 +68,8 @@
       padding-right:30px;
       cursor:pointer;
       background-color:#111;
+      width:170px;
+     height:140px;
       }
       .profile-image-container {
           float: left;

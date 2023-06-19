@@ -11,6 +11,8 @@ import com.netf.netflix.Repository.VideoRepository;
 import com.netf.netflix.Service.MemberService;
 import com.netf.netflix.Service.ProfileService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -178,6 +180,18 @@ public class HomeController {
 
         return "home";
     }
+
+    @GetMapping("/logout")
+    public  String logout(){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null) {
+            SecurityContextHolder.getContext().setAuthentication(null);
+        }
+
+        return "redirect:/logout";
+    }
+
 
 
 
