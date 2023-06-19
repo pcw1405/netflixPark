@@ -220,33 +220,48 @@
     /*  border-right: 1px solid white;  가로선 스타일을 지정합니다. */
       background-color: RGB(24, 24, 24);
 
+
         font-family: "Hanna",sans-serif;
     }
 
     .short_box {
-          float:left;
-          width:200px;
-          height:100%;
+      float: left;
+      width: 200px;
+      height: 100%;
 
-             /* 가로선 스타일을 지정합니다. */
-          background-color: RGB(24, 24, 24);
-            font-family: "Hanna",sans-serif;
+      background-color: RGB(24, 24, 24);
+      font-family: "Hanna", sans-serif;
     }
 
 
 
     .tmp {
-    width:400px;
-    height:150px;
+   width: 400px;
+    height: 150px;
     margin: 10px auto 0;
-}
 
+    }
+
+.tmp p:nth-child(2) {
+  display: -webkit-box;
+  overflow: hidden;
+  line-height: 1.2;
+  -webkit-line-clamp:4;
+  -webkit-box-orient: vertical;
+          text-align: left;
+  text-overflow: ellipsis; /* CSS4에서 추가될 말줄임표 사용자 정의 */
+ overflow-wrap: break-word;
+}
 
 
 .short_box p {
     margin-top: 10px;
     margin-left:5px;
     text-shadow: 2px 2px 4px rgba(128, 128, 128, 0.5);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+}
 
 .short_box p span {
     margin-left: 5px;

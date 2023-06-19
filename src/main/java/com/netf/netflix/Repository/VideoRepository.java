@@ -30,6 +30,8 @@ public interface VideoRepository extends JpaRepository<Video, Long> {
 
     List<Video> findTop10ByOrderByViewCountDesc();
 
+    List<Video> findTop10ByViewCountGreaterThanOrderByViewCountDesc(int viewCount);
+
     @Query("SELECT v FROM Video v")
     Page<Video> findPaginated(Pageable pageable);
 
