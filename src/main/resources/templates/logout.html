@@ -10,13 +10,24 @@
   <link rel="stylesheet" th:href="@{/assets/css/global.css}" />
   <link rel="stylesheet" th:href="@{/assets/css/landing-pages.css}" />
 
+  <script>
+    // 페이지 로드 시 카운트다운 및 페이지 이동
+    var count = 10;
+    var countdown = setInterval(function() {
+      count--;
+      if (count <= 0) {
+        clearInterval(countdown);
+        window.location.href = "/members/login";
+      }
+      document.getElementById("countdown").textContent = count;
+    }, 1000);
+  </script>
 </head>
 <body>
-
 <main style="padding: 0px 10px;">
   <header class="d-flex space-between middle-align">
     <img th:src="@{/images/logo.PNG}" height="50px" width="170px" alt="site logo main" />
-    <button class="button"><a href="#">로그인</a></button>
+    <button class="button"><a th:href="@{/members/login}">로그인</a></button>
   </header>
   <section id="logout-section d-flex flex-center">
     <div class="logoutContainer f-s-20 d-flex flex-center direction-column">
@@ -24,24 +35,19 @@
         벌써 나가시려고요?
       </h2>
       <p class="logoutMessage" style="font-size: 15px;">
-        참고로 알려드리면 ,매번 Netflix에서 로그아웃하실
-        <br/>필요는 없습니다. 공용컴퓨터에서 이용한 경우에만
+        참고로 알려드리면, 매번 Netflix에서 로그아웃하실
+        <br/>필요는 없습니다. 공용 컴퓨터에서 이용한 경우에만
         <br/>로그아웃하시면 됩니다.
       </p>
 
       <p class="logoutMessage">
-        30초후 Neflix.com으로 이동합니다.
+        <span id="countdown">10</span>초 후 로그인 페이지로 자동으로 이동합니다.
       </p>
       <button class="button logoutButton">
-        <a href="./user_dashboard/browse.html">지금 이동</a>
+        <a th:href="@{/members/login}">로그인하러가기</a>
       </button>
     </div>
   </section>
 </main>
-
-<!-- index page block start | main landing page home | -->
-
-
 </body>
-
 </html>

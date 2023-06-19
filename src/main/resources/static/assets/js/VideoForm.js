@@ -108,7 +108,7 @@ $(document).ready(function() {
       success: function(response) {
         // 성공 시 동작
         alert(response.message);
-        location.href = '/videoListForm';
+        location.href = '/video/new';
       },
       error: function(response) {
         console.log(response);

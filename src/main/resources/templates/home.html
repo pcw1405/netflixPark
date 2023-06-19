@@ -24,14 +24,14 @@
 
 
 <div layout:fragment="content" class="content">
-  <main id="mainContainer" class="p-b-40">
+  <main id="mainContainer" class="pb-5">
     <div th:replace="fragments/popup :: myPopup"></div>
     <!-- hero section -->
     <div class="">
       <section id="browse-dashboard" class=" d-flex direction-column flex-start middle-align" th:with="randomVideo=${randomVideo}" th:if="${randomVideo != null}" >
         <div>
           <!--trailer video-->
-          <video class="hero-background-image p-b-40" id="hero-video" th:poster="${randomVideo.videoImg.imgUrl}">
+          <video class="hero-background-image pb-5" id="hero-video" th:poster="${randomVideo.videoImg.imgUrl}">
             <!--                           th:poster="@{/images/main_img/hot1.jpg}">-->
 
             >
@@ -43,7 +43,7 @@
           <div class="shadow-layer"></div>
         </div>
 
-        <div class="container text-container" style="z-index: 5;">
+        <div class="container text-container pt-5" style="z-index: 5;">
           <div class="contentlogo">
             <img th:src="@{/images/tv-show/poster/never-have-ever-logo.webp}" alt="content logo"
                  class="show-logo" style="opacity:0" />
@@ -98,7 +98,7 @@
     </div>
 
     <!--paretn div with black bg after main hero section-->
-    <div class="black-background"  >
+    <div class="black-background">
 
       <section id="ranking" class="container">
 
@@ -108,7 +108,7 @@
           <span >오늘의 TOP10  </span>
         </h4>
         <!--                th:each="video, videoIndex : ${top10Videos}">-->
-        <div class="mylist-container d-flex flex-start flex-middle flex-no-wrap owl-carousel">
+        <div class="mylist-container d-flex flex-start flex-middle flex-no-wrap owl-carousel ">
           <div th:each="video, videoIndex  : ${top10Videos}" class="video searchlist getRecent" th:if="${top10Videos != null}">
             <video class="mylist-img p-r-10 p-t-10 video-item"
                    th:poster="${video.videoImg.imgUrl}">

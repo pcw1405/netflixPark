@@ -189,7 +189,7 @@ public class HomeController {
             SecurityContextHolder.getContext().setAuthentication(null);
         }
 
-        return "redirect:/logout";
+        return "logout";
     }
 
 
