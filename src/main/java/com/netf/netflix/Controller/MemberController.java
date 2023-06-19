@@ -2,10 +2,14 @@ package com.netf.netflix.Controller;
 
 import com.netf.netflix.Dto.MemberFormDto;
 import com.netf.netflix.Entity.Member;
+import com.netf.netflix.Entity.Video;
 import com.netf.netflix.Repository.MemberRepository;
 import com.netf.netflix.Service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -143,7 +147,21 @@ public class MemberController {
         return "/login";
     }
 
+    @GetMapping(value = "/memberList")
+    public String memberList(@RequestParam(defaultValue = "0") int page, Model model) {
+        int pageSize = 10; // 페이지당 아이템 개수
 
+        Pageable pageable = PageRequest.of(page, pageSize);
+        Page<Member> memberPage = memberRepository.findPaginated(pageable);
+        List<Member> memberList = memberPage.getContent();
+        int totalPages = memberPage.getTotalPages();
 
+        model.addAttribute("memberList", memberList);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", totalPages);
+
+        return "/member/memberList";
+
+    }
 
 }
