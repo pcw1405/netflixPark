@@ -216,8 +216,9 @@
 
   /* hero section styling */
   .hero-background-image{
+  display:block;
     z-index: -1;
-    position: absolute;
+    position:absolute;
     background-position: center center;
     background-size: 100%;
     left: 0;
@@ -225,12 +226,13 @@
     top: 0;
     bottom: 0;
     width: 100%;
+
   }
   #browse-dashboard video{
     object-fit:fill
-  
+
   }
-/* 760px로 내려가게되면 영상의 크기가 기본크기로 돌아가 반응형이 안먹혔는데 주석처리함으로써 해결*/
+/* 760px濡� �대젮媛�寃뚮릺硫� �곸긽�� �ш린媛� 湲곕낯�ш린濡� �뚯븘媛� 諛섏쓳�뺤씠 �덈㉨�붾뒗�� 二쇱꽍泥섎━�⑥쑝濡쒖뜥 �닿껐*/
   /* @media (max-width: 750px){
       .hero-background-image{
         width: auto;
@@ -255,7 +257,7 @@
     -moz-transition: opacity 500ms;
     transition: opacity 500ms;
   }
- 
+
   #browse-dashboard{
       padding-top: 120px;
   }
@@ -318,7 +320,7 @@
       color: black;
   }
 
- 
+
 
   /* owl carousel */
 
@@ -365,7 +367,7 @@
 
 /* my list */
 .black-background{
-    margin-top: 140PX;
+    margin-top: 280PX;
     width: 100%;
     background-color: black;
     -webkit-box-shadow: 20px -40px 50px black;
@@ -374,8 +376,9 @@
 }
 
 #mylist{
-    padding-top: 0px;
+     padding-top:0px;
     position: relative;
+
 }
 @media (max-width: 900px){
     #mylist{
@@ -520,9 +523,9 @@ footer ul li{
     position: fixed;
     bottom: 0;
     width: 100%;
-    
+
   }
-  
+
   .footer-navigation a {
     flex-grow: 1;
     display: inline-block;
@@ -593,7 +596,7 @@ footer ul li{
 
     .dropdown-content {
         overflow-y: auto;
-        max-height: 800px; /* 내용이 표시될 최대 높이 */
+        max-height: 800px; /* �댁슜�� �쒖떆�� 理쒕� �믪씠 */
 
     }
 
@@ -619,4 +622,3 @@ footer ul li{
   font-size:20px;
      font-style: italic;
 }
-

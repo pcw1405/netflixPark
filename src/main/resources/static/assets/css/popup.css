@@ -23,8 +23,8 @@
 }
 
 .popup::-webkit-scrollbar {
-  width: 0;  /* 스크롤바 너비를 0으로 설정 */
-  background: transparent;  /* 스크롤바 배경을 투명으로 설정 */
+  width: 0;  /* �ㅽ겕濡ㅻ컮 �덈퉬瑜� 0�쇰줈 �ㅼ젙 */
+  background: transparent;  /* �ㅽ겕濡ㅻ컮 諛곌꼍�� �щ챸�쇰줈 �ㅼ젙 */
 }
 
 .popup-close {
@@ -61,7 +61,7 @@
   z-index: 500;
   bottom: 22%;
   left: 4%;
-  font-family: 'Netflix Sans', "Hanna", sans-serif; /* Netflix Sans를 우선 적용 */
+  font-family: 'Netflix Sans', "Hanna", sans-serif; /* Netflix Sans瑜� �곗꽑 �곸슜 */
   font-size: 60px;
   text-shadow: 5px 5px 8px rgba(0, 0, 0, 0.5);
   font-style: italic;
@@ -98,7 +98,7 @@
 
 .videoContainer .saveLike {
   float: right;
-  font-size: 40px; /* 크기 조정 */
+  font-size: 40px; /* �ш린 議곗젙 */
   border-radius: 50%;
   margin-top: -5px;
 }
@@ -140,22 +140,23 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 80px; /* 크기 조정 */
+  height: 80px; /* �ш린 議곗젙 */
   background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
 }
 
 .textContainer {
   width: 1200px;
-  height: 300px; /* 크기 조정 */
+  height: 200px; /* �ш린 議곗젙 */
   position: relative;
 }
 
 .story_box {
   float: left;
   width: 800px;
-  height: 300px; /* 크기 조정 */
+  height: 200px; /* �ш린 議곗젙 */
+  margin-top:20px;
   background-color: RGB(24, 24, 24);
-  font-family: 'Netflix Sans', "Hanna", sans-serif; /* Netflix Sans를 우선 적용 */
+  font-family: 'Netflix Sans', "Hanna", sans-serif; /* Netflix Sans瑜� �곗꽑 �곸슜 */
     font-size: 35px; /* Increase the font size as desired */
 }
 
@@ -165,15 +166,15 @@
   height: 100%;
 
   background-color: RGB(24, 24, 24);
-  font-family: 'Netflix Sans', "Hanna", sans-serif; /* Netflix Sans를 우선 적용 */
+  font-family: 'Netflix Sans', "Hanna", sans-serif; /* Netflix Sans瑜� �곗꽑 �곸슜 */
     font-size: 30px; /* Increase the font size as desired */
 }
 
 .tmp {
   width: 500px;
-  height: 300px;
+  height: 200px;
   margin: 10px auto 0;
-       font-size: 30px; /* Increase the font size as desired */
+       font-size: 25px; /* Increase the font size as desired */
 }
 
 
@@ -213,23 +214,24 @@
 
         .recommend_title {
             font-size: 25px;
-            text-align: center;
-  font-family: 'Netflix Sans', "Hanna", sans-serif; /* Netflix Sans를 우선 적용 */
-  margin-right:10px;
+            text-align: left;
+  font-family: 'Netflix Sans', "Hanna", sans-serif; /* Netflix Sans瑜� �곗꽑 �곸슜 */
+  padding-top:30px;
+  padding-left:70px;
         }
 
 .textContainer .story_box span,
 .textContainer .short_box span,
 .textContainer .story_box .tmp p span,
 .textContainer .short_box p span {
-  font-size: 30px;
+  font-size: 18px;
 }
 
         .recommend p,
         .recommend h2 {
             font-size: 25px;
              margin-top: 10px !important;
-               font-family: 'Netflix Sans', "Hanna", sans-serif; /* Netflix Sans를 우선 적용 */
+               font-family: 'Netflix Sans', "Hanna", sans-serif; /* Netflix Sans瑜� �곗꽑 �곸슜 */
         }
 
 
@@ -237,8 +239,8 @@
 @media (max-width: 890px){
 
  .popup {
-    width: 500px; /* 팝업 창의 너비를 줄입니다. */
-    height: 500px; /* 팝업 창의 높이를 줄입니다. */
+    width: 500px; /* �앹뾽 李쎌쓽 �덈퉬瑜� 以꾩엯�덈떎. */
+    height: 500px; /* �앹뾽 李쎌쓽 �믪씠瑜� 以꾩엯�덈떎. */
   }
 
       .popup-close {
@@ -258,26 +260,26 @@
         }
 
   .titleV span {
-    font-size: 50px; /* 제목의 글자 크기를 줄입니다. */
+    font-size: 50px; /* �쒕ぉ�� 湲��� �ш린瑜� 以꾩엯�덈떎. */
   }
 
   .videoContainer video {
-    border-radius: 5px; /* 비디오 테두리의 둥글기 정도를 줄입니다. */
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* 그림자의 강도를 줄입니다. */
+    border-radius: 5px; /* 鍮꾨뵒�� �뚮몢由ъ쓽 �κ�湲� �뺣룄瑜� 以꾩엯�덈떎. */
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* 洹몃┝�먯쓽 媛뺣룄瑜� 以꾩엯�덈떎. */
   }
 
   .story_box {
-    width: 300px; /* 스토리 박스의 너비를 줄입니다. */
+    width: 300px; /* �ㅽ넗由� 諛뺤뒪�� �덈퉬瑜� 以꾩엯�덈떎. */
       font-size: 30px; /* Increase the font size as desired */
 
   }
 
   .short_box {
-    width: 100px; /* 쇼트 박스의 너비를 줄입니다. */
+    width: 100px; /* �쇳듃 諛뺤뒪�� �덈퉬瑜� 以꾩엯�덈떎. */
   }
 
   .tmp {
-    width: 300px; /* tmp 클래스의 너비를 줄입니다. */
+    width: 300px; /* tmp �대옒�ㅼ쓽 �덈퉬瑜� 以꾩엯�덈떎. */
      font-size: 30px; /* Increase the font size as desired */
   }
   .tmp p{
@@ -293,14 +295,14 @@
   }
 
   .short_box p {
-    margin-top: 5px; /* 쇼트 박스의 문단 위쪽 여백을 줄입니다. */
-    margin-left: 3px; /* 쇼트 박스의 문단 왼쪽 여백을 줄입니다. */
-    text-shadow: 1px 1px 2px rgba(128, 128, 128, 0.5); /* 그림자의 강도를 줄입니다. */
+    margin-top: 5px; /* �쇳듃 諛뺤뒪�� 臾몃떒 �꾩そ �щ갚�� 以꾩엯�덈떎. */
+    margin-left: 3px; /* �쇳듃 諛뺤뒪�� 臾몃떒 �쇱そ �щ갚�� 以꾩엯�덈떎. */
+    text-shadow: 1px 1px 2px rgba(128, 128, 128, 0.5); /* 洹몃┝�먯쓽 媛뺣룄瑜� 以꾩엯�덈떎. */
   }
 
   .short_box p span {
-    margin-left: 3px; /* 쇼트 박스의 문단 내부 요소의 왼쪽 여백을 줄입니다. */
-    text-shadow: 1px 1px 2px rgba(128, 128, 128, 0.5); /* 그림자의 강도를 줄입니다. */
+    margin-left: 3px; /* �쇳듃 諛뺤뒪�� 臾몃떒 �대� �붿냼�� �쇱そ �щ갚�� 以꾩엯�덈떎. */
+    text-shadow: 1px 1px 2px rgba(128, 128, 128, 0.5); /* 洹몃┝�먯쓽 媛뺣룄瑜� 以꾩엯�덈떎. */
       font-size: 30px; /* Increase the font size as desired */
   }
 
