@@ -142,6 +142,7 @@ public class VideoController {
         if (selectedProfile == null) {
             throw new RuntimeException("프로필을 찾을 수 없습니다.");
         }
+//        profileId를 통해 현재 프로파일을 찾는다
 
         // 헤더이미지부르는부분
         model.addAttribute("selectedProfile", selectedProfile);
@@ -154,14 +155,16 @@ public class VideoController {
         // favoriteVideos 값을 모델에 추가합니다
         model.addAttribute("favoriteVideos", profile.getFavoriteVideos());
 
+        // 레포지토리를 통해 모든 장르를 불러온다
         List<String> subjects = videoRepository.findAllGenres();
+        // 레포지토리를 통해 videoRole이 드라마에 해당하는 비디오를 저장한다
         List<Video> videos = videoRepository.findByVideoRole(VideoRole.DRAMA);
 
         for (Video video : videos) {
             System.out.println(video.getId()+video.getVideoNm()+video.getGenres()+video.getDescription());
         }
 
-//        랜덤비디오
+//        랜덤비디오를 랜덤으로 5개 만들어줍니다
 
         List<Video> allVideos = videoRepository.findAll();
         List<Video> randomVideos = new ArrayList<>();
@@ -184,7 +187,8 @@ public class VideoController {
 
         model.addAttribute("subjects",subjects);
         model.addAttribute("videos",videos);
-        //세션 + 하단 두줄 영화 및 mylist 추가
+            // 이 정보를 전달해주고 html에서 타임리프를 이용해서 각각의 장르마다 비디오에 해당하는 드라마들을 정리해준다
+
 //        List<VideoImg> videoImgs = videoImgRepository.findAll();
 //        model.addAttribute("videoImgs",videoImgs);
         String profileImageUrl = profile.getImageUrl();

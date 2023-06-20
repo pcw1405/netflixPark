@@ -36,16 +36,20 @@ public class ProfileService {
         Profile profile = profileRepository.findById(profileId)
                 .orElseThrow(() -> new RuntimeException("Profile not found"));
 
+//프로파일 아이디를 통해 현재 프로파일을 찾는다 (  profileRepository.findById(profileId) )
+
         if (profile.getFavoriteVideos() == null) {
             profile.setFavoriteVideos(new HashSet<>());
             System.out.println("Favorite videos set created");
+            //profile의 favoriteVIdeos목록이 null인경우 새로운 hashset을 만든다
         } else if (profile.getFavoriteVideos().contains(videoId)) {
             profile.getFavoriteVideos().remove(videoId);
             profileRepository.save(profile);
             System.out.println("Video already added to favorites, removed it from the list");
             throw new RuntimeException("Video already added to favorites");
+            // 이미 (데이터베이스에서) 좋아요가 되어있는 상태라면 좋아요를 취소한다
         }
-
+    // 프로파일의 favortieVIdeos에 비디오를 추가하고 저장합니다
         profile.getFavoriteVideos().add(videoId);
         profileRepository.save(profile);
         printFavoriteVideoIds(profileId);
