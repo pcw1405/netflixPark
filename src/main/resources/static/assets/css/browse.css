@@ -310,7 +310,12 @@
     background: white;
     color: black;
     border: 0;
+
   }
+  button.play-button.full span svg {
+    margin-top: -10px;
+  }
+
   .buttons-container .more-info-button{
     background-color: rgba(133,133,133,0.6);
     color: white;
