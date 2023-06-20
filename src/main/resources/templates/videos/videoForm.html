@@ -5,6 +5,7 @@
 <script th:src="@{/assets/lib/jquery 3.7.0.js}"></script>
 <link rel="stylesheet" th:href="@{/assets/lib/bootstrap.css}">
 <script th:src="@{/assets/lib/bootstrap.js}"></script>
+<script src="https://kit.fontawesome.com/42c6a3cece.js" crossorigin="anonymous"></script>
 
 <th:block layout:fragment="script">
     <script th:src="@{/assets/js/VideoForm.js}"></script>
@@ -46,14 +47,13 @@
             background-color : white;
             color : black;
         }
-        a.back-button{
-            color : white;
-            font-size: 30px;
-            width:30px;
-            height:30px;
-            position : absolute;
-            top : 10%;
-            left : 10%;
+            .spana{
+            height:70px !important;
+            }
+        .back-button{
+        font-size:30px;
+        color:white;
+        float:left;
         }
     </style>
 </th:block>
@@ -63,9 +63,9 @@
             <section id="login-form-section">
                 <!--Login form start-->
                 <form role="form" method="post" class="uploadContainer d-flex direction-column" enctype="multipart/form-data" th:object="${videoFormDto}">
-                    <a class="back-button" href="javascript:window.history.back();" title="홈으로가기"><i class="fa fa-arrow-left"></i></a>
-                    <input type="hidden" th:field="*{id}">
-                    <h2>영상 업로드</h2>
+
+                   <span class="spana"> <a class="back-button" href="javascript:window.history.back();" title="홈으로가기"><i class="fa fa-arrow-left"></i></a>
+                        <input type="hidden" th:field="*{id}"><h2>영상 업로드</h2></span>
 
                     <div class="form-group d-flex justify-content-center radio-box mb-2">
                         <input type="radio" class="btn-check" name="videoRole" value="MOVIE" id="option1" autocomplete="off">
