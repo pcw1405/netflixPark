@@ -236,74 +236,100 @@
 
 
 
-@media (max-width: 890px){
+@media (max-width: 950px){
 
+ @media (max-width: 950px) {
  .popup {
-    width: 500px; /* �앹뾽 李쎌쓽 �덈퉬瑜� 以꾩엯�덈떎. */
-    height: 500px; /* �앹뾽 李쎌쓽 �믪씠瑜� 以꾩엯�덈떎. */
-  }
-
-      .popup-close {
-        width:30px;
-        height:30px;
-        position:absolute;
-            right:2%;
-            top:2%;
-          cursor: pointer;
-            font-weight: 800;
-          color: white;
-          z-index:50;
-          border-radius: 50%;
-          text-align: center;
-
-        margin-right: 5px;
-        }
-
-  .titleV span {
-    font-size: 50px; /* �쒕ぉ�� 湲��� �ш린瑜� 以꾩엯�덈떎. */
-  }
-
-  .videoContainer video {
-    border-radius: 5px; /* 鍮꾨뵒�� �뚮몢由ъ쓽 �κ�湲� �뺣룄瑜� 以꾩엯�덈떎. */
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* 洹몃┝�먯쓽 媛뺣룄瑜� 以꾩엯�덈떎. */
-  }
-
-  .story_box {
-    width: 300px; /* �ㅽ넗由� 諛뺤뒪�� �덈퉬瑜� 以꾩엯�덈떎. */
-      font-size: 30px; /* Increase the font size as desired */
-
-  }
-
-  .short_box {
-    width: 100px; /* �쇳듃 諛뺤뒪�� �덈퉬瑜� 以꾩엯�덈떎. */
-  }
-
-  .tmp {
-    width: 300px; /* tmp �대옒�ㅼ쓽 �덈퉬瑜� 以꾩엯�덈떎. */
-     font-size: 30px; /* Increase the font size as desired */
-  }
-  .tmp p{
-
-     font-size: 30px; /* Increase the font size as desired */
-  }
+ top: calc(50% + 5px);
+ width: 90%;
+ height: 80vh;
+ max-height: calc(100% - 50px);
+ padding-bottom: 10px;
+ }
 
 
 
+ .videoContainer {
+ height: 400px;
+ }
 
-  .tmp p span{
-  font-size: 30px; /* Increase the font size as desired */
-  }
+ .titleV span {
+ bottom: 26%;
+ left: 2%;
+ font-size: 40px;
+ }
 
-  .short_box p {
-    margin-top: 5px; /* �쇳듃 諛뺤뒪�� 臾몃떒 �꾩そ �щ갚�� 以꾩엯�덈떎. */
-    margin-left: 3px; /* �쇳듃 諛뺤뒪�� 臾몃떒 �쇱そ �щ갚�� 以꾩엯�덈떎. */
-    text-shadow: 1px 1px 2px rgba(128, 128, 128, 0.5); /* 洹몃┝�먯쓽 媛뺣룄瑜� 以꾩엯�덈떎. */
-  }
+ .videoContainer .saveLike {
+ font-size: 30px;
+ margin-right:10px;
+ }
 
-  .short_box p span {
-    margin-left: 3px; /* �쇳듃 諛뺤뒪�� 臾몃떒 �대� �붿냼�� �쇱そ �щ갚�� 以꾩엯�덈떎. */
-    text-shadow: 1px 1px 2px rgba(128, 128, 128, 0.5); /* 洹몃┝�먯쓽 媛뺣룄瑜� 以꾩엯�덈떎. */
-      font-size: 30px; /* Increase the font size as desired */
-  }
+ .textSpace {
+ margin-top: 30px;
+ margin-left: 20px;
+ }
+
+ .black_bridge {
+ height: 40px;
+ }
+
+ .textContainer {
+ width: 90%;
+ height: 200px;
+ }
+
+ .story_box {
+ width: 60%;
+ height: 200px;
+ font-size: 20px;
+ }
+
+ .short_box {
+ width: 35%;
+ height: 200px;
+ font-size: 18px;
+ }
+
+ .temp {
+   position: absolute;
+   width: 180px;
+   height: 50px;
+   z-index: 1;
+   left: 4%;
+   bottom: 12%;
+ }
+
+ .tmp {
+ width: 50%;
+ height: 200px;
+ font-size: 18px;
+ }
+
+ .tmp p:nth-child(2) {
+ -webkit-line-clamp: 3;
+ }
+
+ .short_box p {
+ margin-top: 5px;
+ margin-left: 3px;
+ font-size: 16px;
+ }
+
+ .short_box p span {
+ margin-left: 3px;
+ font-size: 16px;
+ }
+
+ .recommend_title {
+ font-size: 16px;
+ margin-right: 5px;
+ }
+
+ .textContainer .story_box span,
+ .textContainer .short_box span,
+ .textContainer .story_box .tmp p span,
+ .textContainer .short_box p span {
+ font-size: 16px;
+ }
 
   }
