@@ -2,36 +2,40 @@ $(document).ready(function() {
     var header = $("meta[name='_csrf_header']").attr('content');
     var token = $("meta[name='_csrf']").attr('content');
   // Handle "수정" button click event
-  $("#editButton").click(function(e) {
-    e.preventDefault(); // Prevent the default form submission
-
-    // Get the selected values
-    var memberRole = $(".member-role-select").val();
-    var membershipRole = $(".membership-role-select").val();
-    var memberId = $(".memberId").val();
+  $(document).on("click", "#editButton", function () {
+    var row = $(this).closest("tr");
+    var memberId = row.find("[name='memberId']").val();
+    var memberRole = row.find(".member-role-select").val();
+    var membershipRole = row.find(".membership-role-select").val();
 
     var data = {
-      memberRole: memberRole,
+      id: memberId,
+      role: memberRole,
       membershipRole: membershipRole,
-      memberId : memberId
     };
+    console.log(memberId);
+    console.log(memberRole);
+    console.log(membershipRole);
+    console.log(typeof(memberRole));
+    console.log(typeof(memberId));
+    console.log(typeof(membershipRole));
 
-    // Send the JSON data via AJAX
     $.ajax({
       type: "POST",
       url: "/members/memberEdit",
       beforeSend: function(xhr) {
         xhr.setRequestHeader(header, token);
       },
-      data: JSON.stringify(data),
       contentType: "application/json",
-      success: function(response) {
-        alert(response.message)
-         location.href = '/members/memberList';
+      data: JSON.stringify(data),
+      success: function (response) {
+        alert(response.message);
+        location.hre = '/members/memberList';
       },
-      error: function(response) {
-        alert(response.error)
-      }
+      error: function (error) {
+        alert(error)
+      },
     });
   });
+
 });

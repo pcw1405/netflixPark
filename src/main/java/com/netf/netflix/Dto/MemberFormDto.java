@@ -1,5 +1,7 @@
 package com.netf.netflix.Dto;
 
+import com.netf.netflix.Constant.MembershipRole;
+import com.netf.netflix.Constant.Role;
 import com.netf.netflix.Constant.VideoMaturityLevel;
 import com.netf.netflix.Constant.VideoRole;
 

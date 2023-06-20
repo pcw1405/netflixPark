@@ -5,10 +5,10 @@
   <meta name="_csrf" th:content="${_csrf.token}"/>
   <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 </head>
+
 <script th:src="@{/assets/lib/jquery 3.7.0.js}"></script>
 <link rel="stylesheet" th:href="@{/assets/lib/bootstrap.css}">
 <script th:src="@{/assets/lib/bootstrap.js}"></script>
-
 <th:block layout:fragment="script">
   <script th:src="@{/assets/js/memberList.js}"></script>
 </th:block>
@@ -26,7 +26,7 @@
         <form action="/members/memberListSearch" method="get">
           <div class="input-group mb-3">
             <button class="btn btn-outline-secondary" type="submit" id="button-addon1">검색</button>
-            <input type="text" name="Search" class="form-control" placeholder="검색어를 입력해주세요" aria-label="Example text with button addon" aria-describedby="button-addon1">
+            <input type="text" name="search" class="form-control" placeholder="검색어를 입력해주세요" aria-label="Example text with button addon" aria-describedby="button-addon1">
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
           </div>
         </form>
@@ -46,30 +46,31 @@
           </thead>
           <tbody>
           <tr scope="row" th:each="member : ${memberList}">
-            <td th:text="${member.id}" class="memberId"></td>
+            <td th:text="${member.id}"></td>
             <td th:text="${member.name}"></td>
             <td th:text="${member.email}"></td>
             <td th:text="${member.phoneNumber}"></td>
             <td>
               <select class="member-role-select">
-                <option th:value="${member.role}" th:text="${member.role}" selected="selected"></option>
-                <option th:value="USER" th:text="USER" th:selected="${member.role == 'USER'}">USER</option>
-                <option th:value="ADMIN" th:text="ADMIN" th:selected="${member.role == 'ADMIN'}">ADMIN</option>
+                <option name="memberRole" th:text="${member.role}" selected="selected"></option>
+                <option name="memberRole" value="USER" th:text="USER" >USER</option>
+                <option name="memberRole" value="ADMIN" th:text="ADMIN" >ADMIN</option>
               </select>
-              </select>
+
             </td>
             <td>
               <select class="membership-role-select">
                 <option th:text="${member.membershipRole}" selected="selected"></option>
-                <option th:value="BASIC" th:text="BASIC" th:selected="${member.membershipRole == 'BASIC'}"></option>
-                <option th:value="STANDARD" th:text="STANDARD" th:selected="${member.membershipRole == 'STANDARD'}"></option>
-                <option th:value="PREMIUM" th:text="PREMIUM" th:selected="${member.membershipRole == 'PREMIUM'}"></option>
-                <option th:value="NONE" th:text="NONE" th:selected="${member.membershipRole == 'NONE'}"></option>
+                <option name="membershipRole" value="BASIC" th:text="BASIC"></option>
+                <option name="membershipRole" value="STANDARD" th:text="STANDARD"></option>
+                <option name="membershipRole" value="PREMIUM" th:text="PREMIUM"></option>
+                <option name="membershipRole" value="NONE" th:text="NONE" ></option>
               </select>
             </td>
             <td th:text="${member.membershipExpirationDate}"></td>
             <td>
-                <a id="editButton" type="button" class="btn btn-primary">수정</a>
+              <input type="hidden" th:value="${member.id}" name="memberId">
+              <a type="button" id="editButton" class="btn btn-primary">수정</a>
             </td>
           </tr>
           </tbody>
