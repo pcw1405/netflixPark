@@ -55,12 +55,25 @@ public class HomeController {
         String email = principal.getName();
         Member member = memberService.findMemberByEmail(email);
 
-
-
-
-
         List<VideoImg> videoImgs = videoImgRepository.findAll();
+
+        List<VideoImg> kidImgFilter = videoImgRepository.findByVideoVideoMaturityLevel(VideoMaturityLevel.KID);
+
+        if (profile != null && profile.getMaturityLevel() != null && profile.getMaturityLevel().equals(Profile.MaturityLevel.KID)) {
+            System.out.println("키드입니다 ");
+            if ( videoImgs!= null && kidImgFilter != null) {
+                videoImgs.retainAll(kidImgFilter);
+                System.out.println("키드에 대한 이미지만 추출 ");
+            }
+        } else {
+            System.out.println("어른입니다");
+        }
+
+
+
         model.addAttribute("videoImgs",videoImgs);
+
+
 
         //비디오 부분
         /// 비디오 내용 홈와면의 비디오 내용 필요한것 : 랜덤/ 최근 / 새로 올라운 콘텐츠 / top10
@@ -71,7 +84,9 @@ public class HomeController {
 
 //키드만 추출하는 키드필터(키드비디오들) 생성
         List<Video> kidFilter = videoRepository.findByVideoMaturityLevel(VideoMaturityLevel.KID);
+
         System.out.println("나의 MaturityLevel: " + (profile != null ? profile.getMaturityLevel() : "unknown"));
+
 
 
         // 랜덤 부분

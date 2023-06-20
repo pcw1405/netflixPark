@@ -104,7 +104,7 @@
                  th:data-iColor="${favoriteVideos != null && favoriteVideos.contains(rdvideo.id) ? 'red' : 'white'}"
             >
             <h2 th:if="${rdvideo.videoImg == null}">검색 결과 없음</h2>
-            <p th:text="${rdvideo.videoNm + ' #' + rdvideo.genres}" style="margin-top:10px;" th:if="${rdvideo != null}"></p>
+            <p th:text="${rdvideo.videoNm + ' #' + rdvideo.genres}" style="margin-top:10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" th:if="${rdvideo != null}"></p>
 
 <!--            <span th:text="'#' + ${rdvideo.genres}"></span>-->
         </div>

@@ -56,6 +56,20 @@ public class ProfileController {
         model.addAttribute("otherProfiles", otherProfiles);
 //        (하단내용 movie drama mylist 추가해야함)
         List<VideoImg> videoImgs = videoImgRepository.findAll();
+
+        List<VideoImg> kidImgFilter = videoImgRepository.findByVideoVideoMaturityLevel(VideoMaturityLevel.KID);
+
+        if (selectedProfile != null && selectedProfile.getMaturityLevel() != null && selectedProfile.getMaturityLevel().equals(Profile.MaturityLevel.KID)) {
+            System.out.println("키드입니다 ");
+            if ( videoImgs!= null && kidImgFilter != null) {
+                videoImgs.retainAll(kidImgFilter);
+                System.out.println("키드에 대한 이미지만 추출 ");
+            }
+        } else {
+            System.out.println("어른입니다");
+        }
+
+
         model.addAttribute("videoImgs",videoImgs);
 
         //비디오 부분
