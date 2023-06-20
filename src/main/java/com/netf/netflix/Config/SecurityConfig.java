@@ -4,6 +4,7 @@ import com.netf.netflix.Service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -38,19 +39,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .mvcMatchers("/assets/**", "/assets/js/**", "/img/**").permitAll()
-                .mvcMatchers("/", "/members/**", "/item/**", "/images/**", "/**").permitAll()
-                .mvcMatchers("/login").permitAll()
+                .mvcMatchers("/","/members/**","/item/**", "/images/**").permitAll()
+//                .mvcMatchers("/login").permitAll()
                 .mvcMatchers("/register").permitAll()
                 .mvcMatchers("/video/**").hasRole("ADMIN")
-                .mvcMatchers("/profile").hasRole("USER")
+                .mvcMatchers("/profile").hasAnyRole("ADMIN","USER")
                 .mvcMatchers("/kid").hasRole("KID")
                 .antMatchers("/save-like").permitAll()
                 .mvcMatchers("/profile/saveImageUrl").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/members/login")
-                .defaultSuccessUrl("/profile")
+                .loginPage("/login")
+                .defaultSuccessUrl("/profile/profile")
                 .usernameParameter("email")
                 .failureUrl("/login/error") // 로그인 실패 시 이동할 URL
                 .and()
@@ -61,13 +62,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling()
                 .authenticationEntryPoint(authenticationEntryPoint)
                 .accessDeniedPage("/access-denied");
-                   http.csrf().ignoringAntMatchers("/callBackPush/**")//csrf예외처리
+        http
+                .csrf()
                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
-
-
 
         // 프로필 정보를 세션에 저장하는 필터 추가
         http.addFilterBefore(new ProfileInfoFilter(), UsernamePasswordAuthenticationFilter.class);
+
+
     }
 
     @Override
@@ -82,11 +84,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
-    @Bean
-    public HttpFirewall httpFirewall() {
-        StrictHttpFirewall firewall = new StrictHttpFirewall();
-        firewall.setAllowUrlEncodedDoubleSlash(true);
-        return firewall;
-    }
 }
-

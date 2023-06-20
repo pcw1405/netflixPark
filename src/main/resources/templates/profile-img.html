@@ -1,5 +1,7 @@
+
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <link rel="stylesheet" th:href="@{/assets/lib/bootstrap.css}">
     <link rel="stylesheet" th:href="@{/assets/css/profile-img.css}">
@@ -15,7 +17,7 @@
         <i class="fa fa-arrow-left"></i>
         <span class="tv">프로필 변경<br/>프로필 아이콘을 선택하세요.</span>
     </span>
-    <span class="profile-card d-flex align-items-center">
+    <span class="profile-card d-flex align-items-center" sec:authorize="hasRole('ROLE_ADMIN')">
         <img id="profileImage" src="#" alt="selectuserimg" th:src="${profileImg.imageUrl != null ? profileImg.imageUrl : '/images/icons/plus.png'}">
         <form method="POST" action="/profile-img" enctype="multipart/form-data">
             <input type="file" name="profileImg"> <!-- Corrected name attribute -->
