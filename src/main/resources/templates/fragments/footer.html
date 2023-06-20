@@ -39,7 +39,7 @@
 
 <!--footer 반응형 부분-->
 <div class="footer-navigation d-flex justify-content-center space-between">
-  <a href="/home" class="nav-item active">
+  <a th:if="${session.profileNm != null}" th:href="@{/home/{profileId}(profileId=${session.profileNm})}" class="nav-item active">
     <i class="fa fa-home" aria-hidden="true"></i> </br>
     Home
   </a>
@@ -47,10 +47,11 @@
     <i class="fa fa-search" aria-hidden="true"></i></br>
     Search
   </a>
-  <a href="/latest" class="nav-item">
+  <a th:if="${session.profileNm != null}" th:href="@{/mylist/{profileId}(profileId=${session.profileNm})}" class="nav-item">
     <i class="fa fa-film" aria-hidden="true"></i></br>
-    Latest
+    MyList
   </a>
+
   <a href="/user" class="nav-item">
     <i class="fa fa-user" aria-hidden="true"></i></br>
     Account

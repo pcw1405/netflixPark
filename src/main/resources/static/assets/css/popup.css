@@ -234,6 +234,100 @@
                font-family: 'Netflix Sans', "Hanna", sans-serif; /* Netflix Sans瑜� �곗꽑 �곸슜 */
         }
 
+@media (max-width: 1250px) {
+  .popup {
+    top: calc(50% + 5px);
+    width: 90%;
+    height: 80vh;
+    max-height: calc(100% - 50px);
+    padding-bottom: 10px;
+  }
+
+  .videoContainer {
+    height: 500px;
+  }
+
+  .titleV span {
+    bottom: 24%;
+    left: 2%;
+    font-size: 50px;
+  }
+
+  .videoContainer .saveLike {
+    font-size: 36px;
+    margin-right: 10px;
+  }
+
+  .textSpace {
+    margin-top: 40px;
+    margin-left: 25px;
+  }
+
+  .black_bridge {
+    height: 50px;
+  }
+
+  .textContainer {
+    width: 90%;
+    height: 250px;
+  }
+
+  .story_box {
+    width: 60%;
+    height: 250px;
+    font-size: 22px;
+      margin-top:14px;
+  }
+
+  .short_box {
+    width: 35%;
+    height: 250px;
+    font-size: 20px;
+  }
+
+  .temp {
+    position: absolute;
+    width: 200px;
+    height: 60px;
+    z-index: 1;
+    left: 4%;
+    bottom: 15%;
+  }
+
+  .tmp {
+    width: 50%;
+    height: 250px;
+    font-size: 20px;
+  }
+
+  .tmp p:nth-child(2) {
+    -webkit-line-clamp: 4;
+  }
+
+  .short_box p {
+   margin-top: 10px;
+    margin-left: 5px;
+    font-size: 18px;
+  }
+
+  .short_box p span {
+    margin-left: 5px;
+    font-size: 18px;
+  }
+
+  .recommend_title {
+    font-size: 18px;
+    margin-right: 8px;
+  }
+
+  .textContainer .story_box span,
+  .textContainer .short_box span,
+  .textContainer .story_box .tmp p span,
+  .textContainer .short_box p span {
+    font-size: 18px;
+  }
+}
+
 
 
 @media (max-width: 950px){
@@ -282,6 +376,7 @@
  width: 60%;
  height: 200px;
  font-size: 20px;
+   margin-top:10px;
  }
 
  .short_box {
@@ -310,7 +405,7 @@
  }
 
  .short_box p {
- margin-top: 5px;
+  margin-top: 10px;
  margin-left: 3px;
  font-size: 16px;
  }

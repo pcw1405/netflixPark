@@ -16,6 +16,9 @@ public interface VideoRepository extends JpaRepository<Video, Long> {
     List<Video> findByGenresContaining(String searchKeyword);
     List<Video> findByVideoNmContainingOrCastContainingOrActorsContainingOrDescriptionContainingOrGenresContaining(String videoNm, String cast, String actors, String description, String genres);
 
+    List<Video> findByVideoNmContainingOrActorsContainingOrGenresContaining(String videoNm, String actors, String genres);
+
+
 //    List<Video> findByGenresInAndVideoRole(String genres, VideoRole videoRole);
 
     @Query("SELECT DISTINCT v.genres FROM Video v")
