@@ -13,7 +13,14 @@
   <link rel="stylesheet" th:href="@{/assets/css/landing-pages.css}">
   <link rel="stylesheet" th:href="@{/assets/css/videoEditForm.css}">
   <style>
-
+        .spana{
+          height:70px !important;
+        }
+        .back-button{
+          font-size:30px;
+          color:white;
+          float:left;
+        }
   </style>
 </th:block>
 
@@ -22,7 +29,8 @@
     <section id="login-form-section">
 
       <div class="uploadContainer d-flex direction-column">
-        <h2>영상 수정</h2>
+        <span class="spana"> <a class="back-button" href="javascript:window.history.back();" title="홈으로가기"><i class="fa fa-arrow-left"></i></a>
+                        <h2>수정</h2></span>
         <form action="/videoList-search" method="get">
           <div class="input-group mb-3">
             <button class="btn btn-outline-secondary" type="submit" id="button-addon1">검색</button>

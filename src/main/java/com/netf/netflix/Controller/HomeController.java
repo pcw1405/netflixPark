@@ -29,7 +29,6 @@ public class HomeController {
 
     private final MemberService memberService;
     private final ProfileRepository profileRepository;
-
     private final VideoImgRepository videoImgRepository;
     private final VideoRepository videoRepository;
 
