@@ -154,8 +154,10 @@ main{
 }
 .name .maturity{
     font-size: 12px;
+    margin-left:10px;
     color: rgb(107, 107, 107);
 }
+
 .name img{
     flex: 1;
     max-width: 60px;

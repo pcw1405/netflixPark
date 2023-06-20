@@ -25,6 +25,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private MemberService memberService;
+    @Autowired
+    private CustomAuthenticationEntryPoint authenticationEntryPoint;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -47,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login")
+                .loginPage("/members/login")
                 .defaultSuccessUrl("/profile")
                 .usernameParameter("email")
                 .failureUrl("/login/error") // 로그인 실패 시 이동할 URL
@@ -57,9 +59,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login")
                 .and()
                 .exceptionHandling()
-                .accessDeniedPage("/access-denied"); // 접근 거부 시 이동할 URL
-        http.csrf().ignoringAntMatchers("/callBackPush/**")//csrf예외처리
+                .authenticationEntryPoint(authenticationEntryPoint)
+                .accessDeniedPage("/access-denied");
+                   http.csrf().ignoringAntMatchers("/callBackPush/**")//csrf예외처리
                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+
+
 
         // 프로필 정보를 세션에 저장하는 필터 추가
         http.addFilterBefore(new ProfileInfoFilter(), UsernamePasswordAuthenticationFilter.class);
