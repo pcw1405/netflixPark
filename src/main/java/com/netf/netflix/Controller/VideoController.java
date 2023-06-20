@@ -431,6 +431,7 @@ public class VideoController {
         model.addAttribute("totalPages", totalPages);
 
         return "videos/videoListForm";
+
     }
 
     @GetMapping("/videoList-search")

@@ -1,6 +1,10 @@
 package com.netf.netflix.Controller;
 
+import com.netf.netflix.Config.NotFoundException;
+import com.netf.netflix.Constant.MembershipRole;
+import com.netf.netflix.Constant.Role;
 import com.netf.netflix.Dto.MemberFormDto;
+import com.netf.netflix.Dto.VideoFormDto;
 import com.netf.netflix.Entity.Member;
 import com.netf.netflix.Entity.Video;
 import com.netf.netflix.Repository.MemberRepository;
@@ -23,6 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -160,8 +165,43 @@ public class MemberController {
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", totalPages);
 
-        return "/member/memberList";
 
+
+        return "member/memberList";
+    }
+
+    @ResponseBody
+    @PostMapping(value = "/memberEdit")
+    public ResponseEntity<?> videoCreateFrom(@RequestParam("memberRole") String memberRole,
+                                             @RequestParam("membershipRole") String membershipRoles,
+                                             @RequestParam("memberId") Long memberId) throws Exception {
+        Map<String, Object> response = new HashMap<>();
+        try {
+            Role role = Role.valueOf(memberRole);
+            MembershipRole membershipRole = MembershipRole.valueOf(membershipRoles);
+            Member member = memberRepository.findById(memberId).orElse(null);
+
+            if (member == null) {
+                throw new NotFoundException("Member not found with ID: " + memberId);
+            }
+
+            member.setMembershipRole(membershipRole);
+            member.setRole(role);
+
+            memberRepository.save(member);
+
+            response.put("message", "수정이 완료되었습니다.");
+            return ResponseEntity.ok(response);
+        } catch (IllegalArgumentException e) {
+            response.put("error", "타입에러가 발생하였습니다. 새로고침후 다시 시도해주세요");
+            return ResponseEntity.badRequest().body(response);
+        } catch (NotFoundException e) {
+            response.put("error", e.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        } catch (Exception e) {
+            response.put("error", "에러가 발생하였습니다. 다시 확인하시고 시도해주세요");
+            return ResponseEntity.badRequest().body(response);
+        }
     }
 
 }

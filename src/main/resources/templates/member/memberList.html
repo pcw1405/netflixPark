@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
-
+<head>
+  <meta name="_csrf" th:content="${_csrf.token}"/>
+  <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
 <script th:src="@{/assets/lib/jquery 3.7.0.js}"></script>
 <link rel="stylesheet" th:href="@{/assets/lib/bootstrap.css}">
 <script th:src="@{/assets/lib/bootstrap.js}"></script>
 
 <th:block layout:fragment="script">
-
+  <script th:src="@{/assets/js/memberList.js}"></script>
 </th:block>
 <th:block layout:fragment="css">
   <link rel="stylesheet" th:href="@{/assets/css/landing-pages.css}">
@@ -19,7 +22,7 @@
     <section id="login-form-section">
 
       <div class="uploadContainer d-flex direction-column">
-        <h2>영상 수정</h2>
+        <h2>회원 수정</h2>
         <form action="/members/memberListSearch" method="get">
           <div class="input-group mb-3">
             <button class="btn btn-outline-secondary" type="submit" id="button-addon1">검색</button>
@@ -43,26 +46,38 @@
           </thead>
           <tbody>
           <tr scope="row" th:each="member : ${memberList}">
-            <td th:text="${member.id}"></td>
+            <td th:text="${member.id}" class="memberId"></td>
             <td th:text="${member.name}"></td>
             <td th:text="${member.email}"></td>
             <td th:text="${member.phoneNumber}"></td>
-            <td th:text="${member.role}"></td>
-            <td th:text="${member.membershipRole}"></td>
+            <td>
+              <select class="member-role-select">
+                <option th:value="${member.role}" th:text="${member.role}" selected="selected"></option>
+                <option th:value="USER" th:text="USER" th:selected="${member.role == 'USER'}">USER</option>
+                <option th:value="ADMIN" th:text="ADMIN" th:selected="${member.role == 'ADMIN'}">ADMIN</option>
+              </select>
+              </select>
+            </td>
+            <td>
+              <select class="membership-role-select">
+                <option th:text="${member.membershipRole}" selected="selected"></option>
+                <option th:value="BASIC" th:text="BASIC" th:selected="${member.membershipRole == 'BASIC'}"></option>
+                <option th:value="STANDARD" th:text="STANDARD" th:selected="${member.membershipRole == 'STANDARD'}"></option>
+                <option th:value="PREMIUM" th:text="PREMIUM" th:selected="${member.membershipRole == 'PREMIUM'}"></option>
+                <option th:value="NONE" th:text="NONE" th:selected="${member.membershipRole == 'NONE'}"></option>
+              </select>
+            </td>
             <td th:text="${member.membershipExpirationDate}"></td>
             <td>
-              <form action="/memberEdit{memberId}" method="get">
-                <a class="btn btn-primary" th:href="@{/memberEdit(memberId=${member.id})}">수정</a>
-              </form>
+                <a id="editButton" type="button" class="btn btn-primary">수정</a>
             </td>
           </tr>
           </tbody>
         </table>
         <div class="move-button">
-          <a class="btn btn-secondary" th:href="@{/memberList(page=${currentPage-1})}" th:if="${currentPage > 0}">이전 페이지</a>
-          <a class="btn btn-secondary" th:href="@{/memberList(page=${currentPage+1})}" th:if="${currentPage < totalPages-1}">다음 페이지</a>
+          <a class="btn btn-secondary" th:href="@{/members/memberList(page=${currentPage-1})}" th:if="${currentPage > 0}">이전 페이지</a>
+          <a class="btn btn-secondary" th:href="@{/members/memberList(page=${currentPage+1})}" th:if="${currentPage < totalPages-1}">다음 페이지</a>
         </div>
-
       </div>
     </section>
   </main>

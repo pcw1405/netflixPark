@@ -14,8 +14,11 @@ a:hover{
     display: none;
 }
 @media(max-width: 850px){
-    .righticons{
+    .righticons a.rightsearch{
         display: none !important;
+    }
+    #headerMainContents{
+        display:none !important;
     }
     .main_small_img{
         display: inline-block;
@@ -23,4 +26,8 @@ a:hover{
     .main_logo_img{
         display: none;
     }
+    div.btn-group.dropdownMenu{
+        display: block;
+    }
 }
+

@@ -7,7 +7,7 @@
     <header class="d-flex space-between flex-center flex-middle container">
         <meta name="_csrf" th:content="${_csrf.token}"/>
         <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
-        <div class="nav-links d-flex flex-center flex-middle">
+        <div class="nav-links d-flex flex-center flex-middle" id="headerMainContents">
             <a th:href="@{/home/{profileId}(profileId=${session.profileNm})}">
                 <img th:src="@{/images/Netflix_Logo.png}" class="main_logo_img" alt="메인로고이미지">
                 <img th:src="@{/images/pngwing.com.png}" class="main_small_img" alt="">
@@ -25,8 +25,9 @@
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap" rel="stylesheet">
         </div>
+
         <div class="righticons d-flex flex-end flex-middle">
-            <a th:href="@{/search}">
+            <a class="rightsearch" th:href="@{/search}">
                 <img src="../../images/icons/search.svg" alt="search icon" />
             </a>
             <div class="dropdown notification">
@@ -120,5 +121,4 @@
     });
   });
 </script>
-
 </html>

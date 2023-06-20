@@ -40,4 +40,5 @@ public class MemberFormDto {
 
     private String role;
 
+    private String membershipRole;
 }

@@ -74,7 +74,6 @@ document.addEventListener("DOMContentLoaded", function(){
          success: function(response) {
                  console.log(response);
                  if(response.code === 200){
-                 alert(response.message);
                  location.href = '/profile/profile';
                  }
          },
