@@ -1,22 +1,26 @@
 package com.netf.netflix.Controller;
 
+import com.netf.netflix.Constant.MembershipRole;
 import com.netf.netflix.Constant.VideoMaturityLevel;
 import com.netf.netflix.Entity.Member;
 import com.netf.netflix.Entity.Profile;
 import com.netf.netflix.Entity.Video;
 import com.netf.netflix.Entity.VideoImg;
+import com.netf.netflix.Repository.MemberRepository;
 import com.netf.netflix.Repository.ProfileRepository;
 import com.netf.netflix.Repository.VideoImgRepository;
 import com.netf.netflix.Repository.VideoRepository;
 import com.netf.netflix.Service.MemberService;
 import com.netf.netflix.Service.ProfileService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
@@ -31,6 +35,7 @@ public class HomeController {
     private final ProfileRepository profileRepository;
     private final VideoImgRepository videoImgRepository;
     private final VideoRepository videoRepository;
+    private final MemberRepository memberRepository;
 
     @GetMapping("/home/{profileId}")
     public String home(@PathVariable("profileId") Long profileId, Model model, Principal principal, HttpSession session) {
@@ -203,6 +208,25 @@ public class HomeController {
     }
 
 
+    @GetMapping("/check-membership")
+    public ResponseEntity<?> checkMembership(HttpSession session){
+        Map<String, Object> response = new HashMap<>();
+        String loggedInUser = (String) session.getAttribute("loggedInUser");
+        Member member = memberRepository.findByEmail(loggedInUser);
+        MembershipRole membership = member.getMembershipRole();
+
+        if(membership == MembershipRole.NONE){
+            response.put("membership", "NONE");
+        }else if(membership == MembershipRole.BASIC){
+            response.put("membership", "BASIC");
+        }else if(membership == MembershipRole.STANDARD){
+            response.put("membership", "STANDARD");
+        }else if(membership == MembershipRole.PREMIUM){
+            response.put("membership","PREMIUM");
+        }
+
+        return ResponseEntity.ok(response);
+    }
 
 
 }
