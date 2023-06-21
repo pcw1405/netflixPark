@@ -1,6 +1,5 @@
 package com.netf.netflix.Controller;
 
-import com.netf.netflix.Config.NotFoundException;
 import com.netf.netflix.Constant.MembershipRole;
 import com.netf.netflix.Constant.Role;
 import com.netf.netflix.Dto.MemberFormDto;

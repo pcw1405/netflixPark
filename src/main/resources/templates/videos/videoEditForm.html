@@ -110,7 +110,7 @@
                     </div>
 
                     <div class="input-group">
-                        <button type="submit" class="btn btn-primary saveButton mx-auto" onclick="">저장</button>
+                        <button type="submit" class="btn btn-primary saveButton mx-auto">저장 </button>
                         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                     </div>
                 </form>
@@ -121,6 +121,9 @@
 
 
 <script>
+function submitForm() {
+  document.getElementById("videoListForm").submit();
+}
 $(document).ready(function(){
     const maturityLevel = "[[${video.videoMaturityLevel}]]";
     const genre = "[[${video.genres}]]";

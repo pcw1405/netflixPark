@@ -29,6 +29,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private CustomAuthenticationEntryPoint authenticationEntryPoint;
 
+
+    //비밀번호 인코더 패스워드 디비 저장시 인코더로 인하여 관리자도 회원의 비밀번호를 알수없음 . 필수보안
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -38,9 +40,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+                //css 적용파일 및 js img 파일 권한부여
+                //permitall 전체권한 적용
                 .mvcMatchers("/assets/**", "/assets/js/**", "/img/**").permitAll()
                 .mvcMatchers("/","/members/**","/item/**", "/images/**").permitAll()
-//                .mvcMatchers("/login").permitAll()
                 .mvcMatchers("/register").permitAll()
                 .mvcMatchers("/video/**").hasRole("ADMIN")
                 .mvcMatchers("/profile").hasAnyRole("ADMIN","USER")
@@ -58,6 +61,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutSuccessUrl("/logout")
                 .and()
+                //인가되지않은 사용자 접근 제한
+                //CustomAuthenticationEntryPoint 상속받아 인가되지않은 또는 세션없는 사용자,권한외에 주소창 강제로 접속시 members/login 으로우회 시킴
                 .exceptionHandling()
                 .authenticationEntryPoint(authenticationEntryPoint)
                 .accessDeniedPage("/access-denied");
@@ -65,7 +70,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 
-        // 프로필 정보를 세션에 저장하는 필터 추가
+              // 프로필 정보를 세션에 저장하는 필터 추가
         http.addFilterBefore(new ProfileInfoFilter(), UsernamePasswordAuthenticationFilter.class);
 
 

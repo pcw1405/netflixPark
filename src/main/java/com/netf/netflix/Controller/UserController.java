@@ -20,6 +20,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -98,6 +99,7 @@ public class UserController {
         Member member = memberRepository.findByEmail(loggedInUser);
         if(membershipDrop.equals("NONE")){
             memberService.membershipDrop(member);
+//            member.setMembershipExpirationDate(LocalDate.of(0000,00,00));
         }
         session.setAttribute("loggedInUser", member.getEmail());
         return "redirect:/user";

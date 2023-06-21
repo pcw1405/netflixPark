@@ -23,6 +23,9 @@ public class ProfileInfoFilter extends GenericFilterBean {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
+
+        //인증된 세션이 존재할경우 로그인된 사용자가 존재할경우
+        //인증된세션에 프로필 이미지와 프로필 이름을 저장
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.isAuthenticated()) {
             // 프로필 정보를 세션에 저장

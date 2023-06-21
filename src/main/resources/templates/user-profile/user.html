@@ -125,6 +125,7 @@
         </div>
         <div class="right d-flex space-between">
           <h4><span class="icon-visa" th:text="${member.membershipRole}"></span></h4>
+          <h4 class="date">만료일자 : <span th:text="${member.membershipExpirationDate}"></span></h4>
           <a th:href="@{/membership}" class="link-item">멤버쉽 변경</a>
         </div>
       </div>
