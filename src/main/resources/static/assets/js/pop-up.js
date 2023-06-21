@@ -146,22 +146,29 @@ if (videoLevel === "KID") {
               }
           }
       });
-  var videoNm = $clickedElement.find('[data-video-nm]').attr('data-video-nm');
-  var videoGenres = $clickedElement.find('[data-video-genres]').attr('data-video-genres');
-  var videoDescription = $clickedElement.find('[data-video-description]').attr('data-video-description');
-  var videoActors = $clickedElement.find('[data-video-actors]').attr('data-video-actors');
-  var videoCast = $clickedElement.find('[data-video-cast]').attr('data-video-cast');
-  var videoRecent = $clickedElement.find('[data-video-recent]').attr('data-video-recent');
-  var videoLevel = $clickedElement.find('[data-video-level]').attr('data-video-level');
+
   var videoRole = $clickedElement.find('[data-video-Role]').attr('data-video-Role');
         if(membershipValue == "BASIC" && videoLevel != "ALL"){
         $popup.css("display", "block");
         }
         if(membershipValue == "BASIC" && videoLevel != "KID"){
             $popup.css("display", "none");
-            if(videoRole == "MOVIE" || videoRole == "DRAMA"){
+            if(videoRole == "MOVIE" ){
+                alert("PREMIUM등급 이상부터 상위 맴버쉽을 결재해주세요");
+            }
+            if(videoRole == "DRAMA"){
                 alert("STANDARD등급 이상부터 상위 맴버쉽을 결재해주세요");
             }
+        }
+        if(membershipValue == "STANDARD"){
+        $popup.css("display", "block");
+            if(videoRole == "MOVIE"){
+                $popup.css("display", "none");
+                alert("PREMIUM등급 이상부터 상위 맴버쉽을 결재해주세요");
+            }
+        }
+        if(membershipValue == "PREMIUM"){
+            $popup.css("display", "block");
         }
 
     });
