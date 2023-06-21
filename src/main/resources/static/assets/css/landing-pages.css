@@ -241,6 +241,17 @@ button:focus {
 .uploadContainer h2{
     text-align : center;
 }
+.uploadContainer1{
+    max-width: 450px;
+    margin: auto;
+    background-color: black;
+    box-shadow: var(--box-shadow);
+    padding: 30px 60px 68px 40px;
+    border-radius: 3px;
+}
+.uploadContainer1 h2{
+    text-align : center;
+}
 
 input.btn-check{
     margin-right : 5px;

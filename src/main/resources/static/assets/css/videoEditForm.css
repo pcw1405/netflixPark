@@ -8,6 +8,11 @@ body{
 .uploadContainer{
     max-width : 1000px;
 }
+.uploadContainer1{
+     max-width : 450px;
+     margin-top:150px;
+ }
+
 table{
     text-align : center;
 }

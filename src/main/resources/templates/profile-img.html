@@ -14,7 +14,7 @@
 </div>
 <div class="head-box d-flex container">
     <span class="me-auto p-2 d-flex align-items-center" onclick="goToProfileNew()">
-        <i class="fa fa-arrow-left"></i>
+         <a href="javascript:window.history.back();"><i class="fa fa-arrow-left"></i></a>
         <span class="tv">프로필 변경<br/>프로필 아이콘을 선택하세요.</span>
     </span>
     <span class="profile-card d-flex align-items-center" sec:authorize="hasRole('ROLE_ADMIN')">
