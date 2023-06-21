@@ -148,6 +148,10 @@ if (videoLevel === "KID") {
       });
 
   var videoRole = $clickedElement.find('[data-video-Role]').attr('data-video-Role');
+        if(membership == "NONE"){
+            $popup.css("display", "none");
+            alert("맴버쉽 결재 후 이용이 가능합니다.");
+        }
         if(membershipValue == "BASIC" && videoLevel != "ALL"){
         $popup.css("display", "block");
         }
