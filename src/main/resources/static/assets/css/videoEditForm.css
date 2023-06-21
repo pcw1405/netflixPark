@@ -6,7 +6,7 @@ body{
     text-align : center;
 }
 .uploadContainer{
-    max-width : 1000px;
+    max-width : 1200px;
 }
 .uploadContainer1{
      max-width : 450px;
@@ -18,4 +18,21 @@ table{
 }
 td.description{
     text-align : left;
+    width:500px;
+    height:80px;
+    display: -webkit-box;
+    overflow: hidden;
+    line-height: 1.2;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow-wrap: break-word;
+    font-size: 12px;
+}
+tr td:nth-child(4){
+    width: 170px;
+}
+.btn{
+ padding : 5px 11px;
 }
