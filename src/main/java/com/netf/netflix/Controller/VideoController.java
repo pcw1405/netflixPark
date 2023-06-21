@@ -74,6 +74,7 @@ public class VideoController {
         return ResponseEntity.ok(response);
     }
 
+    // 키워드를 통해 검색 결과를 가져온다
     @GetMapping("/search")
     public String videoList(Model model,String searchKeyword,HttpSession session) {
 
@@ -111,6 +112,7 @@ public class VideoController {
         } else {
             list = videoService.videoSearchList(searchKeyword);
         }
+// Containing은 Spring Data JPA의 메서드 네이밍 규칙 중 하나로, 문자열 필드를 포함하는 데이터를 검색하는데 사용됩니다 (비디오서비스 )
 
         if (profile != null && profile.getMaturityLevel() != null && profile.getMaturityLevel().equals(Profile.MaturityLevel.KID)) {
             System.out.println("키드입니다 "+ profile.getMaturityLevel() );
@@ -152,7 +154,8 @@ public class VideoController {
                 .collect(Collectors.toList());
         model.addAttribute("otherProfiles", otherProfiles);
 
-        // favoriteVideos 값을 모델에 추가합니다
+        // favoriteVideos 값을 모델에 추가합니다 이것은 좋아요 data-iColor에서 videoid가 favoriteVideos에 포함된다면 red를 저장
+        // 좋아요의 색깔을 표현할 때 활용한다
         model.addAttribute("favoriteVideos", profile.getFavoriteVideos());
 
         // 레포지토리를 통해 모든 장르를 불러온다
@@ -173,7 +176,7 @@ public class VideoController {
         while (randomVideos.size() < 4 && chosenIndexes.size() < allVideos.size()) {
             int randomIndex = new Random().nextInt(allVideos.size());
             if (chosenIndexes.contains(randomIndex)) {
-                continue; // 이미 선택된 인덱스는 건너뛰기
+                continue; // 이미 선택된 인덱스는 건너뛰기 이 while문은 코드는 중복을 방지하기 위한 코드
             }
             chosenIndexes.add(randomIndex);
             Video randomVideo = allVideos.get(randomIndex);
@@ -188,9 +191,8 @@ public class VideoController {
         model.addAttribute("subjects",subjects);
         model.addAttribute("videos",videos);
             // 이 정보를 전달해주고 html에서 타임리프를 이용해서 각각의 장르마다 비디오에 해당하는 드라마들을 정리해준다
+        // th:if문을 통해 장르에 해당하는 비디오를 출력한다 ( th:if="${videos != null and video.genres.contains(subject)}" )
 
-//        List<VideoImg> videoImgs = videoImgRepository.findAll();
-//        model.addAttribute("videoImgs",videoImgs);
         String profileImageUrl = profile.getImageUrl();
         // 프로필 이미지 URL이 null인 경우 기본값을 설정합니다
         if (profileImageUrl == null) {
@@ -203,6 +205,7 @@ public class VideoController {
         return "/leftmain/drama";
     }
 
+    // 무비는 드라마와 방식의 거이 비슷하다 List<Video> videos = videoRepository.findByVideoRole(VideoRole.MOVIE); 이것만 다르다
     @GetMapping("/movie/{profileId}")
     public String movieList(@PathVariable("profileId")Long profileId, Model model,HttpSession session){
 
@@ -267,6 +270,7 @@ public class VideoController {
         return "/leftmain/movie";
     }
 
+    // 키드도 드라마 , 영화와 비슷한 방식
     @GetMapping("/kid/{profileId}")
     public String kidList(@PathVariable("profileId")Long profileId, Model model,HttpSession session){
 
@@ -298,7 +302,7 @@ public class VideoController {
             System.out.println(video.getId()+video.getVideoNm()+video.getGenres()+video.getDescription());
         }
 //랜덤비디오 이것도 키즈비디오에 대한 랜덤비디오로 바꿔야한다
-        List<Video> allVideos = videoRepository.findByVideoMaturityLevel(VideoMaturityLevel.KID); //이부분만 바꾸면 될듯
+        List<Video> allVideos = videoRepository.findByVideoMaturityLevel(VideoMaturityLevel.KID); //드라마, 무비와 차이점
         List<Video> randomVideos = new ArrayList<>();
         Set<Integer> chosenIndexes = new HashSet<>();
 
@@ -417,8 +421,7 @@ public class VideoController {
                 Video video = optionalVideo.get();
                 recentVideos.add(video);
             } else {
-                // 비디오를 찾지 못한 경우에 대한 처리를 여기에 추가하면 됩니다.
-                // 예를 들어, 로그를 출력하거나 다른 예외를 던지는 등의 작업을 수행할 수 있습니다.
+                // 비디오를 찾지 못한 경우에 대한 처리를 여기에 추가하면 됩니다. ( println문 출력 )
                 System.out.println("비디오를 찾을 수 없습니다. videoId: " + videoId);
             }
         }
@@ -429,8 +432,6 @@ public class VideoController {
         }
         model.addAttribute("profileImageUrl", profileImageUrl);
 
-
-// 모델에 좋아하는 비디오 리스트 추가o
         model.addAttribute("recentVideos", recentVideos);
         return "/leftmain/recent";
     }

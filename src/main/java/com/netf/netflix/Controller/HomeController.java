@@ -58,6 +58,7 @@ public class HomeController {
 
         List<VideoImg> kidImgFilter = videoImgRepository.findByVideoVideoMaturityLevel(VideoMaturityLevel.KID);
 
+        //알림에 키드일 때 키드 이미지만 뜰 수 있도록 필터링 해준다 
         if (profile != null && profile.getMaturityLevel() != null && profile.getMaturityLevel().equals(Profile.MaturityLevel.KID)) {
             System.out.println("키드입니다 ");
             if ( videoImgs!= null && kidImgFilter != null) {
@@ -77,11 +78,8 @@ public class HomeController {
         //비디오 부분
         /// 비디오 내용 홈와면의 비디오 내용 필요한것 : 랜덤/ 최근 / 새로 올라운 콘텐츠 / top10
 //       프로파일 이미지는 이미 있기 때문에 세션으로 가져올 필요없다
-//        Long profileId = (Long) session.getAttribute("profileNm");
-//        Profile profile = profileRepository.findById(profileId)
-//                .orElseThrow(() -> new RuntimeException("Profile not found"));
 
-//키드만 추출하는 키드필터(키드비디오들) 생성
+//키드만 추출하기위해 키드필터(키드비디오들) 생성
         List<Video> kidFilter = videoRepository.findByVideoMaturityLevel(VideoMaturityLevel.KID);
 
         System.out.println("나의 MaturityLevel: " + (profile != null ? profile.getMaturityLevel() : "unknown"));
@@ -96,13 +94,14 @@ public class HomeController {
         while (randomVideos.size() < 4 && chosenIndexes.size() < videos.size()) {
             int randomIndex = new Random().nextInt(videos.size());
             if (chosenIndexes.contains(randomIndex)) {
-                continue; // 이미 선택된 인덱스는 건너뛰기
+                continue; // 이미 선택된 인덱스는 건너뛰기 이 while문은 중복을 없애기 위한 코드
             }
             chosenIndexes.add(randomIndex);
             Video randomVideo = videos.get(randomIndex);
             randomVideos.add(randomVideo);
         }
 
+        //랜덤 비디오들에 대해서도 키드일 때는 키드에 해당하는 비디오들만 추출한다 (교집합 )
         if (profile != null && profile.getMaturityLevel() != null && profile.getMaturityLevel().equals(Profile.MaturityLevel.KID)) {
             System.out.println("키드입니다 ");
             if (randomVideos != null && kidFilter != null) {
@@ -122,7 +121,7 @@ public class HomeController {
 
 
 
-        //최근본
+        //최근본 비디오들을 불러온다
         List<Long> recentViewId =  selectedProfile.getRecentlyViewedVideos();
         List<Video> recentVideos = new ArrayList<>();
 
@@ -132,8 +131,7 @@ public class HomeController {
                 Video video = optionalVideo.get();
                 recentVideos.add(video);
             } else {
-                // 비디오를 찾지 못한 경우에 대한 처리를 여기에 추가하면 됩니다.
-                // 예를 들어, 로그를 출력하거나 다른 예외를 던지는 등의 작업을 수행할 수 있습니다.
+                // 비디오를 찾지 못한 경우에 대한 처리를 여기에 추가하면 됩니다.(println)
                 System.out.println("비디오를 찾을 수 없습니다. videoId: " + videoId);
             }
         }
@@ -143,7 +141,7 @@ public class HomeController {
         // 찜목록
         model.addAttribute("favoriteVideos", selectedProfile.getFavoriteVideos());
 
-        // 좋아하는 비디오 리스트 가져오기
+        // 좋아하는 비디오 리스트 가져오기( 비디오들의 아이디 )
         Set<Long> favoriteVideosId = selectedProfile.getFavoriteVideos();
 
         List<Video> like_videos =videoRepository.findAllById(favoriteVideosId);
@@ -153,14 +151,14 @@ public class HomeController {
 //        업데이트 비디오는 프로파일넘버가 필요없다
 //        찜목록이나 최근본 비디오는 애초에 키드가 볼 수 가 없으니 키드필터링할 필요가 없다
 
+        // 최근 업데이트 된 비디오들을 가져온다
         List<Video> uploadVideos = videoRepository.findDistinctByOrderByVideoImgUploadDateDesc();
 
         if (profile != null && profile.getMaturityLevel() != null && profile.getMaturityLevel().equals(Profile.MaturityLevel.KID)) {
             System.out.println("키드입니다 ");
-//            List<Video> kidFilter = videoRepository.findByVideoMaturityLevel(VideoMaturityLevel.KID);
             if (uploadVideos != null) {
             uploadVideos.retainAll(kidFilter);
-//                System.out.println("키드에 대한 영상만 추출 ");
+//  키드에 대한 영상만 추출
             }
         }else{
             System.out.println("어른입니다");
@@ -173,16 +171,14 @@ public class HomeController {
             System.out.println("null입니다");
         }
 
-
+//    조회수가 높은 top10 비디오들을 가져온다
         List<Video> top10Videos = videoRepository.findTop10ByViewCountGreaterThanOrderByViewCountDesc(0);
-
 
         if (profile != null && profile.getMaturityLevel() != null && profile.getMaturityLevel().equals(Profile.MaturityLevel.KID)) {
             System.out.println("키드입니다 ");
-//            List<Video> kidFilter = videoRepository.findByVideoMaturityLevel(VideoMaturityLevel.KID);
             if (top10Videos != null) {
             top10Videos.retainAll(kidFilter);
-//                System.out.println("키드에 대한 영상만 추출 ");
+// 키드에 대한 영상만 추출
             }
         }else{
             System.out.println("어른입니다");

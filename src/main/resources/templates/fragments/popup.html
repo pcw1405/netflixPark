@@ -60,7 +60,7 @@
 
         </div>
         <div class="short_box">
-<!--            th:data-video-level="${video.videoMaturityLevel}"-->
+
             <p >  <span style="color:#717171;"> 등급 </span>
                 <span class="level" > </span>
             </p>
@@ -103,10 +103,16 @@
                  th:data-video-level="${rdvideo.videoMaturityLevel}"
                  th:data-iColor="${favoriteVideos != null && favoriteVideos.contains(rdvideo.id) ? 'red' : 'white'}"
             >
+<!--            html에 동적으로 비디오에 대한 정보를 받아서 팝업에 표시할 관련 정보를 저장하기 위한 용도입니다.-->
+<!--            데이터 속성인 data-video-url 를 비롯해 여러가지 정보를-->
+<!--            자바스크립의 변수에 저장합니다.-->
+<!--            data-iColor라는 데이터 속성을 정의하고, 그 값으로 조건식의 결과에 따라 'red' 또는 'white' 값을 사용합니다.
+favoriteVideos가 null이 아니고, video.id를 포함하는지를 검사합니다. 조건이 참일 경우에는 'red' 값을 반환합니다 -->
+
             <h2 th:if="${rdvideo.videoImg == null}">검색 결과 없음</h2>
             <p th:text="${rdvideo.videoNm + ' #' + rdvideo.genres}" style="margin-top:10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" th:if="${rdvideo != null}"></p>
 
-<!--            <span th:text="'#' + ${rdvideo.genres}"></span>-->
+
         </div>
 
     </div>

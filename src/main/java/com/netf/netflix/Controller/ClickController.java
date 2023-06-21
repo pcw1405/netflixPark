@@ -59,8 +59,14 @@ public class ClickController {
             Object> videoData,
             HttpSession session) {
 
+//Map<String, Object>형태로 JSON 데이터를 정보를 받아 컨트롤러를 사용합니다
+
         String recentVideoIdString = (String) videoData.get("recentVideoId");
         long videoId = Long.parseLong(recentVideoIdString);
+
+        //recentVideoId 필드의 값을 가져와서 Long.parseLong()
+        //메서드를 사용하여 long 데이터 타입으로 변환합니다
+
         // recentVideoId를 사용하여 비즈니스 로직 수행
         System.out.println("Received videoId: " + videoId); // videoId 출력
 
@@ -74,6 +80,10 @@ public class ClickController {
         try{
             profileService.addRecentlyViewedVideo(profileId,  videoId);
             videoService.addViewCount(videoId);
+            
+//비디오아이디와 포로파일 아이디를 매개변수로  addRecentlyViewedVideo() 메서드를 호출하여 최근본 비디오 목록에 비디오아이디를 저장합니다
+//그리고 addViewCount() 메서드를 videoId를 매개변수로( 비디오롤 찾아서 ) 비디오의 조회 수를 증가시킵니다.
+
 
             // ResponseEntity를 사용하여 JSON 데이터와 HTTP 상태 코드 반환
             String jsonResponse = "{\"message\": \"Video added to recently viewed videos\"}";

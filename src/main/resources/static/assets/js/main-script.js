@@ -8,8 +8,6 @@ $(document).ready(function () {
        event.stopPropagation(); // Prevent click event propagation
             var $clickedElement = $(this);
                    $originalElement= $(this);
-//            $clickedElement.find('i').css('color', 'red');
-//            $('.popup').find('.saveLike i').css('color', 'red');
 
         //클릭된 요소 내부에서 data-video-id속성을 가진 요소를 찾아 해당 속성의 값을 가져옵니다.( data-video-id는 비디오에 따라 동적인 값을 가지고 있다 )
         var videoId = $clickedElement.find('[data-video-id]').attr('data-video-id');
@@ -36,7 +34,7 @@ if ($clickedElement !== null) {
 
 }
 
-
+// 여기서부터 복잡한 부분이 있는데 그냥 새로고침 필요없이 좋아요 아이콘을 빨간색이나 하얀색으로 변환시키기위한 코드이다
 if ($('.popup') !== null) {
 
 if (videoId === $('.popup').find('[data-video-id]').attr('data-video-id')) {
@@ -46,8 +44,7 @@ if (videoId === $('.popup').find('[data-video-id]').attr('data-video-id')) {
 //    팝업에도 대해서 좋아요에 대한 정보를 data-iColor에 저장해준다
 
 }
-//  $('.popup').find('.saveLike i').css('color', 'red');
-//  $('.popup').find('.saveLike i').attr('data-iColor', 'red');
+
 }
 
 if ($originalElement !== null) {
@@ -62,14 +59,11 @@ $('[data-video-id]').each(function() {
   // data-video-id 값이 videoId와 일치하는 경우 해당 요소의 save-like 버튼을 찾아 색상을 변경한다
   // 즉 같은 비디오인 경우에는 색상을 변경해준다
   if (currentVideoId == videoId) {
-//    var saveLikeButton = $(this).siblings('.video-description').find('.saveLike i');
+
 var saveLikeButton = $(this).find(' i');
  $(this).attr('data-iColor', 'red');
 
 
-
-
-//    saveLikeButton.attr('data-iColor', 'red');
 
     var iColor = saveLikeButton.attr('data-iColor');
     var saveLikeButtonColor = saveLikeButton.attr('data-iColor');
@@ -106,8 +100,6 @@ if (videoId === $('.popup').find('[data-video-id]').attr('data-video-id')) {
 }
 
 
-//  $('.popup').find('.saveLike i').css('color', 'white');
-//  $('.popup').find('.saveLike i').attr('data-iColor', 'white');
 }
 
     if ($originalElement !== null) {
@@ -126,16 +118,10 @@ if (videoId === $('.popup').find('[data-video-id]').attr('data-video-id')) {
         //    var saveLikeButton = $(this).siblings('.video-description').find('.saveLike i');
         var saveLikeButton = $(this).find('i');
       $(this).attr('data-iColor', 'white');
-//       $(this).parents('.searchlist').remove();
+
 
     $(this).parents('.owl-item:has(.mylike)').remove();
-//         $('.mylist-container').css('display', 'flex');
-//         $('.mylist-container').css('justify-content', 'flex-start');
-//        $('.popup').find('.saveLike i').css('color', 'white');
-//        $('.popup').find('.saveLike i').attr('data-iColor', 'white');
 
-//    saveLikeButton.attr('data-iColor', 'white');
-//        findI.find('I').attr('data-iColor', 'white');
 
     // data-iColor 값이 'red'인 경우 색상을 red로, 그렇지 않은 경우 색상을 white로 변경한다
     var iColor = saveLikeButton.attr('data-iColor');

@@ -1,16 +1,14 @@
     var $originalElement=null
 $(document).ready(function () {
 
-   //var $searchResultItems = $(".searchresult img, .searchresult video");
-
 
    $(".searchresult ,.searchlist").click(function popupVideoHandler(e)  {
        e.stopPropagation();
        var $clickedElement = $(this);
         $originalElement= $(this);
-        // $("video").each(function() {
-        //     this.pause();
-        // });
+
+// 데이터 속성인 data-video-url 를 비롯해 여러가지 정보를
+//    자바스크립의 변수에 저장합니다. 이렇게 가져온 데이터는 팝업 내에서 해당 데이터를 표시하거나 처리하는 데 사용됩니다.
 
         var $description = $(this);
         // var $parent = $description.parent();
@@ -26,8 +24,7 @@ $(document).ready(function () {
             $videoContainer.append($videoSpace);
         }
 
-        // var $video = $parent.find("video").clone();
-//        var videoUrl = $(this).attr('data-video-url');
+
         var videoUrl = $(this).find('[data-video-url]').attr('data-video-url');
 
         var $video = $('<video>', {
@@ -56,13 +53,12 @@ $(document).ready(function () {
                 height: "250px"
                 }
             });
-//            $textContainer.empty().append($textSpace);
+
         }
 
-//        $textSpace.empty().append("<hr>");
 
-
-//videoNm
+// 데이터 속성인 data-video-url외에도 html에서 동적으로 생성된 여러가지
+//    자바스크립의 변수에 저장해서 팝업에 출력해준다
 
  var videoNm = $clickedElement.find('[data-video-nm]').attr('data-video-nm');
   var videoGenres = $clickedElement.find('[data-video-genres]').attr('data-video-genres');
@@ -95,18 +91,18 @@ if (videoLevel === "KID") {
 
  $('.popup').find('.saveLike i').attr('data-iColor', videoIColor);
 
-
+//span태그들로 감싸서 팝업에 출력해준다
            $('.subject1').empty().text(videoNm);
              $('.story').empty().text(videoDescription);
                 $('.titleV').empty().append( $("<span>").text( videoNm));
-//            $('.story').empty().append($descriptionText);
+
 
           $('.ganre').empty().append( $("<span>").text( videoGenres));
             $('.actor').empty().append( $("<span>").text( videoActors));
              $('.videoCast').empty().append( $("<span>").text( videoCast));
               $('.level').empty().append( $("<span>").text( videoLevel));
 
-//        $('.story_box').empty().append($descriptionText);
+
 
               $('.saveLike i').each(function() {
                     var iColor = $(this).attr('data-iColor');
@@ -143,14 +139,14 @@ if (videoLevel === "KID") {
 
     });
 
-
+// 팝업을 끄는 기능
     $(document).on("click", function(event) {
       var $target = $(event.target);
 
       // 팝업이 열려있을 때
       if ($target.closest(".popup").length === 0) {
 
-        // 팝업 외부를 클릭한 경우, 팝업 제거
+        // 팝업 외부를 클릭한 경우, 팝업을 dispaly none으로 만들어준다
          $(".popup").css("display","none");
          $(".videoSpace").remove();
           $(".textSpace").remove();
@@ -170,45 +166,7 @@ if (videoLevel === "KID") {
             $(this).css('color', iColor);
         });
 
-//var header = $("meta[name='_csrf_header']").attr('content');
-//var token = $("meta[name='_csrf']").attr('content');
-//var url = "/save-like";
-//
-//    $.ajax({
-//        url: url,
-//        beforeSend: function(xhr){
-//            xhr.setRequestHeader(header, token);
-//        },
-//        success: function(res) {
-//            console.log(res);
-//        }
-//    });
-//
-//   $('.saveLike').click(function() {
-//    event.stopPropagation(); // Prevent click event propagation
-//           var videoId = $(this).data('video-id');
-//
-//           var data = {
-//               videoId: videoId
-//           };
-//
-//           $.ajax({
-//               url: "/save-like",
-//               type: "POST",
-//               beforeSend: function(xhr) {
-//                   xhr.setRequestHeader(header, token);
-//               },
-//               dataType: 'json',
-//               contentType: 'application/json; charset=utf-8',
-//               data: JSON.stringify(data),
-//               success: function(response) {
-//                   console.log(response);
-//               },
-//               error: function(xhr, status, error) {
-//                   console.error('Failed to save like:', error);
-//               }
-//           });
-//       });
+
 
 
  });
