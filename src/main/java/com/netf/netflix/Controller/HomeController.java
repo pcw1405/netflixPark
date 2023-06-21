@@ -228,5 +228,20 @@ public class HomeController {
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping(value="/home/header-menu")
+    public ResponseEntity<?> headerControl(HttpSession session){
+        Map<String, Object> response = new HashMap<>();
+        String loggedInUser = (String) session.getAttribute("loggedInUser");
+        Long loggedInProfile = (Long) session.getAttribute("profileNm");
+        Member member = memberRepository.findByEmail(loggedInUser);
+        Profile profile = profileRepository.findById(loggedInProfile).orElse(null);
+
+        response.put("membershipRole", member.getMembershipRole());
+        response.put("memberRole", member.getRole());
+        response.put("maturityLevel", profile.getMaturityLevel());
+
+        return ResponseEntity.ok(response);
+    }
+
 
 }

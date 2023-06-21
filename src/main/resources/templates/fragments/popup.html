@@ -99,7 +99,8 @@
                  th:data-video-cast="@{${rdvideo.cast}}"
                  th:data-video-recent="@{${rdvideo.id}}"
                  th:data-video-id="@{${rdvideo.id}}"
-                 th:data-video-level="${rdvideo.videoMaturityLevel}"
+                 th:data-video-level="@{${rdvideo.videoMaturityLevel}}"
+                 th:data-video-Role="@{${rdvideo.videoRole}}"
                  th:data-iColor="${favoriteVideos != null && favoriteVideos.contains(rdvideo.id) ? 'red' : 'white'}"
             >
 <!--            html에 동적으로 비디오에 대한 정보를 받아서 팝업에 표시할 관련 정보를 저장하기 위한 용도입니다.-->

@@ -16,14 +16,14 @@ $.ajax({
     console.log(response.membership);
     console.log(typeof(response.membership));
     membershipValue = response.membership;
-if(membershipValue != "NONE"){
-   $(".searchresult ,.searchlist").click(function popupVideoHandler(e)  {
+    if(membershipValue != "NONE"){
+    $(".searchresult ,.searchlist").click(function popupVideoHandler(e)  {
        e.stopPropagation();
        var $clickedElement = $(this);
         $originalElement= $(this);
 
-// 데이터 속성인 data-video-url 를 비롯해 여러가지 정보를
-//    자바스크립의 변수에 저장합니다. 이렇게 가져온 데이터는 팝업 내에서 해당 데이터를 표시하거나 처리하는 데 사용됩니다.
+//데이터 속성인 data-video-url 를 비롯해 여러가지 정보를
+//자바스크립의 변수에 저장합니다. 이렇게 가져온 데이터는 팝업 내에서 해당 데이터를 표시하거나 처리하는 데 사용됩니다.
 
         var $description = $(this);
         // var $parent = $description.parent();
@@ -38,7 +38,6 @@ if(membershipValue != "NONE"){
             });
             $videoContainer.append($videoSpace);
         }
-
 
         var videoUrl = $(this).find('[data-video-url]').attr('data-video-url');
 
@@ -75,7 +74,7 @@ if(membershipValue != "NONE"){
 // 데이터 속성인 data-video-url외에도 html에서 동적으로 생성된 여러가지
 //    자바스크립의 변수에 저장해서 팝업에 출력해준다
 
- var videoNm = $clickedElement.find('[data-video-nm]').attr('data-video-nm');
+  var videoNm = $clickedElement.find('[data-video-nm]').attr('data-video-nm');
   var videoGenres = $clickedElement.find('[data-video-genres]').attr('data-video-genres');
   var videoDescription = $clickedElement.find('[data-video-description]').attr('data-video-description');
   var videoActors = $clickedElement.find('[data-video-actors]').attr('data-video-actors');
@@ -147,10 +146,23 @@ if (videoLevel === "KID") {
               }
           }
       });
-
-
+  var videoNm = $clickedElement.find('[data-video-nm]').attr('data-video-nm');
+  var videoGenres = $clickedElement.find('[data-video-genres]').attr('data-video-genres');
+  var videoDescription = $clickedElement.find('[data-video-description]').attr('data-video-description');
+  var videoActors = $clickedElement.find('[data-video-actors]').attr('data-video-actors');
+  var videoCast = $clickedElement.find('[data-video-cast]').attr('data-video-cast');
+  var videoRecent = $clickedElement.find('[data-video-recent]').attr('data-video-recent');
+  var videoLevel = $clickedElement.find('[data-video-level]').attr('data-video-level');
+  var videoRole = $clickedElement.find('[data-video-Role]').attr('data-video-Role');
+        if(membershipValue == "BASIC" && videoLevel != "ALL"){
         $popup.css("display", "block");
-
+        }
+        if(membershipValue == "BASIC" && videoLevel != "KID"){
+            $popup.css("display", "none");
+            if(videoRole == "MOVIE" || videoRole == "DRAMA"){
+                alert("STANDARD등급 이상부터 상위 맴버쉽을 결재해주세요");
+            }
+        }
 
     });
 

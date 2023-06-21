@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<script src="@{/assets/lib/jquery 3.7.0.js}"></script>
-
+    <script th:src="@{/assets/lib/jquery 3.7.0.js}"></script>
 
 <div th:fragment="header">
     <header class="d-flex space-between flex-center flex-middle container">
@@ -12,10 +11,10 @@
                 <img th:src="@{/images/Netflix_Logo.png}" class="main_logo_img" alt="메인로고이미지">
                 <img th:src="@{/images/pngwing.com.png}" class="main_small_img" alt="">
             </a>
-            <a th:href="@{/home/{profileId}(profileId=${session.profileNm})}" sec:authorize="isAuthenticated() "class="nav-item home">홈</a>
-            <a th:href="@{/movie/{profileId}(profileId=${session.profileNm})}"  th:if="${selectedProfile.maturityLevel == T(com.netf.netflix.Entity.Profile$MaturityLevel).ALL}" sec:authorize="isAuthenticated()" class="nav-item">영화</a>
-            <a th:href="@{/drama/{profileId}(profileId=${session.profileNm})}"  th:if="${selectedProfile.maturityLevel == T(com.netf.netflix.Entity.Profile$MaturityLevel).ALL}" sec:authorize="isAuthenticated()" class="nav-item">드라마</a>
-            <a th:href="@{/kid/{profileId}(profileId=${session.profileNm})}" th:if="${selectedProfile.maturityLevel == T(com.netf.netflix.Entity.Profile$MaturityLevel).ALL or selectedProfile.maturityLevel == T(com.netf.netflix.Entity.Profile$MaturityLevel).KID}" sec:authorize="isAuthenticated()" class="nav-item">키즈</a>
+            <a th:href="@{/home/{profileId}(profileId=${session.profileNm})}" class="nav-item home" id="header-home">홈</a>
+            <a th:href="@{/movie/{profileId}(profileId=${session.profileNm})}" class="nav-item" id="header-movie">영화</a>
+            <a th:href="@{/drama/{profileId}(profileId=${session.profileNm})}" class="nav-item" id="header-drama">드라마</a>
+            <a th:href="@{/kid/{profileId}(profileId=${session.profileNm})}"  class="nav-item" id="header-kids">키즈</a>
             <a th:href="@{/recent/{profileId}(profileId=${session.profileNm})}"   sec:authorize="hasRole('ROLE_USER')" class="nav-item">최근 시청기록</a>
             <a th:href="@{/mylist/{profileId}(profileId=${session.profileNm})}"  sec:authorize="hasRole('ROLE_USER')" class="nav-item">내가 찜한 콘텐츠</a>
             <a th:href="@{/video/new}" sec:authorize="hasRole('ROLE_ADMIN')"  class="nav-item">비디오 업로드 </a>
