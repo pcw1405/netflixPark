@@ -1,6 +1,7 @@
 package com.netf.netflix.Controller;
 
 import com.netf.netflix.Config.CustomUserDetails;
+import com.netf.netflix.Constant.MembershipRole;
 import com.netf.netflix.Entity.Member;
 import com.netf.netflix.Entity.Profile;
 import com.netf.netflix.Entity.VideoImg;
@@ -11,6 +12,7 @@ import com.netf.netflix.Service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,7 +23,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Controller
@@ -99,7 +103,6 @@ public class UserController {
         Member member = memberRepository.findByEmail(loggedInUser);
         if(membershipDrop.equals("NONE")){
             memberService.membershipDrop(member);
-//            member.setMembershipExpirationDate(LocalDate.of(0000,00,00));
         }
         session.setAttribute("loggedInUser", member.getEmail());
         return "redirect:/user";
@@ -111,5 +114,22 @@ public class UserController {
         profileRepository.deleteById(profileId);
 
         return "redirect:/user";
+    }
+
+    @GetMapping("/user/membershipCheck")
+    public ResponseEntity<?> userMembershipCheck(HttpSession session){
+        Map<String, Object> response = new HashMap<>();
+        String loggedInUser = (String) session.getAttribute("loggedInUser");
+        Member member = memberRepository.findByEmail(loggedInUser);
+        MembershipRole membership = member.getMembershipRole();
+        LocalDate membershipDate = member.getMembershipExpirationDate();
+
+        if(membership == MembershipRole.NONE){
+            response.put("membershipdate", "");
+        }else {
+            response.put("membershipdate", membershipDate);
+        }
+
+        return ResponseEntity.ok(response);
     }
 }

@@ -93,7 +93,7 @@ public class ClickController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
 
-//   반환할 때 제이슨으로 반환해야한다
+        //반환할 때 제이슨으로 반환해야한다
     }
 
 }
