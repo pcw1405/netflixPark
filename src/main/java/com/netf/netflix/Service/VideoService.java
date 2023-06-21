@@ -47,7 +47,8 @@ public class VideoService {
         //영상 등록
         VideoFile newVideoFile = new VideoFile();
         newVideoFile.setVideo(video);
-
+        
+        //위에서 정보 등록을 한 이후에 각각의 MultipartFile들을 Service에서 처리
         videoImgService.saveVideoImg(videoImg, videoImgFile);
         videoFileService.saveVideoFile(newVideoFile, videoFile);
         return video.getId();
@@ -95,17 +96,17 @@ public class VideoService {
 
 
     public Long updateVideo(VideoFormDto videoFormDto, MultipartFile videoImgFile, MultipartFile videoFile) throws Exception{
-
+        //수정할 videoId넘겨받아서 찾기
         Video video = videoRepository.findById(videoFormDto.getId()).orElse(null);
-
+        //받은 정보로 update
         video.updateVideo(videoFormDto);
 
+        //각각 img와 file찾아서 저장해주고
         VideoImg videoImg = videoImgRepository.findByVideo(video);
         videoImg.setVideo(video);
-
         VideoFile updatedVideoFile = videoFileRepository.findByVideo(video);
         updatedVideoFile.setVideo(video);
-
+        //service를 통해서 update
         videoImgService.updateVideoImg(videoImg, videoImgFile);
         videoFileService.updateVideoFile(updatedVideoFile, videoFile);
 

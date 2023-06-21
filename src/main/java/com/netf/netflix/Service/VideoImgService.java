@@ -44,7 +44,8 @@ public class VideoImgService {
 
             imgName = fileService.uploadFile(videoImgLocation, oriImgName, videoImgFile.getBytes());
             imgUrl = "/upload/video_img/" + imgName;
-
+            
+            //기존에 저장되어 있는 파일과 다를경우에는 원래있던 파일 삭제
             if (videoImg.getImgName() != null) {
                 String filePath = videoImgLocation + "/" + videoImg.getImgName();
                 fileService.deleteFile(filePath);

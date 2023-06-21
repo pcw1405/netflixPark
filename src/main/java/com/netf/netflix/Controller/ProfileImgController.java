@@ -64,16 +64,13 @@ public class ProfileImgController {
         if (bindingResult.hasErrors()) {
             return "profile-img";
         }
-
         try {
             profileImgService.uploadProfileImg(profileImg, profileImgFile);
         } catch (Exception e) {
             model.addAttribute("errorMessage", "이미지 업로드 중 문제가 발생했습니다.");
             return "profile-img";
         }
-
         return "redirect:/profile-img";
     }
-
 
 }
