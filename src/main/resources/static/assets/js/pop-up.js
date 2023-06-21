@@ -1,7 +1,22 @@
     var $originalElement=null
+    var membershipValue;
 $(document).ready(function () {
-
-
+    var header = $("meta[name='_csrf_header']").attr('content');
+    var token = $("meta[name='_csrf']").attr('content');
+$.ajax({
+  url: '/check-membership', // 컨트롤러의 URL
+  type: 'GET', // 요청 방식 (GET, POST, 등)
+  beforeSend: function(xhr) {
+     xhr.setRequestHeader(header, token);
+  },
+  data: { // 필요한 데이터 (선택적)
+    membership : 'value1'
+  },
+  success: function(response) {
+    console.log(response.membership);
+    console.log(typeof(response.membership));
+    membershipValue = response.membership;
+if(membershipValue != "NONE"){
    $(".searchresult ,.searchlist").click(function popupVideoHandler(e)  {
        e.stopPropagation();
        var $clickedElement = $(this);
@@ -168,5 +183,8 @@ if (videoLevel === "KID") {
 
 
 
+}
+  }
+});
+});
 
- });
