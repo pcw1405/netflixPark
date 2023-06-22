@@ -16,7 +16,8 @@ $.ajax({
     console.log(response.membership);
     console.log(typeof(response.membership));
     membershipValue = response.membership;
-    if(membershipValue != "NONE"){
+
+    if(membershipValue != ""){
     $(".searchresult ,.searchlist").click(function popupVideoHandler(e)  {
        e.stopPropagation();
        var $clickedElement = $(this);
@@ -148,10 +149,11 @@ if (videoLevel === "KID") {
       });
 
   var videoRole = $clickedElement.find('[data-video-Role]').attr('data-video-Role');
-        if(membership == "NONE"){
-            $popup.css("display", "none");
-            alert("맴버쉽 결재 후 이용이 가능합니다.");
-        }
+    if(membershipValue == "NONE"){
+                $popup.css("display", "none");
+                alert("맴버쉽 결재 후 이용이 가능합니다.");
+
+            }
         if(membershipValue == "BASIC" && videoLevel != "ALL"){
         $popup.css("display", "block");
         }
@@ -166,7 +168,7 @@ if (videoLevel === "KID") {
         }
         if(membershipValue == "STANDARD"){
         $popup.css("display", "block");
-            if(videoRole == "MOVIE"){
+            if(videoRole == "MOVIE" && videoLevel != "KID"){
                 $popup.css("display", "none");
                 alert("PREMIUM등급 이상부터 상위 맴버쉽을 결재해주세요");
             }

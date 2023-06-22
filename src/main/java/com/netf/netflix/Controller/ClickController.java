@@ -1,5 +1,7 @@
 package com.netf.netflix.Controller;
 
+import com.netf.netflix.Constant.MembershipRole;
+import com.netf.netflix.Repository.MemberRepository;
 import com.netf.netflix.Service.ProfileService;
 import com.netf.netflix.Service.VideoService;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +22,7 @@ public class ClickController {
 
     private final ProfileService profileService;
     private final VideoService videoService;
+    private final MemberRepository memberRepository;
 
     @PostMapping("/save-like")
     public ResponseEntity<?> saveLike(@RequestBody Map<String, Object> requestData, HttpSession session) {
@@ -77,9 +80,11 @@ public class ClickController {
         System.out.println(loggedInUser);
         // 적절한 응답 생성
 
+        MembershipRole membershipRole = memberRepository.findByEmail(loggedInUser).getMembershipRole();
         try{
             profileService.addRecentlyViewedVideo(profileId,  videoId);
-            videoService.addViewCount(videoId);
+            videoService.addViewCount(videoId, membershipRole);
+
             
 //비디오아이디와 포로파일 아이디를 매개변수로  addRecentlyViewedVideo() 메서드를 호출하여 최근본 비디오 목록에 비디오아이디를 저장합니다
 //그리고 addViewCount() 메서드를 videoId를 매개변수로( 비디오롤 찾아서 ) 비디오의 조회 수를 증가시킵니다.

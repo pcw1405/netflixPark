@@ -1,5 +1,8 @@
 package com.netf.netflix.Service;
 
+import com.netf.netflix.Constant.MembershipRole;
+import com.netf.netflix.Constant.VideoMaturityLevel;
+import com.netf.netflix.Constant.VideoRole;
 import com.netf.netflix.Dto.MemberFormDto;
 import com.netf.netflix.Dto.VideoFormDto;
 import com.netf.netflix.Entity.Profile;
@@ -47,7 +50,7 @@ public class VideoService {
         //영상 등록
         VideoFile newVideoFile = new VideoFile();
         newVideoFile.setVideo(video);
-        
+
         //위에서 정보 등록을 한 이후에 각각의 MultipartFile들을 Service에서 처리
         videoImgService.saveVideoImg(videoImg, videoImgFile);
         videoFileService.saveVideoFile(newVideoFile, videoFile);
@@ -69,7 +72,7 @@ public class VideoService {
 //        findByVideoNmContainingOrCastContainingOrActorsContaining
     }
 
-    public void addViewCount(long videoId) {
+    public void addViewCount(long videoId, MembershipRole membershipRole) {
 
         // 비디오 아이디를 이용하여 필요한 로직을 수행한 후에 데이터베이스에 저장하는 예시입니다.
         // 여기서는 간단히 Video 객체를 가져와서 출력하는 예시를 보여줍니다.
@@ -80,8 +83,25 @@ public class VideoService {
             // 데이터베이스에 저장하는 로직을 추가하세요.
 
             // 비디오 조회수 증가
-            int currentViewCount = targetVideo.getViewCount();
-            targetVideo.setViewCount(currentViewCount + 1);
+            if(membershipRole == MembershipRole.BASIC){
+                int currentViewCount = targetVideo.getViewCount();
+                if(targetVideo.getVideoMaturityLevel() == VideoMaturityLevel.KID){
+                targetVideo.setViewCount(currentViewCount + 1);
+                }
+            }
+            if(membershipRole == MembershipRole.STANDARD){
+                int currentViewCount = targetVideo.getViewCount();
+                if(targetVideo.getVideoRole() != VideoRole.MOVIE){
+                targetVideo.setViewCount(currentViewCount + 1);
+                }
+            }
+            if(membershipRole == MembershipRole.PREMIUM){
+                int currentViewCount = targetVideo.getViewCount();
+                targetVideo.setViewCount(currentViewCount + 1);
+            }
+
+
+
 
             // 레포지토리에 저장
             videoRepository.save(targetVideo);
