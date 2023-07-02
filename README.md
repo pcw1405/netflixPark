@@ -9,3 +9,7 @@
 윤영민: 회원가입 , 프로필
 
 강동언: 비디오 업로드 , 멤버쉽 
+
+
+
+![KakaoTalk_20230621_170102019](https://github.com/pcw1405/netflixPark/assets/130324807/ccc4cdd7-39f1-4421-a2c5-d5112c0c5c6e)
