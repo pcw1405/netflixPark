@@ -20,3 +20,8 @@ https://github.com/pcw1405/netflixPark/assets/130324807/ff180f3e-9848-4102-8447-
 
 
 ![KakaoTalk_20230621_170102019](https://github.com/pcw1405/netflixPark/assets/130324807/ccc4cdd7-39f1-4421-a2c5-d5112c0c5c6e)
+
+
+# 사용기술 
+
+HTML, CSS, JavaScript, jQuery, Bootstrap, Spring, Java, MySQL
