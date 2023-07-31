@@ -25,10 +25,6 @@
 
 
 
-# 이것은 시연영상입니다
-
-https://github.com/pcw1405/netflixPark/assets/130324807/ff180f3e-9848-4102-8447-bea1d843a484
-
 
 
 
