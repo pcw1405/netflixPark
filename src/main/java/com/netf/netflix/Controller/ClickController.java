@@ -27,9 +27,13 @@ public class ClickController {
     @PostMapping("/save-like")
     public ResponseEntity<?> saveLike(@RequestBody Map<String, Object> requestData, HttpSession session) {
         String videoIdString = (String) requestData.get("videoId");
+//videoIdAsString이 좀 더 명시적이지 않는가 고려
+// NumberFormatException을 피하기 위해 유효한 long인지 확인 하는 것을 고려
 
         long videoId = Long.parseLong(videoIdString);
+        //System.out.println() 대신  SLF4J와 같은 로깅을 고려
         System.out.println("Received videoId: " + videoId); // videoId 출력
+
 
 //        ajax를 통해 클릭을 통해 비디오 아이디값 정보를 가져온다
 
