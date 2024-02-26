@@ -59,6 +59,7 @@ public class ClickController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+        //더 구체적인 예외처리를 고려
     }
 
     @PostMapping("/addRecentlyViewedVideo")
