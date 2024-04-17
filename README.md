@@ -43,4 +43,4 @@ data.sql은 초기데이터를 위한 것입니다. )
 
 # 사용기술 
 
-HTML, CSS, JavaScript, jQuery, Bootstrap, Spring Boot, Java, MySQL
+HTML, CSS, JavaScript, jQuery, Bootstrap, Spring Boot, Java,AJAX, MySQL
