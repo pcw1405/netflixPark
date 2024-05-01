@@ -3,8 +3,6 @@
 # netflixPark
 
 기능구현의 발전을 목표로 전세계적으로 성공적인 스트리밍 서비스 중 대표적 사례인 넷플릭스를 모방했습니다
-(application.properties에서 spring.jpa.hibernate.ddl-auto= create을 spring.jpa.hibernate.ddl-auto= update로 바꾸면 데이터들이 내용이 유지됩니다. 대신 data.sql을 test폴더로 옮겨야합니다
-data.sql은 초기데이터를 위한 것입니다. )
 
 #역할분배
 
